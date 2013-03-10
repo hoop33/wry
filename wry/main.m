@@ -7,16 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WryApplication.h"
 
 int main(int argc, const char * argv[])
 {
-
   @autoreleasepool {
-      
-      // insert code here...
-      NSLog(@"Hello, World!");
-      
+    WryApplication *application = [[WryApplication alloc] init];
+    application.command = argc == 1 ? nil : [NSString stringWithUTF8String:argv[1]];
+    NSMutableArray *params = [NSMutableArray array];
+    for (int i = 2; i < argc - 1; i++)
+    {
+      [params addObject:[NSString stringWithUTF8String:argv[i]]];
+    }
+    application.params = [NSArray arrayWithArray:params];
+    return [application run];
   }
-    return 0;
 }
-

@@ -10,6 +10,9 @@
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
+		C784326A16EBBA0F000DED40 /* WryApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326916EBBA0F000DED40 /* WryApplication.m */; };
+		C784326E16ECB03F000DED40 /* AboutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326D16ECB03F000DED40 /* AboutCommand.m */; };
+		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,11 +29,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADDE472AC80542959D226C1C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C784326016EA02FA000DED40 /* wry-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wry-Prefix.pch"; sourceTree = "<group>"; };
 		C784326116EA02FA000DED40 /* wry.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = wry.1; sourceTree = "<group>"; };
+		C784326816EBBA0F000DED40 /* WryApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryApplication.h; sourceTree = "<group>"; };
+		C784326916EBBA0F000DED40 /* WryApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryApplication.m; sourceTree = "<group>"; };
+		C784326C16ECB03F000DED40 /* AboutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCommand.h; sourceTree = "<group>"; };
+		C784326D16ECB03F000DED40 /* AboutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCommand.m; sourceTree = "<group>"; };
+		C784327016ECB135000DED40 /* WryCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WryCommand.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */,
+				D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +62,7 @@
 				C784325C16EA02FA000DED40 /* wry */,
 				C784325916EA02FA000DED40 /* Frameworks */,
 				C784325816EA02FA000DED40 /* Products */,
+				ADDE472AC80542959D226C1C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				C784325A16EA02FA000DED40 /* Foundation.framework */,
+				7E741D72DB884AC0A9AC4C6E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -76,6 +89,7 @@
 				C784325D16EA02FA000DED40 /* main.m */,
 				C784326116EA02FA000DED40 /* wry.1 */,
 				C784325F16EA02FA000DED40 /* Supporting Files */,
+				C784326B16EBBA16000DED40 /* Classes */,
 			);
 			path = wry;
 			sourceTree = "<group>";
@@ -88,6 +102,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C784326B16EBBA16000DED40 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C784326F16ECB045000DED40 /* Commands */,
+				C784326816EBBA0F000DED40 /* WryApplication.h */,
+				C784326916EBBA0F000DED40 /* WryApplication.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		C784326F16ECB045000DED40 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				C784326C16ECB03F000DED40 /* AboutCommand.h */,
+				C784326D16ECB03F000DED40 /* AboutCommand.m */,
+				C784327016ECB135000DED40 /* WryCommand.h */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,6 +132,7 @@
 				C784325316EA02FA000DED40 /* Sources */,
 				C784325416EA02FA000DED40 /* Frameworks */,
 				C784325516EA02FA000DED40 /* CopyFiles */,
+				70AC4BFBE8F04C7CAC89CC42 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,12 +169,31 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		70AC4BFBE8F04C7CAC89CC42 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C784325316EA02FA000DED40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C784325E16EA02FA000DED40 /* main.m in Sources */,
+				C784326A16EBBA0F000DED40 /* WryApplication.m in Sources */,
+				C784326E16ECB03F000DED40 /* AboutCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +227,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -200,13 +254,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		C784326616EA02FA000DED40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADDE472AC80542959D226C1C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
@@ -216,6 +271,7 @@
 		};
 		C784326716EA02FA000DED40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADDE472AC80542959D226C1C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
@@ -242,6 +298,7 @@
 				C784326716EA02FA000DED40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
