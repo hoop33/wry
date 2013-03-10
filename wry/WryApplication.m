@@ -9,7 +9,8 @@
 #import "WryApplication.h"
 #import "WryCommand.h"
 
-#define kDefaultCommandName @"AboutCommand"
+#define kVersion @"0.1"
+#define kDefaultCommandName @"HelpCommand"
 
 @interface WryApplication ()
 - (NSString *)getCommandName;
@@ -21,7 +22,27 @@
 - (int)run
 {
   id<WryCommand> wryCommand = [self getCommand];
-  return [wryCommand run:self.params];
+  return [wryCommand run:self params:self.params];
+}
+
+- (void)print:(NSString *)output
+{
+  printf("%s", [output UTF8String]);
+}
+
+- (void)println:(NSString *)output
+{
+  [self print:[NSString stringWithFormat:@"%@\n", output]];
+}
+
+- (NSString *)version
+{
+  return kVersion;
+}
+
+- (NSString *)helpLine
+{
+  return [NSString stringWithFormat:@"%@ %@", self.appName, [self version]];
 }
 
 - (id<WryCommand>)getCommand

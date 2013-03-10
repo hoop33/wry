@@ -6,13 +6,17 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface WryApplication : NSObject
 
+@property (nonatomic, copy) NSString *appName;
 @property (nonatomic, copy) NSString *command;
 @property (nonatomic, strong) NSArray *params;
+@property (nonatomic) BOOL quiet;
 
 - (int)run;
+- (void)print:(NSString *)output;
+- (void)println:(NSString *)output;
+- (NSString *)version;
+- (NSString *)helpLine;
 
 @end

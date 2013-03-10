@@ -11,7 +11,7 @@
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
 		C784326A16EBBA0F000DED40 /* WryApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326916EBBA0F000DED40 /* WryApplication.m */; };
-		C784326E16ECB03F000DED40 /* AboutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326D16ECB03F000DED40 /* AboutCommand.m */; };
+		C784327416ED2DF2000DED40 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327316ED2DF2000DED40 /* HelpCommand.m */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -38,9 +38,9 @@
 		C784326116EA02FA000DED40 /* wry.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = wry.1; sourceTree = "<group>"; };
 		C784326816EBBA0F000DED40 /* WryApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryApplication.h; sourceTree = "<group>"; };
 		C784326916EBBA0F000DED40 /* WryApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryApplication.m; sourceTree = "<group>"; };
-		C784326C16ECB03F000DED40 /* AboutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCommand.h; sourceTree = "<group>"; };
-		C784326D16ECB03F000DED40 /* AboutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCommand.m; sourceTree = "<group>"; };
 		C784327016ECB135000DED40 /* WryCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WryCommand.h; sourceTree = "<group>"; };
+		C784327216ED2DF2000DED40 /* HelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCommand.h; sourceTree = "<group>"; };
+		C784327316ED2DF2000DED40 /* HelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +115,9 @@
 		C784326F16ECB045000DED40 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
-				C784326C16ECB03F000DED40 /* AboutCommand.h */,
-				C784326D16ECB03F000DED40 /* AboutCommand.m */,
 				C784327016ECB135000DED40 /* WryCommand.h */,
+				C784327216ED2DF2000DED40 /* HelpCommand.h */,
+				C784327316ED2DF2000DED40 /* HelpCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 			files = (
 				C784325E16EA02FA000DED40 /* main.m in Sources */,
 				C784326A16EBBA0F000DED40 /* WryApplication.m in Sources */,
-				C784326E16ECB03F000DED40 /* AboutCommand.m in Sources */,
+				C784327416ED2DF2000DED40 /* HelpCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

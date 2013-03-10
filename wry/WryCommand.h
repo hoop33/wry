@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "WryApplication.h"
 
 @protocol WryCommand <NSObject>
 
-- (int)run:(NSArray *)params;
+- (int)run:(WryApplication *)app params:(NSArray *)params;
 
 @end
