@@ -13,6 +13,7 @@
 		C784326A16EBBA0F000DED40 /* WryApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326916EBBA0F000DED40 /* WryApplication.m */; };
 		C784327416ED2DF2000DED40 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327316ED2DF2000DED40 /* HelpCommand.m */; };
 		C784327716EF2611000DED40 /* AuthorizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327616EF2611000DED40 /* AuthorizeCommand.m */; };
+		C784327C16EF4955000DED40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784327B16EF4955000DED40 /* Security.framework */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		C784327316ED2DF2000DED40 /* HelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCommand.m; sourceTree = "<group>"; };
 		C784327516EF2611000DED40 /* AuthorizeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeCommand.h; sourceTree = "<group>"; };
 		C784327616EF2611000DED40 /* AuthorizeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeCommand.m; sourceTree = "<group>"; };
+		C784327B16EF4955000DED40 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C784327C16EF4955000DED40 /* Security.framework in Frameworks */,
 				C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */,
 				D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */,
 			);
@@ -80,6 +83,7 @@
 		C784325916EA02FA000DED40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C784327B16EF4955000DED40 /* Security.framework */,
 				C784325A16EA02FA000DED40 /* Foundation.framework */,
 				7E741D72DB884AC0A9AC4C6E /* libPods.a */,
 			);
