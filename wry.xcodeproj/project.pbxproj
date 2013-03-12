@@ -17,6 +17,7 @@
 		C784327F16EF8565000DED40 /* ADNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327E16EF8565000DED40 /* ADNPost.m */; };
 		C784328316EF85A8000DED40 /* ADNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328216EF85A8000DED40 /* ADNUser.m */; };
 		C784328916EF8AA8000DED40 /* ADNService.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328816EF8AA8000DED40 /* ADNService.m */; };
+		C784328F16EFD843000DED40 /* ADNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328E16EFD843000DED40 /* ADNOperation.m */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		C784328716EF8AA8000DED40 /* ADNService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNService.h; sourceTree = "<group>"; };
 		C784328816EF8AA8000DED40 /* ADNService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNService.m; sourceTree = "<group>"; };
 		C784328B16EF90D1000DED40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C784328D16EFD843000DED40 /* ADNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNOperation.h; sourceTree = "<group>"; };
+		C784328E16EFD843000DED40 /* ADNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 				C784328016EF856A000DED40 /* Models */,
 				C784328716EF8AA8000DED40 /* ADNService.h */,
 				C784328816EF8AA8000DED40 /* ADNService.m */,
+				C784328D16EFD843000DED40 /* ADNOperation.h */,
+				C784328E16EFD843000DED40 /* ADNOperation.m */,
 			);
 			name = ADN;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				C784327F16EF8565000DED40 /* ADNPost.m in Sources */,
 				C784328316EF85A8000DED40 /* ADNUser.m in Sources */,
 				C784328916EF8AA8000DED40 /* ADNService.m in Sources */,
+				C784328F16EFD843000DED40 /* ADNOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
