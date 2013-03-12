@@ -8,15 +8,20 @@
 
 @interface WryApplication : NSObject
 
-@property (nonatomic, copy) NSString *appName;
-@property (nonatomic, copy) NSString *command;
-@property (nonatomic, strong) NSArray *params;
-@property (nonatomic) BOOL quiet;
+@property(nonatomic, copy) NSString *appName;
+@property(nonatomic, copy) NSString *command;
+@property(nonatomic, strong) NSArray *params;
+@property(nonatomic) BOOL quiet;
+@property(nonatomic) int count;
 
 - (int)run;
+
 - (void)print:(NSString *)output;
+
 - (void)println:(NSString *)output;
+
 - (NSString *)version;
+
 - (NSString *)helpLine;
 
 @end

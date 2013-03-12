@@ -8,26 +8,42 @@
 
 #import "WryApplication.h"
 
-int main(int argc, const char * argv[])
-{
+int main(int argc, const char *argv[]) {
   @autoreleasepool {
     WryApplication *application = [[WryApplication alloc] init];
     application.appName = [[NSString stringWithUTF8String:argv[0]] lastPathComponent];
-    application.command = argc == 1 ? nil : [NSString stringWithUTF8String:argv[1]];
+
+    NSString *errorMessage = nil;
     NSMutableArray *params = [NSMutableArray array];
-    for (int i = 2; i < argc - 1; i++)
-    {
+    for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
-      if ([param isEqualToString:@"-q"] || [param isEqualToString:@"--quiet"])
-      {
-        application.quiet = YES;
-      }
-      else
-      {
+      if ([param hasPrefix:@"-"]) {
+        if ([param isEqualToString:@"-q"] || [param isEqualToString:@"--quiet"]) {
+          application.quiet = YES;
+        } else if ([param isEqualToString:@"-c"] || [param isEqualToString:@"--count"]) {
+          ++i;
+          if (i >= argc) {
+            errorMessage = [NSString stringWithFormat:@"You must specify a count when passing %@", param];
+            break;
+          } else {
+            application.count = [[NSString stringWithUTF8String:argv[i]] intValue];
+          }
+        } else {
+          errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];
+          break;
+        }
+      } else if (application.command == nil) {
+        application.command = param;
+      } else {
         [params addObject:param];
       }
     }
-    application.params = [NSArray arrayWithArray:params];
-    return [application run];
+    if (errorMessage != nil) {
+      [application println:errorMessage];
+      return 1;
+    } else {
+      application.params = [NSArray arrayWithArray:params];
+      return [application run];
+    }
   }
 }

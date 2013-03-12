@@ -8,6 +8,6 @@
 
 #import "WryCommand.h"
 
-@interface HelpCommand : NSObject<WryCommand>
+@interface HelpCommand : NSObject <WryCommand>
 
 @end

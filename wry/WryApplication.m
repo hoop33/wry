@@ -10,54 +10,59 @@
 #import "WryCommand.h"
 
 #define kVersion @"0.1"
+#define kDefaultCount 20
 #define kDefaultCommandName @"HelpCommand"
 
 @interface WryApplication ()
 - (NSString *)getCommandName;
-- (id<WryCommand>)getCommand;
+
+- (id <WryCommand>)getCommand;
 @end
 
 @implementation WryApplication
 
-- (int)run
-{
-  id<WryCommand> wryCommand = [self getCommand];
+- (id)init {
+  self = [super init];
+  if (self != nil) {
+    self.quiet = NO;
+    self.count = kDefaultCount;
+  }
+  return self;
+}
+
+- (int)run {
+  id <WryCommand> wryCommand = [self getCommand];
   return [wryCommand run:self params:self.params];
 }
 
-- (void)print:(NSString *)output
-{
-  printf("%s", [output UTF8String]);
+- (void)print:(NSString *)output {
+  if (!self.quiet) {
+    printf("%s", [output UTF8String]);
+  }
 }
 
-- (void)println:(NSString *)output
-{
+- (void)println:(NSString *)output {
   [self print:[NSString stringWithFormat:@"%@\n", output]];
 }
 
-- (NSString *)version
-{
+- (NSString *)version {
   return kVersion;
 }
 
-- (NSString *)helpLine
-{
+- (NSString *)helpLine {
   return [NSString stringWithFormat:@"%@ %@", self.appName, [self version]];
 }
 
-- (id<WryCommand>)getCommand
-{
+- (id <WryCommand>)getCommand {
   Class cls = NSClassFromString([self getCommandName]);
-  if (cls == nil || ![cls conformsToProtocol:@protocol(WryCommand)])
-  {
+  if (cls == nil || ![cls conformsToProtocol:@protocol(WryCommand)]) {
     cls = NSClassFromString(kDefaultCommandName);
   }
-  id<WryCommand> wryCommand = [[cls alloc] init];
+  id <WryCommand> wryCommand = [[cls alloc] init];
   return wryCommand;
 }
 
-- (NSString *)getCommandName
-{
+- (NSString *)getCommandName {
   return [NSString stringWithFormat:@"%@Command", [self.command capitalizedString]];
 }
 
