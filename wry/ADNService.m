@@ -33,6 +33,24 @@
   return user;
 }
 
+#pragma mark - NSURLConnectionDataDelegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+  self.data.length = 0;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+  [self.data appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  [self.app println:[error localizedDescription]];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+
+}
+
 #pragma mark - Private methods
 
 - (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
@@ -40,6 +58,16 @@
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setValue:[NSString stringWithFormat:@"Bearer %@", self.app.accessToken] forHTTPHeaderField:@"Authorization"];
   return request;
+}
+
+- (void)runRequest:(NSURLRequest *)request {
+  NSURLConnection *connection = [[NSURLConnection alloc]
+    initWithRequest:request delegate:self startImmediately:NO];
+  if (connection != nil) {
+    self.data = [NSMutableData data];
+
+  }
+
 }
 
 @end

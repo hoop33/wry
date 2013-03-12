@@ -11,9 +11,10 @@
 @class ADNUser;
 @class WryApplication;
 
-@interface ADNService : NSObject
+@interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
-@property (nonatomic, strong) WryApplication *app;
+@property(nonatomic, strong) WryApplication *app;
+@property(nonatomic, strong) NSMutableData *data;
 
 - (id)initWithApplication:(WryApplication *)app;
 - (ADNUser *)getUser;
