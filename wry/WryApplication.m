@@ -8,6 +8,7 @@
 
 #import "WryApplication.h"
 #import "WryCommand.h"
+#import "SSKeychain.h"
 
 #define kVersion @"0.1"
 #define kDefaultCount 20
@@ -57,6 +58,17 @@
   task.launchPath = @"/usr/bin/open";
   task.arguments = @[urlString];
   [task launch];
+}
+
+- (NSString *)accessToken {
+  // TODO use actual user name
+  return [SSKeychain passwordForService:self.appName account:@"default"];
+}
+
+- (void)setAccessToken:(NSString *)accessToken {
+  // TODO use actual user name
+  [SSKeychain setPassword:accessToken forService:self.appName
+                  account:@"default"];
 }
 
 - (NSString *)version {

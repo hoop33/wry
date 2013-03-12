@@ -22,13 +22,13 @@
   [app openURL:[NSString stringWithFormat:self.oauthURLFormat, self.clientID, self.redirectURI, self.scope]];
 
   [app println:@""];
-  [app print:@"Enter authorization code from your Web browser: "];
-  NSString *authorizationCode = [app getInput];
-  if (authorizationCode.length > 0) {
-    // TODO Write to keychain
+  [app print:@"Enter code from your Web browser: "];
+  NSString *accessToken = [app getInput];
+  if (accessToken.length > 0) {
+    app.accessToken = accessToken;
     return 0;
   } else {
-    [app println:@"Error: Authorization code can't be empty."];
+    [app println:@"Error: You entered a blank code."];
     return 1;
   }
 }

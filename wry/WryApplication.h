@@ -11,6 +11,7 @@
 @property(nonatomic, copy) NSString *appName;
 @property(nonatomic, copy) NSString *command;
 @property(nonatomic, strong) NSArray *params;
+@property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic) BOOL quiet;
 @property(nonatomic) int count;
 
