@@ -12,6 +12,7 @@
 #define kVersion @"0.1"
 #define kDefaultCount 20
 #define kDefaultCommandName @"HelpCommand"
+#define kClientID @"zEKkE4JBYNjnarYvEwGZxvFq7zuhEfnU"
 
 @interface WryApplication ()
 - (NSString *)getCommandName;
