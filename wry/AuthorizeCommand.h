@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "WryCommand.h"
 
-@interface AuthorizeCommand : NSObject<WryCommand>
+@interface AuthorizeCommand : NSObject <WryCommand>
 
 @end

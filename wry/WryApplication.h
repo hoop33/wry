@@ -15,13 +15,11 @@
 @property(nonatomic) int count;
 
 - (int)run;
-
 - (void)print:(NSString *)output;
-
 - (void)println:(NSString *)output;
-
+- (void)openURL:(NSString *)urlString;
+- (NSString *)getInput;
 - (NSString *)version;
-
 - (NSString *)helpLine;
 
 @end

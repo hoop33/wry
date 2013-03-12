@@ -12,7 +12,7 @@
 #define kVersion @"0.1"
 #define kDefaultCount 20
 #define kDefaultCommandName @"HelpCommand"
-#define kClientID @"zEKkE4JBYNjnarYvEwGZxvFq7zuhEfnU"
+#define kInputBufferSize 512
 
 @interface WryApplication ()
 - (NSString *)getCommandName;
@@ -44,6 +44,19 @@
 
 - (void)println:(NSString *)output {
   [self print:[NSString stringWithFormat:@"%@\n", output]];
+}
+
+- (NSString *)getInput {
+  char buffer[kInputBufferSize];
+  fgets(buffer, kInputBufferSize, stdin);
+  return [NSString stringWithUTF8String:buffer];
+}
+
+- (void)openURL:(NSString *)urlString {
+  NSTask *task = [[NSTask alloc] init];
+  task.launchPath = @"/usr/bin/open";
+  task.arguments = @[urlString];
+  [task launch];
 }
 
 - (NSString *)version {

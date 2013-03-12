@@ -11,10 +11,45 @@
 @implementation AuthorizeCommand
 
 - (int)run:(WryApplication *)app params:(NSArray *)params {
-  return 0;
+  [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
+                                          app.appName]];
+  [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
+                                          app.appName]];
+  [app println:@"return to this terminal window and enter the code from your Web browser."];
+  [app print:@"Press ENTER to open a Web browser and begin the authorization process -->"];
+  [app getInput];
+
+  [app openURL:[NSString stringWithFormat:self.oauthURLFormat, self.clientID, self.redirectURI, self.scope]];
+
+  [app println:@""];
+  [app print:@"Enter authorization code from your Web browser: "];
+  NSString *authorizationCode = [app getInput];
+  if (authorizationCode.length > 0) {
+    // TODO Write to keychain
+    return 0;
+  } else {
+    [app println:@"Error: Authorization code can't be empty."];
+    return 1;
+  }
 }
 
 - (void)showHelp {
+}
+
+- (NSString *)oauthURLFormat {
+  return @"https://account.app.net/oauth/authenticate?client_id=%@&response_type=token&redirect_uri=%@&scope=%@";
+}
+
+- (NSString *)clientID {
+  return @"zEKkE4JBYNjnarYvEwGZxvFq7zuhEfnU";
+}
+
+- (NSString *)redirectURI {
+  return @"http://grailbox.com/wry/callback";
+}
+
+- (NSString *)scope {
+  return @"basic stream email write_post follow public_messages messages";
 }
 
 @end
