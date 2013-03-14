@@ -18,6 +18,10 @@
 		C784328316EF85A8000DED40 /* ADNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328216EF85A8000DED40 /* ADNUser.m */; };
 		C784328916EF8AA8000DED40 /* ADNService.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328816EF8AA8000DED40 /* ADNService.m */; };
 		C784328F16EFD843000DED40 /* ADNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328E16EFD843000DED40 /* ADNOperation.m */; };
+		C784329216EFE7B7000DED40 /* UserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329116EFE7B7000DED40 /* UserCommand.m */; };
+		C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329416F0D8D4000DED40 /* RWJSONMapping.m */; };
+		C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329816F0DC21000DED40 /* ADNMappingProvider.m */; };
+		C784329C16F0DE30000DED40 /* RWJSONMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329B16F0DE30000DED40 /* RWJSONMapper.m */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +63,14 @@
 		C784328B16EF90D1000DED40 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C784328D16EFD843000DED40 /* ADNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNOperation.h; sourceTree = "<group>"; };
 		C784328E16EFD843000DED40 /* ADNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNOperation.m; sourceTree = "<group>"; };
+		C784329016EFE7B7000DED40 /* UserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommand.h; sourceTree = "<group>"; };
+		C784329116EFE7B7000DED40 /* UserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommand.m; sourceTree = "<group>"; };
+		C784329316F0D8D4000DED40 /* RWJSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWJSONMapping.h; sourceTree = "<group>"; };
+		C784329416F0D8D4000DED40 /* RWJSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapping.m; sourceTree = "<group>"; };
+		C784329716F0DC20000DED40 /* ADNMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingProvider.h; sourceTree = "<group>"; };
+		C784329816F0DC21000DED40 /* ADNMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingProvider.m; sourceTree = "<group>"; };
+		C784329A16F0DE30000DED40 /* RWJSONMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWJSONMapper.h; sourceTree = "<group>"; };
+		C784329B16F0DE30000DED40 /* RWJSONMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +142,7 @@
 				C784326816EBBA0F000DED40 /* WryApplication.h */,
 				C784326916EBBA0F000DED40 /* WryApplication.m */,
 				C784328A16EF8AAF000DED40 /* ADN */,
+				C784329616F0D8E4000DED40 /* RWJSON */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -142,6 +155,8 @@
 				C784327316ED2DF2000DED40 /* HelpCommand.m */,
 				C784327516EF2611000DED40 /* AuthorizeCommand.h */,
 				C784327616EF2611000DED40 /* AuthorizeCommand.m */,
+				C784329016EFE7B7000DED40 /* UserCommand.h */,
+				C784329116EFE7B7000DED40 /* UserCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -165,8 +180,21 @@
 				C784328816EF8AA8000DED40 /* ADNService.m */,
 				C784328D16EFD843000DED40 /* ADNOperation.h */,
 				C784328E16EFD843000DED40 /* ADNOperation.m */,
+				C784329716F0DC20000DED40 /* ADNMappingProvider.h */,
+				C784329816F0DC21000DED40 /* ADNMappingProvider.m */,
 			);
 			name = ADN;
+			sourceTree = "<group>";
+		};
+		C784329616F0D8E4000DED40 /* RWJSON */ = {
+			isa = PBXGroup;
+			children = (
+				C784329316F0D8D4000DED40 /* RWJSONMapping.h */,
+				C784329416F0D8D4000DED40 /* RWJSONMapping.m */,
+				C784329A16F0DE30000DED40 /* RWJSONMapper.h */,
+				C784329B16F0DE30000DED40 /* RWJSONMapper.m */,
+			);
+			name = RWJSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +274,10 @@
 				C784328316EF85A8000DED40 /* ADNUser.m in Sources */,
 				C784328916EF8AA8000DED40 /* ADNService.m in Sources */,
 				C784328F16EFD843000DED40 /* ADNOperation.m in Sources */,
+				C784329216EFE7B7000DED40 /* UserCommand.m in Sources */,
+				C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */,
+				C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */,
+				C784329C16F0DE30000DED40 /* RWJSONMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

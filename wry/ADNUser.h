@@ -8,10 +8,10 @@
 
 @interface ADNUser : NSObject
 
-@property (nonatomic, assign) NSInteger userID;
-@property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) BOOL followsYou;
-@property (nonatomic, assign) BOOL youFollow;
+@property(nonatomic, assign) NSInteger userID;
+@property(nonatomic, copy) NSString *username;
+@property(nonatomic, copy) NSString *name;
+@property(nonatomic, assign) BOOL followsYou;
+@property(nonatomic, assign) BOOL youFollow;
 
 @end

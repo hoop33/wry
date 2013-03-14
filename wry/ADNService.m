@@ -9,9 +9,11 @@
 #import "ADNService.h"
 #import "ADNUser.h"
 #import "WryApplication.h"
+#import "RWJSONMapper.h"
+#import "ADNMappingProvider.h"
 
 @interface ADNService ()
-- (NSURLRequest *)getURLRequestWithPath:(NSString *)path;
+- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
 @end
 
 @implementation ADNService
@@ -20,6 +22,7 @@
   self = [super init];
   if (self != nil) {
     self.app = app;
+    self.queue = [[NSOperationQueue alloc] init];
   }
   return self;
 }
@@ -30,44 +33,38 @@
 
 - (ADNUser *)getUser:(NSString *)username {
   ADNUser *user = nil;
+  NSString *path = @"stream/0/users";
+  if (username != nil) {
+    path = [path stringByAppendingFormat:@"/%@", username];
+  }
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  ADNOperation *operation = [[ADNOperation alloc]
+                                           initWithDelegate:self request:request];
+  [self.queue addOperations:@[operation] waitUntilFinished:YES];
+//  [self.queue addOperation:operation];
   return user;
 }
 
-#pragma mark - NSURLConnectionDataDelegate methods
+#pragma mark - ADNOperationDelegate methods
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-  self.data.length = 0;
+- (void)operationDidFinishWithData:(NSData *)data {
+  // TODO do something with the data
+  NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  [self.app println:string];
+  [RWJSONMapper mapObjectFromData:data mapping:[ADNMappingProvider userMapping]];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  [self.data appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)operationDidFinishWithError:(NSError *)error {
   [self.app println:[error localizedDescription]];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-
 }
 
 #pragma mark - Private methods
 
-- (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
+- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/%@", path]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setValue:[NSString stringWithFormat:@"Bearer %@", self.app.accessToken] forHTTPHeaderField:@"Authorization"];
   return request;
-}
-
-- (void)runRequest:(NSURLRequest *)request {
-  NSURLConnection *connection = [[NSURLConnection alloc]
-    initWithRequest:request delegate:self startImmediately:NO];
-  if (connection != nil) {
-    self.data = [NSMutableData data];
-
-  }
-
 }
 
 @end

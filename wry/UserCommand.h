@@ -1,5 +1,5 @@
 //
-//  AuthorizeCommand.h
+//  UserCommand.h
 //  wry
 //
 //  Created by Rob Warner on 3/12/13.
@@ -8,6 +8,6 @@
 
 #import "WryCommand.h"
 
-@interface AuthorizeCommand : NSObject <WryCommand>
+@interface UserCommand : NSObject <WryCommand>
 
 @end

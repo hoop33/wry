@@ -13,7 +13,7 @@
 - (NSString *)description {
   NSString *str = [NSString stringWithFormat:@"%@ (%@)\n", self.name, self.username];
   str = [str stringByAppendingFormat:@"%@, %@\n", self.youFollow ? @"Following" : @"Not Following",
-             self.followsYou ? @"Follows You" : @"Does Not Follow You"];
+                                     self.followsYou ? @"Follows You" : @"Does Not Follow You"];
   return str;
 }
 

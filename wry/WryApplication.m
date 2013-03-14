@@ -50,7 +50,7 @@
 - (NSString *)getInput {
   char buffer[kInputBufferSize];
   fgets(buffer, kInputBufferSize, stdin);
-  return [NSString stringWithUTF8String:buffer];
+  return [[NSString stringWithUTF8String:buffer] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 }
 
 - (void)openURL:(NSString *)urlString {

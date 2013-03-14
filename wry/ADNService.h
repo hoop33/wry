@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ADNOperation.h"
 
 @class ADNUser;
 @class WryApplication;
 
-@interface ADNService : NSObject <NSURLConnectionDataDelegate>
+@interface ADNService : NSObject <ADNOperationDelegate>
 
 @property(nonatomic, strong) WryApplication *app;
-@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, strong) NSOperationQueue *queue;
 
 - (id)initWithApplication:(WryApplication *)app;
 - (ADNUser *)getUser;
