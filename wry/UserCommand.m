@@ -8,13 +8,13 @@
 
 #import "UserCommand.h"
 #import "ADNService.h"
+#import "ADNUser.h"
 
 @implementation UserCommand
 
 - (int)run:(WryApplication *)app params:(NSArray *)params {
-  NSLog(@"Getting user");
   ADNService *service = [[ADNService alloc] initWithApplication:app];
-  [service getUser];
+  ADNUser *user = params.count > 0 ? [service getUser:[params objectAtIndex:0]] : [service getUser];
   return 0;
 }
 

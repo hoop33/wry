@@ -13,7 +13,7 @@
 #import "ADNMappingProvider.h"
 
 @interface ADNService ()
-- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
+- (NSURLRequest *)getURLRequestWithPath:(NSString *)path;
 @end
 
 @implementation ADNService
@@ -28,16 +28,13 @@
 }
 
 - (ADNUser *)getUser {
-  return [self getUser:nil];
+  return [self getUser:@"me"];
 }
 
 - (ADNUser *)getUser:(NSString *)username {
   ADNUser *user = nil;
-  NSString *path = @"stream/0/users";
-  if (username != nil) {
-    path = [path stringByAppendingFormat:@"/%@", username];
-  }
-  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  NSString *path = [NSString stringWithFormat:@"users/%@", username];
+  NSURLRequest *request = [self getURLRequestWithPath:path];
   ADNOperation *operation = [[ADNOperation alloc]
                                            initWithDelegate:self request:request];
   [self.queue addOperations:@[operation] waitUntilFinished:YES];
@@ -60,8 +57,8 @@
 
 #pragma mark - Private methods
 
-- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path {
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/%@", path]];
+- (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/%@", path]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setValue:[NSString stringWithFormat:@"Bearer %@", self.app.accessToken] forHTTPHeaderField:@"Authorization"];
   return request;
