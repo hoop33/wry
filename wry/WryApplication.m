@@ -43,8 +43,8 @@
   }
 }
 
-- (void)println:(NSString *)output {
-  [self print:[NSString stringWithFormat:@"%@\n", output]];
+- (void)println:(NSObject *)output {
+  [self print:[NSString stringWithFormat:@"%@\n", [output description]]];
 }
 
 - (NSString *)getInput {
