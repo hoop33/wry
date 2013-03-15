@@ -22,7 +22,6 @@
 		C784329216EFE7B7000DED40 /* UserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329116EFE7B7000DED40 /* UserCommand.m */; };
 		C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329416F0D8D4000DED40 /* RWJSONMapping.m */; };
 		C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329816F0DC21000DED40 /* ADNMappingProvider.m */; };
-		C784329C16F0DE30000DED40 /* RWJSONMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329B16F0DE30000DED40 /* RWJSONMapper.m */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,8 +70,6 @@
 		C784329416F0D8D4000DED40 /* RWJSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapping.m; sourceTree = "<group>"; };
 		C784329716F0DC20000DED40 /* ADNMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingProvider.h; sourceTree = "<group>"; };
 		C784329816F0DC21000DED40 /* ADNMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingProvider.m; sourceTree = "<group>"; };
-		C784329A16F0DE30000DED40 /* RWJSONMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWJSONMapper.h; sourceTree = "<group>"; };
-		C784329B16F0DE30000DED40 /* RWJSONMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,8 +191,6 @@
 			children = (
 				C784329316F0D8D4000DED40 /* RWJSONMapping.h */,
 				C784329416F0D8D4000DED40 /* RWJSONMapping.m */,
-				C784329A16F0DE30000DED40 /* RWJSONMapper.h */,
-				C784329B16F0DE30000DED40 /* RWJSONMapper.m */,
 			);
 			name = RWJSON;
 			sourceTree = "<group>";
@@ -279,7 +274,6 @@
 				C784329216EFE7B7000DED40 /* UserCommand.m in Sources */,
 				C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */,
 				C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */,
-				C784329C16F0DE30000DED40 /* RWJSONMapper.m in Sources */,
 				C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */,
 				C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */,
 			);
