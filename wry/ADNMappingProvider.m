@@ -12,6 +12,9 @@
 
 @implementation ADNMappingProvider
 
++ (RWJSONMapping *)adnWrapperMapping {
+  return nil;
+}
 + (RWJSONMapping *)userMapping {
   RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNUser class]];
   [mapping addAttributeMappingsFromArray:

@@ -9,6 +9,9 @@
 #import "ADNService.h"
 #import "ADNUser.h"
 #import "WryApplication.h"
+#import "NSDictionary+JSONMapping.h"
+#import "ADNMappingProvider.h"
+#import "ADNResponse.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSString *)path;
@@ -31,9 +34,9 @@
 }
 
 - (ADNUser *)getUser:(NSString *)username {
-  ADNUser *user = nil;
   [self performRequest:[NSString stringWithFormat:@"users/%@", username]];
-  // TODO create user from self.data
+  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+  ADNUser *user = (ADNUser *)[response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   return user;
 }
 
@@ -48,14 +51,12 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  // TODO ??
+  // TODO ?? Delete data and capture error
   [self.app println:[error localizedDescription]];
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  NSString *string = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-  [self.app println:string];
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
@@ -66,6 +67,7 @@
                                   delegate:self
                           startImmediately:YES];
   CFRunLoopRun();
+  // TODO print error here?
 }
 
 - (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
