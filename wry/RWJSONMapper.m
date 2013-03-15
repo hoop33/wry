@@ -15,7 +15,7 @@
   NSLog(@"Doing the mapping");
   NSError *error;
   id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions
-                                              error:&error];
+                                                    error:&error];
   if (jsonObject != nil) {
     if ([jsonObject isKindOfClass:[NSDictionary class]]) {
       // Single object; map it
@@ -30,7 +30,7 @@
 }
 
 + (NSObject *)mapObjectFromDictionary:(NSDictionary *)dictionary mapping:(RWJSONMapping *)mapping {
-  NSObject* object = [[mapping.cls alloc] init];
+  NSObject *object = [[mapping.cls alloc] init];
   for (NSString *key in [dictionary allKeys]) {
     if ([mapping.arrayMappings containsObject:key]) {
       [object setValue:[dictionary valueForKey:key] forKey:key];

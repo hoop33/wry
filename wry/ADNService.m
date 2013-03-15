@@ -9,10 +9,9 @@
 #import "ADNService.h"
 #import "ADNUser.h"
 #import "WryApplication.h"
-#import "RWJSONMapper.h"
-#import "ADNMappingProvider.h"
 
 @interface ADNService ()
+- (void)performRequest:(NSString *)path;
 - (NSURLRequest *)getURLRequestWithPath:(NSString *)path;
 @end
 
@@ -22,7 +21,7 @@
   self = [super init];
   if (self != nil) {
     self.app = app;
-    self.queue = [[NSOperationQueue alloc] init];
+    self.data = [NSMutableData data];
   }
   return self;
 }
@@ -33,29 +32,41 @@
 
 - (ADNUser *)getUser:(NSString *)username {
   ADNUser *user = nil;
-  NSString *path = [NSString stringWithFormat:@"users/%@", username];
-  NSURLRequest *request = [self getURLRequestWithPath:path];
-  ADNOperation *operation = [[ADNOperation alloc]
-                                           initWithDelegate:self request:request];
-  [self.queue addOperations:@[operation] waitUntilFinished:YES];
-//  [self.queue addOperation:operation];
+  [self performRequest:[NSString stringWithFormat:@"users/%@", username]];
+  // TODO create user from self.data
   return user;
 }
 
-#pragma mark - ADNOperationDelegate methods
+#pragma mark - NSURLConnectionDataDelegate methods
 
-- (void)operationDidFinishWithData:(NSData *)data {
-  // TODO do something with the data
-  NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-  [self.app println:string];
-  [RWJSONMapper mapObjectFromData:data mapping:[ADNMappingProvider userMapping]];
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+  self.data.length = 0;
 }
 
-- (void)operationDidFinishWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+  [self.data appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  // TODO ??
   [self.app println:[error localizedDescription]];
+  CFRunLoopStop(CFRunLoopGetCurrent());
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  NSString *string = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+  [self.app println:string];
+  CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 #pragma mark - Private methods
+
+- (void)performRequest:(NSString *)path {
+  [[NSURLConnection alloc] initWithRequest:[self getURLRequestWithPath:path]
+                                  delegate:self
+                          startImmediately:YES];
+  CFRunLoopRun();
+}
 
 - (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/%@", path]];
