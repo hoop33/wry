@@ -15,6 +15,7 @@
 - (int)run:(WryApplication *)app params:(NSArray *)params {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
   ADNUser *user = params.count > 0 ? [service getUser:[params objectAtIndex:0]] : [service getUser];
+  [app println:user];
   return 0;
 }
 
