@@ -7,11 +7,13 @@
 //
 
 #import "ADNUser.h"
+#import "ADNUserDescription.h"
 
 @implementation ADNUser
 
 - (NSString *)description {
   NSString *str = [NSString stringWithFormat:@"%@ (%@)\n", self.name, self.username];
+  str = [str stringByAppendingFormat:@"%@\n", [self.userDescription description]];
   str = [str stringByAppendingFormat:@"%@, %@\n", self.youFollow ? @"Following" : @"Not Following",
                                      self.followsYou ? @"Follows You" : @"Does Not Follow You"];
   return str;

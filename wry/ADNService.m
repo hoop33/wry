@@ -36,7 +36,7 @@
 - (ADNUser *)getUser:(NSString *)username {
   [self performRequest:[NSString stringWithFormat:@"users/%@", username]];
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-  ADNUser *user = (ADNUser *)[response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+  ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   return user;
 }
 

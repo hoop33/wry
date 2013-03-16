@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237CC24925193B771DADFA /* ADNUserDescription.h */; };
+		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
@@ -33,12 +35,15 @@
 			dstSubfolderSpec = 0;
 			files = (
 				C784326216EA02FA000DED40 /* wry.1 in CopyFiles */,
+				5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserDescription.m; sourceTree = "<group>"; };
+		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
 		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDE472AC80542959D226C1C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
@@ -170,6 +175,8 @@
 				C784328216EF85A8000DED40 /* ADNUser.m */,
 				C70028F616F330DF00D5B222 /* ADNResponse.h */,
 				C70028F716F330DF00D5B222 /* ADNResponse.m */,
+				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
+				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 				C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */,
 				C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */,
 				C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */,
+				5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

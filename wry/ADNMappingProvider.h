@@ -10,8 +10,7 @@
 
 @interface ADNMappingProvider : NSObject
 
-+ (RWJSONMapping *)adnWrapperMapping;
-+ (RWJSONMapping *)metaMapping;
 + (RWJSONMapping *)userMapping;
++ (RWJSONMapping *)userDescriptionMapping;
 
 @end

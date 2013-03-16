@@ -10,8 +10,8 @@
 
 @interface ADNResponse : NSObject
 
-@property (nonatomic, strong) NSDictionary *meta;
-@property (nonatomic, strong) id data;
+@property(nonatomic, strong) NSDictionary *meta;
+@property(nonatomic, strong) id data;
 
 - (id)initWithData:(NSData *)data;
 
