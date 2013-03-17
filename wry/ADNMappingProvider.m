@@ -10,6 +10,7 @@
 #import "RWJSONMapping.h"
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
+#import "ADNPost.h"
 
 @implementation ADNMappingProvider
 
@@ -35,6 +36,17 @@
   RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNUserDescription class]];
   [mapping addAttributeMappingsFromArray:
              @[@"text"]];
+  return mapping;
+}
+
++ (RWJSONMapping *)postMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNPost class]];
+  [mapping addAttributeMappingsFromArray:@[@"text"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id": @"postID",
+    @"created_at": @"createdAt"
+  }];
+  [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 

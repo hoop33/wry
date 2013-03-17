@@ -12,6 +12,7 @@
 #import "NSDictionary+JSONMapping.h"
 #import "ADNMappingProvider.h"
 #import "ADNResponse.h"
+#import "ADNPost.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSString *)path;
@@ -38,6 +39,17 @@
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
   ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   return user;
+}
+
+- (NSArray *)getGlobalStream {
+  [self performRequest:@"posts/stream/global"];
+  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+  NSMutableArray *posts = [NSMutableArray array];
+  for (NSDictionary *dictionary in response.data) {
+    ADNPost *post = (ADNPost *)[dictionary mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+    [posts addObject:post];
+  }
+  return [NSArray arrayWithArray:posts];
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods

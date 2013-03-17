@@ -12,5 +12,6 @@
 
 + (RWJSONMapping *)userMapping;
 + (RWJSONMapping *)userDescriptionMapping;
++ (RWJSONMapping *)postMapping;
 
 @end
