@@ -22,7 +22,8 @@
   return 0;
 }
 
-- (void)showHelp {
+- (NSString *)help {
+  return @"This is help for the stream command";
 }
 
 @end

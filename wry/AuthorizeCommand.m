@@ -33,7 +33,8 @@
   }
 }
 
-- (void)showHelp {
+- (NSString *)help {
+  return @"This is help for the authorize command";
 }
 
 - (NSString *)oauthURLFormat {

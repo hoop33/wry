@@ -11,6 +11,6 @@
 @protocol WryCommand <NSObject>
 
 - (int)run:(WryApplication *)app params:(NSArray *)params;
-- (void)showHelp;
+- (NSString *)help;
 
 @end
