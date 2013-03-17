@@ -17,6 +17,7 @@
 @interface ADNService ()
 - (void)performRequest:(NSString *)path;
 - (NSURLRequest *)getURLRequestWithPath:(NSString *)path;
+- (NSArray *)getStream:(NSString *)path;
 @end
 
 @implementation ADNService
@@ -41,8 +42,16 @@
   return user;
 }
 
+- (NSArray *)getUserStream {
+  return [self getStream:@"posts/stream"];
+}
+
 - (NSArray *)getGlobalStream {
-  [self performRequest:@"posts/stream/global"];
+  return [self getStream:@"posts/stream/global"];
+}
+
+- (NSArray *)getStream:(NSString *)path {
+  [self performRequest:path];
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
   NSMutableArray *posts = [NSMutableArray array];
   for (NSDictionary *dictionary in response.data) {

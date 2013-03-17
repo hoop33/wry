@@ -19,6 +19,7 @@
 - (id)initWithApplication:(WryApplication *)app;
 - (ADNUser *)getUser;
 - (ADNUser *)getUser:(NSString *)username;
+- (NSArray *)getUserStream;
 - (NSArray *)getGlobalStream;
 
 @end
