@@ -21,5 +21,6 @@
 - (ADNUser *)getUser:(NSString *)username;
 - (NSArray *)getUserStream;
 - (NSArray *)getGlobalStream;
+- (NSArray *)getUnifiedStream;
 
 @end

@@ -50,6 +50,10 @@
   return [self getStream:@"posts/stream/global"];
 }
 
+- (NSArray *)getUnifiedStream {
+  return [self getStream:@"posts/stream/unified"];
+}
+
 - (NSArray *)getStream:(NSString *)path {
   [self performRequest:path];
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
