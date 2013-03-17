@@ -10,6 +10,7 @@
 
 @class ADNUser;
 @class WryApplication;
+@class ADNPost;
 
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
@@ -22,5 +23,6 @@
 - (NSArray *)getUserStream;
 - (NSArray *)getGlobalStream;
 - (NSArray *)getUnifiedStream;
+- (ADNPost *)createPost:(NSString *)text;
 
 @end

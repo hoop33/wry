@@ -27,6 +27,7 @@
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
+		C7CCEB7A16F60B83005DDBAB /* PostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7916F60B83005DDBAB /* PostCommand.m */; };
 		D47EAEF1D8C54C41BED3078D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E741D72DB884AC0A9AC4C6E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamCommand.m; sourceTree = "<group>"; };
 		C7CCEB7516F5EBCF005DDBAB /* UnifiedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnifiedCommand.h; sourceTree = "<group>"; };
 		C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnifiedCommand.m; sourceTree = "<group>"; };
+		C7CCEB7816F60B83005DDBAB /* PostCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommand.h; sourceTree = "<group>"; };
+		C7CCEB7916F60B83005DDBAB /* PostCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */,
 				C7CCEB7516F5EBCF005DDBAB /* UnifiedCommand.h */,
 				C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */,
+				C7CCEB7816F60B83005DDBAB /* PostCommand.h */,
+				C7CCEB7916F60B83005DDBAB /* PostCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */,
 				C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */,
 				C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */,
+				C7CCEB7A16F60B83005DDBAB /* PostCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

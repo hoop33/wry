@@ -15,8 +15,8 @@
 #import "ADNPost.h"
 
 @interface ADNService ()
-- (void)performRequest:(NSString *)path;
-- (NSURLRequest *)getURLRequestWithPath:(NSString *)path;
+- (void)performRequest:(NSURLRequest *)request;
+- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
 - (NSArray *)getStream:(NSString *)path;
 @end
 
@@ -36,7 +36,7 @@
 }
 
 - (ADNUser *)getUser:(NSString *)username {
-  [self performRequest:[NSString stringWithFormat:@"users/%@", username]];
+  [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@", username]]];
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
   ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   return user;
@@ -55,7 +55,7 @@
 }
 
 - (NSArray *)getStream:(NSString *)path {
-  [self performRequest:path];
+  [self performRequest:[self getURLRequestWithPath:path]];
   ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
   NSMutableArray *posts = [NSMutableArray array];
   for (NSDictionary *dictionary in response.data) {
@@ -63,6 +63,16 @@
     [posts addObject:post];
   }
   return [NSArray arrayWithArray:posts];
+}
+
+- (ADNPost *)createPost:(NSString *)text {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
+  request.HTTPMethod = @"POST";
+  request.HTTPBody = [[NSString stringWithFormat:@"text=%@", text] dataUsingEncoding:NSUTF8StringEncoding];
+  [self performRequest:request];
+  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+  ADNPost *post = (ADNPost *)[response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+  return post;
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
@@ -87,15 +97,15 @@
 
 #pragma mark - Private methods
 
-- (void)performRequest:(NSString *)path {
-  [[NSURLConnection alloc] initWithRequest:[self getURLRequestWithPath:path]
+- (void)performRequest:(NSURLRequest *)request {
+  [[NSURLConnection alloc] initWithRequest:request
                                   delegate:self
                           startImmediately:YES];
   CFRunLoopRun();
   // TODO print error here?
 }
 
-- (NSURLRequest *)getURLRequestWithPath:(NSString *)path {
+- (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/%@", path]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setValue:[NSString stringWithFormat:@"Bearer %@", self.app.accessToken] forHTTPHeaderField:@"Authorization"];
