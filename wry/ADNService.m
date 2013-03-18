@@ -115,7 +115,6 @@
                                   delegate:self
                           startImmediately:YES];
   CFRunLoopRun();
-  // TODO print error here?
 }
 
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path {
