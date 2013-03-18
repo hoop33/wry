@@ -10,11 +10,10 @@
 
 @implementation HelpCommand
 
-- (int)run:(WryApplication *)app params:(NSArray *)params {
+- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   [app println:[app helpLine]];
   [app println:@"Usage:"];
   [app println:[NSString stringWithFormat:@"%@ <command> <params>", app.appName]];
-  return 0;
 }
 
 - (NSString *)help {

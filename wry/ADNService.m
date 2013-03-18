@@ -17,7 +17,7 @@
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
-- (NSArray *)getStream:(NSString *)path;
+- (NSArray *)getStream:(NSString *)path error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -31,48 +31,62 @@
   return self;
 }
 
-- (ADNUser *)getUser {
-  return [self getUser:@"me"];
+- (ADNUser *)getUser:(NSError **)error {
+  return [self getUser:@"me" error:error];
 }
 
-- (ADNUser *)getUser:(NSString *)username {
+- (ADNUser *)getUser:(NSString *)username error:(NSError **)error {
   [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@", username]]];
-  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-  ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-  return user;
-}
-
-- (NSArray *)getUserStream {
-  return [self getStream:@"posts/stream"];
-}
-
-- (NSArray *)getGlobalStream {
-  return [self getStream:@"posts/stream/global"];
-}
-
-- (NSArray *)getUnifiedStream {
-  return [self getStream:@"posts/stream/unified"];
-}
-
-- (NSArray *)getStream:(NSString *)path {
-  [self performRequest:[self getURLRequestWithPath:path]];
-  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-  NSMutableArray *posts = [NSMutableArray array];
-  for (NSDictionary *dictionary in response.data) {
-    ADNPost *post = (ADNPost *)[dictionary mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    [posts addObject:post];
+  if (self.error == nil) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    return (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+  } else {
+    *error = self.error;
+    return nil;
   }
-  return [NSArray arrayWithArray:posts];
 }
 
-- (ADNPost *)createPost:(NSString *)text {
+- (NSArray *)getUserStream:(NSError **)error {
+  return [self getStream:@"posts/stream" error:error];
+}
+
+- (NSArray *)getGlobalStream:(NSError **)error {
+  return [self getStream:@"posts/stream/global" error:error];
+}
+
+- (NSArray *)getUnifiedStream:(NSError **)error {
+  return [self getStream:@"posts/stream/unified" error:error];
+}
+
+- (NSArray *)getStream:(NSString *)path error:(NSError **)error {
+  [self performRequest:[self getURLRequestWithPath:path]];
+  if (self.error == nil) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    NSMutableArray *posts = [NSMutableArray array];
+    for (NSDictionary *dictionary in response.data) {
+      ADNPost *post = (ADNPost *) [dictionary mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+      [posts addObject:post];
+    }
+    return [NSArray arrayWithArray:posts];
+  } else {
+    *error = self.error;
+    return nil;
+  }
+}
+
+- (ADNPost *)createPost:(NSString *)text error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
   request.HTTPMethod = @"POST";
   request.HTTPBody = [[NSString stringWithFormat:@"text=%@", text] dataUsingEncoding:NSUTF8StringEncoding];
   [self performRequest:request];
-  ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-  ADNPost *post = (ADNPost *)[response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-  return post;
+  if (self.error == nil) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+    return post;
+  } else {
+    *error = self.error;
+    return nil;
+  }
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
@@ -86,8 +100,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  // TODO ?? Delete data and capture error
-  [self.app println:[error localizedDescription]];
+  self.error = error;
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 

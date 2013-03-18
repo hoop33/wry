@@ -11,6 +11,7 @@
 #import "SSKeychain.h"
 
 #define kVersion @"0.1"
+#define kErrorDomain @"com.grailbox.wry"
 #define kDefaultCount 20
 #define kDefaultCommandName @"HelpCommand"
 #define kInputBufferSize 512
@@ -34,7 +35,12 @@
 
 - (int)run {
   id <WryCommand> wryCommand = [self getCommand];
-  return [wryCommand run:self params:self.params];
+  NSError *error;
+  [wryCommand run:self params:self.params error:&error];
+  if (error != nil) {
+    [self println:error.localizedDescription];
+  }
+  return error == nil ? 0 : error.code;
 }
 
 - (void)print:(NSString *)output {
@@ -73,6 +79,10 @@
 
 - (NSString *)version {
   return kVersion;
+}
+
+- (NSString *)errorDomain {
+  return kErrorDomain;
 }
 
 - (NSString *)helpLine {

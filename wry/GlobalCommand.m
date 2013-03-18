@@ -12,14 +12,15 @@
 
 @implementation GlobalCommand
 
-- (int)run:(WryApplication *)app params:(NSArray *)params {
+- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = [service getGlobalStream];
-  for (ADNPost *post in posts) {
-    [app println:post];
-    [app println:@"--------------------"];
+  NSArray *posts = [service getGlobalStream:error];
+  if (error != nil) {
+    for (ADNPost *post in posts) {
+      [app println:post];
+      [app println:@"--------------------"];
+    }
   }
-  return 0;
 }
 
 - (NSString *)help {

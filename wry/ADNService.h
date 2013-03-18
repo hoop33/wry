@@ -16,13 +16,14 @@
 
 @property(nonatomic, strong) WryApplication *app;
 @property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, strong) NSError *error;
 
 - (id)initWithApplication:(WryApplication *)app;
-- (ADNUser *)getUser;
-- (ADNUser *)getUser:(NSString *)username;
-- (NSArray *)getUserStream;
-- (NSArray *)getGlobalStream;
-- (NSArray *)getUnifiedStream;
-- (ADNPost *)createPost:(NSString *)text;
+- (ADNUser *)getUser:(NSError **)error;
+- (ADNUser *)getUser:(NSString *)username error:(NSError **)error;
+- (NSArray *)getUserStream:(NSError **)error;
+- (NSArray *)getGlobalStream:(NSError **)error;
+- (NSArray *)getUnifiedStream:(NSError **)error;
+- (ADNPost *)createPost:(NSString *)text error:(NSError **)error;
 
 @end

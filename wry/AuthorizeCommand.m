@@ -7,10 +7,11 @@
 //
 
 #import "AuthorizeCommand.h"
+#import "WryErrorCodes.h"
 
 @implementation AuthorizeCommand
 
-- (int)run:(WryApplication *)app params:(NSArray *)params {
+- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -26,10 +27,9 @@
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
     app.accessToken = accessToken;
-    return 0;
   } else {
-    [app println:@"Error: You entered a blank code."];
-    return 1;
+    *error = [NSError errorWithDomain:app.errorDomain code:WryErrorCodeBadInput
+                             userInfo:@{NSLocalizedDescriptionKey : @"You entered a blank code"}];
   }
 }
 

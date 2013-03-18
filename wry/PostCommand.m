@@ -12,18 +12,19 @@
 
 @implementation PostCommand
 
-- (int)run:(WryApplication *)app params:(NSArray *)params {
+- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
   if (params.count == 0) {
     // TODO Show help?
-  } else if (params.count == 1) {
+  } else if (params.count == 1 && NO) {
     // TODO and is numeric -- get post
   } else {
     NSString *text = [params componentsJoinedByString:@" "];
-    ADNPost *post = [service createPost:text];
-    [app println:post];
+    ADNPost *post = [service createPost:text error:error];
+    if (error != nil) {
+      [app println:post];
+    }
   }
-  return 0;
 }
 
 - (NSString *)help {

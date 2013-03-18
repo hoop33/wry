@@ -21,6 +21,7 @@
 - (void)openURL:(NSString *)urlString;
 - (NSString *)getInput;
 - (NSString *)version;
+- (NSString *)errorDomain;
 - (NSString *)helpLine;
 
 @end

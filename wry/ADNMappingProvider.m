@@ -43,8 +43,8 @@
   RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNPost class]];
   [mapping addAttributeMappingsFromArray:@[@"text"]];
   [mapping addAttributeMappingsFromDictionary:@{
-    @"id": @"postID",
-    @"created_at": @"createdAt"
+    @"id" : @"postID",
+    @"created_at" : @"createdAt"
   }];
   [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;

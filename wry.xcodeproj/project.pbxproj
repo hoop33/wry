@@ -87,6 +87,7 @@
 		C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnifiedCommand.m; sourceTree = "<group>"; };
 		C7CCEB7816F60B83005DDBAB /* PostCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommand.h; sourceTree = "<group>"; };
 		C7CCEB7916F60B83005DDBAB /* PostCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommand.m; sourceTree = "<group>"; };
+		C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryErrorCodes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +161,7 @@
 				C784329616F0D8E4000DED40 /* RWJSON */,
 				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
 				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
+				C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

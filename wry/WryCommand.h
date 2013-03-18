@@ -10,7 +10,7 @@
 
 @protocol WryCommand <NSObject>
 
-- (int)run:(WryApplication *)app params:(NSArray *)params;
+- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error;
 - (NSString *)help;
 
 @end
