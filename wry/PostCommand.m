@@ -31,4 +31,8 @@
   return @"This is help for the post command";
 }
 
+- (NSString *)summary {
+  return @"Creates or displays a Post";
+}
+
 @end

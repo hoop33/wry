@@ -12,5 +12,6 @@
 
 - (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error;
 - (NSString *)help;
+- (NSString *)summary;
 
 @end

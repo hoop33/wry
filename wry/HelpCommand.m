@@ -20,4 +20,8 @@
   return @"This is help for the help command";
 }
 
+- (NSString *)summary {
+  return @"Shows help";
+}
+
 @end

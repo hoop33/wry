@@ -27,4 +27,8 @@
   return @"This is help for the unified command";
 }
 
+- (NSString *)summary {
+  return @"Display the current user's Unified Stream";
+}
+
 @end

@@ -27,4 +27,8 @@
   return @"This is help for the stream command";
 }
 
+- (NSString *)summary {
+  return @"Displays the current user's Stream";
+}
+
 @end

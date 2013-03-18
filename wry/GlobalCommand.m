@@ -27,4 +27,8 @@
   return @"This is help for the global command";
 }
 
+- (NSString *)summary {
+  return @"Displays the Global Stream";
+}
+
 @end

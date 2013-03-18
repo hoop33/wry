@@ -24,4 +24,8 @@
   return @"This is help for the user command";
 }
 
+- (NSString *)summary {
+  return @"Displays information about a User";
+}
+
 @end

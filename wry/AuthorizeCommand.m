@@ -37,6 +37,10 @@
   return @"This is help for the authorize command";
 }
 
+- (NSString *)summary {
+  return @"Authorizes wry with App.net";
+}
+
 - (NSString *)oauthURLFormat {
   return @"https://account.app.net/oauth/authenticate?client_id=%@&response_type=token&redirect_uri=%@&scope=%@";
 }
