@@ -8,6 +8,7 @@
 
 #import "WryApplication.h"
 #import "WryCommand.h"
+#import "WryErrorCodes.h"
 #import "SSKeychain.h"
 
 #define kVersion @"0.1"
@@ -34,13 +35,18 @@
 }
 
 - (int)run {
+  int returnCode = WrySuccessCode;
   id <WryCommand> wryCommand = [self getCommand];
   NSError *error;
-  [wryCommand run:self params:self.params error:&error];
-  if (error != nil) {
-    [self println:error.localizedDescription];
+  if (![wryCommand run:self params:self.params error:&error]) {
+    if (error != nil) {
+      [self println:error.localizedDescription];
+      returnCode = (int) error.code;
+    } else {
+      returnCode = WryErrorCodeUnknown;
+    }
   }
-  return error == nil ? 0 : error.code;
+  return returnCode;
 }
 
 - (void)print:(NSString *)output {

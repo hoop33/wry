@@ -9,22 +9,31 @@
 #import "PostCommand.h"
 #import "ADNService.h"
 #import "ADNPost.h"
+#import "WryErrorCodes.h"
 
 @implementation PostCommand
 
-- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+  BOOL success = YES;
   ADNService *service = [[ADNService alloc] initWithApplication:app];
+  // TODO If an ID, GET the post
   if (params.count == 0) {
-    // TODO Show help?
-  } else if (params.count == 1 && NO) {
-    // TODO and is numeric -- get post
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:app.errorDomain
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply either a post ID or a message"}];
+    }
+    success = NO;
   } else {
     NSString *text = [params componentsJoinedByString:@" "];
     ADNPost *post = [service createPost:text error:error];
-    if (error != nil) {
+    if (post != nil) {
       [app println:post];
+    } else {
+      success = NO;
     }
   }
+  return success;
 }
 
 - (NSString *)help {

@@ -41,7 +41,9 @@
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     return (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   } else {
-    *error = self.error;
+    if (error != NULL) {
+      *error = self.error;
+    }
     return nil;
   }
 }
@@ -69,7 +71,9 @@
     }
     return [NSArray arrayWithArray:posts];
   } else {
-    *error = self.error;
+    if (error != NULL) {
+      *error = self.error;
+    }
     return nil;
   }
 }
@@ -84,7 +88,9 @@
     ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
     return post;
   } else {
-    *error = self.error;
+    if (error != NULL) {
+      *error = self.error;
+    }
     return nil;
   }
 }
@@ -111,9 +117,10 @@
 #pragma mark - Private methods
 
 - (void)performRequest:(NSURLRequest *)request {
-  [[NSURLConnection alloc] initWithRequest:request
-                                  delegate:self
-                          startImmediately:YES];
+  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+                                                                delegate:self
+                                                        startImmediately:NO];
+  [connection start];
   CFRunLoopRun();
 }
 

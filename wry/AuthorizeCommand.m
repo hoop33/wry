@@ -11,7 +11,7 @@
 
 @implementation AuthorizeCommand
 
-- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -27,9 +27,14 @@
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
     app.accessToken = accessToken;
+    return YES;
   } else {
-    *error = [NSError errorWithDomain:app.errorDomain code:WryErrorCodeBadInput
-                             userInfo:@{NSLocalizedDescriptionKey : @"You entered a blank code"}];
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:app.errorDomain
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You entered a blank code"}];
+    }
+    return NO;
   }
 }
 

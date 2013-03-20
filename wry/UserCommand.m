@@ -12,12 +12,14 @@
 
 @implementation UserCommand
 
-- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
   ADNUser *user = params.count > 0 ? [service getUser:[params objectAtIndex:0] error:error] : [service getUser:error];
   if (user != nil) {
     [app println:user];
+    return YES;
   }
+  return NO;
 }
 
 - (NSString *)help {

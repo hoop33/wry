@@ -6,5 +6,7 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#define WryErrorCodeBadInput 1
+#define WrySuccessCode 0
+#define WryErrorCodeUnknown 1
+#define WryErrorCodeBadInput 2
 

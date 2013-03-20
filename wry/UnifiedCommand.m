@@ -12,15 +12,17 @@
 
 @implementation UnifiedCommand
 
-- (void)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
   NSArray *posts = [service getUnifiedStream:error];
-  if (error != nil) {
+  if (posts != nil) {
     for (ADNPost *post in posts) {
       [app println:post];
       [app println:@"--------------------"];
     }
+    return YES;
   }
+  return NO;
 }
 
 - (NSString *)help {
