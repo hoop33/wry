@@ -14,7 +14,6 @@
 #define kVersion @"0.1"
 #define kErrorDomain @"com.grailbox.wry"
 #define kDefaultCount 20
-#define kDefaultCommandName @"HelpCommand"
 #define kInputBufferSize 512
 
 @interface WryApplication ()
@@ -37,14 +36,20 @@
 - (int)run {
   int returnCode = WrySuccessCode;
   id <WryCommand> wryCommand = [self getCommand];
-  NSError *error;
-  if (![wryCommand run:self params:self.params error:&error]) {
-    if (error != nil) {
-      [self println:error.localizedDescription];
-      returnCode = (int) error.code;
-    } else {
-      returnCode = WryErrorCodeUnknown;
+  if (wryCommand != nil) {
+    NSError *error;
+    if (![wryCommand run:self params:self.params error:&error]) {
+      if (error != nil) {
+        [self println:error.localizedDescription];
+        returnCode = (int) error.code;
+      } else {
+        returnCode = WryErrorCodeUnknown;
+      }
     }
+  } else {
+    [self println:[NSString stringWithFormat:@"%@: '%@' is not a %@ command. See '%@ help'.", self.appName,
+                                             self.command, self.appName, self.appName]];
+    returnCode = WryErrorCodeBadInput;
   }
   return returnCode;
 }
@@ -96,11 +101,11 @@
 }
 
 - (id <WryCommand>)getCommand {
+  id <WryCommand> wryCommand = nil;
   Class cls = NSClassFromString([self getCommandName]);
-  if (cls == nil || ![cls conformsToProtocol:@protocol(WryCommand)]) {
-    cls = NSClassFromString(kDefaultCommandName);
+  if (cls != nil && [cls conformsToProtocol:@protocol(WryCommand)]) {
+    wryCommand = [[cls alloc] init];
   }
-  id <WryCommand> wryCommand = [[cls alloc] init];
   return wryCommand;
 }
 

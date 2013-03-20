@@ -7,6 +7,7 @@
 //
 
 #import "WryApplication.h"
+#import "WryErrorCodes.h"
 
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
@@ -40,9 +41,12 @@ int main(int argc, const char *argv[]) {
     }
     if (errorMessage != nil) {
       [application println:errorMessage];
-      return 1;
+      return WryErrorCodeBadInput;
     } else {
       application.params = [NSArray arrayWithArray:params];
+      if (application.command == nil) {
+        application.command = @"help";
+      }
       return [application run];
     }
   }
