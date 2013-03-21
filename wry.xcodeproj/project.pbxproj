@@ -14,6 +14,7 @@
 		C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
 		C744E46D16FA8E2D0002A9A5 /* FollowersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */; };
 		C744E47016FA9D010002A9A5 /* FollowingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46F16FA9D010002A9A5 /* FollowingCommand.m */; };
+		C744E47316FA9F670002A9A5 /* FollowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47216FA9F670002A9A5 /* FollowCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -63,6 +64,8 @@
 		C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersCommand.m; sourceTree = "<group>"; };
 		C744E46E16FA9D010002A9A5 /* FollowingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingCommand.h; sourceTree = "<group>"; };
 		C744E46F16FA9D010002A9A5 /* FollowingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingCommand.m; sourceTree = "<group>"; };
+		C744E47116FA9F670002A9A5 /* FollowCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCommand.h; sourceTree = "<group>"; };
+		C744E47216FA9F670002A9A5 /* FollowCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */,
 				C744E46E16FA9D010002A9A5 /* FollowingCommand.h */,
 				C744E46F16FA9D010002A9A5 /* FollowingCommand.m */,
+				C744E47116FA9F670002A9A5 /* FollowCommand.h */,
+				C744E47216FA9F670002A9A5 /* FollowCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */,
 				C744E46D16FA8E2D0002A9A5 /* FollowersCommand.m in Sources */,
 				C744E47016FA9D010002A9A5 /* FollowingCommand.m in Sources */,
+				C744E47316FA9F670002A9A5 /* FollowCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

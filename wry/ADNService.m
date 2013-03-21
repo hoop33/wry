@@ -112,6 +112,23 @@
   }
 }
 
+- (ADNUser *)follow:(NSString *)username error:(NSError **)error {
+  NSString *path = [NSString stringWithFormat:@"users/%@/follow", username];
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  request.HTTPMethod = @"POST";
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+    return user;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
 #pragma mark - NSURLConnectionDataDelegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
