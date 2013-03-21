@@ -124,8 +124,8 @@
     free(classes);
   }
   return [commands sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-    NSString *first = [(Class)a description];
-    NSString *second = [(Class)b description];
+    NSString *first = [(Class) a description];
+    NSString *second = [(Class) b description];
     return [first compare:second];
   }];
 }
