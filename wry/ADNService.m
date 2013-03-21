@@ -17,7 +17,7 @@
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
-- (NSArray *)getStream:(NSString *)path error:(NSError **)error;
+- (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -53,44 +53,31 @@
 }
 
 - (NSArray *)getFollowers:(NSString *)username error:(NSError **)error {
-  [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@/followers", username]]];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSMutableArray *followers = [NSMutableArray array];
-    for (NSDictionary *dictionary in response.data) {
-      ADNUser *follower = (ADNUser *)[dictionary mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-      [followers addObject:follower];
-    }
-    return [NSArray arrayWithArray:followers];
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  NSString *path = [NSString stringWithFormat:@"users/%@/followers", username];
+  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
 }
+
 - (NSArray *)getUserStream:(NSError **)error {
-  return [self getStream:@"posts/stream" error:error];
+  return [self getItems:@"posts/stream" mapping:[ADNMappingProvider postMapping] error:error];
 }
 
 - (NSArray *)getGlobalStream:(NSError **)error {
-  return [self getStream:@"posts/stream/global" error:error];
+  return [self getItems:@"posts/stream/global" mapping:[ADNMappingProvider postMapping] error:error];
 }
 
 - (NSArray *)getUnifiedStream:(NSError **)error {
-  return [self getStream:@"posts/stream/unified" error:error];
+  return [self getItems:@"posts/stream/unified" mapping:[ADNMappingProvider postMapping] error:error];
 }
 
-- (NSArray *)getStream:(NSString *)path error:(NSError **)error {
+- (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
   [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSMutableArray *posts = [NSMutableArray array];
+    NSMutableArray *items = [NSMutableArray array];
     for (NSDictionary *dictionary in response.data) {
-      ADNPost *post = (ADNPost *) [dictionary mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-      [posts addObject:post];
+      [items addObject:[dictionary mapToObjectWithMapping:mapping]];
     }
-    return [NSArray arrayWithArray:posts];
+    return [NSArray arrayWithArray:items];
   } else {
     if (error != NULL) {
       *error = self.error;
