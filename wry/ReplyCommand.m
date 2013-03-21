@@ -1,32 +1,32 @@
 //
-//  PostCommand.m
+//  ReplyCommand.m
 //  wry
 //
-//  Created by Rob Warner on 3/17/13.
+//  Created by Rob Warner on 3/21/13.
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import "PostCommand.h"
+#import "ReplyCommand.h"
 #import "ADNService.h"
 #import "ADNPost.h"
 #import "WryErrorCodes.h"
 
-@implementation PostCommand
+@implementation ReplyCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  // TODO If an ID, GET the post
-  if (params.count == 0) {
+  if (params.count < 2) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply either a post ID or a message"}];
+                               userInfo:@{NSLocalizedDescriptionKey: @"You must specify the Post ID to reply to and a message"}];
     }
     success = NO;
   } else {
-    NSString *text = [params componentsJoinedByString:@" "];
-    ADNPost *post = [service createPost:text replyID:nil error:error];
+    ADNService *service = [[ADNService alloc] initWithApplication:app];
+    NSString *replyID = [params objectAtIndex:0];
+    NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "];
+    ADNPost *post = [service createPost:text replyID:replyID error:error];
     if (post != nil) {
       [app println:post];
     } else {

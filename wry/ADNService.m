@@ -95,10 +95,12 @@
   }
 }
 
-- (ADNPost *)createPost:(NSString *)text error:(NSError **)error {
+- (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
   request.HTTPMethod = @"POST";
-  request.HTTPBody = [[NSString stringWithFormat:@"text=%@", text] dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *body = replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
+  [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text];
+  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
