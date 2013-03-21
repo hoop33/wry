@@ -18,7 +18,7 @@
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey: @"You must specify a user name or ID to follow."}];
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a user name or ID to follow."}];
     }
     return NO;
   }

@@ -19,7 +19,7 @@
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey: @"You must specify the Post ID to reply to and a message"}];
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify the Post ID to reply to and a message"}];
     }
     success = NO;
   } else {

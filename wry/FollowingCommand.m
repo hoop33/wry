@@ -14,7 +14,8 @@
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *following = params.count > 0 ? [service getFollowing:[params objectAtIndex:0] error:error] : [service getFollowing:error];
+  NSArray *following = params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
+                                                          error:error] : [service getFollowing:error];
   if (following != nil) {
     for (ADNUser *follow in following) {
       [app println:follow];

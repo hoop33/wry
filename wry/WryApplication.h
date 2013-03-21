@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+@protocol WryCommand;
+
 @interface WryApplication : NSObject
 
 @property(nonatomic, copy) NSString *appName;
-@property(nonatomic, copy) NSString *command;
+@property(nonatomic, copy) NSString *commandName;
 @property(nonatomic, strong) NSArray *params;
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic) BOOL quiet;
@@ -22,5 +24,7 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
-
+- (id <WryCommand>)commandForName:(NSString *)name;
+- (NSString *)nameForCommand:(id <WryCommand>)command;
+- (NSArray *)allCommands;
 @end

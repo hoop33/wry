@@ -99,7 +99,7 @@
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
   request.HTTPMethod = @"POST";
   NSString *body = replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-  [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text];
+    [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text];
   request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
   [self performRequest:request];
   if (self.data.length > 0) {

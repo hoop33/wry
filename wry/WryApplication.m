@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+#import <objc/objc-runtime.h>
+
 #import "WryApplication.h"
 #import "WryCommand.h"
 #import "WryErrorCodes.h"
@@ -13,14 +15,9 @@
 
 #define kVersion @"0.1"
 #define kErrorDomain @"com.grailbox.wry"
+#define kCommandSuffix @"Command"
 #define kDefaultCount 20
 #define kInputBufferSize 512
-
-@interface WryApplication ()
-- (NSString *)getCommandName;
-
-- (id <WryCommand>)getCommand;
-@end
 
 @implementation WryApplication
 
@@ -35,7 +32,7 @@
 
 - (int)run {
   int returnCode = WrySuccessCode;
-  id <WryCommand> wryCommand = [self getCommand];
+  id <WryCommand> wryCommand = [self commandForName:self.commandName];
   if (wryCommand != nil) {
     NSError *error;
     if (![wryCommand run:self params:self.params error:&error]) {
@@ -48,7 +45,7 @@
     }
   } else {
     [self println:[NSString stringWithFormat:@"%@: '%@' is not a %@ command. See '%@ help'.", self.appName,
-                                             self.command, self.appName, self.appName]];
+                                             self.commandName, self.appName, self.appName]];
     returnCode = WryErrorCodeBadInput;
   }
   return returnCode;
@@ -96,17 +93,41 @@
   return kErrorDomain;
 }
 
-- (id <WryCommand>)getCommand {
+- (id <WryCommand>)commandForName:(NSString *)name {
   id <WryCommand> wryCommand = nil;
-  Class cls = NSClassFromString([self getCommandName]);
+  Class cls = NSClassFromString([NSString stringWithFormat:@"%@%@", [name capitalizedString], kCommandSuffix]);
   if (cls != nil && [cls conformsToProtocol:@protocol(WryCommand)]) {
     wryCommand = [[cls alloc] init];
   }
   return wryCommand;
 }
 
-- (NSString *)getCommandName {
-  return [NSString stringWithFormat:@"%@Command", [self.command capitalizedString]];
+- (NSString *)nameForCommand:(id <WryCommand>)command {
+  NSString *string = [[command.class description] lowercaseString];
+  return [string substringToIndex:(string.length - kCommandSuffix.length)];
+}
+
+- (NSArray *)allCommands {
+  NSMutableArray *commands = [NSMutableArray array];
+  Class *classes = NULL;
+  int numClasses = objc_getClassList(NULL, 0);
+  if (numClasses > 0) {
+    classes = (__unsafe_unretained Class *) malloc(sizeof(Class) * numClasses);
+    int n = objc_getClassList(classes, numClasses);
+    for (int i = 0; i < n; i++) {
+      Class cls = classes[i];
+      NSString *className = [NSString stringWithUTF8String:class_getName(classes[i])];
+      if ([className hasSuffix:kCommandSuffix] && [cls conformsToProtocol:@protocol(WryCommand)]) {
+        [commands addObject:cls];
+      }
+    }
+    free(classes);
+  }
+  return [commands sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    NSString *first = [(Class)a description];
+    NSString *second = [(Class)b description];
+    return [first compare:second];
+  }];
 }
 
 @end

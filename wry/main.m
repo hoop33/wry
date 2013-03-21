@@ -33,8 +33,8 @@ int main(int argc, const char *argv[]) {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];
           break;
         }
-      } else if (application.command == nil) {
-        application.command = param;
+      } else if (application.commandName == nil) {
+        application.commandName = param;
       } else {
         [params addObject:param];
       }
@@ -44,8 +44,8 @@ int main(int argc, const char *argv[]) {
       return WryErrorCodeBadInput;
     } else {
       application.params = [NSArray arrayWithArray:params];
-      if (application.command == nil) {
-        application.command = @"help";
+      if (application.commandName == nil) {
+        application.commandName = @"help";
       }
       return [application run];
     }
