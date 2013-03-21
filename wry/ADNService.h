@@ -21,6 +21,8 @@
 - (id)initWithApplication:(WryApplication *)app;
 - (ADNUser *)getUser:(NSError **)error;
 - (ADNUser *)getUser:(NSString *)username error:(NSError **)error;
+- (NSArray *)getFollowers:(NSError **)error;
+- (NSArray *)getFollowers:(NSString *)username error:(NSError **)error;
 - (NSArray *)getUserStream:(NSError **)error;
 - (NSArray *)getGlobalStream:(NSError **)error;
 - (NSArray *)getUnifiedStream:(NSError **)error;

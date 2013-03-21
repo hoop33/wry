@@ -37,7 +37,7 @@
 
 - (ADNUser *)getUser:(NSString *)username error:(NSError **)error {
   [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@", username]]];
-  if (self.error == nil) {
+  if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     return (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
   } else {
@@ -48,6 +48,27 @@
   }
 }
 
+- (NSArray *)getFollowers:(NSError **)error {
+  return [self getFollowers:@"me" error:error];
+}
+
+- (NSArray *)getFollowers:(NSString *)username error:(NSError **)error {
+  [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@/followers", username]]];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    NSMutableArray *followers = [NSMutableArray array];
+    for (NSDictionary *dictionary in response.data) {
+      ADNUser *follower = (ADNUser *)[dictionary mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+      [followers addObject:follower];
+    }
+    return [NSArray arrayWithArray:followers];
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
 - (NSArray *)getUserStream:(NSError **)error {
   return [self getStream:@"posts/stream" error:error];
 }
@@ -62,7 +83,7 @@
 
 - (NSArray *)getStream:(NSString *)path error:(NSError **)error {
   [self performRequest:[self getURLRequestWithPath:path]];
-  if (self.error == nil) {
+  if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     NSMutableArray *posts = [NSMutableArray array];
     for (NSDictionary *dictionary in response.data) {
@@ -83,7 +104,7 @@
   request.HTTPMethod = @"POST";
   request.HTTPBody = [[NSString stringWithFormat:@"text=%@", text] dataUsingEncoding:NSUTF8StringEncoding];
   [self performRequest:request];
-  if (self.error == nil) {
+  if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
     return post;
@@ -106,6 +127,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  self.data.length = 0;
   self.error = error;
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
