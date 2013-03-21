@@ -57,6 +57,15 @@
   return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
 }
 
+- (NSArray *)getFollowing:(NSError **)error {
+  return [self getFollowing:@"me" error:error];
+}
+
+- (NSArray *)getFollowing:(NSString *)username error:(NSError **)error {
+  NSString *path = [NSString stringWithFormat:@"users/%@/following", username];
+  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+}
+
 - (NSArray *)getUserStream:(NSError **)error {
   return [self getItems:@"posts/stream" mapping:[ADNMappingProvider postMapping] error:error];
 }
