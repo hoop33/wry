@@ -11,6 +11,7 @@
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
+		C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -54,6 +55,8 @@
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
 		C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMapping.h"; sourceTree = "<group>"; };
 		C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMapping.m"; sourceTree = "<group>"; };
+		C744E46816FA853F0002A9A5 /* VersionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCommand.h; sourceTree = "<group>"; };
+		C744E46916FA85400002A9A5 /* VersionCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */,
 				C7CCEB7816F60B83005DDBAB /* PostCommand.h */,
 				C7CCEB7916F60B83005DDBAB /* PostCommand.m */,
+				C744E46816FA853F0002A9A5 /* VersionCommand.h */,
+				C744E46916FA85400002A9A5 /* VersionCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */,
 				C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */,
 				C7CCEB7A16F60B83005DDBAB /* PostCommand.m in Sources */,
+				C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
