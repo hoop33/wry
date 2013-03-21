@@ -96,10 +96,6 @@
   return kErrorDomain;
 }
 
-- (NSString *)helpLine {
-  return [NSString stringWithFormat:@"%@ %@", self.appName, [self version]];
-}
-
 - (id <WryCommand>)getCommand {
   id <WryCommand> wryCommand = nil;
   Class cls = NSClassFromString([self getCommandName]);

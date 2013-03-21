@@ -22,6 +22,5 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
-- (NSString *)helpLine;
 
 @end
