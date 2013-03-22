@@ -21,7 +21,7 @@
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply either a post ID or a message"}];
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify either a post ID or a message"}];
     }
     success = NO;
   } else {
