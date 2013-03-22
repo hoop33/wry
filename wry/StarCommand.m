@@ -27,6 +27,7 @@
   } else {
     ADNPost *post = [service star:[params objectAtIndex:0] error:error];
     if (post != nil) {
+      [app println:@"Starred post:"];
       [app println:post];
     } else {
       success = NO;

@@ -28,6 +28,7 @@
     NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "];
     ADNPost *post = [service createPost:text replyID:replyID error:error];
     if (post != nil) {
+      [app println:@"Replied to post:"];
       [app println:post];
     } else {
       success = NO;

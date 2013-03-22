@@ -27,6 +27,7 @@
   } else {
     ADNPost *post = [service repost:[params objectAtIndex:0] error:error];
     if (post != nil) {
+      [app println:@"Reposted post:"];
       [app println:post];
     } else {
       success = NO;
