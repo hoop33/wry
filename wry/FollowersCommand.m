@@ -26,12 +26,20 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"followers [userid | @username]";
+}
+
 - (NSString *)help {
-  return @"This is the help for the followers command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Lists a user's followers. You can specify either the user's ID or @username\n"];
+  [help appendString:@"to list followers for that user. If you don't specify a user ID or @username,\n"];
+  [help appendString:@"lists your followers."];
+  return help;
 }
 
 - (NSString *)summary {
-  return @"List the users following for a user";
+  return @"List the users following a user";
 }
 
 @end

@@ -22,8 +22,16 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"user [userid | @username]";
+}
+
 - (NSString *)help {
-  return @"This is help for the user command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Displays information about a user. If you specify a user ID or @username,\n"];
+  [help appendString:@"displays information about that user. Otherwise, displays information\n"];
+  [help appendString:@"about yourself."];
+  return help;
 }
 
 - (NSString *)summary {

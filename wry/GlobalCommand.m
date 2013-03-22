@@ -25,8 +25,12 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"global";
+}
+
 - (NSString *)help {
-  return @"This is help for the global command";
+  return @"Displays the global stream, which contains the most recent posts from all users.";
 }
 
 - (NSString *)summary {

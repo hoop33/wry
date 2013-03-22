@@ -25,8 +25,15 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"stream";
+}
+
 - (NSString *)help {
-  return @"This is help for the stream command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Displays your stream, which contains the most recent posts from the users\n"];
+  [help appendString:@"you follow."];
+  return help;
 }
 
 - (NSString *)summary {

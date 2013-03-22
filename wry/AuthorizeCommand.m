@@ -38,8 +38,17 @@
   }
 }
 
+- (NSString *)usage {
+  return @"authorize";
+}
+
 - (NSString *)help {
-  return @"This is help for the authorize command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Opens a browser to sign in to App.net and authorize this application.\n"];
+  [help appendString:@"After authorization, your browser will show you a code.\n"];
+  [help appendString:@"Return to your terminal and paste this code to complete authorization.\n"];
+  [help appendString:@"This code is then stored in your Mac OS X Keychain for future use."];
+  return help;
 }
 
 - (NSString *)summary {

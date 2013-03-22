@@ -32,8 +32,14 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"follow <userid | @username>";
+}
 - (NSString *)help {
-  return @"This is the help for the following command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Follows a user. You must specify either the user's ID or @username.\n"];
+  [help appendString:@"Displays the user information for the user you've followed."];
+  return help;
 }
 
 - (NSString *)summary {

@@ -36,8 +36,16 @@
   return success;
 }
 
+- (NSString *)usage {
+  return @"post [postid | message]";
+}
+
 - (NSString *)help {
-  return @"This is help for the post command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"If you specify a post ID, displays that post. If you specify a message, creates\n"];
+  [help appendString:@"a new post with the message text. Note that the shell's parsing rules are\n"];
+  [help appendString:@"respected, so escape your text appropriately. Quotes are optional."];
+  return help;
 }
 
 - (NSString *)summary {

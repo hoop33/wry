@@ -38,14 +38,23 @@
       }
       success = NO;
     } else {
+      [app println:[NSString stringWithFormat:@"usage: %@ %@", app.appName, [command usage]]];
+      [app println:@""];
       [app println:[command help]];
     }
   }
   return success;
 }
 
+- (NSString *)usage {
+  return @"help [command]";
+}
+
 - (NSString *)help {
-  return @"This is help for the help command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Displays help. If you specify a command, displays help for that command.\n"];
+  [help appendString:@"Otherwise, displays a summary of help."];
+  return help;
 }
 
 - (NSString *)summary {

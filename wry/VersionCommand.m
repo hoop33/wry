@@ -15,8 +15,12 @@
   return YES;
 }
 
+- (NSString *)usage {
+  return @"version";
+}
+
 - (NSString *)help {
-  return @"This is the help for the version command";
+  return @"Displays version information about this application";
 }
 
 - (NSString *)summary {

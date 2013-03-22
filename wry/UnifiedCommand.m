@@ -25,8 +25,15 @@
   return NO;
 }
 
+- (NSString *)usage {
+  return @"unified";
+}
+
 - (NSString *)help {
-  return @"This is help for the unified command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Displays your unified stream, which contains the most recent posts from\n"];
+  [help appendString:@"the users you follow, mixed with the posts you're mentioned in."];
+  return help;
 }
 
 - (NSString *)summary {

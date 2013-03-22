@@ -36,8 +36,16 @@
   return success;
 }
 
+- (NSString *)usage {
+  return @"reply <replyid> <message>";
+}
+
 - (NSString *)help {
-  return @"This is help for the post command";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Replies to an existing post. You must specify the ID of the post to reply\n"];
+  [help appendString:@"to, as well as the text of your reply. Note that the shell's parsing rules are\n"];
+  [help appendString:@"respected, so escape your text appropriately. Quotes are optional."];
+  return help;
 }
 
 - (NSString *)summary {
