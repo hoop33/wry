@@ -20,7 +20,7 @@
 }
 
 - (NSString *)summary {
-  return @"This is the summary for the version command";
+  return @"Display version information";
 }
 
 @end

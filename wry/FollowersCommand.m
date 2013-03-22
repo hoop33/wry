@@ -31,7 +31,7 @@
 }
 
 - (NSString *)summary {
-  return @"This is the summary for the followers command";
+  return @"List the users following for a user";
 }
 
 @end

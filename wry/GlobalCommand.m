@@ -30,7 +30,7 @@
 }
 
 - (NSString *)summary {
-  return @"Displays the Global Stream";
+  return @"Display the global stream";
 }
 
 @end

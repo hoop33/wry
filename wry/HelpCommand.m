@@ -49,7 +49,7 @@
 }
 
 - (NSString *)summary {
-  return @"Shows help";
+  return @"Display help";
 }
 
 @end

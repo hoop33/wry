@@ -41,7 +41,7 @@
 }
 
 - (NSString *)summary {
-  return @"Creates or displays a Post";
+  return @"Reply to a post";
 }
 
 @end

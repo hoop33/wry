@@ -30,7 +30,7 @@
 }
 
 - (NSString *)summary {
-  return @"Display the current user's Unified Stream";
+  return @"Display the current user's unified stream";
 }
 
 @end

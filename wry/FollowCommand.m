@@ -37,7 +37,7 @@
 }
 
 - (NSString *)summary {
-  return @"This is the summary for the following command";
+  return @"Follow a user";
 }
 
 @end

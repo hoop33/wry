@@ -27,7 +27,7 @@
 }
 
 - (NSString *)summary {
-  return @"Displays information about a User";
+  return @"Display information about a user";
 }
 
 @end

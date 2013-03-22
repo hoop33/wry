@@ -43,7 +43,7 @@
 }
 
 - (NSString *)summary {
-  return @"Authorizes wry with App.net";
+  return @"Authorize with App.net";
 }
 
 - (NSString *)oauthURLFormat {
