@@ -29,6 +29,7 @@
 - (NSArray *)getGlobalStream:(NSError **)error;
 - (NSArray *)getUnifiedStream:(NSError **)error;
 - (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error;
+- (ADNPost *)repost:(NSString *)postID error:(NSError **)error;
 - (ADNUser *)follow:(NSString *)username error:(NSError **)error;
 
 @end

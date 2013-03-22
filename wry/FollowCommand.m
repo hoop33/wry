@@ -35,6 +35,7 @@
 - (NSString *)usage {
   return @"follow <userid | @username>";
 }
+
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:@"Follows a user. You must specify either the user's ID or @username.\n"];
