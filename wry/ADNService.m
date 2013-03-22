@@ -131,9 +131,27 @@
   }
 }
 
+// TODO refactor these common methods
 - (ADNPost *)star:(NSString *)postID error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@/star", postID]];
   request.HTTPMethod = @"POST";
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+    return post;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+// TODO refactor these common methods
+- (ADNPost *)delete:(NSString *)postID error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@", postID]];
+  request.HTTPMethod = @"DELETE";
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
