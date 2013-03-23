@@ -38,7 +38,7 @@
       }
       success = NO;
     } else {
-      [app println:[NSString stringWithFormat:@"usage: %@ %@", app.appName, [command usage]]];
+      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, [app nameForCommand:command], [command usage]]];
       [app println:@""];
       [app println:[command help]];
     }
@@ -47,7 +47,7 @@
 }
 
 - (NSString *)usage {
-  return @"help [command]";
+  return @"[command]";
 }
 
 - (NSString *)help {

@@ -36,7 +36,7 @@
 }
 
 - (NSString *)usage {
-  return @"delete [postid]";
+  return @"<postid>";
 }
 
 - (NSString *)help {

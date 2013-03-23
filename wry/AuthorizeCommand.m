@@ -39,7 +39,7 @@
 }
 
 - (NSString *)usage {
-  return @"authorize";
+  return @"";
 }
 
 - (NSString *)help {

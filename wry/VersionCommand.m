@@ -16,7 +16,7 @@
 }
 
 - (NSString *)usage {
-  return @"version";
+  return @"";
 }
 
 - (NSString *)help {

@@ -33,7 +33,7 @@
 }
 
 - (NSString *)usage {
-  return @"follow <userid | @username>";
+  return @"<userid | @username>";
 }
 
 - (NSString *)help {

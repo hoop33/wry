@@ -27,7 +27,7 @@
 }
 
 - (NSString *)usage {
-  return @"following [userid | @username]";
+  return @"[userid | @username]";
 }
 
 - (NSString *)help {

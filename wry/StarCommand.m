@@ -37,7 +37,7 @@
 }
 
 - (NSString *)usage {
-  return @"star [postid]";
+  return @"<postid>";
 }
 
 - (NSString *)help {

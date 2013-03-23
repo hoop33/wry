@@ -23,7 +23,7 @@
 }
 
 - (NSString *)usage {
-  return @"user [userid | @username]";
+  return @"[userid | @username]";
 }
 
 - (NSString *)help {

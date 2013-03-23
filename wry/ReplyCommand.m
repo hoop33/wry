@@ -38,7 +38,7 @@
 }
 
 - (NSString *)usage {
-  return @"reply <replyid> <message>";
+  return @"<postid> <message>";
 }
 
 - (NSString *)help {

@@ -26,7 +26,7 @@
 }
 
 - (NSString *)usage {
-  return @"unified";
+  return @"";
 }
 
 - (NSString *)help {

@@ -26,7 +26,7 @@
 }
 
 - (NSString *)usage {
-  return @"stream";
+  return @"";
 }
 
 - (NSString *)help {

@@ -37,7 +37,7 @@
 }
 
 - (NSString *)usage {
-  return @"post [postid | message]";
+  return @"[postid | message]";
 }
 
 - (NSString *)help {
