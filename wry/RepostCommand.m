@@ -7,7 +7,6 @@
 //
 
 #import "RepostCommand.h"
-#import "WryApplication.h"
 #import "ADNService.h"
 #import "ADNPost.h"
 #import "WryErrorCodes.h"
