@@ -13,7 +13,7 @@
 
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
-  [str appendString:[self.user description]];
+  [str appendString:[self.user shortDescription]];
   [str appendFormat:@"%@\n", self.text];
   [str appendFormat:@"ID: %ld -- %@", self.postID, self.createdAt];
   return str;

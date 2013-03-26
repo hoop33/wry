@@ -17,4 +17,6 @@
 @property(nonatomic, assign) BOOL followsYou;
 @property(nonatomic, assign) BOOL youFollow;
 
+- (NSString *)shortDescription;
+
 @end
