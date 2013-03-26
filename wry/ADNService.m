@@ -164,6 +164,12 @@
                           error:error];
 }
 
+- (NSArray *)getReplies:(NSString *)postID error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"posts/%@/replies", postID]
+                mapping:[ADNMappingProvider postMapping]
+                  error:error];
+}
+
 #pragma mark - Helper methods
 
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
