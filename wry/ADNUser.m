@@ -12,15 +12,14 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (@%@) (%ld)\n", self.name, self.username, (long)self.userID];
+  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You\n", self.name, self.username, (long)self.userID,
+                   (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")];
 }
 
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:[self shortDescription]];
   [str appendFormat:@"%@\n", [self.userDescription description]];
-  [str appendFormat:@"%@, %@\n", self.youFollow ? @"Following" : @"Not Following",
-                    self.followsYou ? @"Follows You" : @"Does Not Follow You"];
   return str;
 }
 
