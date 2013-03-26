@@ -100,6 +100,18 @@
   return [self getItems:@"posts/stream/unified" mapping:[ADNMappingProvider postMapping] error:error];
 }
 
+- (NSArray *)getMentions:(NSError **)error {
+  return [self getMentions:@"me" error:error];
+}
+
+- (NSArray *)getMentions:(NSString *)username error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"users/%@/mentions", username]
+                mapping:[ADNMappingProvider postMapping]
+                  error:error];
+}
+
+#pragma mark - Post interactions
+
 - (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
   request.HTTPMethod = @"POST";

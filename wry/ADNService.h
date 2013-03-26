@@ -28,6 +28,8 @@
 - (NSArray *)getUserStream:(NSError **)error;
 - (NSArray *)getGlobalStream:(NSError **)error;
 - (NSArray *)getUnifiedStream:(NSError **)error;
+- (NSArray *)getMentions:(NSError **)error;
+- (NSArray *)getMentions:(NSString *)username error:(NSError **)error;
 - (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error;
 - (ADNPost *)showPost:(NSString *)postID error:(NSError **)error;
 - (ADNPost *)repost:(NSString *)postID error:(NSError **)error;

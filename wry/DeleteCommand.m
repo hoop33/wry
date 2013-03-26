@@ -40,9 +40,7 @@
 }
 
 - (NSString *)help {
-  NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Deletes a post. You must specify the ID of the post you wish to delete."];
-  return help;
+  return @"Deletes a post. You must specify the ID of the post you wish to delete.";
 }
 
 - (NSString *)summary {

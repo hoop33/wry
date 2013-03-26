@@ -41,9 +41,7 @@
 }
 
 - (NSString *)help {
-  NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Stars a post. You must specify the ID of the post you wish to star."];
-  return help;
+  return @"Stars a post. You must specify the ID of the post you wish to star.";
 }
 
 - (NSString *)summary {

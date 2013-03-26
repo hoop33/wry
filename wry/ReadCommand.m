@@ -39,9 +39,7 @@
 }
 
 - (NSString *)help {
-  NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Reads a post. You must specify the ID of the post you wish to read."];
-  return help;
+  return @"Reads a post. You must specify the ID of the post you wish to read.";
 }
 
 - (NSString *)summary {

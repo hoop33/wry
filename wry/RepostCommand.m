@@ -40,9 +40,7 @@
 }
 
 - (NSString *)help {
-  NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Reposts a post. You must specify the ID of the post you wish to repost."];
-  return help;
+  return @"Reposts a post. You must specify the ID of the post you wish to repost.";
 }
 
 - (NSString *)summary {
