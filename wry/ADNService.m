@@ -114,7 +114,21 @@
   }
 }
 
-// TODO refactor these common methods
+- (ADNPost *)showPost:(NSString *)postID error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@", postID]];
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+    return post;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
 - (ADNPost *)repost:(NSString *)postID error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@/repost", postID]];
   request.HTTPMethod = @"POST";
