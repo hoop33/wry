@@ -36,5 +36,6 @@
 - (ADNPost *)star:(NSString *)postID error:(NSError **)error;
 - (ADNPost *)delete:(NSString *)postID error:(NSError **)error;
 - (ADNUser *)follow:(NSString *)username error:(NSError **)error;
+- (ADNUser *)unfollow:(NSString *)username error:(NSError **)error;
 
 @end

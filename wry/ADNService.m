@@ -19,6 +19,7 @@
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 - (ADNPost *)interactWithPost:(NSString *)path method:(NSString *)method error:(NSError **)error;
+- (ADNUser *)interactWithUser:(NSString *)path method:(NSString *)method error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -70,20 +71,11 @@
 }
 
 - (ADNUser *)follow:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/follow", username];
-  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
-  request.HTTPMethod = @"POST";
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-    return user;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"POST" error:error];
+}
+
+- (ADNUser *)unfollow:(NSString *)username error:(NSError **)error {
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"DELETE" error:error];
 }
 
 #pragma mark - Stream interactions
@@ -182,6 +174,22 @@
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
     return post;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+- (ADNUser *)interactWithUser:(NSString *)path method:(NSString *)method error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  request.HTTPMethod = method;
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+    return user;
   } else {
     if (error != NULL) {
       *error = self.error;
