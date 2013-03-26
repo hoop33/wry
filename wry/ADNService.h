@@ -44,5 +44,7 @@
 - (ADNUser *)unfollow:(NSString *)username error:(NSError **)error;
 - (ADNUser *)mute:(NSString *)username error:(NSError **)error;
 - (ADNUser *)unmute:(NSString *)username error:(NSError **)error;
+- (ADNUser *)block:(NSString *)username error:(NSError **)error;
+- (ADNUser *)unblock:(NSString *)username error:(NSError **)error;
 
 @end

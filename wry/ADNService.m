@@ -95,6 +95,14 @@
   return [self interactWithUser:[NSString stringWithFormat:@"users/%@/mute", username] method:@"DELETE" error:error];
 }
 
+- (ADNUser *)block:(NSString *)username error:(NSError **)error {
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/block", username] method:@"POST" error:error];
+}
+
+- (ADNUser *)unblock:(NSString *)username error:(NSError **)error {
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/block", username] method:@"DELETE" error:error];
+}
+
 #pragma mark - Stream interactions
 
 - (NSArray *)getUserStream:(NSError **)error {

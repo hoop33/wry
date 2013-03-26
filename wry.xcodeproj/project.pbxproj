@@ -27,6 +27,8 @@
 		C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4901701DA560002A9A5 /* MutedCommand.m */; };
 		C744E494170204F10002A9A5 /* RepliesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E493170204EE0002A9A5 /* RepliesCommand.m */; };
 		C744E49717020EDB0002A9A5 /* PostsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49617020ED90002A9A5 /* PostsCommand.m */; };
+		C744E49A170230920002A9A5 /* BlockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4991702308E0002A9A5 /* BlockCommand.m */; };
+		C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49C170230A40002A9A5 /* UnblockCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -102,6 +104,10 @@
 		C744E493170204EE0002A9A5 /* RepliesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesCommand.m; sourceTree = "<group>"; };
 		C744E49517020ED60002A9A5 /* PostsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsCommand.h; sourceTree = "<group>"; };
 		C744E49617020ED90002A9A5 /* PostsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsCommand.m; sourceTree = "<group>"; };
+		C744E4981702308B0002A9A5 /* BlockCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockCommand.h; sourceTree = "<group>"; };
+		C744E4991702308E0002A9A5 /* BlockCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockCommand.m; sourceTree = "<group>"; };
+		C744E49B170230A20002A9A5 /* UnblockCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnblockCommand.h; sourceTree = "<group>"; };
+		C744E49C170230A40002A9A5 /* UnblockCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnblockCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -264,6 +270,10 @@
 				C744E493170204EE0002A9A5 /* RepliesCommand.m */,
 				C744E49517020ED60002A9A5 /* PostsCommand.h */,
 				C744E49617020ED90002A9A5 /* PostsCommand.m */,
+				C744E4981702308B0002A9A5 /* BlockCommand.h */,
+				C744E4991702308E0002A9A5 /* BlockCommand.m */,
+				C744E49B170230A20002A9A5 /* UnblockCommand.h */,
+				C744E49C170230A40002A9A5 /* UnblockCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -406,6 +416,8 @@
 				C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */,
 				C744E494170204F10002A9A5 /* RepliesCommand.m in Sources */,
 				C744E49717020EDB0002A9A5 /* PostsCommand.m in Sources */,
+				C744E49A170230920002A9A5 /* BlockCommand.m in Sources */,
+				C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
