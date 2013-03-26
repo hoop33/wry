@@ -25,6 +25,8 @@
 - (NSArray *)getFollowers:(NSString *)username error:(NSError **)error;
 - (NSArray *)getFollowing:(NSError **)error;
 - (NSArray *)getFollowing:(NSString *)username error:(NSError **)error;
+- (NSArray *)getMuted:(NSError **)error;
+- (NSArray *)getMuted:(NSString *)username error:(NSError **)error;
 - (NSArray *)getUserStream:(NSError **)error;
 - (NSArray *)getGlobalStream:(NSError **)error;
 - (NSArray *)getUnifiedStream:(NSError **)error;

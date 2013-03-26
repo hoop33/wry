@@ -24,6 +24,7 @@
 		C744E4881701B93C0002A9A5 /* UnfollowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4871701B93A0002A9A5 /* UnfollowCommand.m */; };
 		C744E48B1701D5D20002A9A5 /* MuteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E48A1701D5D00002A9A5 /* MuteCommand.m */; };
 		C744E48E1701D6860002A9A5 /* UnmuteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E48D1701D6850002A9A5 /* UnmuteCommand.m */; };
+		C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4901701DA560002A9A5 /* MutedCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -93,6 +94,8 @@
 		C744E48A1701D5D00002A9A5 /* MuteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MuteCommand.m; sourceTree = "<group>"; };
 		C744E48C1701D6830002A9A5 /* UnmuteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnmuteCommand.h; sourceTree = "<group>"; };
 		C744E48D1701D6850002A9A5 /* UnmuteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnmuteCommand.m; sourceTree = "<group>"; };
+		C744E48F1701DA530002A9A5 /* MutedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutedCommand.h; sourceTree = "<group>"; };
+		C744E4901701DA560002A9A5 /* MutedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutedCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				C744E48A1701D5D00002A9A5 /* MuteCommand.m */,
 				C744E48C1701D6830002A9A5 /* UnmuteCommand.h */,
 				C744E48D1701D6850002A9A5 /* UnmuteCommand.m */,
+				C744E48F1701DA530002A9A5 /* MutedCommand.h */,
+				C744E4901701DA560002A9A5 /* MutedCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				C744E4881701B93C0002A9A5 /* UnfollowCommand.m in Sources */,
 				C744E48B1701D5D20002A9A5 /* MuteCommand.m in Sources */,
 				C744E48E1701D6860002A9A5 /* UnmuteCommand.m in Sources */,
+				C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

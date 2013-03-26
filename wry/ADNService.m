@@ -70,6 +70,15 @@
   return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
 }
 
+- (NSArray *)getMuted:(NSError **)error {
+  return [self getMuted:@"me" error:error];
+}
+
+- (NSArray *)getMuted:(NSString *)username error:(NSError **)error {
+  NSString *path = [NSString stringWithFormat:@"users/%@/muted", username];
+  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+}
+
 - (ADNUser *)follow:(NSString *)username error:(NSError **)error {
   return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"POST" error:error];
 }
