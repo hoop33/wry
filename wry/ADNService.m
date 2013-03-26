@@ -78,6 +78,14 @@
   return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"DELETE" error:error];
 }
 
+- (ADNUser *)mute:(NSString *)username error:(NSError **)error {
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/mute", username] method:@"POST" error:error];
+}
+
+- (ADNUser *)unmute:(NSString *)username error:(NSError **)error {
+  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/mute", username] method:@"DELETE" error:error];
+}
+
 #pragma mark - Stream interactions
 
 - (NSArray *)getUserStream:(NSError **)error {
