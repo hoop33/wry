@@ -12,9 +12,10 @@
 @implementation ADNPost
 
 - (NSString *)description {
-  NSString *str = [NSString stringWithFormat:@"%@ (%@)\n", self.user.name, self.user.username];
-  str = [str stringByAppendingFormat:@"%@\n", self.text];
-  str = [str stringByAppendingFormat:@"ID: %ld -- %@", self.postID, self.createdAt];
+  NSMutableString *str = [[NSMutableString alloc] init];
+  [str appendString:[self.user description]];
+  [str appendFormat:@"%@\n", self.text];
+  [str appendFormat:@"ID: %ld -- %@", self.postID, self.createdAt];
   return str;
 }
 
