@@ -12,7 +12,8 @@
 @implementation ADNUser
 
 - (NSString *)description {
-  NSMutableString *str = [NSMutableString stringWithFormat:@"%@ (@%@) (%ld)\n", self.name, self.username, (long)self.userID];
+  NSMutableString *str = [NSMutableString stringWithFormat:@"%@ (@%@) (%ld)\n", self.name, self.username,
+                                                           (long) self.userID];
   [str appendFormat:@"%@\n", [self.userDescription description]];
   [str appendFormat:@"%@, %@\n", self.youFollow ? @"Following" : @"Not Following",
                     self.followsYou ? @"Follows You" : @"Does Not Follow You"];

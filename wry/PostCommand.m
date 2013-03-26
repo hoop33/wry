@@ -16,12 +16,11 @@
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
   ADNService *service = [[ADNService alloc] initWithApplication:app];
-  // TODO If an ID, GET the post
   if (params.count == 0) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify either a post ID or a message"}];
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify the text to post"}];
     }
     success = NO;
   } else {
@@ -37,19 +36,18 @@
 }
 
 - (NSString *)usage {
-  return @"[postid | message]";
+  return @"<text>";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"If you specify a post ID, displays that post. If you specify a message, creates\n"];
-  [help appendString:@"a new post with the message text. Note that the shell's parsing rules are\n"];
-  [help appendString:@"respected, so escape your text appropriately. Quotes are optional."];
+  [help appendString:@"Creates a new post with the text you specify. Note that the shell's parsing\n"];
+  [help appendString:@"rules are respected, so escape your text appropriately. Quotes are optional."];
   return help;
 }
 
 - (NSString *)summary {
-  return @"Create or display a post";
+  return @"Create a post";
 }
 
 @end
