@@ -188,6 +188,12 @@
                   error:error];
 }
 
+- (NSArray *)searchPosts:(NSString *)hashtag error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"posts/tag/%@", hashtag]
+                mapping:[ADNMappingProvider postMapping]
+                  error:error];
+}
+
 #pragma mark - Helper methods
 
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {

@@ -12,8 +12,8 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You\n", self.name, self.username, (long)self.userID,
-                   (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")];
+  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You\n", self.name, self.username, (long) self.userID,
+                                    (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")];
 }
 
 - (NSString *)description {
