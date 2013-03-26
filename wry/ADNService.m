@@ -18,6 +18,7 @@
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
+- (ADNPost *)interactWithPost:(NSString *)path method:(NSString *)method error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -30,6 +31,8 @@
   }
   return self;
 }
+
+#pragma mark - User interactions
 
 - (ADNUser *)getUser:(NSError **)error {
   return [self getUser:@"me" error:error];
@@ -66,6 +69,25 @@
   return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
 }
 
+- (ADNUser *)follow:(NSString *)username error:(NSError **)error {
+  NSString *path = [NSString stringWithFormat:@"users/%@/follow", username];
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  request.HTTPMethod = @"POST";
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
+    return user;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+#pragma mark - Stream interactions
+
 - (NSArray *)getUserStream:(NSError **)error {
   return [self getItems:@"posts/stream" mapping:[ADNMappingProvider postMapping] error:error];
 }
@@ -76,23 +98,6 @@
 
 - (NSArray *)getUnifiedStream:(NSError **)error {
   return [self getItems:@"posts/stream/unified" mapping:[ADNMappingProvider postMapping] error:error];
-}
-
-- (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
-  [self performRequest:[self getURLRequestWithPath:path]];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSDictionary *dictionary in response.data) {
-      [items addObject:[dictionary mapToObjectWithMapping:mapping]];
-    }
-    return [NSArray arrayWithArray:items];
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
 }
 
 - (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
@@ -115,62 +120,40 @@
 }
 
 - (ADNPost *)showPost:(NSString *)postID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@", postID]];
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return post;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@", postID]
+                         method:@"GET"
+                          error:error];
 }
 
 - (ADNPost *)repost:(NSString *)postID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@/repost", postID]];
-  request.HTTPMethod = @"POST";
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return post;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@/repost", postID]
+                         method:@"POST"
+                          error:error];
 }
 
-// TODO refactor these common methods
 - (ADNPost *)star:(NSString *)postID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@/star", postID]];
-  request.HTTPMethod = @"POST";
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return post;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@/star", postID]
+                         method:@"POST"
+                          error:error];
 }
 
-// TODO refactor these common methods
 - (ADNPost *)delete:(NSString *)postID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"posts/%@", postID]];
-  request.HTTPMethod = @"DELETE";
-  [self performRequest:request];
+  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@", postID]
+                         method:@"DELETE"
+                          error:error];
+}
+
+#pragma mark - Helper methods
+
+- (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
+  [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return post;
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSDictionary *dictionary in response.data) {
+      [items addObject:[dictionary mapToObjectWithMapping:mapping]];
+    }
+    return [NSArray arrayWithArray:items];
   } else {
     if (error != NULL) {
       *error = self.error;
@@ -179,15 +162,14 @@
   }
 }
 
-- (ADNUser *)follow:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/follow", username];
+- (ADNPost *)interactWithPost:(NSString *)path method:(NSString *)method error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
-  request.HTTPMethod = @"POST";
+  request.HTTPMethod = method;
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-    return user;
+    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
+    return post;
   } else {
     if (error != NULL) {
       *error = self.error;
@@ -216,7 +198,7 @@
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
-#pragma mark - Private methods
+#pragma mark - Network methods
 
 - (void)performRequest:(NSURLRequest *)request {
   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
