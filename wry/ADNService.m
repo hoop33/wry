@@ -119,6 +119,16 @@
                   error:error];
 }
 
+- (NSArray *)getPosts:(NSError **)error {
+  return [self getPosts:@"me" error:error];
+}
+
+- (NSArray *)getPosts:(NSString *)username error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"users/%@/posts", username]
+                mapping:[ADNMappingProvider postMapping]
+                  error:error];
+}
+
 #pragma mark - Post interactions
 
 - (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
