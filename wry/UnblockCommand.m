@@ -7,29 +7,20 @@
 //
 
 #import "UnblockCommand.h"
-#import "WryErrorCodes.h"
 #import "ADNService.h"
-#import "ADNUser.h"
+#import "CommandUtils.h"
 
 @implementation UnblockCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a user name or ID to unblock."}];
-    }
-    return NO;
-  }
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  ADNUser *user = [service unblock:[params objectAtIndex:0] error:error];
-  if (user != nil) {
-    [app println:@"Unblocked user:"];
-    [app println:user];
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performUserOperation:app
+                                     params:params
+                             successMessage:@"Unblocked user:"
+                               errorMessage:@"You must specify a user ID or @username to unblock"
+                                      error:error
+                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
+                                    return [service unblock:[params objectAtIndex:0] error:error];
+                                  }];
 }
 
 - (NSString *)usage {

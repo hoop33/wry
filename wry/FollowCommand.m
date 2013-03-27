@@ -8,28 +8,19 @@
 
 #import "FollowCommand.h"
 #import "ADNService.h"
-#import "ADNUser.h"
-#import "WryErrorCodes.h"
+#import "CommandUtils.h"
 
 @implementation FollowCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a user name or ID to follow."}];
-    }
-    return NO;
-  }
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  ADNUser *user = [service follow:[params objectAtIndex:0] error:error];
-  if (user != nil) {
-    [app println:@"You are now following:"];
-    [app println:user];
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performUserOperation:app
+                                     params:params
+                             successMessage:@"Followed user:"
+                               errorMessage:@"You must specify a user ID or @username to follow"
+                                      error:error
+                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
+                                    return [service follow:[params objectAtIndex:0] error:error];
+                                  }];
 }
 
 - (NSString *)usage {

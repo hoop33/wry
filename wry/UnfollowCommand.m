@@ -7,29 +7,20 @@
 //
 
 #import "UnfollowCommand.h"
-#import "WryErrorCodes.h"
 #import "ADNService.h"
-#import "ADNUser.h"
+#import "CommandUtils.h"
 
 @implementation UnfollowCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a user name or ID to unfollow."}];
-    }
-    return NO;
-  }
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  ADNUser *user = [service unfollow:[params objectAtIndex:0] error:error];
-  if (user != nil) {
-    [app println:@"Unfollowed user:"];
-    [app println:user];
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performUserOperation:app
+                                     params:params
+                             successMessage:@"Unfollowed user:"
+                               errorMessage:@"You must specify a user ID or @username to unfollow"
+                                      error:error
+                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
+                                    return [service unfollow:[params objectAtIndex:0] error:error];
+                                  }];
 }
 
 - (NSString *)usage {
