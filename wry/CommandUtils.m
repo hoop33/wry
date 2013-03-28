@@ -47,4 +47,31 @@
   return success;
 }
 
++ (BOOL)performListOperation:(WryApplication *)app
+              successMessage:(NSString *)successMessage
+                       error:(NSError **)error
+                   operation:(ADNOperationBlock)operation {
+  BOOL success = YES;
+  ADNService *service = [[ADNService alloc] initWithApplication:app];
+  NSArray *list = operation(service);
+  if (list != nil) {
+    if (successMessage != nil) {
+      [app println:successMessage];
+    }
+    for (id item in list) {
+      [app println:item];
+      [app println:@"--------------------"];
+    }
+  } else {
+    // Service might have supplied an error; if not, supply one
+    if (error != NULL && *error == nil) {
+      *error = [NSError errorWithDomain:app.errorDomain
+                                   code:WryErrorCodeUnknown
+                               userInfo:@{NSLocalizedDescriptionKey : @"The operation was unsuccessful"}];
+    }
+    success = NO;
+  }
+  return success;
+}
+
 @end

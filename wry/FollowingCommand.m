@@ -8,22 +8,19 @@
 
 #import "FollowingCommand.h"
 #import "ADNService.h"
-#import "ADNUser.h"
+#import "CommandUtils.h"
 
 @implementation FollowingCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *following = params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
-                                                          error:error] : [service getFollowing:error];
-  if (following != nil) {
-    for (ADNUser *follow in following) {
-      [app println:follow];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Following:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
+                                                                              error:error] :
+                                      [service getFollowing:error];
+                                  }];
 }
 
 - (NSString *)usage {

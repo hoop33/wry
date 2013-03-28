@@ -8,21 +8,17 @@
 
 #import "StreamCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
+#import "CommandUtils.h"
 
 @implementation StreamCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = [service getUserStream:error];
-  if (posts != nil) {
-    for (ADNPost *post in posts) {
-      [app println:post];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Your stream:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return [service getUserStream:error];
+                                  }];
 }
 
 - (NSString *)usage {

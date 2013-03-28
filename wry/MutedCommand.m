@@ -8,22 +8,19 @@
 
 #import "MutedCommand.h"
 #import "ADNService.h"
-#import "ADNUser.h"
+#import "CommandUtils.h"
 
 @implementation MutedCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *muteds = params.count > 0 ? [service getMuted:[params objectAtIndex:0]
-                                                   error:error] : [service getMuted:error];
-  if (muteds != nil) {
-    for (ADNUser *muted in muteds) {
-      [app println:muted];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Muted:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return params.count > 0 ? [service getMuted:[params objectAtIndex:0]
+                                                                          error:error] :
+                                      [service getMuted:error];
+                                  }];
 }
 
 - (NSString *)usage {

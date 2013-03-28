@@ -8,21 +8,17 @@
 
 #import "UnifiedCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
+#import "CommandUtils.h"
 
 @implementation UnifiedCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = [service getUnifiedStream:error];
-  if (posts != nil) {
-    for (ADNPost *post in posts) {
-      [app println:post];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Unified stream:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return [service getUnifiedStream:error];
+                                  }];
 }
 
 - (NSString *)usage {

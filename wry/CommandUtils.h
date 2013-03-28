@@ -21,4 +21,9 @@ typedef id (^ADNOperationBlock)(ADNService *service);
                               error:(NSError **)error
                           operation:(ADNOperationBlock)operation;
 
++ (BOOL)performListOperation:(WryApplication *)app
+              successMessage:(NSString *)successMessage
+                       error:(NSError **)error
+                   operation:(ADNOperationBlock)operation;
+
 @end

@@ -8,22 +8,19 @@
 
 #import "PostsCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
+#import "CommandUtils.h"
 
 @implementation PostsCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = params.count == 0 ?
-    [service getPosts:error] : [service getPosts:[params objectAtIndex:0] error:error];
-  if (posts != nil) {
-    for (ADNPost *post in posts) {
-      [app println:post];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Posts:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return params.count > 0 ? [service getPosts:[params objectAtIndex:0]
+                                                                          error:error] :
+                                      [service getPosts:error];
+                                  }];
 }
 
 - (NSString *)usage {

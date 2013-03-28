@@ -8,22 +8,19 @@
 
 #import "MentionsCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
+#import "CommandUtils.h"
 
 @implementation MentionsCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = params.count == 0 ? [service getMentions:error] : [service getMentions:[params objectAtIndex:0]
-                                                                                    error:error];
-  if (posts != nil) {
-    for (ADNPost *post in posts) {
-      [app println:post];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                             successMessage:@"Mentions:"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    return params.count > 0 ? [service getMentions:[params objectAtIndex:0]
+                                                                             error:error] :
+                                      [service getMentions:error];
+                                  }];
 }
 
 - (NSString *)usage {
