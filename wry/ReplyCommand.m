@@ -8,33 +8,24 @@
 
 #import "ReplyCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
-#import "WryErrorCodes.h"
+#import "CommandUtils.h"
 
 @implementation ReplyCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  BOOL success = YES;
-  if (params.count < 2) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify the Post ID to reply to and a message"}];
-    }
-    success = NO;
-  } else {
-    ADNService *service = [[ADNService alloc] initWithApplication:app];
-    NSString *replyID = [params objectAtIndex:0];
-    NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "];
-    ADNPost *post = [service createPost:text replyID:replyID error:error];
-    if (post != nil) {
-      [app println:@"Replied to post:"];
-      [app println:post];
-    } else {
-      success = NO;
-    }
-  }
-  return success;
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:2
+                               successMessage:@"Replied to post:"
+                                 errorMessage:@"You must specify a post ID to reply to and a message"
+                                        error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      NSString *replyID = [params objectAtIndex:0];
+                                      NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
+                                                                componentsJoinedByString:@" "];
+                                      return [service createPost:text replyID:replyID
+                                                           error:error];
+                                    }];
 }
 
 - (NSString *)usage {

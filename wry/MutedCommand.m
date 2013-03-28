@@ -14,7 +14,10 @@
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [CommandUtils performListOperation:app
+                                     params:params
+                              minimumParams:0
                              successMessage:@"Muted:"
+                               errorMessage:nil
                                       error:error
                                   operation:^id(ADNService *service) {
                                     return params.count > 0 ? [service getMuted:[params objectAtIndex:0]

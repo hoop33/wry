@@ -8,37 +8,24 @@
 
 #import "SearchCommand.h"
 #import "ADNService.h"
-#import "WryErrorCodes.h"
-#import "ADNPost.h"
+#import "CommandUtils.h"
 
 @implementation SearchCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  BOOL success = YES;
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a hashtag to search for"}];
-    }
-    success = NO;
-  } else {
-    NSString *hashtag = [params objectAtIndex:0];
-    if (hashtag.length > 0 && [hashtag hasPrefix:@"#"]) {
-      hashtag = [hashtag substringFromIndex:1];
-    }
-    ADNService *service = [[ADNService alloc] initWithApplication:app];
-    NSArray *posts = [service searchPosts:hashtag error:error];
-    if (posts != nil) {
-      for (ADNPost *post in posts) {
-        [app println:post];
-        [app println:@"--------------------"];
-      }
-    } else {
-      success = NO;
-    }
-  }
-  return success;
+  return [CommandUtils performListOperation:app
+                                     params:params
+                              minimumParams:1
+                             successMessage:@"Search results:"
+                               errorMessage:@"You must specify a hashtag to search for"
+                                      error:error
+                                  operation:^id(ADNService *service) {
+                                    NSString *hashtag = [params objectAtIndex:0];
+                                    if (hashtag.length > 0 && [hashtag hasPrefix:@"#"]) {
+                                      hashtag = [hashtag substringFromIndex:1];
+                                    }
+                                    return [service searchPosts:hashtag error:error];
+                                  }];
 }
 
 - (NSString *)usage {

@@ -23,7 +23,10 @@ typedef id (^ADNOperationBlock)(ADNService *service);
                      operation:(ADNOperationBlock)operation;
 
 + (BOOL)performListOperation:(WryApplication *)app
+                      params:(NSArray *)params
+               minimumParams:(NSInteger)minimumParams
               successMessage:(NSString *)successMessage
+                errorMessage:(NSString *)errorMessage
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation;
 

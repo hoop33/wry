@@ -8,31 +8,21 @@
 
 #import "PostCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
-#import "WryErrorCodes.h"
+#import "CommandUtils.h"
 
 @implementation PostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  BOOL success = YES;
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify the text to post"}];
-    }
-    success = NO;
-  } else {
-    ADNService *service = [[ADNService alloc] initWithApplication:app];
-    NSString *text = [params componentsJoinedByString:@" "];
-    ADNPost *post = [service createPost:text replyID:nil error:error];
-    if (post != nil) {
-      [app println:post];
-    } else {
-      success = NO;
-    }
-  }
-  return success;
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:1
+                               successMessage:@"Posted:"
+                                 errorMessage:@"You must specify a message"
+                                        error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      return [service createPost:[params componentsJoinedByString:@" "] replyID:nil
+                                                           error:error];
+                                    }];
 }
 
 - (NSString *)usage {

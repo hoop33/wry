@@ -8,30 +8,20 @@
 
 #import "RepliesCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
-#import "WryErrorCodes.h"
+#import "CommandUtils.h"
 
 @implementation RepliesCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a post ID."}];
-    }
-    return NO;
-  }
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *posts = [service getReplies:[params objectAtIndex:0] error:error];
-  if (posts != nil) {
-    for (ADNPost *post in posts) {
-      [app println:post];
-      [app println:@"--------------------"];
-    }
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performListOperation:app
+                                     params:params
+                              minimumParams:1
+                             successMessage:@"Replies:"
+                               errorMessage:@"You must specify a post ID"
+                                      error:error
+                                  operation:(ADNOperationBlock) ^(ADNService *service) {
+                                    return [service getReplies:[params objectAtIndex:0] error:error];
+                                  }];
 }
 
 - (NSString *)usage {

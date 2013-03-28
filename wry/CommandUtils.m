@@ -49,28 +49,41 @@
 }
 
 + (BOOL)performListOperation:(WryApplication *)app
+                      params:(NSArray *)params
+               minimumParams:(NSInteger)minimumParams
               successMessage:(NSString *)successMessage
+                errorMessage:(NSString *)errorMessage
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation {
   BOOL success = YES;
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  NSArray *list = operation(service);
-  if (list != nil) {
-    if (successMessage != nil) {
-      [app println:successMessage];
-    }
-    for (id item in list) {
-      [app println:item];
-      [app println:@"--------------------"];
-    }
-  } else {
-    // Service might have supplied an error; if not, supply one
-    if (error != NULL && *error == nil) {
+  if (params.count < minimumParams) {
+    if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeUnknown
-                               userInfo:@{NSLocalizedDescriptionKey : @"The operation was unsuccessful"}];
+                                   code:WryErrorCodeBadInput userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
     }
     success = NO;
+  } else {
+    ADNService *service = [[ADNService alloc] initWithApplication:app];
+    NSArray *list = operation(service);
+    if (list != nil) {
+      if (list.count > 0) {
+        if (successMessage != nil) {
+          [app println:successMessage];
+        }
+        for (id item in list) {
+          [app println:item];
+          [app println:@"--------------------"];
+        }
+      }
+    } else {
+      // Service might have supplied an error; if not, supply one
+      if (error != NULL && *error == nil) {
+        *error = [NSError errorWithDomain:app.errorDomain
+                                     code:WryErrorCodeUnknown
+                                 userInfo:@{NSLocalizedDescriptionKey : @"The operation was unsuccessful"}];
+      }
+      success = NO;
+    }
   }
   return success;
 }
