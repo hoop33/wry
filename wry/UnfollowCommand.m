@@ -13,14 +13,14 @@
 @implementation UnfollowCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performUserOperation:app
-                                     params:params
-                             successMessage:@"Unfollowed user:"
-                               errorMessage:@"You must specify a user ID or @username to unfollow"
-                                      error:error
-                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
-                                    return [service unfollow:[params objectAtIndex:0] error:error];
-                                  }];
+  return [CommandUtils performSingleParamOperation:app
+                                            params:params
+                                    successMessage:@"Unfollowed user:"
+                                      errorMessage:@"You must specify a user ID or @username to unfollow"
+                                             error:error
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service unfollow:[params objectAtIndex:0] error:error];
+                                         }];
 }
 
 - (NSString *)usage {

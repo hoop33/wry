@@ -13,14 +13,14 @@
 @implementation FollowCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performUserOperation:app
-                                     params:params
-                             successMessage:@"Followed user:"
-                               errorMessage:@"You must specify a user ID or @username to follow"
-                                      error:error
-                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
-                                    return [service follow:[params objectAtIndex:0] error:error];
-                                  }];
+  return [CommandUtils performSingleParamOperation:app
+                                            params:params
+                                    successMessage:@"Followed user:"
+                                      errorMessage:@"You must specify a user ID or @username to follow"
+                                             error:error
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service follow:[params objectAtIndex:0] error:error];
+                                         }];
 }
 
 - (NSString *)usage {

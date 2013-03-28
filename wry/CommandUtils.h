@@ -10,15 +10,15 @@
 @class ADNService;
 @class WryApplication;
 
-typedef ADNUser *(^ADNUserOperationBlock)(ADNService *service);
+typedef id (^ADNOperationBlock)(ADNService *service);
 
 @interface CommandUtils : NSObject
 
-+ (BOOL)performUserOperation:(WryApplication *)app
-                      params:(NSArray *)params
-              successMessage:(NSString *)successMessage
-                errorMessage:(NSString *)errorMessage
-                       error:(NSError **)error
-                   operation:(ADNUserOperationBlock)operation;
++ (BOOL)performSingleParamOperation:(WryApplication *)app
+                             params:(NSArray *)params
+                     successMessage:(NSString *)successMessage
+                       errorMessage:(NSString *)errorMessage
+                              error:(NSError **)error
+                          operation:(ADNOperationBlock)operation;
 
 @end

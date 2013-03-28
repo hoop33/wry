@@ -15,7 +15,6 @@
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
   if (params.count == 0) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
@@ -24,6 +23,7 @@
     }
     success = NO;
   } else {
+    ADNService *service = [[ADNService alloc] initWithApplication:app];
     NSString *text = [params componentsJoinedByString:@" "];
     ADNPost *post = [service createPost:text replyID:nil error:error];
     if (post != nil) {

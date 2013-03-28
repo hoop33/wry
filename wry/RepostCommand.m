@@ -8,31 +8,19 @@
 
 #import "RepostCommand.h"
 #import "ADNService.h"
-#import "ADNPost.h"
-#import "WryErrorCodes.h"
+#import "CommandUtils.h"
 
 @implementation RepostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  BOOL success = YES;
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  if (params.count == 0) {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a post ID"}];
-    }
-    success = NO;
-  } else {
-    ADNPost *post = [service repost:[params objectAtIndex:0] error:error];
-    if (post != nil) {
-      [app println:@"Reposted post:"];
-      [app println:post];
-    } else {
-      success = NO;
-    }
-  }
-  return success;
+  return [CommandUtils performSingleParamOperation:app
+                                            params:params
+                                    successMessage:@"Reposted post:"
+                                      errorMessage:@"You must specify a post ID"
+                                             error:error
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service repost:[params objectAtIndex:0] error:error];
+                                         }];
 }
 
 - (NSString *)usage {

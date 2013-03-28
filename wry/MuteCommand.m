@@ -13,14 +13,14 @@
 @implementation MuteCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performUserOperation:app
-                                     params:params
-                             successMessage:@"Muted user:"
-                               errorMessage:@"You must specify a user ID or @username to mute"
-                                      error:error
-                                  operation:(ADNUserOperationBlock) ^(ADNService *service) {
-                                    return [service mute:[params objectAtIndex:0] error:error];
-                                  }];
+  return [CommandUtils performSingleParamOperation:app
+                                            params:params
+                                    successMessage:@"Muted user:"
+                                      errorMessage:@"You must specify a user ID or @username to mute"
+                                             error:error
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service mute:[params objectAtIndex:0] error:error];
+                                         }];
 }
 
 - (NSString *)usage {

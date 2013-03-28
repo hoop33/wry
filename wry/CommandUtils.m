@@ -8,18 +8,17 @@
 
 #import "CommandUtils.h"
 #import "WryApplication.h"
-#import "ADNUser.h"
 #import "WryErrorCodes.h"
 #import "ADNService.h"
 
 @implementation CommandUtils
 
-+ (BOOL)performUserOperation:(WryApplication *)app
-                      params:(NSArray *)params
-              successMessage:(NSString *)successMessage
-                errorMessage:(NSString *)errorMessage
-                       error:(NSError **)error
-                   operation:(ADNUserOperationBlock)operation {
++ (BOOL)performSingleParamOperation:(WryApplication *)app
+                             params:(NSArray *)params
+                     successMessage:(NSString *)successMessage
+                       errorMessage:(NSString *)errorMessage
+                              error:(NSError **)error
+                          operation:(ADNOperationBlock)operation {
   BOOL success = YES;
   if (params.count == 0) {
     if (error != NULL) {
@@ -29,13 +28,19 @@
     success = NO;
   } else {
     ADNService *service = [[ADNService alloc] initWithApplication:app];
-    ADNUser *user = operation(service);
-    if (user != nil) {
+    id object = operation(service);
+    if (object != nil) {
       if (successMessage != nil) {
         [app println:successMessage];
       }
-      [app println:user];
+      [app println:object];
     } else {
+      // Service might have supplied an error; if not, supply one
+      if (error != NULL && *error == nil) {
+        *error = [NSError errorWithDomain:app.errorDomain
+                                     code:WryErrorCodeUnknown
+                                 userInfo:@{NSLocalizedDescriptionKey : @"The operation was unsuccessful"}];
+      }
       success = NO;
     }
   }
