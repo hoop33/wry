@@ -31,6 +31,7 @@
 		C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49C170230A40002A9A5 /* UnblockCommand.m */; };
 		C744E4A317025E240002A9A5 /* SearchCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A217025E200002A9A5 /* SearchCommand.m */; };
 		C744E4A61702779F0002A9A5 /* CommandUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A51702779B0002A9A5 /* CommandUtils.m */; };
+		C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A8170502E50002A9A5 /* FindCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -114,6 +115,8 @@
 		C744E4A217025E200002A9A5 /* SearchCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCommand.m; sourceTree = "<group>"; };
 		C744E4A4170277970002A9A5 /* CommandUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandUtils.h; sourceTree = "<group>"; };
 		C744E4A51702779B0002A9A5 /* CommandUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandUtils.m; sourceTree = "<group>"; };
+		C744E4A7170502E00002A9A5 /* FindCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindCommand.h; sourceTree = "<group>"; };
+		C744E4A8170502E50002A9A5 /* FindCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				C744E4A217025E200002A9A5 /* SearchCommand.m */,
 				C744E4A4170277970002A9A5 /* CommandUtils.h */,
 				C744E4A51702779B0002A9A5 /* CommandUtils.m */,
+				C744E4A7170502E00002A9A5 /* FindCommand.h */,
+				C744E4A8170502E50002A9A5 /* FindCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */,
 				C744E4A317025E240002A9A5 /* SearchCommand.m in Sources */,
 				C744E4A61702779F0002A9A5 /* CommandUtils.m in Sources */,
+				C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

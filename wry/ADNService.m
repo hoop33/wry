@@ -194,6 +194,12 @@
                   error:error];
 }
 
+- (NSArray *)searchUsers:(NSString *)searchString error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"users/search/?q=%@", searchString]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
+}
+
 #pragma mark - Helper methods
 
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
