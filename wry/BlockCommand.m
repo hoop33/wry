@@ -13,14 +13,15 @@
 @implementation BlockCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performSingleParamOperation:app
-                                            params:params
-                                    successMessage:@"Blocked user:"
-                                      errorMessage:@"You must specify a user ID or @username to block"
-                                             error:error
-                                         operation:(ADNOperationBlock) ^(ADNService *service) {
-                                           return [service block:[params objectAtIndex:0] error:error];
-                                         }];
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:1
+                               successMessage:@"Blocked user:"
+                                 errorMessage:@"You must specify a user ID or @username to block"
+                                        error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      return [service block:[params objectAtIndex:0] error:error];
+                                    }];
 }
 
 - (NSString *)usage {

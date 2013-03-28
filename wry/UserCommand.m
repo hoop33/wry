@@ -8,18 +8,21 @@
 
 #import "UserCommand.h"
 #import "ADNService.h"
-#import "ADNUser.h"
+#import "CommandUtils.h"
 
 @implementation UserCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNService *service = [[ADNService alloc] initWithApplication:app];
-  ADNUser *user = params.count > 0 ? [service getUser:[params objectAtIndex:0] error:error] : [service getUser:error];
-  if (user != nil) {
-    [app println:user];
-    return YES;
-  }
-  return NO;
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:0
+                               successMessage:@"User:"
+                                 errorMessage:nil error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      return params.count > 0 ? [service getUser:[params objectAtIndex:0]
+                                                                           error:error] :
+                                        [service getUser:error];
+                                    }];
 }
 
 - (NSString *)usage {

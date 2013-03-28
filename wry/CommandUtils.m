@@ -13,14 +13,15 @@
 
 @implementation CommandUtils
 
-+ (BOOL)performSingleParamOperation:(WryApplication *)app
-                             params:(NSArray *)params
-                     successMessage:(NSString *)successMessage
-                       errorMessage:(NSString *)errorMessage
-                              error:(NSError **)error
-                          operation:(ADNOperationBlock)operation {
++ (BOOL)performObjectOperation:(WryApplication *)app
+                        params:(NSArray *)params
+                 minimumParams:(NSInteger)minimumParams
+                successMessage:(NSString *)successMessage
+                  errorMessage:(NSString *)errorMessage
+                         error:(NSError **)error
+                     operation:(ADNOperationBlock)operation {
   BOOL success = YES;
-  if (params.count == 0) {
+  if (params.count < minimumParams) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
                                    code:WryErrorCodeBadInput userInfo:@{NSLocalizedDescriptionKey : errorMessage}];

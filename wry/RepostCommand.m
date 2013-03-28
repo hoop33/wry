@@ -13,14 +13,15 @@
 @implementation RepostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performSingleParamOperation:app
-                                            params:params
-                                    successMessage:@"Reposted post:"
-                                      errorMessage:@"You must specify a post ID"
-                                             error:error
-                                         operation:(ADNOperationBlock) ^(ADNService *service) {
-                                           return [service repost:[params objectAtIndex:0] error:error];
-                                         }];
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:1
+                               successMessage:@"Reposted post:"
+                                 errorMessage:@"You must specify a post ID"
+                                        error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      return [service repost:[params objectAtIndex:0] error:error];
+                                    }];
 }
 
 - (NSString *)usage {

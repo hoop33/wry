@@ -13,13 +13,14 @@
 @implementation ReadCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performSingleParamOperation:app
-                                            params:params
-                                    successMessage:nil errorMessage:@"You must specify a post ID"
-                                             error:error
-                                         operation:(ADNOperationBlock) ^(ADNService *service) {
-                                           return [service showPost:[params objectAtIndex:0] error:error];
-                                         }];
+  return [CommandUtils performObjectOperation:app
+                                       params:params
+                                minimumParams:1
+                               successMessage:nil errorMessage:@"You must specify a post ID"
+                                        error:error
+                                    operation:(ADNOperationBlock) ^(ADNService *service) {
+                                      return [service showPost:[params objectAtIndex:0] error:error];
+                                    }];
 }
 
 - (NSString *)usage {
