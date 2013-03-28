@@ -19,7 +19,7 @@
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:[self shortDescription]];
-  [str appendFormat:@"%@\n", [self.userDescription description]];
+  [str appendString:[self.userDescription description]];
   return str;
 }
 
