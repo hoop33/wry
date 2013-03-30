@@ -18,8 +18,8 @@
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
-- (ADNPost *)interactWithPost:(NSString *)path method:(NSString *)method error:(NSError **)error;
-- (ADNUser *)interactWithUser:(NSString *)path method:(NSString *)method error:(NSError **)error;
+- (NSObject *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+                error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -80,27 +80,39 @@
 }
 
 - (ADNUser *)follow:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"POST" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/follow", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"POST"
+                             error:error];
 }
 
 - (ADNUser *)unfollow:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/follow", username] method:@"DELETE" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/follow", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"DELETE"
+                             error:error];
 }
 
 - (ADNUser *)mute:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/mute", username] method:@"POST" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/mute", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"POST"
+                             error:error];
 }
 
 - (ADNUser *)unmute:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/mute", username] method:@"DELETE" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/mute", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"DELETE"
+                             error:error];
 }
 
 - (ADNUser *)block:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/block", username] method:@"POST" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/block", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"POST"
+                             error:error];
 }
 
 - (ADNUser *)unblock:(NSString *)username error:(NSError **)error {
-  return [self interactWithUser:[NSString stringWithFormat:@"users/%@/block", username] method:@"DELETE" error:error];
+  return (ADNUser *) [self getItem:[NSString stringWithFormat:@"users/%@/block", username]
+                           mapping:[ADNMappingProvider userMapping] method:@"DELETE"
+                             error:error];
 }
 
 #pragma mark - Stream interactions
@@ -159,27 +171,27 @@
 }
 
 - (ADNPost *)showPost:(NSString *)postID error:(NSError **)error {
-  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@", postID]
-                         method:@"GET"
-                          error:error];
+  return (ADNPost *) [self getItem:[NSString stringWithFormat:@"posts/%@", postID]
+                           mapping:[ADNMappingProvider postMapping] method:@"GET"
+                             error:error];
 }
 
 - (ADNPost *)repost:(NSString *)postID error:(NSError **)error {
-  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@/repost", postID]
-                         method:@"POST"
-                          error:error];
+  return (ADNPost *) [self getItem:[NSString stringWithFormat:@"posts/%@/repost", postID]
+                           mapping:[ADNMappingProvider postMapping] method:@"POST"
+                             error:error];
 }
 
 - (ADNPost *)star:(NSString *)postID error:(NSError **)error {
-  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@/star", postID]
-                         method:@"POST"
-                          error:error];
+  return (ADNPost *) [self getItem:[NSString stringWithFormat:@"posts/%@/star", postID]
+                           mapping:[ADNMappingProvider postMapping] method:@"POST"
+                             error:error];
 }
 
 - (ADNPost *)delete:(NSString *)postID error:(NSError **)error {
-  return [self interactWithPost:[NSString stringWithFormat:@"posts/%@", postID]
-                         method:@"DELETE"
-                          error:error];
+  return (ADNPost *) [self getItem:[NSString stringWithFormat:@"posts/%@", postID]
+                           mapping:[ADNMappingProvider postMapping] method:@"DELETE"
+                             error:error];
 }
 
 - (NSArray *)getReplies:(NSString *)postID error:(NSError **)error {
@@ -219,30 +231,14 @@
   }
 }
 
-- (ADNPost *)interactWithPost:(NSString *)path method:(NSString *)method error:(NSError **)error {
+- (NSObject *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+                error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = method;
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNPost *post = (ADNPost *) [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return post;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
-}
-
-- (ADNUser *)interactWithUser:(NSString *)path method:(NSString *)method error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
-  request.HTTPMethod = method;
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    ADNUser *user = (ADNUser *) [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-    return user;
+    return [response.data mapToObjectWithMapping:mapping];
   } else {
     if (error != NULL) {
       *error = self.error;
