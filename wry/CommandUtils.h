@@ -11,6 +11,7 @@
 @class WryApplication;
 
 typedef id (^ADNOperationBlock)(ADNService *service);
+typedef void (^ADNOutputOperationBlock)(NSObject *response);
 
 @interface CommandUtils : NSObject
 
