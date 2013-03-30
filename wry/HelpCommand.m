@@ -19,8 +19,8 @@
     [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
     for (Class cls in [app allCommands]) {
       id <WryCommand> command = [[cls alloc] init];
-      // TODO go through app println but with fieldwidth
-      printf("   %-12s%s\n", [[app nameForCommand:command] UTF8String], [[command summary] UTF8String]);
+      [app println:[NSString stringWithFormat:@"   %-12s%@", [[app nameForCommand:command]
+        UTF8String], [command summary]]];
     }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"See '%@ help <command>' for more information on a specific command.",
