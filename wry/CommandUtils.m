@@ -91,9 +91,9 @@
     success = NO;
   } else {
     ADNService *service = [[ADNService alloc] initWithApplication:app];
-    NSObject *adnResponse = operation(service);
-    if (adnResponse != nil) {
-      outputOperation(adnResponse);
+    NSObject *response = operation(service);
+    if (response != nil) {
+      outputOperation(response);
     } else {
       // Service might have supplied an error; if not, supply one
       if (error != NULL && *error == nil) {
