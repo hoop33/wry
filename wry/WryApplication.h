@@ -14,6 +14,7 @@
 @property(nonatomic, copy) NSString *commandName;
 @property(nonatomic, strong) NSArray *params;
 @property(nonatomic, copy) NSString *accessToken;
+@property(nonatomic) BOOL debug;
 @property(nonatomic) BOOL quiet;
 @property(nonatomic) int count;
 

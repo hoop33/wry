@@ -28,6 +28,7 @@
   if (self != nil) {
     self.accessToken = accessToken;
     self.data = [NSMutableData data];
+    self.debug = NO;
   }
   return self;
 }
@@ -257,12 +258,20 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  if (self.debug) {
+    NSString *string = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+    NSLog(@"Before connection failed, data was: %@", string);
+  }
   self.data.length = 0;
   self.error = error;
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  if (self.debug) {
+    NSString *string = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", string);
+  }
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 

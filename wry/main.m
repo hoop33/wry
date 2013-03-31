@@ -19,7 +19,9 @@ int main(int argc, const char *argv[]) {
     for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
       if ([param hasPrefix:@"-"]) {
-        if ([param isEqualToString:@"-q"] || [param isEqualToString:@"--quiet"]) {
+        if ([param isEqualToString:@"-d"] || [param isEqualToString:@"--debug"]) {
+          application.debug = YES;
+        } else if ([param isEqualToString:@"-q"] || [param isEqualToString:@"--quiet"]) {
           application.quiet = YES;
         } else if ([param isEqualToString:@"-c"] || [param isEqualToString:@"--count"]) {
           ++i;
