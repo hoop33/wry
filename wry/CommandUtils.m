@@ -90,7 +90,7 @@
     }
     success = NO;
   } else {
-    ADNService *service = [[ADNService alloc] initWithApplication:app];
+    ADNService *service = [[ADNService alloc] initWithAccessToken:app.accessToken];
     NSObject *response = operation(service);
     if (response != nil) {
       outputOperation(response);

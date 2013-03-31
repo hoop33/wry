@@ -9,16 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class ADNUser;
-@class WryApplication;
 @class ADNPost;
 
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
-@property(nonatomic, strong) WryApplication *app;
+@property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSError *error;
 
-- (id)initWithApplication:(WryApplication *)app;
+- (id)initWithAccessToken:(NSString *)accessToken;
 - (ADNUser *)getUser:(NSError **)error;
 - (ADNUser *)getUser:(NSString *)username error:(NSError **)error;
 - (NSArray *)getFollowers:(NSError **)error;

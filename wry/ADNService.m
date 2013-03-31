@@ -8,11 +8,10 @@
 
 #import "ADNService.h"
 #import "ADNUser.h"
-#import "WryApplication.h"
-#import "NSDictionary+JSONMapping.h"
 #import "ADNMappingProvider.h"
 #import "ADNResponse.h"
 #import "ADNPost.h"
+#import "NSDictionary+JSONMapping.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
@@ -24,10 +23,10 @@
 
 @implementation ADNService
 
-- (id)initWithApplication:(WryApplication *)app {
+- (id)initWithAccessToken:(NSString *)accessToken {
   self = [super init];
   if (self != nil) {
-    self.app = app;
+    self.accessToken = accessToken;
     self.data = [NSMutableData data];
   }
   return self;
@@ -280,7 +279,7 @@
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/%@", path]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-  [request setValue:[NSString stringWithFormat:@"Bearer %@", self.app.accessToken] forHTTPHeaderField:@"Authorization"];
+  [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
   return request;
 }
 
