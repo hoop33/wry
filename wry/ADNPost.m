@@ -13,8 +13,8 @@
 
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
-  [str appendString:[self.user shortDescription]];
-  [str appendFormat:@"%@\n", self.text];
+  [str appendString:(self.user == nil ? @"[RETIRED USER]\n" : [self.user shortDescription])];
+  [str appendFormat:@"%@\n", (self.text == nil ? @"[REDACTED]" : self.text)];
   [str appendFormat:@"ID: %ld -- %@", self.postID, self.createdAt];
   return str;
 }
