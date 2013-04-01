@@ -64,7 +64,7 @@
 }
 
 - (NSString *)redirectURI {
-  return @"http://grailbox.com/wry/callback";
+  return @"http://grailbox.com/wry/callback.html";
 }
 
 - (NSString *)scope {
