@@ -56,7 +56,7 @@ This will show a list of posts from App.net. You can use standard command line p
 
 ```bash
 $ wry stream | less
-```bash
+```
 
 You can post to App.net by typing:
 
