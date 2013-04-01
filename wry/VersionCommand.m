@@ -12,6 +12,8 @@
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   [app println:[NSString stringWithFormat:@"%@ version %@", app.appName, app.version]];
+  [app println:@"Copyright (C) 2013, Rob Warner (@hoop33)"];
+  [app println:@"http://grailbox.com/wry"];
   return YES;
 }
 
