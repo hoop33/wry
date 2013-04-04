@@ -20,7 +20,8 @@
                                errorMessage:@"You must specify a search string"
                                       error:error
                                   operation:^id(ADNService *service) {
-                                    return [service searchUsers:[[params componentsJoinedByString:@" "] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                    return [service searchUsers:[[params componentsJoinedByString:@" "]
+                                                                         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                                           error:error];
                                   }];
 }

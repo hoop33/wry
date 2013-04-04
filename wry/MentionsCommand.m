@@ -17,8 +17,7 @@
                                      params:params
                               minimumParams:0
                              successMessage:@"Mentions:"
-                               errorMessage:nil
-                                      error:error
+                               errorMessage:nil error:error
                                   operation:^id(ADNService *service) {
                                     return params.count > 0 ? [service getMentions:[params objectAtIndex:0]
                                                                              error:error] :

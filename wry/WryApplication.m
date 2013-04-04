@@ -17,6 +17,7 @@
 #define kErrorDomain @"com.grailbox.wry"
 #define kCommandSuffix @"Command"
 #define kDefaultCount 20
+#define kMaxCount 200
 #define kInputBufferSize 512
 
 @implementation WryApplication
@@ -32,21 +33,26 @@
 
 - (int)run {
   int returnCode = WrySuccessCode;
-  id <WryCommand> wryCommand = [self commandForName:self.commandName];
-  if (wryCommand != nil) {
-    NSError *error;
-    if (![wryCommand run:self params:self.params error:&error]) {
-      if (error != nil) {
-        [self println:error.localizedDescription];
-        returnCode = (int) error.code;
-      } else {
-        returnCode = WryErrorCodeUnknown;
-      }
-    }
-  } else {
-    [self println:[NSString stringWithFormat:@"%@: '%@' is not a %@ command. See '%@ help'.", self.appName,
-                                             self.commandName, self.appName, self.appName]];
+  if (abs(self.count) > kMaxCount) {
+    [self println:[NSString stringWithFormat:@"count must be between -%d and %d", kMaxCount, kMaxCount]];
     returnCode = WryErrorCodeBadInput;
+  } else {
+    id <WryCommand> wryCommand = [self commandForName:self.commandName];
+    if (wryCommand != nil) {
+      NSError *error;
+      if (![wryCommand run:self params:self.params error:&error]) {
+        if (error != nil) {
+          [self println:error.localizedDescription];
+          returnCode = (int) error.code;
+        } else {
+          returnCode = WryErrorCodeUnknown;
+        }
+      }
+    } else {
+      [self println:[NSString stringWithFormat:@"%@: '%@' is not a %@ command. See '%@ help'.", self.appName,
+                                               self.commandName, self.appName, self.appName]];
+      returnCode = WryErrorCodeBadInput;
+    }
   }
   return returnCode;
 }

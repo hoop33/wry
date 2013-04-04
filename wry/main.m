@@ -16,6 +16,7 @@ int main(int argc, const char *argv[]) {
 
     NSString *errorMessage = nil;
     NSMutableArray *params = [NSMutableArray array];
+    // TODO clean up this ugly code
     for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
       if ([param hasPrefix:@"-"]) {

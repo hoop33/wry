@@ -17,8 +17,7 @@
                                      params:params
                               minimumParams:0
                              successMessage:@"Following:"
-                               errorMessage:nil
-                                      error:error
+                               errorMessage:nil error:error
                                   operation:^id(ADNService *service) {
                                     return params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
                                                                               error:error] :
