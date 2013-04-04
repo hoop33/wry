@@ -16,8 +16,7 @@
   return [CommandUtils performObjectOperation:app
                                        params:params
                                 minimumParams:0
-                               successMessage:nil
-                                 errorMessage:nil error:error
+                               successMessage:nil errorMessage:nil error:error
                                     operation:(ADNOperationBlock) ^(ADNService *service) {
                                       return params.count > 0 ? [service getUser:[params objectAtIndex:0]
                                                                            error:error] :

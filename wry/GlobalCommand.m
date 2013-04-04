@@ -17,8 +17,7 @@
                                      params:params
                               minimumParams:0
                              successMessage:@"Global stream:"
-                               errorMessage:nil
-                                      error:error
+                               errorMessage:nil error:error
                                   operation:^id(ADNService *service) {
                                     return [service getGlobalStream:error];
                                   }];

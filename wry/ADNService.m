@@ -215,7 +215,10 @@
 #pragma mark - Helper methods
 
 - (NSArray *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
-  [self performRequest:[self getURLRequestWithPath:path]];
+  NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
+                                                    ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
+                                                    self.count];
+  [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     NSMutableArray *items = [NSMutableArray array];
@@ -278,6 +281,11 @@
 #pragma mark - Network methods
 
 - (void)performRequest:(NSURLRequest *)request {
+  if (self.debug) {
+    NSLog(@"URL: %@", request.URL);
+    NSLog(@"Body: %@", request.HTTPBody);
+    NSLog(@"Method: %@", request.HTTPMethod);
+  }
   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
                                                                 delegate:self
                                                         startImmediately:NO];

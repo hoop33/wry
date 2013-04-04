@@ -16,6 +16,7 @@
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSError *error;
+@property(nonatomic) NSInteger count;
 @property(nonatomic) BOOL debug;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
