@@ -19,7 +19,9 @@
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:[self shortDescription]];
-  [str appendString:[self.userDescription description]];
+  if (self.userDescription != nil) {
+    [str appendString:[self.userDescription description]];
+  }
   return str;
 }
 
