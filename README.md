@@ -11,6 +11,11 @@ Wry is released under the MIT license. See <http://opensource.org/licenses/MIT> 
 ## Installation
 To install Wry, copy the wry executable to a directory on your path. You can obtain the wry executable by either downloading the latest version from the Wry homepage (<http://grailbox.com/wry>) or building it from source.
 
+## Why Wry?
+Wry probably won't be your only App.net client, or even your main one, unless you live in tmux and terminal Vim. Most of your App.net interaction will likely happen in a GUI client. You may find yourself using Wry, however, to quickly create a post, find a user, or search a hashtag.
+
+Wry's potential, however, lies in scripts or plugins. With Wry, you can create a cron job to create posts from a file. You can create a Vim plugin or Alfred workflow. You can create a monitoring job that sends you a text anytime someone mentions your company in a hashtag. Ruby, Perl, Python, whatever your scripting language — you can talk to App.net through Wry.
+
 ## Authorization
 To use Wry, you must have an App.net account. Visit <https://join.app.net> to create an account, if you don't already have one.
 
