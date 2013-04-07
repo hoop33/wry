@@ -93,7 +93,16 @@
     service.debug = app.debug;
     ADNResponse *response = operation(service);
     if (response != nil) {
-      outputOperation(response);
+      NSInteger returnCode = [[response.meta valueForKey:@"code"] integerValue];
+      if (returnCode == 200) {
+        outputOperation(response);
+      } else {
+        if (error != NULL) {
+          *error = [NSError errorWithDomain:app.errorDomain code:returnCode
+                                   userInfo:@{NSLocalizedDescriptionKey : [response.meta valueForKey:@"error_message"]}];
+        }
+        success = NO;
+      }
     } else {
       // Service might have supplied an error; if not, supply one
       if (error != NULL && *error == nil) {
