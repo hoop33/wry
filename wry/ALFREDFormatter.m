@@ -29,7 +29,7 @@
 }
 
 - (NSString *)summary {
-  return @"The XML format required for Alfred Workflows feedback";
+  return @"The XML format required for Alfred Workflows";
 }
 
 - (NSString *)toItemXML:(id)item {
