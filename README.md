@@ -110,6 +110,20 @@ To address code duplication, a CommandUtils class implements common functionalit
 
 The actual interaction with App.net rests in the ADNService class. This class calls the REST API, gets the results, and maps the JSON response to ADN object classes. To add more functionality, add the methods to ADNService, add the new mapping, if necessary, to ADNMappingProvider, and create a new command.
 
+Wry uses formatters for output. To create a new formatter, write a class with the format name in all caps, followed by the word "Formatter," and make it conform to the WryFormat protocol. To create a formatter for comma-separated values, for example, create a class called:
+
+```bash
+CSVFormatter
+```
+
+To specify which formatter to use, pass its name on the command line with the --format flag, like this:
+
+```bash
+$ wry stream --format csv
+```
+
+This would show your stream in CSV format.
+
 ## Contributing to Wry
 
 Wry uses the [git-flow](https://github.com/nvie/gitflow) branching model, so make your changes in feature branches and issue pull requests.
