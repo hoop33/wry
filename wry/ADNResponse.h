@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class RWJSONMapping;
+
 @interface ADNResponse : NSObject
 
 @property(nonatomic, strong) NSDictionary *meta;
 @property(nonatomic, strong) id data;
+@property(nonatomic, copy) NSString *json;
+@property(nonatomic, strong) id object;
 
 - (id)initWithData:(NSData *)data;
 

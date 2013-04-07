@@ -11,6 +11,11 @@ Wry is released under the MIT license. See <http://opensource.org/licenses/MIT> 
 ## Installation
 To install Wry, copy the wry executable to a directory on your path. You can obtain the wry executable by either downloading the latest version from the Wry homepage (<http://grailbox.com/wry>) or building it from source.
 
+## Why Wry?
+Wry probably won't be your only App.net client, or even your main one, unless you live in tmux and terminal Vim. Most of your App.net interaction will likely happen in a GUI client. You may find yourself using Wry, however, to quickly create a post, find a user, or search a hashtag.
+
+Wry's potential, however, lies in scripts or plugins. With Wry, you can create a cron job to create posts from a file. You can create a Vim plugin or Alfred workflow. You can create a monitoring job that sends you a text anytime someone mentions your company in a hashtag. Ruby, Perl, Python, whatever your scripting language — you can talk to App.net through Wry.
+
 ## Authorization
 To use Wry, you must have an App.net account. Visit <https://join.app.net> to create an account, if you don't already have one.
 
@@ -104,6 +109,20 @@ This means that adding a command involves merely creating an appropriately named
 To address code duplication, a CommandUtils class implements common functionality. You'll see that the current commands delegate freely to this class.
 
 The actual interaction with App.net rests in the ADNService class. This class calls the REST API, gets the results, and maps the JSON response to ADN object classes. To add more functionality, add the methods to ADNService, add the new mapping, if necessary, to ADNMappingProvider, and create a new command.
+
+Wry uses formatters for output. To create a new formatter, write a class with the format name in all caps, followed by the word "Formatter," and make it conform to the WryFormat protocol. To create a formatter for comma-separated values, for example, create a class called:
+
+```bash
+CSVFormatter
+```
+
+To specify which formatter to use, pass its name on the command line with the --format flag, like this:
+
+```bash
+$ wry stream --format csv
+```
+
+This would show your stream in CSV format.
 
 ## Contributing to Wry
 

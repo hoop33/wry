@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ADNUser;
-@class ADNPost;
+@class ADNResponse;
 
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
@@ -20,34 +19,34 @@
 @property(nonatomic) BOOL debug;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
-- (ADNUser *)getUser:(NSError **)error;
-- (ADNUser *)getUser:(NSString *)username error:(NSError **)error;
-- (NSArray *)getFollowers:(NSError **)error;
-- (NSArray *)getFollowers:(NSString *)username error:(NSError **)error;
-- (NSArray *)getFollowing:(NSError **)error;
-- (NSArray *)getFollowing:(NSString *)username error:(NSError **)error;
-- (NSArray *)getMuted:(NSError **)error;
-- (NSArray *)getMuted:(NSString *)username error:(NSError **)error;
-- (NSArray *)getUserStream:(NSError **)error;
-- (NSArray *)getGlobalStream:(NSError **)error;
-- (NSArray *)getUnifiedStream:(NSError **)error;
-- (NSArray *)getMentions:(NSError **)error;
-- (NSArray *)getMentions:(NSString *)username error:(NSError **)error;
-- (NSArray *)getPosts:(NSError **)error;
-- (NSArray *)getPosts:(NSString *)username error:(NSError **)error;
-- (ADNPost *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error;
-- (ADNPost *)showPost:(NSString *)postID error:(NSError **)error;
-- (NSArray *)searchPosts:(NSString *)hashtag error:(NSError **)error;
-- (NSArray *)searchUsers:(NSString *)searchString error:(NSError **)error;
-- (NSArray *)getReplies:(NSString *)postID error:(NSError **)error;
-- (ADNPost *)repost:(NSString *)postID error:(NSError **)error;
-- (ADNPost *)star:(NSString *)postID error:(NSError **)error;
-- (ADNPost *)delete:(NSString *)postID error:(NSError **)error;
-- (ADNUser *)follow:(NSString *)username error:(NSError **)error;
-- (ADNUser *)unfollow:(NSString *)username error:(NSError **)error;
-- (ADNUser *)mute:(NSString *)username error:(NSError **)error;
-- (ADNUser *)unmute:(NSString *)username error:(NSError **)error;
-- (ADNUser *)block:(NSString *)username error:(NSError **)error;
-- (ADNUser *)unblock:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getUser:(NSError **)error;
+- (ADNResponse *)getUser:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getFollowers:(NSError **)error;
+- (ADNResponse *)getFollowers:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getFollowing:(NSError **)error;
+- (ADNResponse *)getFollowing:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getMuted:(NSError **)error;
+- (ADNResponse *)getMuted:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getUserStream:(NSError **)error;
+- (ADNResponse *)getGlobalStream:(NSError **)error;
+- (ADNResponse *)getUnifiedStream:(NSError **)error;
+- (ADNResponse *)getMentions:(NSError **)error;
+- (ADNResponse *)getMentions:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)getPosts:(NSError **)error;
+- (ADNResponse *)getPosts:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error;
+- (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error;
+- (ADNResponse *)searchPosts:(NSString *)hashtag error:(NSError **)error;
+- (ADNResponse *)searchUsers:(NSString *)searchString error:(NSError **)error;
+- (ADNResponse *)getReplies:(NSString *)postID error:(NSError **)error;
+- (ADNResponse *)repost:(NSString *)postID error:(NSError **)error;
+- (ADNResponse *)star:(NSString *)postID error:(NSError **)error;
+- (ADNResponse *)delete:(NSString *)postID error:(NSError **)error;
+- (ADNResponse *)follow:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)unfollow:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)mute:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)unmute:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)block:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)unblock:(NSString *)username error:(NSError **)error;
 
 @end
