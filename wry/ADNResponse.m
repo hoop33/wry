@@ -18,6 +18,7 @@
     NSDictionary *wrapper = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     self.meta = [wrapper objectForKey:@"meta"];
     self.data = [wrapper objectForKey:@"data"];
+    self.json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
   }
   return self;
 }

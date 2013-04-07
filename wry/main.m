@@ -20,17 +20,25 @@ int main(int argc, const char *argv[]) {
     for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
       if ([param hasPrefix:@"-"]) {
-        if ([param isEqualToString:@"-d"] || [param isEqualToString:@"--debug"]) {
+        if ([@[@"-d", @"--debug"] containsObject:param]) {
           application.debug = YES;
-        } else if ([param isEqualToString:@"-q"] || [param isEqualToString:@"--quiet"]) {
+        } else if ([@[@"-q", @"--quiet"] containsObject:param]) {
           application.quiet = YES;
-        } else if ([param isEqualToString:@"-c"] || [param isEqualToString:@"--count"]) {
+        } else if ([@[@"-c", @"--count"] containsObject:param]) {
           ++i;
           if (i >= argc) {
             errorMessage = [NSString stringWithFormat:@"You must specify a count when passing %@", param];
             break;
           } else {
             application.count = [[NSString stringWithUTF8String:argv[i]] intValue];
+          }
+        } else if ([@[@"-f", @"--format"] containsObject:param]) {
+          ++i;
+          if (i >= argc) {
+            errorMessage = [NSString stringWithFormat:@"You must specify a format when passing %@", param];
+            break;
+          } else {
+            application.format = [NSString stringWithUTF8String:argv[i]];
           }
         } else {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];

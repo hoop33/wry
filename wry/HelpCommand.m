@@ -8,17 +8,26 @@
 
 #import "HelpCommand.h"
 #import "WryErrorCodes.h"
+#import "WryFormatter.h"
 
 @implementation HelpCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
   if (params.count == 0) {
-    [app println:[NSString stringWithFormat:@"usage: %@ [--count n] [--debug] [--quiet] <command> [<args>]", app.appName]];
+    [app println:[NSString stringWithFormat:@"usage: %@ [--count n] [--debug] [--quiet] <command> [<args>]",
+                                            app.appName]];
     [app println:@""];
-    [app println:@"   -c, --count: For commands that return multiple items, return up to n items."];
-    [app println:@"   -d, --debug: Show debugging information."];
-    [app println:@"   -q, --quiet: Mute all output."];
+    [app println:@"   -c, --count:  For commands that return multiple items, return up to n items."];
+    [app println:@"   -d, --debug:  Show debugging information."];
+    [app println:@"   -q, --quiet:  Mute all output."];
+    [app println:@"   -f, --format: Specify the output format."];
+    [app println:@""];
+    [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
+    for (Class cls in [app allFormats]) {
+      id <WryFormatter> formatter = [[cls alloc] init];
+      [app println:[NSString stringWithFormat:@"   %-12s%@", [[app nameForFormatter:formatter] UTF8String], [formatter summary]]];
+    }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
     for (Class cls in [app allCommands]) {

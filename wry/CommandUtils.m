@@ -10,6 +10,7 @@
 #import "WryApplication.h"
 #import "WryErrorCodes.h"
 #import "ADNService.h"
+#import "WryFormatter.h"
 
 @interface CommandUtils ()
 + (BOOL)performOperation:(WryApplication *)app
@@ -38,11 +39,11 @@
                            errorMessage:errorMessage
                                   error:error
                               operation:operation
-                        outputOperation:(ADNOutputOperationBlock) ^(NSObject *response) {
+                        outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                           if (successMessage != nil) {
                             [app println:successMessage];
                           }
-                          [app println:response];
+                          [app println:[app.formatter format:response]];
                         }];
 }
 
@@ -60,16 +61,13 @@
                            errorMessage:errorMessage
                                   error:error
                               operation:operation
-                        outputOperation:(ADNOutputOperationBlock) ^(NSObject *response) {
-                          NSArray *list = (NSArray *) response;
+                        outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
+                          NSArray *list = (NSArray *) response.object;
                           if (list.count > 0) {
                             if (successMessage != nil) {
                               [app println:successMessage];
                             }
-                            for (id item in list) {
-                              [app println:item];
-                              [app println:@"----------"];
-                            }
+                            [app println:[app.formatter format:response]];
                           }
                         }];
 }
@@ -93,7 +91,7 @@
     ADNService *service = [[ADNService alloc] initWithAccessToken:app.accessToken];
     service.count = app.count;
     service.debug = app.debug;
-    NSObject *response = operation(service);
+    ADNResponse *response = operation(service);
     if (response != nil) {
       outputOperation(response);
     } else {
