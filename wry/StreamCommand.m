@@ -8,19 +8,18 @@
 
 #import "StreamCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation StreamCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:0
-                             successMessage:@"Your stream:"
-                               errorMessage:nil error:error
-                                  operation:^id(ADNService *service) {
-                                    return [service getUserStream:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:0
+                           errorMessage:nil error:error
+                              operation:^id(ADNService *service) {
+                                return [service getUserStream:error];
+                              }];
 }
 
 - (NSString *)usage {

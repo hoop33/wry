@@ -8,20 +8,19 @@
 
 #import "DeleteCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation DeleteCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:1
-                               successMessage:@"Deleted post:"
-                                 errorMessage:@"You must specify a post ID"
-                                        error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return [service delete:[params objectAtIndex:0] error:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:1
+                             errorMessage:@"You must specify a post ID"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return [service delete:[params objectAtIndex:0] error:error];
+                                }];
 }
 
 - (NSString *)usage {

@@ -8,21 +8,20 @@
 
 #import "FollowersCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation FollowersCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:0
-                             successMessage:@"Followers:"
-                               errorMessage:nil error:error
-                                  operation:^id(ADNService *service) {
-                                    return params.count > 0 ? [service getFollowers:[params objectAtIndex:0]
-                                                                              error:error] :
-                                      [service getFollowers:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:0
+                           errorMessage:nil error:error
+                              operation:^id(ADNService *service) {
+                                return params.count > 0 ? [service getFollowers:[params objectAtIndex:0]
+                                                                          error:error] :
+                                  [service getFollowers:error];
+                              }];
 }
 
 - (NSString *)usage {

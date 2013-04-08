@@ -8,20 +8,20 @@
 
 #import "UserCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation UserCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:0
-                               successMessage:nil errorMessage:nil error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return params.count > 0 ? [service getUser:[params objectAtIndex:0]
-                                                                           error:error] :
-                                        [service getUser:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:0
+                             errorMessage:nil error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return params.count > 0 ? [service getUser:[params objectAtIndex:0]
+                                                                       error:error] :
+                                    [service getUser:error];
+                                }];
 }
 
 - (NSString *)usage {

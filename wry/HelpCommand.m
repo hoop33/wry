@@ -9,6 +9,7 @@
 #import "HelpCommand.h"
 #import "WryErrorCodes.h"
 #import "WryFormatter.h"
+#import "WryUtils.h"
 
 @implementation HelpCommand
 
@@ -25,23 +26,24 @@
     [app println:@"   -q, --quiet            Mute all output"];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
-    for (Class cls in [app allFormats]) {
+    for (Class cls in [WryUtils allFormats]) {
       id <WryFormatter> formatter = [[cls alloc] init];
-      [app println:[NSString stringWithFormat:@"   %-12s%@", [[app nameForFormatter:formatter] UTF8String], [formatter summary]]];
+      [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForFormatter:formatter] UTF8String],
+                                              [formatter summary]]];
     }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
-    for (Class cls in [app allCommands]) {
+    for (Class cls in [WryUtils allCommands]) {
       id <WryCommand> command = [[cls alloc] init];
-      [app println:[NSString stringWithFormat:@"   %-12s%@", [[app nameForCommand:command]
-                                                                   UTF8String], [command summary]]];
+      [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:command]
+                                                                            UTF8String], [command summary]]];
     }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"See '%@ help <command>' for more information on a specific command.",
                                             app.appName]];
   }
   else {
-    id <WryCommand> command = [app commandForName:[params objectAtIndex:0]];
+    id <WryCommand> command = [WryUtils commandForName:[params objectAtIndex:0]];
     if (command == nil) {
       if (error != NULL) {
         *error = [NSError errorWithDomain:app.errorDomain
@@ -52,7 +54,7 @@
       }
       success = NO;
     } else {
-      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, [app nameForCommand:command],
+      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, [WryUtils nameForCommand:command],
                                               [command usage]]];
       [app println:@""];
       [app println:[command help]];

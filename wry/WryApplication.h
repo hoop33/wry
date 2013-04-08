@@ -28,11 +28,5 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
-- (id <WryCommand>)commandForName:(NSString *)name;
-- (NSString *)nameForCommand:(id <WryCommand>)command;
-- (NSArray *)allCommands;
-- (id <WryFormatter>)formatterForName:(NSString *)name;
-- (NSString *)nameForFormatter:(id <WryFormatter>)formatter;
-- (NSArray *)allFormats;
 
 @end

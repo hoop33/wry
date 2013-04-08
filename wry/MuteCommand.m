@@ -8,20 +8,19 @@
 
 #import "MuteCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation MuteCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:1
-                               successMessage:@"Muted user:"
-                                 errorMessage:@"You must specify a user ID or @username to mute"
-                                        error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return [service mute:[params objectAtIndex:0] error:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:1
+                             errorMessage:@"You must specify a user ID or @username to mute"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return [service mute:[params objectAtIndex:0] error:error];
+                                }];
 }
 
 - (NSString *)usage {

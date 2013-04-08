@@ -8,24 +8,23 @@
 
 #import "SearchCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation SearchCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:1
-                             successMessage:@"Search results:"
-                               errorMessage:@"You must specify a hashtag to search for"
-                                      error:error
-                                  operation:^id(ADNService *service) {
-                                    NSString *hashtag = [params objectAtIndex:0];
-                                    if (hashtag.length > 0 && [hashtag hasPrefix:@"#"]) {
-                                      hashtag = [hashtag substringFromIndex:1];
-                                    }
-                                    return [service searchPosts:hashtag error:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:1
+                           errorMessage:@"You must specify a hashtag to search for"
+                                  error:error
+                              operation:^id(ADNService *service) {
+                                NSString *hashtag = [params objectAtIndex:0];
+                                if (hashtag.length > 0 && [hashtag hasPrefix:@"#"]) {
+                                  hashtag = [hashtag substringFromIndex:1];
+                                }
+                                return [service searchPosts:hashtag error:error];
+                              }];
 }
 
 - (NSString *)usage {
