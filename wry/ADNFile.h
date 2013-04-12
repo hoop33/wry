@@ -8,10 +8,10 @@
 
 @interface ADNFile : NSObject
 
-@property (nonatomic, assign) NSInteger fileID;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) NSInteger totalSize;
-@property (nonatomic, copy) NSString *sha1;
-@property (nonatomic, strong) NSDate *createdAt;
+@property(nonatomic, assign) NSInteger fileID;
+@property(nonatomic, copy) NSString *name;
+@property(nonatomic, assign) NSInteger totalSize;
+@property(nonatomic, copy) NSString *sha1;
+@property(nonatomic, strong) NSDate *createdAt;
 
 @end
