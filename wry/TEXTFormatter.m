@@ -14,7 +14,7 @@
   NSMutableString *string = [NSMutableString string];
   if ([response.object isKindOfClass:[NSArray class]]) {
     for (id item in (NSArray *) response.object) {
-      [string appendString:[NSString stringWithFormat:@"%@\n", [item description]]];
+      [string appendFormat:@"%@\n", [item description]];
     }
   } else {
     [string appendString:[response.object description]];
