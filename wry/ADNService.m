@@ -213,6 +213,12 @@
 
 #pragma mark - File methods
 
+- (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"files/%@", fileID] mapping:[ADNMappingProvider fileMapping]
+                method:@"GET"
+                 error:error];
+}
+
 - (ADNResponse *)getFiles:(NSError **)error {
   return [self getItems:@"users/me/files" mapping:[ADNMappingProvider fileMapping] error:error];
 }
@@ -233,6 +239,21 @@
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider fileMapping]];
+    return response;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)download:(NSString *)fileID error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"files/%@/content", fileID]];
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    [self.data writeToFile:@"foo.png" atomically:NO];
+    ADNResponse *response = [[ADNResponse alloc] init];
     return response;
   } else {
     if (error != NULL) {
@@ -308,6 +329,14 @@
     NSLog(@"%@", string);
   }
   CFRunLoopStop(CFRunLoopGetCurrent());
+}
+
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request
+            redirectResponse:(NSURLResponse *)response {
+  if (self.debug) {
+    NSLog(@"Redirecting to %@", request.URL);
+  }
+  return request;
 }
 
 #pragma mark - Network methods
