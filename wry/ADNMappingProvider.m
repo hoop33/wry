@@ -11,6 +11,7 @@
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
 #import "ADNPost.h"
+#import "ADNFile.h"
 
 @implementation ADNMappingProvider
 
@@ -47,6 +48,17 @@
     @"created_at" : @"createdAt"
   }];
   [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  return mapping;
+}
+
++ (RWJSONMapping *)fileMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNFile class]];
+  [mapping addAttributeMappingsFromArray:@[@"name", @"sha1"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id" : @"fileID",
+    @"total_size" : @"totalSize",
+    @"created_at" : @"createdAt"
+  }];
   return mapping;
 }
 

@@ -12,7 +12,7 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You\n", self.name, self.username, (long) self.userID,
+  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You", self.name, self.username, (long) self.userID,
                                     (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")];
 }
 
@@ -20,8 +20,9 @@
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:[self shortDescription]];
   if (self.userDescription != nil) {
-    [str appendString:[self.userDescription description]];
+    [str appendFormat:@"\n%@", [self.userDescription description]];
   }
+  [str appendString:@"\n----------"];
   return str;
 }
 

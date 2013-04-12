@@ -211,6 +211,37 @@
                   error:error];
 }
 
+#pragma mark - File methods
+
+- (ADNResponse *)getFiles:(NSError **)error {
+  return [self getItems:@"users/me/files" mapping:[ADNMappingProvider fileMapping] error:error];
+}
+
+- (ADNResponse *)upload:(NSString *)filename content:(NSData *)data error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:@"files"];
+  request.HTTPMethod = @"POST";
+  [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type:"];
+  NSMutableString *body = [NSMutableString string];
+  [body appendFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\n", filename];
+  [body appendString:@"Content-Type: application/octet-stream\n"];
+  NSMutableData *bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
+  [bodyData appendData:data];
+  request.HTTPBody = bodyData;
+  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider fileMapping]];
+    return response;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {

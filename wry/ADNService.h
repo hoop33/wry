@@ -48,5 +48,7 @@
 - (ADNResponse *)unmute:(NSString *)username error:(NSError **)error;
 - (ADNResponse *)block:(NSString *)username error:(NSError **)error;
 - (ADNResponse *)unblock:(NSString *)username error:(NSError **)error;
+- (ADNResponse *)upload:(NSString *)filename content:(NSData *)data error:(NSError **)error;
+- (ADNResponse *)getFiles:(NSError **)error;
 
 @end

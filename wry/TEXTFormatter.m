@@ -15,7 +15,6 @@
   if ([response.object isKindOfClass:[NSArray class]]) {
     for (id item in (NSArray *) response.object) {
       [string appendString:[NSString stringWithFormat:@"%@\n", [item description]]];
-      [string appendString:@"----------\n"];
     }
   } else {
     [string appendString:[response.object description]];

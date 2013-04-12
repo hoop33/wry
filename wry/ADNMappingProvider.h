@@ -13,5 +13,6 @@
 + (RWJSONMapping *)userMapping;
 + (RWJSONMapping *)userDescriptionMapping;
 + (RWJSONMapping *)postMapping;
++ (RWJSONMapping *)fileMapping;
 
 @end
