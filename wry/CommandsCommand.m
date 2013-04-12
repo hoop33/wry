@@ -27,7 +27,7 @@
 }
 
 - (NSString *)summary {
-  return @"Lists available commands";
+  return @"List available commands";
 }
 
 @end
