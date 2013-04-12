@@ -36,7 +36,7 @@
     for (Class cls in [WryUtils allCommands]) {
       id <WryCommand> command = [[cls alloc] init];
       [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:command]
-                                                                            UTF8String], [command summary]]];
+                                                                        UTF8String], [command summary]]];
     }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"See '%@ help <command>' for more information on a specific command.",
