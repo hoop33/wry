@@ -13,21 +13,33 @@
 @implementation LsCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performListOperation:app
-                                 params:params
-                          minimumParams:0
-                           errorMessage:nil error:error
-                              operation:^id(ADNService *service) {
-                                return [service getFiles:error];
-                              }];
+  return params.count > 0 ?
+    [WryUtils performObjectOperation:app
+                              params:params
+                       minimumParams:0
+                        errorMessage:nil error:error
+                           operation:^id(ADNService *service) {
+                             return [service getFile:[params objectAtIndex:0] error:error];
+                           }] :
+    [WryUtils performListOperation:app
+                            params:params
+                     minimumParams:0
+                      errorMessage:nil error:error
+                         operation:^id(ADNService *service) {
+                           return [service getFiles:error];
+                         }];
 }
 
 - (NSString *)usage {
-  return @"";
+  return @"[file ID]";
 }
 
 - (NSString *)help {
-  return @"Lists the files you have stored on App.net";
+  NSMutableString *help = [[NSMutableString alloc] init];
+  [help appendString:@"Displays information about a file. If you specify a file ID,\n"];
+  [help appendString:@"displays information about that file. Otherwise, displays information\n"];
+  [help appendString:@"about all your files."];
+  return help;
 }
 
 - (NSString *)summary {
