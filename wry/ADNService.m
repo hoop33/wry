@@ -10,6 +10,7 @@
 #import "ADNMappingProvider.h"
 #import "ADNResponse.h"
 #import "NSDictionary+JSONMapping.h"
+#import "ADNFile.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
@@ -249,12 +250,20 @@
 }
 
 - (ADNResponse *)download:(NSString *)fileID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"files/%@/content", fileID]];
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    [self.data writeToFile:@"foo.png" atomically:NO];
-    ADNResponse *response = [[ADNResponse alloc] init];
-    return response;
+  ADNResponse *response = [self getFile:fileID error:error];
+  if (response != nil) {
+    NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"files/%@/content", fileID]];
+    [self performRequest:request];
+    if (self.data.length > 0) {
+      ADNFile *file = (ADNFile *)response.object;
+      [self.data writeToFile:file.name atomically:NO];
+      return response;
+    } else {
+      if (error != NULL) {
+        *error = self.error;
+      }
+      return nil;
+    }
   } else {
     if (error != NULL) {
       *error = self.error;
