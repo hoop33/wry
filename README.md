@@ -5,6 +5,15 @@ Wry is a command-line client for App.net for Mac OS X 10.7+ (Lion), written in O
 
 App.net is a social network. Read more at <https://join.app.net/>.
 
+## Important Note
+If you're upgrading to Wry 1.3, you must reauthorize using:
+
+```bash
+$ wry authorize
+```
+
+Version 1.3 adds file access (upload, download, ls), and previous versions of Wry didn't request access to your files.
+
 ## License
 Wry is released under the MIT license. See <http://opensource.org/licenses/MIT> for more information.
 
