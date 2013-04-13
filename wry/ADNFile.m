@@ -11,7 +11,7 @@
 @implementation ADNFile
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"ID:%ld   %@   %ldB   %@", self.fileID, self.name, self.totalSize, self.createdAt];
+  return [NSString stringWithFormat:@"ID:%ld   %@   %@ (%ldB)", self.fileID, self.createdAt, self.name, self.totalSize];
 }
 
 @end

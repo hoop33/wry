@@ -9,18 +9,35 @@
 #import "UploadCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "WryErrorCodes.h"
 
 @implementation UploadCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+  if (params.count == 0) {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:app.errorDomain code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must specify a file name to upload"}];
+    }
+    return NO;
+  }
+  NSString *filename = [params objectAtIndex:0];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSData *data = [fileManager contentsAtPath:filename];
+  if (data == nil) {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:app.errorDomain code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"%@ does not exist",
+                                                                                                 filename]}];
+    }
+    return NO;
+  }
   return [WryUtils performObjectOperation:app
                                    params:params
                             minimumParams:0
                              errorMessage:nil error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return params.count > 0 ? [service getUser:[params objectAtIndex:0]
-                                                                       error:error] :
-                                    [service getUser:error];
+                                  return [service upload:filename content:data error:error];
                                 }];
 }
 

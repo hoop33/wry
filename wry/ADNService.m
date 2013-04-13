@@ -225,16 +225,36 @@
 }
 
 - (ADNResponse *)upload:(NSString *)filename content:(NSData *)data error:(NSError **)error {
+  if (self.debug) {
+    NSLog(@"Uploading %@", filename);
+    NSLog(@"Contents: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+  }
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"files"];
   request.HTTPMethod = @"POST";
-  [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type:"];
-  NSMutableString *body = [NSMutableString string];
-  [body appendFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\n", filename];
-  [body appendString:@"Content-Type: application/octet-stream\n"];
-  NSMutableData *bodyData = [body dataUsingEncoding:NSUTF8StringEncoding];
-  [bodyData appendData:data];
-  request.HTTPBody = bodyData;
-  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+
+  // Set headers
+  NSString *boundary = @"82481319dca6"; // Arbitrary value from App.net docs
+  [request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]
+ forHTTPHeaderField:@"Content-Type"];
+
+  NSMutableData *body = [NSMutableData data];
+
+  // Attach file
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\r\n",
+                                               [filename lastPathComponent]]
+                                               dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:data];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+
+  // Set metadata
+  [body appendData:[@"Content-Disposition: form-data; name=\"type\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[@"com.grailbox.wry" dataUsingEncoding:NSUTF8StringEncoding]];
+
+  request.HTTPBody = body;
 
   [self performRequest:request];
   if (self.data.length > 0) {
@@ -255,7 +275,7 @@
     NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"files/%@/content", fileID]];
     [self performRequest:request];
     if (self.data.length > 0) {
-      ADNFile *file = (ADNFile *)response.object;
+      ADNFile *file = (ADNFile *) response.object;
       [self.data writeToFile:file.name atomically:NO];
       return response;
     } else {
@@ -343,7 +363,7 @@
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request
             redirectResponse:(NSURLResponse *)response {
   if (self.debug) {
-    NSLog(@"Redirecting to %@", request.URL);
+    NSLog(@"Sending to %@", request.URL);
   }
   return request;
 }
@@ -353,7 +373,11 @@
 - (void)performRequest:(NSURLRequest *)request {
   if (self.debug) {
     NSLog(@"URL: %@", request.URL);
-    NSLog(@"Body: %@", request.HTTPBody);
+    NSLog(@"Headers:");
+    for (NSString *key in request.allHTTPHeaderFields.allKeys) {
+      NSLog(@"%@ : %@", key, [request.allHTTPHeaderFields valueForKey:key]);
+    }
+    NSLog(@"Body: %@", [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
     NSLog(@"Method: %@", request.HTTPMethod);
   }
   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
