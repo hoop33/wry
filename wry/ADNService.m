@@ -10,6 +10,7 @@
 #import "ADNMappingProvider.h"
 #import "ADNResponse.h"
 #import "NSDictionary+JSONMapping.h"
+#import "ADNFile.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
@@ -211,6 +212,86 @@
                   error:error];
 }
 
+#pragma mark - File methods
+
+- (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"files/%@", fileID] mapping:[ADNMappingProvider fileMapping]
+                method:@"GET"
+                 error:error];
+}
+
+- (ADNResponse *)getFiles:(NSError **)error {
+  return [self getItems:@"users/me/files" mapping:[ADNMappingProvider fileMapping] error:error];
+}
+
+- (ADNResponse *)upload:(NSString *)filename content:(NSData *)data error:(NSError **)error {
+  if (self.debug) {
+    NSLog(@"Uploading %@", filename);
+    NSLog(@"Contents: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+  }
+  NSMutableURLRequest *request = [self getURLRequestWithPath:@"files"];
+  request.HTTPMethod = @"POST";
+
+  // Set headers
+  NSString *boundary = @"82481319dca6"; // Arbitrary value from App.net docs
+  [request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]
+ forHTTPHeaderField:@"Content-Type"];
+
+  NSMutableData *body = [NSMutableData data];
+
+  // Attach file
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\r\n",
+                                               [filename lastPathComponent]]
+                                               dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:data];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+
+  // Set metadata
+  [body appendData:[@"Content-Disposition: form-data; name=\"type\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[@"com.grailbox.wry" dataUsingEncoding:NSUTF8StringEncoding]];
+
+  request.HTTPBody = body;
+
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider fileMapping]];
+    return response;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)download:(NSString *)fileID error:(NSError **)error {
+  ADNResponse *response = [self getFile:fileID error:error];
+  if (response != nil) {
+    NSMutableURLRequest *request = [self getURLRequestWithPath:[NSString stringWithFormat:@"files/%@/content", fileID]];
+    [self performRequest:request];
+    if (self.data.length > 0) {
+      ADNFile *file = (ADNFile *) response.object;
+      [self.data writeToFile:file.name atomically:NO];
+      return response;
+    } else {
+      if (error != NULL) {
+        *error = self.error;
+      }
+      return nil;
+    }
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
@@ -279,12 +360,24 @@
   CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request
+            redirectResponse:(NSURLResponse *)response {
+  if (self.debug) {
+    NSLog(@"Sending to %@", request.URL);
+  }
+  return request;
+}
+
 #pragma mark - Network methods
 
 - (void)performRequest:(NSURLRequest *)request {
   if (self.debug) {
     NSLog(@"URL: %@", request.URL);
-    NSLog(@"Body: %@", request.HTTPBody);
+    NSLog(@"Headers:");
+    for (NSString *key in request.allHTTPHeaderFields.allKeys) {
+      NSLog(@"%@ : %@", key, [request.allHTTPHeaderFields valueForKey:key]);
+    }
+    NSLog(@"Body: %@", [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
     NSLog(@"Method: %@", request.HTTPMethod);
   }
   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request

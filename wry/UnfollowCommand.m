@@ -8,20 +8,19 @@
 
 #import "UnfollowCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation UnfollowCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:1
-                               successMessage:@"Unfollowed user:"
-                                 errorMessage:@"You must specify a user ID or @username to unfollow"
-                                        error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return [service unfollow:[params objectAtIndex:0] error:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:1
+                             errorMessage:@"You must specify a user ID or @username to unfollow"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return [service unfollow:[params objectAtIndex:0] error:error];
+                                }];
 }
 
 - (NSString *)usage {

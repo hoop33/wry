@@ -8,21 +8,20 @@
 
 #import "PostCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation PostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:1
-                               successMessage:@"Posted:"
-                                 errorMessage:@"You must specify a message"
-                                        error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return [service createPost:[params componentsJoinedByString:@" "] replyID:nil
-                                                           error:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:1
+                             errorMessage:@"You must specify a message"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return [service createPost:[params componentsJoinedByString:@" "] replyID:nil
+                                                       error:error];
+                                }];
 }
 
 - (NSString *)usage {

@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2370C39D60AE168097C05C /* UploadCommand.m */; };
+		5F23723F7B39298A11B6CB21 /* LsCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237B6DF4680829830666F9 /* LsCommand.h */; };
+		5F2374027A051703D045EC17 /* ADNFile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F2374343F648724555A4F33 /* ADNFile.h */; };
+		5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23700E04DD8F1511814264 /* LsCommand.m */; };
+		5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237C83E7993BD23B26CA42 /* DownloadCommand.h */; };
+		5F237680B822AEBA7696A403 /* ADNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237098E0588D727AABD325 /* ADNFile.m */; };
 		5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237CC24925193B771DADFA /* ADNUserDescription.h */; };
+		5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
+		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
 		C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
+		C72BF7BA1711F15700F0039D /* CommandsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B91711F15700F0039D /* CommandsCommand.m */; };
 		C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
 		C744E46D16FA8E2D0002A9A5 /* FollowersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */; };
 		C744E47016FA9D010002A9A5 /* FollowingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46F16FA9D010002A9A5 /* FollowingCommand.m */; };
@@ -33,7 +42,7 @@
 		C744E49A170230920002A9A5 /* BlockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4991702308E0002A9A5 /* BlockCommand.m */; };
 		C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49C170230A40002A9A5 /* UnblockCommand.m */; };
 		C744E4A317025E240002A9A5 /* SearchCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A217025E200002A9A5 /* SearchCommand.m */; };
-		C744E4A61702779F0002A9A5 /* CommandUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A51702779B0002A9A5 /* CommandUtils.m */; };
+		C744E4A61702779F0002A9A5 /* WryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A51702779B0002A9A5 /* WryUtils.m */; };
 		C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A8170502E50002A9A5 /* FindCommand.m */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
@@ -64,13 +73,25 @@
 			files = (
 				C784326216EA02FA000DED40 /* wry.1 in CopyFiles */,
 				5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */,
+				5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */,
+				5F2374027A051703D045EC17 /* ADNFile.h in CopyFiles */,
+				5F23723F7B39298A11B6CB21 /* LsCommand.h in CopyFiles */,
+				5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F23700E04DD8F1511814264 /* LsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommand.m; sourceTree = "<group>"; };
+		5F237098E0588D727AABD325 /* ADNFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNFile.m; sourceTree = "<group>"; };
+		5F2370C39D60AE168097C05C /* UploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCommand.m; sourceTree = "<group>"; };
+		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
 		5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserDescription.m; sourceTree = "<group>"; };
+		5F237A3B099660DF7F93200E /* DownloadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCommand.m; sourceTree = "<group>"; };
+		5F237AFC9661EA6E24D76E41 /* UploadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCommand.h; sourceTree = "<group>"; };
+		5F237B6DF4680829830666F9 /* LsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommand.h; sourceTree = "<group>"; };
+		5F237C83E7993BD23B26CA42 /* DownloadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCommand.h; sourceTree = "<group>"; };
 		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
 		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDE472AC80542959D226C1C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -85,6 +106,8 @@
 		C72BF7B31710CA2700F0039D /* JSONFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONFormatter.m; sourceTree = "<group>"; };
 		C72BF7B51711990B00F0039D /* ALFREDFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALFREDFormatter.h; sourceTree = "<group>"; };
 		C72BF7B61711990B00F0039D /* ALFREDFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALFREDFormatter.m; sourceTree = "<group>"; };
+		C72BF7B81711F15700F0039D /* CommandsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandsCommand.h; sourceTree = "<group>"; };
+		C72BF7B91711F15700F0039D /* CommandsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsCommand.m; sourceTree = "<group>"; };
 		C744E46816FA853F0002A9A5 /* VersionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCommand.h; sourceTree = "<group>"; };
 		C744E46916FA85400002A9A5 /* VersionCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionCommand.m; sourceTree = "<group>"; };
 		C744E46B16FA8E2D0002A9A5 /* FollowersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersCommand.h; sourceTree = "<group>"; };
@@ -123,8 +146,8 @@
 		C744E49C170230A40002A9A5 /* UnblockCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnblockCommand.m; sourceTree = "<group>"; };
 		C744E4A117025E1D0002A9A5 /* SearchCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCommand.h; sourceTree = "<group>"; };
 		C744E4A217025E200002A9A5 /* SearchCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCommand.m; sourceTree = "<group>"; };
-		C744E4A4170277970002A9A5 /* CommandUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandUtils.h; sourceTree = "<group>"; };
-		C744E4A51702779B0002A9A5 /* CommandUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandUtils.m; sourceTree = "<group>"; };
+		C744E4A4170277970002A9A5 /* WryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryUtils.h; sourceTree = "<group>"; };
+		C744E4A51702779B0002A9A5 /* WryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryUtils.m; sourceTree = "<group>"; };
 		C744E4A7170502E00002A9A5 /* FindCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindCommand.h; sourceTree = "<group>"; };
 		C744E4A8170502E50002A9A5 /* FindCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindCommand.m; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +270,8 @@
 				C784329616F0D8E4000DED40 /* RWJSON */,
 				C784326816EBBA0F000DED40 /* WryApplication.h */,
 				C784326916EBBA0F000DED40 /* WryApplication.m */,
+				C744E4A4170277970002A9A5 /* WryUtils.h */,
+				C744E4A51702779B0002A9A5 /* WryUtils.m */,
 				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
 				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
 				C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */,
@@ -310,10 +335,16 @@
 				C744E49C170230A40002A9A5 /* UnblockCommand.m */,
 				C744E4A117025E1D0002A9A5 /* SearchCommand.h */,
 				C744E4A217025E200002A9A5 /* SearchCommand.m */,
-				C744E4A4170277970002A9A5 /* CommandUtils.h */,
-				C744E4A51702779B0002A9A5 /* CommandUtils.m */,
 				C744E4A7170502E00002A9A5 /* FindCommand.h */,
 				C744E4A8170502E50002A9A5 /* FindCommand.m */,
+				C72BF7B81711F15700F0039D /* CommandsCommand.h */,
+				C72BF7B91711F15700F0039D /* CommandsCommand.m */,
+				5F237AFC9661EA6E24D76E41 /* UploadCommand.h */,
+				5F2370C39D60AE168097C05C /* UploadCommand.m */,
+				5F237B6DF4680829830666F9 /* LsCommand.h */,
+				5F23700E04DD8F1511814264 /* LsCommand.m */,
+				5F237C83E7993BD23B26CA42 /* DownloadCommand.h */,
+				5F237A3B099660DF7F93200E /* DownloadCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -329,6 +360,8 @@
 				C70028F716F330DF00D5B222 /* ADNResponse.m */,
 				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
 				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
+				5F2374343F648724555A4F33 /* ADNFile.h */,
+				5F237098E0588D727AABD325 /* ADNFile.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -459,11 +492,16 @@
 				C744E49A170230920002A9A5 /* BlockCommand.m in Sources */,
 				C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */,
 				C744E4A317025E240002A9A5 /* SearchCommand.m in Sources */,
-				C744E4A61702779F0002A9A5 /* CommandUtils.m in Sources */,
+				C744E4A61702779F0002A9A5 /* WryUtils.m in Sources */,
 				C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */,
 				C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */,
 				C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */,
 				C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */,
+				C72BF7BA1711F15700F0039D /* CommandsCommand.m in Sources */,
+				5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */,
+				5F237680B822AEBA7696A403 /* ADNFile.m in Sources */,
+				5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */,
+				5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

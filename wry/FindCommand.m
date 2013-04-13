@@ -8,22 +8,21 @@
 
 #import "FindCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation FindCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:1
-                             successMessage:@"Users:"
-                               errorMessage:@"You must specify a search string"
-                                      error:error
-                                  operation:^id(ADNService *service) {
-                                    return [service searchUsers:[[params componentsJoinedByString:@" "]
-                                                                         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-                                                          error:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:1
+                           errorMessage:@"You must specify a search string"
+                                  error:error
+                              operation:^id(ADNService *service) {
+                                return [service searchUsers:[[params componentsJoinedByString:@" "]
+                                                                     stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                                      error:error];
+                              }];
 }
 
 - (NSString *)usage {

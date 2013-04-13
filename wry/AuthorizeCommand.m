@@ -68,7 +68,7 @@
 }
 
 - (NSString *)scope {
-  return @"basic stream email write_post follow public_messages messages";
+  return @"basic stream email write_post follow public_messages messages files";
 }
 
 @end

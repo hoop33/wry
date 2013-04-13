@@ -8,19 +8,18 @@
 
 #import "UnifiedCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation UnifiedCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:0
-                             successMessage:@"Unified stream:"
-                               errorMessage:nil error:error
-                                  operation:^id(ADNService *service) {
-                                    return [service getUnifiedStream:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:0
+                           errorMessage:nil error:error
+                              operation:^id(ADNService *service) {
+                                return [service getUnifiedStream:error];
+                              }];
 }
 
 - (NSString *)usage {

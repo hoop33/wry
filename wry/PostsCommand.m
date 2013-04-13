@@ -8,21 +8,20 @@
 
 #import "PostsCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation PostsCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:0
-                             successMessage:@"Posts:"
-                               errorMessage:nil error:error
-                                  operation:^id(ADNService *service) {
-                                    return params.count > 0 ? [service getPosts:[params objectAtIndex:0]
-                                                                          error:error] :
-                                      [service getPosts:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:0
+                           errorMessage:nil error:error
+                              operation:^id(ADNService *service) {
+                                return params.count > 0 ? [service getPosts:[params objectAtIndex:0]
+                                                                      error:error] :
+                                  [service getPosts:error];
+                              }];
 }
 
 - (NSString *)usage {

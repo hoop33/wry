@@ -8,21 +8,20 @@
 
 #import "FollowingCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation FollowingCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:0
-                             successMessage:@"Following:"
-                               errorMessage:nil error:error
-                                  operation:^id(ADNService *service) {
-                                    return params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
-                                                                              error:error] :
-                                      [service getFollowing:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:0
+                           errorMessage:nil error:error
+                              operation:^id(ADNService *service) {
+                                return params.count > 0 ? [service getFollowing:[params objectAtIndex:0]
+                                                                          error:error] :
+                                  [service getFollowing:error];
+                              }];
 }
 
 - (NSString *)usage {

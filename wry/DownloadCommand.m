@@ -1,41 +1,40 @@
 //
-//  MuteCommand.m
+//  DownloadCommand.m
 //  wry
 //
-//  Created by Rob Warner on 3/26/13.
+//  Created by Rob Warner on 04/11/13.
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import "MuteCommand.h"
+#import "DownloadCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
 
-@implementation MuteCommand
+@implementation DownloadCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [WryUtils performObjectOperation:app
                                    params:params
                             minimumParams:1
-                             errorMessage:@"You must specify a user ID or @username to mute"
-                                    error:error
+                             errorMessage:@"You must specify a file ID to download" error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service mute:[params objectAtIndex:0] error:error];
+                                  return [service download:[params objectAtIndex:0] error:error];
                                 }];
 }
 
 - (NSString *)usage {
-  return @"<userid | @username>";
+  return @"<file ID>";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Mutes a user. You must specify either the user's ID or @username.\n"];
-  [help appendString:@"Displays the user information for the user you've muted."];
+  [help appendString:@"Downloads the file with the file ID you specify and saves it in the\n"];
+  [help appendString:@"current directory."];
   return help;
 }
 
 - (NSString *)summary {
-  return @"Mute a user";
+  return @"Download a file";
 }
 
 @end

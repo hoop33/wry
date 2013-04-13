@@ -8,20 +8,19 @@
 
 #import "UnmuteCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation UnmuteCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performObjectOperation:app
-                                       params:params
-                                minimumParams:1
-                               successMessage:@"Unmuted user:"
-                                 errorMessage:@"You must specify a user ID or @username to unmute"
-                                        error:error
-                                    operation:(ADNOperationBlock) ^(ADNService *service) {
-                                      return [service unmute:[params objectAtIndex:0] error:error];
-                                    }];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:1
+                             errorMessage:@"You must specify a user ID or @username to unmute"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  return [service unmute:[params objectAtIndex:0] error:error];
+                                }];
 }
 
 - (NSString *)usage {

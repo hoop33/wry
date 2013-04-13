@@ -8,20 +8,19 @@
 
 #import "RepliesCommand.h"
 #import "ADNService.h"
-#import "CommandUtils.h"
+#import "WryUtils.h"
 
 @implementation RepliesCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [CommandUtils performListOperation:app
-                                     params:params
-                              minimumParams:1
-                             successMessage:@"Replies:"
-                               errorMessage:@"You must specify a post ID"
-                                      error:error
-                                  operation:(ADNOperationBlock) ^(ADNService *service) {
-                                    return [service getReplies:[params objectAtIndex:0] error:error];
-                                  }];
+  return [WryUtils performListOperation:app
+                                 params:params
+                          minimumParams:1
+                           errorMessage:@"You must specify a post ID"
+                                  error:error
+                              operation:(ADNOperationBlock) ^(ADNService *service) {
+                                return [service getReplies:[params objectAtIndex:0] error:error];
+                              }];
 }
 
 - (NSString *)usage {
