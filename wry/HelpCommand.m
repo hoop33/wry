@@ -24,6 +24,7 @@
     [app println:@"   -d, --debug            Show debugging information"];
     [app println:@"   -f, --format <format>  Display output in format"];
     [app println:@"   -q, --quiet            Mute all output"];
+    [app println:@"   -p, --pretty           Pretty-print the JSON response (for -f json only)"];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
     for (Class cls in [WryUtils allFormats]) {

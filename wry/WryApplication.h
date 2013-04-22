@@ -19,6 +19,7 @@
 @property(nonatomic, copy) NSString *format;
 @property(nonatomic) BOOL debug;
 @property(nonatomic) BOOL quiet;
+@property(nonatomic) BOOL pretty;
 @property(nonatomic) int count;
 
 - (int)run;

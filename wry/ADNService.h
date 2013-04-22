@@ -17,6 +17,7 @@
 @property(nonatomic, strong) NSError *error;
 @property(nonatomic) NSInteger count;
 @property(nonatomic) BOOL debug;
+@property(nonatomic) BOOL pretty;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 - (ADNResponse *)getUser:(NSError **)error;
