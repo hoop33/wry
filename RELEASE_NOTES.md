@@ -1,4 +1,10 @@
 # Release Notes
+
+## Version 1.4 (4/29/2013)
+* Add pretty-printing for JSON
+* Remove requirement for CocoaPods
+* Add multi-user support
+
 ## Version 1.3 (4/12/2013)
 * Add "commands" command
 * Add "ls" command
