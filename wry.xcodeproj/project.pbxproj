@@ -8,14 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2370C39D60AE168097C05C /* UploadCommand.m */; };
+		5F23723F7B39298A11B6CB21 /* LsCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237B6DF4680829830666F9 /* LsCommand.h */; };
+		5F2374027A051703D045EC17 /* ADNFile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F2374343F648724555A4F33 /* ADNFile.h */; };
 		5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23700E04DD8F1511814264 /* LsCommand.m */; };
+		5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237C83E7993BD23B26CA42 /* DownloadCommand.h */; };
 		5F237680B822AEBA7696A403 /* ADNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237098E0588D727AABD325 /* ADNFile.m */; };
+		5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237CC24925193B771DADFA /* ADNUserDescription.h */; };
 		5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
+		5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */; };
+		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
-		C71BF67F172BE8A3004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF67C172BE8A3004C228B /* SSKeychain.m */; };
-		C71BF680172BE8A3004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF67E172BE8A3004C228B /* SSKeychainQuery.m */; };
+		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
+		C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
 		C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
@@ -68,6 +74,11 @@
 			dstSubfolderSpec = 0;
 			files = (
 				C784326216EA02FA000DED40 /* wry.1 in CopyFiles */,
+				5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */,
+				5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */,
+				5F2374027A051703D045EC17 /* ADNFile.h in CopyFiles */,
+				5F23723F7B39298A11B6CB21 /* LsCommand.h in CopyFiles */,
+				5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -77,7 +88,9 @@
 		5F23700E04DD8F1511814264 /* LsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommand.m; sourceTree = "<group>"; };
 		5F237098E0588D727AABD325 /* ADNFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNFile.m; sourceTree = "<group>"; };
 		5F2370C39D60AE168097C05C /* UploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCommand.m; sourceTree = "<group>"; };
+		5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersCommand.m; sourceTree = "<group>"; };
 		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
+		5F2374BAC4D93E3A7583A83B /* UsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCommand.h; sourceTree = "<group>"; };
 		5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserDescription.m; sourceTree = "<group>"; };
 		5F237A3B099660DF7F93200E /* DownloadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCommand.m; sourceTree = "<group>"; };
 		5F237AFC9661EA6E24D76E41 /* UploadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCommand.h; sourceTree = "<group>"; };
@@ -89,10 +102,10 @@
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
 		C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMapping.h"; sourceTree = "<group>"; };
 		C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMapping.m"; sourceTree = "<group>"; };
-		C71BF67B172BE8A3004C228B /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
-		C71BF67C172BE8A3004C228B /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
-		C71BF67D172BE8A3004C228B /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
-		C71BF67E172BE8A3004C228B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		C71BF682172D42E6004C228B /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		C71BF683172D42E6004C228B /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		C71BF684172D42E6004C228B /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		C71BF685172D42E6004C228B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		C72BF7AD1710C91800F0039D /* WryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryFormatter.h; sourceTree = "<group>"; };
 		C72BF7AF1710C96600F0039D /* TEXTFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXTFormatter.h; sourceTree = "<group>"; };
 		C72BF7B01710C96600F0039D /* TEXTFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXTFormatter.m; sourceTree = "<group>"; };
@@ -193,13 +206,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C71BF681172BE8A9004C228B /* SSKeychain */ = {
+		C71BF688172D42EC004C228B /* SSKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				C71BF67B172BE8A3004C228B /* SSKeychain.h */,
-				C71BF67C172BE8A3004C228B /* SSKeychain.m */,
-				C71BF67D172BE8A3004C228B /* SSKeychainQuery.h */,
-				C71BF67E172BE8A3004C228B /* SSKeychainQuery.m */,
+				C71BF682172D42E6004C228B /* SSKeychain.h */,
+				C71BF683172D42E6004C228B /* SSKeychain.m */,
+				C71BF684172D42E6004C228B /* SSKeychainQuery.h */,
+				C71BF685172D42E6004C228B /* SSKeychainQuery.m */,
 			);
 			name = SSKeychain;
 			sourceTree = "<group>";
@@ -248,11 +261,11 @@
 		C784325C16EA02FA000DED40 /* wry */ = {
 			isa = PBXGroup;
 			children = (
+				C71BF688172D42EC004C228B /* SSKeychain */,
 				C784325D16EA02FA000DED40 /* main.m */,
 				C784326116EA02FA000DED40 /* wry.1 */,
 				C784325F16EA02FA000DED40 /* Supporting Files */,
 				C784326B16EBBA16000DED40 /* Classes */,
-				C71BF681172BE8A9004C228B /* SSKeychain */,
 			);
 			path = wry;
 			sourceTree = "<group>";
@@ -349,6 +362,8 @@
 				5F23700E04DD8F1511814264 /* LsCommand.m */,
 				5F237C83E7993BD23B26CA42 /* DownloadCommand.h */,
 				5F237A3B099660DF7F93200E /* DownloadCommand.m */,
+				5F2374BAC4D93E3A7583A83B /* UsersCommand.h */,
+				5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -488,8 +503,9 @@
 				5F237680B822AEBA7696A403 /* ADNFile.m in Sources */,
 				5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */,
 				5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */,
-				C71BF67F172BE8A3004C228B /* SSKeychain.m in Sources */,
-				C71BF680172BE8A3004C228B /* SSKeychainQuery.m in Sources */,
+				5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */,
+				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
+				C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

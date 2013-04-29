@@ -17,6 +17,7 @@
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) id <WryFormatter> formatter;
 @property(nonatomic, copy) NSString *format;
+@property(nonatomic, copy) NSString *user;
 @property(nonatomic) BOOL debug;
 @property(nonatomic) BOOL quiet;
 @property(nonatomic) BOOL pretty;
@@ -29,5 +30,6 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
+- (NSString *)defaultUser;
 
 @end

@@ -15,6 +15,7 @@
 
 #define kVersion @"1.3"
 #define kErrorDomain @"com.grailbox.wry"
+#define kDefaultUser @"default"
 #define kDefaultFormat @"text"
 #define kDefaultCount 20
 #define kMaxCount 200
@@ -27,6 +28,7 @@
   if (self != nil) {
     self.quiet = NO;
     self.count = kDefaultCount;
+    self.user = kDefaultUser;
     // TODO put this in defaults with a format command to read/set
     self.format = kDefaultFormat;
   }
@@ -90,14 +92,12 @@
 }
 
 - (NSString *)accessToken {
-  // TODO use actual user name
-  return [SSKeychain passwordForService:self.appName account:@"default"];
+  return [SSKeychain passwordForService:self.appName account:self.user];
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
-  // TODO use actual user name
   [SSKeychain setPassword:accessToken forService:self.appName
-                  account:@"default"];
+                  account:self.user];
 }
 
 - (NSString *)version {
@@ -106,6 +106,10 @@
 
 - (NSString *)errorDomain {
   return kErrorDomain;
+}
+
+- (NSString *)defaultUser {
+  return kDefaultUser;
 }
 
 @end
