@@ -13,7 +13,7 @@
 #import "SSKeychain.h"
 #import "WryUtils.h"
 
-#define kVersion @"1.3"
+#define kVersion @"1.4"
 #define kErrorDomain @"com.grailbox.wry"
 #define kDefaultUser @"default"
 #define kDefaultFormat @"text"
