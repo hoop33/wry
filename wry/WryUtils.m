@@ -82,6 +82,7 @@
     ADNService *service = [[ADNService alloc] initWithAccessToken:app.accessToken];
     service.count = app.count;
     service.debug = app.debug;
+    service.pretty = app.pretty;
     ADNResponse *response = operation(service);
     if (response != nil) {
       if (response.meta != nil) {

@@ -20,10 +20,12 @@
                                             app.appName]];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ flags are:", app.appName]];
+    [app println:@"   -u, --user <user>      Specify the user to use (defaults to 'default')"];
     [app println:@"   -c, --count <n>        Limit count to n items"];
-    [app println:@"   -d, --debug            Show debugging information"];
     [app println:@"   -f, --format <format>  Display output in format"];
+    [app println:@"   -d, --debug            Show debugging information"];
     [app println:@"   -q, --quiet            Mute all output"];
+    [app println:@"   -p, --pretty           Pretty-print the JSON response (for -f json only)"];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
     for (Class cls in [WryUtils allFormats]) {

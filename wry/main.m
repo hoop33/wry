@@ -24,6 +24,8 @@ int main(int argc, const char *argv[]) {
           application.debug = YES;
         } else if ([@[@"-q", @"--quiet"] containsObject:param]) {
           application.quiet = YES;
+        } else if ([@[@"-p", @"--pretty"] containsObject:param]) {
+          application.pretty = YES;
         } else if ([@[@"-c", @"--count"] containsObject:param]) {
           ++i;
           if (i >= argc) {
@@ -39,6 +41,14 @@ int main(int argc, const char *argv[]) {
             break;
           } else {
             application.format = [NSString stringWithUTF8String:argv[i]];
+          }
+        } else if ([@[@"-u", @"--user"] containsObject:param]) {
+          ++i;
+          if (i >= argc) {
+            errorMessage = [NSString stringWithFormat:@"You must specify a user when passing %@", param];
+            break;
+          } else {
+            application.user = [NSString stringWithUTF8String:argv[i]];
           }
         } else {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];

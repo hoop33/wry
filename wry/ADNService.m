@@ -391,6 +391,9 @@
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://alpha-api.app.net/stream/0/%@", path]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
   [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+  if (self.pretty) {
+    [request setValue:@"1" forHTTPHeaderField:@"X-ADN-Pretty-JSON"];
+  }
   return request;
 }
 
