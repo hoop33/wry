@@ -9,6 +9,7 @@
 #import "UnfollowCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation UnfollowCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to unfollow"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service unfollow:[params objectAtIndex:0] error:error];
+                                  return [service unfollow:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 
