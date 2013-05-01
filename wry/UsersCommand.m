@@ -9,6 +9,7 @@
 #import "UsersCommand.h"
 #import "SSKeychain.h"
 #import "WrySettings.h"
+#import "NSString+Atification.h"
 
 @implementation UsersCommand
 
@@ -26,7 +27,7 @@
       if (params.count < 2) {
         [app println:[NSString stringWithFormat:@"You must specify the user to %@", [params objectAtIndex:0]]];
       } else {
-        NSString *user = [params objectAtIndex:1];
+        NSString *user = [[params objectAtIndex:1] deatify];
         if ([SSKeychain passwordForService:app.appName account:user] == nil) {
           [app println:[NSString stringWithFormat:@"User '%@' does not exist.", user]];
         } else {

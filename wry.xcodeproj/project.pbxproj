@@ -23,6 +23,7 @@
 		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
 		C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
 		C71BF68B172FD27C004C228B /* WrySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68A172FD27C004C228B /* WrySettings.m */; };
+		C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Atification.m */; };
 		C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
@@ -109,6 +110,8 @@
 		C71BF685172D42E6004C228B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		C71BF689172FD27C004C228B /* WrySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySettings.h; sourceTree = "<group>"; };
 		C71BF68A172FD27C004C228B /* WrySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettings.m; sourceTree = "<group>"; };
+		C71BF68D1731BF0D004C228B /* NSString+Atification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Atification.h"; sourceTree = "<group>"; };
+		C71BF68E1731BF0D004C228B /* NSString+Atification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Atification.m"; sourceTree = "<group>"; };
 		C72BF7AD1710C91800F0039D /* WryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryFormatter.h; sourceTree = "<group>"; };
 		C72BF7AF1710C96600F0039D /* TEXTFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXTFormatter.h; sourceTree = "<group>"; };
 		C72BF7B01710C96600F0039D /* TEXTFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXTFormatter.m; sourceTree = "<group>"; };
@@ -220,6 +223,17 @@
 			name = SSKeychain;
 			sourceTree = "<group>";
 		};
+		C71BF68C1731BEE4004C228B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
+				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
+				C71BF68D1731BF0D004C228B /* NSString+Atification.h */,
+				C71BF68E1731BF0D004C228B /* NSString+Atification.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		C72BF7AE1710C91E00F0039D /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +298,7 @@
 		C784326B16EBBA16000DED40 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C71BF68C1731BEE4004C228B /* Categories */,
 				C72BF7AE1710C91E00F0039D /* Formatters */,
 				C784326F16ECB045000DED40 /* Commands */,
 				C784328A16EF8AAF000DED40 /* ADN */,
@@ -292,8 +307,6 @@
 				C784326916EBBA0F000DED40 /* WryApplication.m */,
 				C744E4A4170277970002A9A5 /* WryUtils.h */,
 				C744E4A51702779B0002A9A5 /* WryUtils.m */,
-				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
-				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
 				C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */,
 				C71BF689172FD27C004C228B /* WrySettings.h */,
 				C71BF68A172FD27C004C228B /* WrySettings.m */,
@@ -512,6 +525,7 @@
 				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
 				C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */,
 				C71BF68B172FD27C004C228B /* WrySettings.m in Sources */,
+				C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
