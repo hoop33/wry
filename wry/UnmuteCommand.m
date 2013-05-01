@@ -9,6 +9,7 @@
 #import "UnmuteCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation UnmuteCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to unmute"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service unmute:[params objectAtIndex:0] error:error];
+                                  return [service unmute:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 

@@ -9,6 +9,7 @@
 #import "FollowCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation FollowCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to follow"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service follow:[params objectAtIndex:0] error:error];
+                                  return [service follow:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 

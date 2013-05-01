@@ -1,5 +1,10 @@
 # Release Notes
 
+## Version 1.4.1 (5/1/2013)
+* Change multi-user support to use actual ADN user IDs instead of arbitrary strings in keychain
+* Add commands to delete authorized users and set default user
+* Allow @username or username whenever a username is passed (except find)
+
 ## Version 1.4 (4/29/2013)
 * Add pretty-printing for JSON
 * Remove requirement for CocoaPods

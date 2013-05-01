@@ -60,7 +60,12 @@
   [help appendString:@"Opens a browser to sign in to App.net and authorize this application.\n"];
   [help appendString:@"After authorization, your browser will show you a code.\n"];
   [help appendString:@"Return to your terminal and paste this code to complete authorization.\n"];
-  [help appendString:@"This code is then stored in your Mac OS X Keychain for future use."];
+  [help appendString:@"This code is then stored in your Mac OS X Keychain for future use.\n"];
+  [help appendString:@"Note that you can call authorize multiple times to authorize multiple users.\n"];
+  [help appendString:@"Each user will be stored in your Keychain. You can specify which user to use\n"];
+  [help appendString:@"each time you use Wry with the -u, --user option.\n"];
+  [help appendString:@"You can use the 'users' command to delete your authorized users from the\n"];
+  [help appendString:@"Keychain or to set a default user. See the 'users' command for more information."];
   return help;
 }
 

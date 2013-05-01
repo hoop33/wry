@@ -9,6 +9,7 @@
 #import "MutedCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation MutedCommand
 
@@ -18,7 +19,7 @@
                           minimumParams:0
                            errorMessage:nil error:error
                               operation:^id(ADNService *service) {
-                                return params.count > 0 ? [service getMuted:[params objectAtIndex:0]
+                                return params.count > 0 ? [service getMuted:[[params objectAtIndex:0] atify]
                                                                       error:error] :
                                   [service getMuted:error];
                               }];
