@@ -7,11 +7,15 @@
 //
 
 #import "AuthorizeCommand.h"
-#import "WryErrorCodes.h"
+#import "ADNService.h"
+#import "ADNResponse.h"
+#import "ADNUser.h"
+#import "WryUtils.h"
 
 @implementation AuthorizeCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+  BOOL success = YES;
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -26,16 +30,25 @@
   [app print:@"Enter code from your Web browser: "];
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
-    app.accessToken = accessToken;
-    return YES;
-  } else {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You entered a blank code"}];
+    ADNResponse *response;
+    success = [WryUtils getADNResponseForOperation:app
+                                       accessToken:accessToken
+                                            params:nil
+                                     minimumParams:0
+                                      errorMessage:nil
+                                             error:error
+                                          response:&response
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service getUser:error];
+                                         }];
+
+    if (success && response != nil) {
+      app.user = ((ADNUser *) response.object).username;
+      app.accessToken = accessToken;
+      [app println:[NSString stringWithFormat:@"User %@ authorized!", app.user]];
     }
-    return NO;
   }
+  return success;
 }
 
 - (NSString *)usage {

@@ -8,6 +8,7 @@
 
 @protocol WryCommand;
 @protocol WryFormatter;
+@class WrySettings;
 
 @interface WryApplication : NSObject
 
@@ -30,6 +31,5 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
-- (NSString *)defaultUser;
 
 @end

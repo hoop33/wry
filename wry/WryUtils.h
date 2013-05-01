@@ -18,6 +18,15 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 
 @interface WryUtils : NSObject
 
++ (BOOL)getADNResponseForOperation:(WryApplication *)app
+                       accessToken:(NSString *)accessToken
+                            params:(NSArray *)params
+                     minimumParams:(NSInteger)minimumParams
+                      errorMessage:(NSString *)errorMessage
+                             error:(NSError **)error
+                          response:(ADNResponse **)adnResponse
+                         operation:(ADNOperationBlock)operation;
+
 + (BOOL)performObjectOperation:(WryApplication *)app
                         params:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams

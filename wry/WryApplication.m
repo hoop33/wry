@@ -12,10 +12,10 @@
 #import "WryErrorCodes.h"
 #import "SSKeychain.h"
 #import "WryUtils.h"
+#import "WrySettings.h"
 
 #define kVersion @"1.4"
 #define kErrorDomain @"com.grailbox.wry"
-#define kDefaultUser @"default"
 #define kDefaultFormat @"text"
 #define kDefaultCount 20
 #define kMaxCount 200
@@ -28,9 +28,8 @@
   if (self != nil) {
     self.quiet = NO;
     self.count = kDefaultCount;
-    self.user = kDefaultUser;
-    // TODO put this in defaults with a format command to read/set
     self.format = kDefaultFormat;
+    self.user = [WrySettings defaultUser];
   }
   return self;
 }
@@ -98,6 +97,9 @@
 - (void)setAccessToken:(NSString *)accessToken {
   [SSKeychain setPassword:accessToken forService:self.appName
                   account:self.user];
+  if ([SSKeychain accountsForService:self.appName].count == 1) {
+    [WrySettings setDefaultUser:self.user];
+  }
 }
 
 - (NSString *)version {
@@ -106,10 +108,6 @@
 
 - (NSString *)errorDomain {
   return kErrorDomain;
-}
-
-- (NSString *)defaultUser {
-  return kDefaultUser;
 }
 
 @end

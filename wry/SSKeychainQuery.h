@@ -15,13 +15,13 @@
 @interface SSKeychainQuery : NSObject
 
 /** kSecAttrAccount */
-@property (nonatomic, copy) NSString *account;
+@property(nonatomic, copy) NSString *account;
 
 /** kSecAttrService */
-@property (nonatomic, copy) NSString *service;
+@property(nonatomic, copy) NSString *service;
 
 /** kSecAttrLabel */
-@property (nonatomic, copy) NSString *label;
+@property(nonatomic, copy) NSString *label;
 
 #if __IPHONE_3_0 && TARGET_OS_IPHONE
 /** kSecAttrAccessGroup (only used on iOS) */
@@ -31,8 +31,8 @@
 /**
  You do not need to set both of these.
  */
-@property (nonatomic, copy) NSString *password;
-@property (nonatomic, copy) NSData *passwordData;
+@property(nonatomic, copy) NSString *password;
+@property(nonatomic, copy) NSData *passwordData;
 
 /**
  Save the receiver's attributes as a keychain item. Existing items with the
