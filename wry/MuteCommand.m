@@ -9,6 +9,7 @@
 #import "MuteCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation MuteCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to mute"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service mute:[params objectAtIndex:0] error:error];
+                                  return [service mute:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 

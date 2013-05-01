@@ -7,11 +7,15 @@
 //
 
 #import "AuthorizeCommand.h"
-#import "WryErrorCodes.h"
+#import "ADNService.h"
+#import "ADNResponse.h"
+#import "ADNUser.h"
+#import "WryUtils.h"
 
 @implementation AuthorizeCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+  BOOL success = YES;
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -26,16 +30,25 @@
   [app print:@"Enter code from your Web browser: "];
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
-    app.accessToken = accessToken;
-    return YES;
-  } else {
-    if (error != NULL) {
-      *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput
-                               userInfo:@{NSLocalizedDescriptionKey : @"You entered a blank code"}];
+    ADNResponse *response;
+    success = [WryUtils getADNResponseForOperation:app
+                                       accessToken:accessToken
+                                            params:nil
+                                     minimumParams:0
+                                      errorMessage:nil
+                                             error:error
+                                          response:&response
+                                         operation:(ADNOperationBlock) ^(ADNService *service) {
+                                           return [service getUser:error];
+                                         }];
+
+    if (success && response != nil) {
+      app.user = ((ADNUser *) response.object).username;
+      app.accessToken = accessToken;
+      [app println:[NSString stringWithFormat:@"User %@ authorized!", app.user]];
     }
-    return NO;
   }
+  return success;
 }
 
 - (NSString *)usage {
@@ -47,7 +60,12 @@
   [help appendString:@"Opens a browser to sign in to App.net and authorize this application.\n"];
   [help appendString:@"After authorization, your browser will show you a code.\n"];
   [help appendString:@"Return to your terminal and paste this code to complete authorization.\n"];
-  [help appendString:@"This code is then stored in your Mac OS X Keychain for future use."];
+  [help appendString:@"This code is then stored in your Mac OS X Keychain for future use.\n"];
+  [help appendString:@"Note that you can call authorize multiple times to authorize multiple users.\n"];
+  [help appendString:@"Each user will be stored in your Keychain. You can specify which user to use\n"];
+  [help appendString:@"each time you use Wry with the -u, --user option.\n"];
+  [help appendString:@"You can use the 'users' command to delete your authorized users from the\n"];
+  [help appendString:@"Keychain or to set a default user. See the 'users' command for more information."];
   return help;
 }
 

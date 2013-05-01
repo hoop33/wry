@@ -9,6 +9,7 @@
 #import "UnblockCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation UnblockCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to unblock"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service unblock:[params objectAtIndex:0] error:error];
+                                  return [service unblock:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 

@@ -9,6 +9,7 @@
 #import "BlockCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation BlockCommand
 
@@ -19,7 +20,7 @@
                              errorMessage:@"You must specify a user ID or @username to block"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service block:[params objectAtIndex:0] error:error];
+                                  return [service block:[[params objectAtIndex:0] atify] error:error];
                                 }];
 }
 

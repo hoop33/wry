@@ -8,6 +8,7 @@
 
 #import "WryApplication.h"
 #import "WryErrorCodes.h"
+#import "NSString+Atification.h"
 
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
@@ -48,7 +49,7 @@ int main(int argc, const char *argv[]) {
             errorMessage = [NSString stringWithFormat:@"You must specify a user when passing %@", param];
             break;
           } else {
-            application.user = [NSString stringWithUTF8String:argv[i]];
+            application.user = [[NSString stringWithUTF8String:argv[i]] deatify];
           }
         } else {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];

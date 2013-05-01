@@ -14,10 +14,10 @@
  platform.
  */
 typedef enum {
-    
-	/** Some of the arguments were invalid. */
-	SSKeychainErrorBadArguments = -1001,
-    
+
+  /** Some of the arguments were invalid. */
+    SSKeychainErrorBadArguments = -1001,
+
 } SSKeychainErrorCode;
 
 /** SSKeychain error domain */
@@ -102,7 +102,8 @@ extern NSString *const kSSKeychainWhereKey;
  @return Returns `YES` on success, or `NO` on failure.
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;
-+ (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error;
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account
+              error:(NSError **)error;
 
 
 /**

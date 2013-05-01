@@ -20,7 +20,7 @@
                                             app.appName]];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ flags are:", app.appName]];
-    [app println:@"   -u, --user <user>      Specify the user to use (defaults to 'default')"];
+    [app println:@"   -u, --user <user>      Specify the user to use"];
     [app println:@"   -c, --count <n>        Limit count to n items"];
     [app println:@"   -f, --format <format>  Display output in format"];
     [app println:@"   -d, --debug            Show debugging information"];

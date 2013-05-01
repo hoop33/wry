@@ -9,6 +9,7 @@
 #import "MentionsCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "NSString+Atification.h"
 
 @implementation MentionsCommand
 
@@ -18,7 +19,7 @@
                           minimumParams:0
                            errorMessage:nil error:error
                               operation:^id(ADNService *service) {
-                                return params.count > 0 ? [service getMentions:[params objectAtIndex:0]
+                                return params.count > 0 ? [service getMentions:[[params objectAtIndex:0] atify]
                                                                          error:error] :
                                   [service getMentions:error];
                               }];

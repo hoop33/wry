@@ -17,6 +17,7 @@
 
 @interface WryUtils ()
 + (BOOL)performOperation:(WryApplication *)app
+             accessToken:(NSString *)accessToken
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
@@ -27,6 +28,28 @@
 
 @implementation WryUtils
 
++ (BOOL)getADNResponseForOperation:(WryApplication *)app
+                       accessToken:(NSString *)accessToken
+                            params:(NSArray *)params
+                     minimumParams:(NSInteger)minimumParams
+                      errorMessage:(NSString *)errorMessage
+                             error:(NSError **)error
+                          response:(ADNResponse **)adnResponse
+                         operation:(ADNOperationBlock)operation {
+  return [WryUtils performOperation:app
+                        accessToken:accessToken
+                             params:params
+                      minimumParams:minimumParams
+                       errorMessage:errorMessage
+                              error:error
+                          operation:operation
+                    outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
+                      if (response != nil) {
+                        *adnResponse = response;
+                      }
+                    }];
+}
+
 + (BOOL)performObjectOperation:(WryApplication *)app
                         params:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams
@@ -34,6 +57,7 @@
                          error:(NSError **)error
                      operation:(ADNOperationBlock)operation {
   return [WryUtils performOperation:app
+                        accessToken:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
@@ -51,6 +75,7 @@
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation {
   return [WryUtils performOperation:app
+                        accessToken:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
@@ -65,6 +90,7 @@
 }
 
 + (BOOL)performOperation:(WryApplication *)app
+             accessToken:(NSString *)accessToken
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
@@ -79,7 +105,7 @@
     }
     success = NO;
   } else {
-    ADNService *service = [[ADNService alloc] initWithAccessToken:app.accessToken];
+    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ? app.accessToken : accessToken)];
     service.count = app.count;
     service.debug = app.debug;
     service.pretty = app.pretty;
