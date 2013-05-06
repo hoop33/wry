@@ -115,6 +115,12 @@
                  error:error];
 }
 
+- (ADNResponse *)searchUsers:(NSString *)searchString error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"users/search/?q=%@", searchString]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
+}
+
 #pragma mark - Stream interactions
 
 - (ADNResponse *)getUserStream:(NSError **)error {
@@ -139,6 +145,8 @@
                   error:error];
 }
 
+#pragma mark - Post interactions
+
 - (ADNResponse *)getPosts:(NSError **)error {
   return [self getPosts:@"me" error:error];
 }
@@ -148,8 +156,6 @@
                 mapping:[ADNMappingProvider postMapping]
                   error:error];
 }
-
-#pragma mark - Post interactions
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
@@ -206,13 +212,7 @@
                   error:error];
 }
 
-- (ADNResponse *)searchUsers:(NSString *)searchString error:(NSError **)error {
-  return [self getItems:[NSString stringWithFormat:@"users/search/?q=%@", searchString]
-                mapping:[ADNMappingProvider userMapping]
-                  error:error];
-}
-
-#pragma mark - File methods
+#pragma mark - File interactions
 
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error {
   return [self getItem:[NSString stringWithFormat:@"files/%@", fileID] mapping:[ADNMappingProvider fileMapping]
@@ -290,6 +290,20 @@
     }
     return nil;
   }
+}
+
+#pragma mark - Message interactions
+
+- (ADNResponse *)getMessages:(NSError **)error {
+  return [self getItems:@"users/me/messages"
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
+}
+
+- (ADNResponse *)getMessages:(NSString *)channelID error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
 }
 
 #pragma mark - Helper methods
