@@ -292,6 +292,20 @@
   }
 }
 
+#pragma mark - Message interactions
+
+- (ADNResponse *)getMessages:(NSError **)error {
+  return [self getItems:@"users/me/messages"
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
+}
+
+- (ADNResponse *)getMessages:(NSString *)channelID error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {

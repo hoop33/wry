@@ -12,6 +12,7 @@
 #import "ADNUserDescription.h"
 #import "ADNPost.h"
 #import "ADNFile.h"
+#import "ADNMessage.h"
 
 @implementation ADNMappingProvider
 
@@ -59,6 +60,20 @@
     @"total_size" : @"totalSize",
     @"created_at" : @"createdAt"
   }];
+  return mapping;
+}
+
++ (RWJSONMapping *)messageMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNMessage class]];
+  [mapping addAttributeMappingsFromArray:@[@"text"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id" : @"messageID",
+    @"channel_id" : @"channelID",
+    @"thread_id" : @"rootMessageID",
+    @"reply_to" : @"replyToID",
+    @"created_at" : @"createdAt"
+  }];
+  [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 

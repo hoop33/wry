@@ -62,4 +62,8 @@
 - (ADNResponse *)getFiles:(NSError **)error;
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error;
 
+// Messages
+- (ADNResponse *)getMessages:(NSError **)error;
+- (ADNResponse *)getMessages:(NSString *)channelID error:(NSError **)error;
+
 @end
