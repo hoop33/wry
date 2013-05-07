@@ -15,6 +15,7 @@
 		5F237680B822AEBA7696A403 /* ADNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237098E0588D727AABD325 /* ADNFile.m */; };
 		5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2375EF1A33A13AD2218C9A /* ADNMessage.m */; };
 		5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237CC24925193B771DADFA /* ADNUserDescription.h */; };
+		5F23788005A250218BC639A3 /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237CF25F16BE1AB595D370 /* SendCommand.m */; };
 		5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
 		5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23732DDFB65635F0971665 /* MessagesCommand.m */; };
@@ -98,6 +99,7 @@
 		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
 		5F2374BAC4D93E3A7583A83B /* UsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCommand.h; sourceTree = "<group>"; };
 		5F2375EF1A33A13AD2218C9A /* ADNMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMessage.m; sourceTree = "<group>"; };
+		5F2376B9F411368597D162B3 /* SendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommand.h; sourceTree = "<group>"; };
 		5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesCommand.h; sourceTree = "<group>"; };
 		5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserDescription.m; sourceTree = "<group>"; };
 		5F237A3B099660DF7F93200E /* DownloadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCommand.m; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		5F237B6DF4680829830666F9 /* LsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommand.h; sourceTree = "<group>"; };
 		5F237C83E7993BD23B26CA42 /* DownloadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCommand.h; sourceTree = "<group>"; };
 		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
+		5F237CF25F16BE1AB595D370 /* SendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommand.m; sourceTree = "<group>"; };
 		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				5F23732DDFB65635F0971665 /* MessagesCommand.m */,
 				5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */,
 				5F2375EF1A33A13AD2218C9A /* ADNMessage.m */,
+				5F2376B9F411368597D162B3 /* SendCommand.h */,
+				5F237CF25F16BE1AB595D370 /* SendCommand.m */,
 			);
 			path = wry;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */,
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
+				5F23788005A250218BC639A3 /* SendCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

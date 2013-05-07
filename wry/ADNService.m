@@ -18,6 +18,8 @@
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 - (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body mapping:(RWJSONMapping *)mapping
+                      error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -158,22 +160,11 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
-  request.HTTPMethod = @"POST";
-  NSString *body = replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-    [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text];
-  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return response;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self createItem:@"posts"
+                     body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
+                       [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
+                  mapping:[ADNMappingProvider postMapping]
+                    error:error];
 }
 
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error {
@@ -306,6 +297,11 @@
                   error:error];
 }
 
+- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID text:(NSString *)text
+                       error:(NSError **)error {
+  return nil;
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
@@ -333,6 +329,24 @@
                    error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = method;
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    response.object = [response.data mapToObjectWithMapping:mapping];
+    return response;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body mapping:(RWJSONMapping *)mapping
+                      error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  request.HTTPMethod = @"POST";
+  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
