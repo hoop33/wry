@@ -14,6 +14,7 @@
 #import "ADNFile.h"
 #import "ADNMessage.h"
 #import "ADNChannel.h"
+#import "ADNAnnotation.h"
 
 @implementation ADNMappingProvider
 
@@ -31,7 +32,7 @@
     @"follows_you" : @"followsYou",
     @"you_follow" : @"youFollow"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
   return mapping;
 }
 
@@ -49,7 +50,7 @@
     @"id" : @"postID",
     @"created_at" : @"createdAt"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 
@@ -74,7 +75,7 @@
     @"reply_to" : @"replyToID",
     @"created_at" : @"createdAt"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 
@@ -87,7 +88,14 @@
     @"you_subscribed" : @"subscribed",
     @"you_can_edit" : @"edit"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
+  return mapping;
+}
+
++ (RWJSONMapping *)annotationMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAnnotation class]];
+  [mapping addAttributeMappingsFromArray:@[@"type", @"value"]];
   return mapping;
 }
 

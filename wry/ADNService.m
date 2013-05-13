@@ -330,7 +330,7 @@
 #pragma mark - Channel interactions
 
 - (ADNResponse *)getChannels:(NSError **)error {
-  return [self getItems:@"channels"
+  return [self getItems:@"channels?include_channel_annotations=1"
                 mapping:[ADNMappingProvider channelMapping]
                   error:error];
 }

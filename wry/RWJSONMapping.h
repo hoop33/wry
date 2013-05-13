@@ -12,10 +12,12 @@
 @property(nonatomic, strong) NSMutableArray *arrayMappings;
 @property(nonatomic, strong) NSMutableDictionary *dictionaryMappings;
 @property(nonatomic, strong) NSMutableDictionary *relationshipMappings;
+@property(nonatomic, strong) NSMutableDictionary *listMappings;
 
 - (id)initWithClass:(Class)cls;
 - (void)addAttributeMappingsFromArray:(NSArray *)array;
 - (void)addAttributeMappingsFromDictionary:(NSDictionary *)dictionary;
-- (void)addRelationshipMappingsWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping;
+- (void)addRelationshipMappingWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping;
+- (void)addListMappingWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping;
 
 @end
