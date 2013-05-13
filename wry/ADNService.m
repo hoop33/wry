@@ -18,7 +18,8 @@
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 - (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body mapping:(RWJSONMapping *)mapping
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
+                    mapping:(RWJSONMapping *)mapping
                       error:(NSError **)error;
 @end
 
@@ -163,6 +164,7 @@
   return [self createItem:@"posts"
                      body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
                        [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
+            contentHeader:nil
                   mapping:[ADNMappingProvider postMapping]
                     error:error];
 }
@@ -297,8 +299,31 @@
                   error:error];
 }
 
-- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID text:(NSString *)text
+- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
+                        text:(NSString *)text
                        error:(NSError **)error {
+  if (channelID == nil || channelID.length == 0) {
+    channelID = @"pm";
+  }
+  NSMutableDictionary *message = [NSMutableDictionary dictionary];
+  // TODO add "destinations"
+  [message setObject:text forKey:@"text"];
+  if (replyID.length != 0) {
+    [message setObject:replyID forKey:@"reply_to"];
+  }
+  if (users.count != 0) {
+    [message setObject:users forKey:@"destinations"];
+  }
+  NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                       body:jsonString
+              contentHeader:@"application/json"
+                    mapping:[ADNMappingProvider messageMapping]
+                      error:error];
+  }
   return nil;
 }
 
@@ -342,11 +367,15 @@
   }
 }
 
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body mapping:(RWJSONMapping *)mapping
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
+                    mapping:(RWJSONMapping *)mapping
                       error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = @"POST";
   request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+  if (contentHeader.length != 0) {
+    [request addValue:contentHeader forHTTPHeaderField:@"Content-Type"];
+  }
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];

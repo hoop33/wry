@@ -13,26 +13,37 @@
 @implementation SendCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performListOperation:app
-                                 params:params
-                          minimumParams:0
-                           errorMessage:nil
-                                  error:error
-                              operation:^id(ADNService *service) {
-                                return (params.count == 0) ?
-                                  [service getMessages:error] :
-                                  [service getMessages:[params objectAtIndex:0] error:error];
+  return [WryUtils performObjectOperation:app
+                                   params:params
+                            minimumParams:2
+                             errorMessage:@"You must specify a message and a user to send to"
+                                    error:error
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  NSMutableArray *users = [NSMutableArray array];
+                                  NSString *replyID = nil;
+                                  for (NSUInteger i = 0, n = params.count - 1; i < n; i++) {
+                                    NSString *param = [params objectAtIndex:i];
+                                    if ([param hasPrefix:@"@"]) {
+                                      [users addObject:param];
+                                    } else {
+                                      replyID = param;
+                                    }
+                                  }
+                                  return [service sendMessage:users replyID:replyID
+                                                    channelID:nil text:[params lastObject]
+                                                        error:error];
                               }];
 }
 
 - (NSString *)usage {
-  return @"<user1,user2,user3> <text>";
+  return @"<@username1 @username2 @username3 ...> [messageid] <text>";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Sends a private message to the specified user or users. You can\n"];
-  [help appendString:@"specify multiple users by separating with commas."];
+  [help appendString:@"Sends a private message to the specified user or users. You can specify\n"];
+  [help appendString:@"multiple users by separating with spaces. You can also reply to a message\n"];
+  [help appendString:@"by specifying the ID of the message to reply to."];
   return help;
 }
 
