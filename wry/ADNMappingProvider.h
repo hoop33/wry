@@ -15,5 +15,6 @@
 + (RWJSONMapping *)postMapping;
 + (RWJSONMapping *)fileMapping;
 + (RWJSONMapping *)messageMapping;
++ (RWJSONMapping *)channelMapping;
 
 @end

@@ -68,4 +68,8 @@
 - (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
                         text:(NSString *)text error:(NSError **)error;
 
+// Channels
+- (ADNResponse *)getChannels:(NSError **)error;
+- (ADNResponse *)showChannel:(NSString *)channelID error:(NSError **)error;
+
 @end

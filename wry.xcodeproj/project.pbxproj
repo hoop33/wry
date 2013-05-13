@@ -65,6 +65,8 @@
 		C784329216EFE7B7000DED40 /* UserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329116EFE7B7000DED40 /* UserCommand.m */; };
 		C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329416F0D8D4000DED40 /* RWJSONMapping.m */; };
 		C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329816F0DC21000DED40 /* ADNMappingProvider.m */; };
+		C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BD71740E4E700F5C806 /* ADNChannel.m */; };
+		C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */; };
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
@@ -197,6 +199,10 @@
 		C784329416F0D8D4000DED40 /* RWJSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapping.m; sourceTree = "<group>"; };
 		C784329716F0DC20000DED40 /* ADNMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingProvider.h; sourceTree = "<group>"; };
 		C784329816F0DC21000DED40 /* ADNMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingProvider.m; sourceTree = "<group>"; };
+		C78C5BD61740E4E700F5C806 /* ADNChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNChannel.h; sourceTree = "<group>"; };
+		C78C5BD71740E4E700F5C806 /* ADNChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNChannel.m; sourceTree = "<group>"; };
+		C78C5BDC1740EA0C00F5C806 /* ChannelsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsCommand.h; sourceTree = "<group>"; };
+		C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsCommand.m; sourceTree = "<group>"; };
 		C7CCEB6C16F5E3EE005DDBAB /* GlobalCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCommand.h; sourceTree = "<group>"; };
 		C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCommand.m; sourceTree = "<group>"; };
 		C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCommand.h; sourceTree = "<group>"; };
@@ -292,12 +298,6 @@
 				C784326116EA02FA000DED40 /* wry.1 */,
 				C784325F16EA02FA000DED40 /* Supporting Files */,
 				C784326B16EBBA16000DED40 /* Classes */,
-				5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */,
-				5F23732DDFB65635F0971665 /* MessagesCommand.m */,
-				5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */,
-				5F2375EF1A33A13AD2218C9A /* ADNMessage.m */,
-				5F2376B9F411368597D162B3 /* SendCommand.h */,
-				5F237CF25F16BE1AB595D370 /* SendCommand.m */,
 			);
 			path = wry;
 			sourceTree = "<group>";
@@ -332,6 +332,10 @@
 		C784326F16ECB045000DED40 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5F2376B9F411368597D162B3 /* SendCommand.h */,
+				5F237CF25F16BE1AB595D370 /* SendCommand.m */,
+				5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */,
+				5F23732DDFB65635F0971665 /* MessagesCommand.m */,
 				C784327016ECB135000DED40 /* WryCommand.h */,
 				C784327216ED2DF2000DED40 /* HelpCommand.h */,
 				C784327316ED2DF2000DED40 /* HelpCommand.m */,
@@ -397,6 +401,8 @@
 				5F237A3B099660DF7F93200E /* DownloadCommand.m */,
 				5F2374BAC4D93E3A7583A83B /* UsersCommand.h */,
 				5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */,
+				C78C5BDC1740EA0C00F5C806 /* ChannelsCommand.h */,
+				C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -404,6 +410,8 @@
 		C784328016EF856A000DED40 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */,
+				5F2375EF1A33A13AD2218C9A /* ADNMessage.m */,
 				C784327D16EF8565000DED40 /* ADNPost.h */,
 				C784327E16EF8565000DED40 /* ADNPost.m */,
 				C784328116EF85A8000DED40 /* ADNUser.h */,
@@ -414,6 +422,8 @@
 				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
 				5F2374343F648724555A4F33 /* ADNFile.h */,
 				5F237098E0588D727AABD325 /* ADNFile.m */,
+				C78C5BD61740E4E700F5C806 /* ADNChannel.h */,
+				C78C5BD71740E4E700F5C806 /* ADNChannel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -544,6 +554,8 @@
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
 				5F23788005A250218BC639A3 /* SendCommand.m in Sources */,
+				C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */,
+				C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

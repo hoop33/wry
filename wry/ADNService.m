@@ -327,6 +327,18 @@
   return nil;
 }
 
+#pragma mark - Channel interactions
+
+- (ADNResponse *)getChannels:(NSError **)error {
+  return [self getItems:@"channels"
+                mapping:[ADNMappingProvider channelMapping]
+                  error:error];
+}
+
+- (ADNResponse *)showChannel:(NSString *)channelID error:(NSError **)error {
+  return nil;
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {

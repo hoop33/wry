@@ -13,6 +13,7 @@
 #import "ADNPost.h"
 #import "ADNFile.h"
 #import "ADNMessage.h"
+#import "ADNChannel.h"
 
 @implementation ADNMappingProvider
 
@@ -74,6 +75,19 @@
     @"created_at" : @"createdAt"
   }];
   [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  return mapping;
+}
+
++ (RWJSONMapping *)channelMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNChannel class]];
+  [mapping addAttributeMappingsFromArray:@[@"type"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id" : @"channelID",
+    @"you_muted" : @"muted",
+    @"you_subscribed" : @"subscribed",
+    @"you_can_edit" : @"edit"
+  }];
+  [mapping addRelationshipMappingsWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 
