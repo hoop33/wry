@@ -15,6 +15,7 @@
 #import "ADNMessage.h"
 #import "ADNChannel.h"
 #import "ADNAnnotation.h"
+#import "ADNAccessControlList.h"
 
 @implementation ADNMappingProvider
 
@@ -89,6 +90,8 @@
     @"you_can_edit" : @"edit"
   }];
   [mapping addRelationshipMappingWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"readers" mapping:[ADNMappingProvider accessControlListMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"writers" mapping:[ADNMappingProvider accessControlListMapping]];
   [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;
 }
@@ -96,6 +99,16 @@
 + (RWJSONMapping *)annotationMapping {
   RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAnnotation class]];
   [mapping addAttributeMappingsFromArray:@[@"type", @"value"]];
+  return mapping;
+}
+
++ (RWJSONMapping *)accessControlListMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAccessControlList class]];
+  [mapping addAttributeMappingsFromArray:@[@"immutable", @"public", @"you"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"any_user" : @"anyUser",
+    @"user_ids" : @"userIDs"
+  }];
   return mapping;
 }
 

@@ -16,5 +16,7 @@
 + (RWJSONMapping *)fileMapping;
 + (RWJSONMapping *)messageMapping;
 + (RWJSONMapping *)channelMapping;
++ (RWJSONMapping *)annotationMapping;
++ (RWJSONMapping *)accessControlListMapping;
 
 @end
