@@ -1,16 +1,16 @@
 //
-//  SendCommand.m
+//  PmCommand.m
 //  wry
 //
 //  Created by Rob Warner on 05/07/13.
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import "SendCommand.h"
+#import "PmCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
 
-@implementation SendCommand
+@implementation PmCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [WryUtils performObjectOperation:app

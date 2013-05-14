@@ -1,5 +1,5 @@
 //
-//  SendCommand.h
+//  PmCommand.h
 //  wry
 //
 //  Created by Rob Warner on 05/07/13.
@@ -8,6 +8,6 @@
 
 #import "WryCommand.h"
 
-@interface SendCommand : NSObject <WryCommand>
+@interface PmCommand : NSObject <WryCommand>
 
 @end
