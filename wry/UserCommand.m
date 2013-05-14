@@ -19,7 +19,7 @@
                             minimumParams:0
                              errorMessage:nil error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return params.count > 0 ? [service getUser:[[params objectAtIndex:0] atify]
+                                  return params.count > 0 ? [service getUser:[params objectAtIndex:0]
                                                                        error:error] :
                                     [service getUser:error];
                                 }];
