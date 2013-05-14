@@ -70,6 +70,6 @@
 
 // Channels
 - (ADNResponse *)getChannels:(NSError **)error;
-- (ADNResponse *)showChannel:(NSString *)channelID error:(NSError **)error;
+- (ADNResponse *)getChannel:(NSString *)channelID error:(NSError **)error;
 
 @end

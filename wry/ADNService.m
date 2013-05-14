@@ -335,8 +335,11 @@
                   error:error];
 }
 
-- (ADNResponse *)showChannel:(NSString *)channelID error:(NSError **)error {
-  return nil;
+- (ADNResponse *)getChannel:(NSString *)channelID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"channels/%@?include_channel_annotations=1", channelID]
+               mapping:[ADNMappingProvider channelMapping]
+                method:@"GET"
+                 error:error];
 }
 
 #pragma mark - Helper methods
