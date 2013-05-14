@@ -69,6 +69,7 @@
 		C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */; };
 		C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE01740EED600F5C806 /* ADNAnnotation.m */; };
 		C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */; };
+		C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE91742471100F5C806 /* SendCommand.m */; };
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
@@ -209,6 +210,8 @@
 		C78C5BE01740EED600F5C806 /* ADNAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNAnnotation.m; sourceTree = "<group>"; };
 		C78C5BE217423B3100F5C806 /* ADNAccessControlList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNAccessControlList.h; sourceTree = "<group>"; };
 		C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNAccessControlList.m; sourceTree = "<group>"; };
+		C78C5BE81742471100F5C806 /* SendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommand.h; sourceTree = "<group>"; };
+		C78C5BE91742471100F5C806 /* SendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommand.m; sourceTree = "<group>"; };
 		C7CCEB6C16F5E3EE005DDBAB /* GlobalCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCommand.h; sourceTree = "<group>"; };
 		C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCommand.m; sourceTree = "<group>"; };
 		C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCommand.h; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */,
 				C78C5BDC1740EA0C00F5C806 /* ChannelsCommand.h */,
 				C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */,
+				C78C5BE81742471100F5C806 /* SendCommand.h */,
+				C78C5BE91742471100F5C806 /* SendCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */,
 				C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */,
 				C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */,
+				C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

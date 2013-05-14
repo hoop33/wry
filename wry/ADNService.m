@@ -306,7 +306,6 @@
     channelID = @"pm";
   }
   NSMutableDictionary *message = [NSMutableDictionary dictionary];
-  // TODO add "destinations"
   [message setObject:text forKey:@"text"];
   if (replyID.length != 0) {
     [message setObject:replyID forKey:@"reply_to"];
