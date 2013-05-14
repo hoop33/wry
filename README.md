@@ -94,15 +94,33 @@ $ wry reply 1234 This is my reply
 
 Again, quotes are optional around your reply text.
 
-## Building Wry
-
-Wry uses [CocoaPods](http://cocoapods.org/), so first install the CocoaPods gem, navigate to your Wry repo and run:
+As of Wry 1.5, you now can send Private Messages and interact with Patter Rooms. To see a list of all your subscribed channels, type:
 
 ```bash
-$ pod install
+$ wry channels
 ```
 
-Open wry.xcworkspace in Xcode and build.
+To send a private message, type:
+
+```bash
+$ wry pm @username "This is a private message"
+```
+
+To read messages in the Patter Room with Channel ID 1234, for example, type:
+
+```bash
+$ wry messages 1234
+```
+
+To add to the discussion in the Patter Room with Channel ID 1234, type:
+
+```bash
+$ wry send 1234 "Hey, look -- I'm getting involved."
+```
+
+## Building Wry
+
+Open `wry.xcodeproj` in Xcode and build.
 
 ## Code Design
 
@@ -111,15 +129,15 @@ When designing the code, I had two guiding principles:
 1. Make adding functionality easy. App.net is evolving rapidly, so adding new stuff should be simple.
 2. Avoid switches in favor of Git-like commands. This not only makes using Wry more intuitive and memorable, it also means I can create Wry shell (or interactive console) that you can leave running. I haven't started work on that yet, but it's coming soon.
 
-To address these principles, each command is implemented as a class whose name matches the command line argument + the word "Command," in Pascal case. The class name for the "stream" command, for example, is "StreamCommand." Each command class must implement the WryCommand protocol. The application then dynamically loads this class and runs it. The Help command finds all the commands dynamically as well.
+To address these principles, each command is implemented as a class whose name matches the command line argument + the word "Command," in Pascal case. The class name for the "stream" command, for example, is `StreamCommand`. Each command class must implement the `WryCommand protocol`. The application then dynamically loads this class and runs it. The `Help` command finds all the commands dynamically as well.
 
 This means that adding a command involves merely creating an appropriately named class and implementing the protocol.
 
-To address code duplication, a CommandUtils class implements common functionality. You'll see that the current commands delegate freely to this class.
+To address code duplication, a `WryUtils` class implements common functionality. You'll see that the current commands delegate freely to this class.
 
-The actual interaction with App.net rests in the ADNService class. This class calls the REST API, gets the results, and maps the JSON response to ADN object classes. To add more functionality, add the methods to ADNService, add the new mapping, if necessary, to ADNMappingProvider, and create a new command.
+The actual interaction with App.net rests in the `ADNService` class. This class calls the REST API, gets the results, and maps the JSON response to ADN object classes. To add more functionality, add the methods to `ADNService`, add the new mapping, if necessary, to `ADNMappingProvider`, and create a new command.
 
-Wry uses formatters for output. To create a new formatter, write a class with the format name in all caps, followed by the word "Formatter," and make it conform to the WryFormat protocol. To create a formatter for comma-separated values, for example, create a class called:
+Wry uses formatters for output. To create a new formatter, write a class with the format name in all caps, followed by the word "Formatter," and make it conform to the `WryFormat` protocol. To create a formatter for comma-separated values, for example, create a class called:
 
 ```bash
 CSVFormatter
