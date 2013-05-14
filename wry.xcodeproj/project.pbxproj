@@ -13,9 +13,12 @@
 		5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23700E04DD8F1511814264 /* LsCommand.m */; };
 		5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237C83E7993BD23B26CA42 /* DownloadCommand.h */; };
 		5F237680B822AEBA7696A403 /* ADNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237098E0588D727AABD325 /* ADNFile.m */; };
+		5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2375EF1A33A13AD2218C9A /* ADNMessage.m */; };
 		5F23787F0A3D4549746F953C /* ADNUserDescription.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237CC24925193B771DADFA /* ADNUserDescription.h */; };
+		5F23788005A250218BC639A3 /* PmCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237CF25F16BE1AB595D370 /* PmCommand.m */; };
 		5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
+		5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23732DDFB65635F0971665 /* MessagesCommand.m */; };
 		5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */; };
 		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
@@ -62,6 +65,11 @@
 		C784329216EFE7B7000DED40 /* UserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329116EFE7B7000DED40 /* UserCommand.m */; };
 		C784329516F0D8D4000DED40 /* RWJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329416F0D8D4000DED40 /* RWJSONMapping.m */; };
 		C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329816F0DC21000DED40 /* ADNMappingProvider.m */; };
+		C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BD71740E4E700F5C806 /* ADNChannel.m */; };
+		C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */; };
+		C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE01740EED600F5C806 /* ADNAnnotation.m */; };
+		C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */; };
+		C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE91742471100F5C806 /* SendCommand.m */; };
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
@@ -90,15 +98,21 @@
 		5F23700E04DD8F1511814264 /* LsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommand.m; sourceTree = "<group>"; };
 		5F237098E0588D727AABD325 /* ADNFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNFile.m; sourceTree = "<group>"; };
 		5F2370C39D60AE168097C05C /* UploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCommand.m; sourceTree = "<group>"; };
+		5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMessage.h; sourceTree = "<group>"; };
 		5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersCommand.m; sourceTree = "<group>"; };
+		5F23732DDFB65635F0971665 /* MessagesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesCommand.m; sourceTree = "<group>"; };
 		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
 		5F2374BAC4D93E3A7583A83B /* UsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCommand.h; sourceTree = "<group>"; };
+		5F2375EF1A33A13AD2218C9A /* ADNMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMessage.m; sourceTree = "<group>"; };
+		5F2376B9F411368597D162B3 /* PmCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PmCommand.h; sourceTree = "<group>"; };
+		5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesCommand.h; sourceTree = "<group>"; };
 		5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserDescription.m; sourceTree = "<group>"; };
 		5F237A3B099660DF7F93200E /* DownloadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCommand.m; sourceTree = "<group>"; };
 		5F237AFC9661EA6E24D76E41 /* UploadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCommand.h; sourceTree = "<group>"; };
 		5F237B6DF4680829830666F9 /* LsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommand.h; sourceTree = "<group>"; };
 		5F237C83E7993BD23B26CA42 /* DownloadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCommand.h; sourceTree = "<group>"; };
 		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
+		5F237CF25F16BE1AB595D370 /* PmCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PmCommand.m; sourceTree = "<group>"; };
 		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
@@ -188,6 +202,16 @@
 		C784329416F0D8D4000DED40 /* RWJSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWJSONMapping.m; sourceTree = "<group>"; };
 		C784329716F0DC20000DED40 /* ADNMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingProvider.h; sourceTree = "<group>"; };
 		C784329816F0DC21000DED40 /* ADNMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingProvider.m; sourceTree = "<group>"; };
+		C78C5BD61740E4E700F5C806 /* ADNChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNChannel.h; sourceTree = "<group>"; };
+		C78C5BD71740E4E700F5C806 /* ADNChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNChannel.m; sourceTree = "<group>"; };
+		C78C5BDC1740EA0C00F5C806 /* ChannelsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsCommand.h; sourceTree = "<group>"; };
+		C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsCommand.m; sourceTree = "<group>"; };
+		C78C5BDF1740EED600F5C806 /* ADNAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNAnnotation.h; sourceTree = "<group>"; };
+		C78C5BE01740EED600F5C806 /* ADNAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNAnnotation.m; sourceTree = "<group>"; };
+		C78C5BE217423B3100F5C806 /* ADNAccessControlList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNAccessControlList.h; sourceTree = "<group>"; };
+		C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNAccessControlList.m; sourceTree = "<group>"; };
+		C78C5BE81742471100F5C806 /* SendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommand.h; sourceTree = "<group>"; };
+		C78C5BE91742471100F5C806 /* SendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommand.m; sourceTree = "<group>"; };
 		C7CCEB6C16F5E3EE005DDBAB /* GlobalCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCommand.h; sourceTree = "<group>"; };
 		C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCommand.m; sourceTree = "<group>"; };
 		C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCommand.h; sourceTree = "<group>"; };
@@ -317,6 +341,10 @@
 		C784326F16ECB045000DED40 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5F2376B9F411368597D162B3 /* PmCommand.h */,
+				5F237CF25F16BE1AB595D370 /* PmCommand.m */,
+				5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */,
+				5F23732DDFB65635F0971665 /* MessagesCommand.m */,
 				C784327016ECB135000DED40 /* WryCommand.h */,
 				C784327216ED2DF2000DED40 /* HelpCommand.h */,
 				C784327316ED2DF2000DED40 /* HelpCommand.m */,
@@ -382,6 +410,10 @@
 				5F237A3B099660DF7F93200E /* DownloadCommand.m */,
 				5F2374BAC4D93E3A7583A83B /* UsersCommand.h */,
 				5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */,
+				C78C5BDC1740EA0C00F5C806 /* ChannelsCommand.h */,
+				C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */,
+				C78C5BE81742471100F5C806 /* SendCommand.h */,
+				C78C5BE91742471100F5C806 /* SendCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -389,6 +421,8 @@
 		C784328016EF856A000DED40 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */,
+				5F2375EF1A33A13AD2218C9A /* ADNMessage.m */,
 				C784327D16EF8565000DED40 /* ADNPost.h */,
 				C784327E16EF8565000DED40 /* ADNPost.m */,
 				C784328116EF85A8000DED40 /* ADNUser.h */,
@@ -399,6 +433,12 @@
 				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
 				5F2374343F648724555A4F33 /* ADNFile.h */,
 				5F237098E0588D727AABD325 /* ADNFile.m */,
+				C78C5BD61740E4E700F5C806 /* ADNChannel.h */,
+				C78C5BD71740E4E700F5C806 /* ADNChannel.m */,
+				C78C5BDF1740EED600F5C806 /* ADNAnnotation.h */,
+				C78C5BE01740EED600F5C806 /* ADNAnnotation.m */,
+				C78C5BE217423B3100F5C806 /* ADNAccessControlList.h */,
+				C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -526,6 +566,14 @@
 				C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */,
 				C71BF68B172FD27C004C228B /* WrySettings.m in Sources */,
 				C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */,
+				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
+				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
+				5F23788005A250218BC639A3 /* PmCommand.m in Sources */,
+				C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */,
+				C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */,
+				C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */,
+				C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */,
+				C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +645,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};
 			name = Debug;
 		};
@@ -606,6 +655,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};
 			name = Release;
 		};

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class ADNUser;
 
 @interface ADNPost : NSObject

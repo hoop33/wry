@@ -17,6 +17,7 @@
     self.arrayMappings = [NSMutableArray array];
     self.dictionaryMappings = [NSMutableDictionary dictionary];
     self.relationshipMappings = [NSMutableDictionary dictionary];
+    self.listMappings = [NSMutableDictionary dictionary];
   }
   return self;
 }
@@ -29,8 +30,12 @@
   [self.dictionaryMappings addEntriesFromDictionary:dictionary];
 }
 
-- (void)addRelationshipMappingsWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping {
+- (void)addRelationshipMappingWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping {
   [self.relationshipMappings setValue:mapping forKey:sourceKey];
+}
+
+- (void)addListMappingWithSourceKeyPath:(NSString *)sourceKey mapping:(RWJSONMapping *)mapping {
+  [[self listMappings] setValue:mapping forKey:sourceKey];
 }
 
 @end

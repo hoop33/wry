@@ -12,6 +12,10 @@
 #import "ADNUserDescription.h"
 #import "ADNPost.h"
 #import "ADNFile.h"
+#import "ADNMessage.h"
+#import "ADNChannel.h"
+#import "ADNAnnotation.h"
+#import "ADNAccessControlList.h"
 
 @implementation ADNMappingProvider
 
@@ -29,7 +33,7 @@
     @"follows_you" : @"followsYou",
     @"you_follow" : @"youFollow"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
   return mapping;
 }
 
@@ -47,7 +51,7 @@
     @"id" : @"postID",
     @"created_at" : @"createdAt"
   }];
-  [mapping addRelationshipMappingsWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
   return mapping;
 }
 
@@ -58,6 +62,52 @@
     @"id" : @"fileID",
     @"total_size" : @"totalSize",
     @"created_at" : @"createdAt"
+  }];
+  return mapping;
+}
+
++ (RWJSONMapping *)messageMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNMessage class]];
+  [mapping addAttributeMappingsFromArray:@[@"text"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id" : @"messageID",
+    @"channel_id" : @"channelID",
+    @"thread_id" : @"rootMessageID",
+    @"reply_to" : @"replyToID",
+    @"created_at" : @"createdAt"
+  }];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  return mapping;
+}
+
++ (RWJSONMapping *)channelMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNChannel class]];
+  [mapping addAttributeMappingsFromArray:@[@"type"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"id" : @"channelID",
+    @"you_muted" : @"muted",
+    @"you_subscribed" : @"subscribed",
+    @"you_can_edit" : @"edit"
+  }];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"readers" mapping:[ADNMappingProvider accessControlListMapping]];
+  [mapping addRelationshipMappingWithSourceKeyPath:@"writers" mapping:[ADNMappingProvider accessControlListMapping]];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
+  return mapping;
+}
+
++ (RWJSONMapping *)annotationMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAnnotation class]];
+  [mapping addAttributeMappingsFromArray:@[@"type", @"value"]];
+  return mapping;
+}
+
++ (RWJSONMapping *)accessControlListMapping {
+  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAccessControlList class]];
+  [mapping addAttributeMappingsFromArray:@[@"immutable", @"public", @"you"]];
+  [mapping addAttributeMappingsFromDictionary:@{
+    @"any_user" : @"anyUser",
+    @"user_ids" : @"userIDs"
   }];
   return mapping;
 }

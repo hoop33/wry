@@ -18,6 +18,9 @@
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 - (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
+                    mapping:(RWJSONMapping *)mapping
+                      error:(NSError **)error;
 @end
 
 @implementation ADNService
@@ -115,6 +118,12 @@
                  error:error];
 }
 
+- (ADNResponse *)searchUsers:(NSString *)searchString error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"users/search/?q=%@", searchString]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
+}
+
 #pragma mark - Stream interactions
 
 - (ADNResponse *)getUserStream:(NSError **)error {
@@ -139,6 +148,8 @@
                   error:error];
 }
 
+#pragma mark - Post interactions
+
 - (ADNResponse *)getPosts:(NSError **)error {
   return [self getPosts:@"me" error:error];
 }
@@ -149,25 +160,13 @@
                   error:error];
 }
 
-#pragma mark - Post interactions
-
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  NSMutableURLRequest *request = [self getURLRequestWithPath:@"posts"];
-  request.HTTPMethod = @"POST";
-  NSString *body = replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-    [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text];
-  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-  [self performRequest:request];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider postMapping]];
-    return response;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self createItem:@"posts"
+                     body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
+                       [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
+            contentHeader:nil
+                  mapping:[ADNMappingProvider postMapping]
+                    error:error];
 }
 
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error {
@@ -206,13 +205,7 @@
                   error:error];
 }
 
-- (ADNResponse *)searchUsers:(NSString *)searchString error:(NSError **)error {
-  return [self getItems:[NSString stringWithFormat:@"users/search/?q=%@", searchString]
-                mapping:[ADNMappingProvider userMapping]
-                  error:error];
-}
-
-#pragma mark - File methods
+#pragma mark - File interactions
 
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error {
   return [self getItem:[NSString stringWithFormat:@"files/%@", fileID] mapping:[ADNMappingProvider fileMapping]
@@ -292,6 +285,62 @@
   }
 }
 
+#pragma mark - Message interactions
+
+- (ADNResponse *)getMessages:(NSError **)error {
+  return [self getItems:@"users/me/messages"
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
+}
+
+- (ADNResponse *)getMessages:(NSString *)channelID error:(NSError **)error {
+  return [self getItems:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                mapping:[ADNMappingProvider messageMapping]
+                  error:error];
+}
+
+- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
+                        text:(NSString *)text
+                       error:(NSError **)error {
+  if (channelID == nil || channelID.length == 0) {
+    channelID = @"pm";
+  }
+  NSMutableDictionary *message = [NSMutableDictionary dictionary];
+  [message setObject:text forKey:@"text"];
+  if (replyID.length != 0) {
+    [message setObject:replyID forKey:@"reply_to"];
+  }
+  if (users.count != 0) {
+    [message setObject:users forKey:@"destinations"];
+  }
+  NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                       body:jsonString
+              contentHeader:@"application/json"
+                    mapping:[ADNMappingProvider messageMapping]
+                      error:error];
+  }
+  return nil;
+}
+
+#pragma mark - Channel interactions
+
+- (ADNResponse *)getChannels:(NSError **)error {
+  return [self getItems:@"channels?include_channel_annotations=1"
+                mapping:[ADNMappingProvider channelMapping]
+                  error:error];
+}
+
+- (ADNResponse *)getChannel:(NSString *)channelID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"channels/%@?include_channel_annotations=1", channelID]
+               mapping:[ADNMappingProvider channelMapping]
+                method:@"GET"
+                 error:error];
+}
+
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
@@ -319,6 +368,28 @@
                    error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = method;
+  [self performRequest:request];
+  if (self.data.length > 0) {
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    response.object = [response.data mapToObjectWithMapping:mapping];
+    return response;
+  } else {
+    if (error != NULL) {
+      *error = self.error;
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
+                    mapping:(RWJSONMapping *)mapping
+                      error:(NSError **)error {
+  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  request.HTTPMethod = @"POST";
+  request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+  if (contentHeader.length != 0) {
+    [request addValue:contentHeader forHTTPHeaderField:@"Content-Type"];
+  }
   [self performRequest:request];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];

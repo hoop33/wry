@@ -1,5 +1,11 @@
 # Release Notes
 
+## Version 1.5 (5/14/2013)
+* Add Private Message support
+* Add Patter Room support
+* Add general Channel and Message support
+* Fix: retrieve user by ID not working
+
 ## Version 1.4.1 (5/1/2013)
 * Change multi-user support to use actual ADN user IDs instead of arbitrary strings in keychain
 * Add commands to delete authorized users and set default user
