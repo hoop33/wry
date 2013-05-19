@@ -350,8 +350,10 @@
   [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSDictionary *dictionary in response.data) {
+    NSArray *results = (NSArray *)response.data;
+    NSEnumerator *enumerator = self.reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
+    for (NSDictionary *dictionary in enumerator) {
       [items addObject:[dictionary mapToObjectWithMapping:mapping]];
     }
     response.object = [NSArray arrayWithArray:items];
