@@ -13,15 +13,27 @@
 @implementation PostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+  ADNOperationBlock postOperation = ^(ADNService *service) {
+    NSString *text = [params componentsJoinedByString:@" "];
+    if (!text.length) {
+      NSFileHandle *input = [NSFileHandle fileHandleWithStandardInput];
+      NSData *textData = [input readDataToEndOfFile];
+      text = [[NSString alloc]
+              initWithData:textData encoding:NSUTF8StringEncoding];
+
+      /* Remove any final newline. */
+      if ([text hasSuffix:@"\n"]) {
+        text = [text substringToIndex:text.length - 1];
+      }
+    }
+    return [service createPost:text replyID:nil error:error];
+  };
   return [WryUtils performObjectOperation:app
                                    params:params
-                            minimumParams:1
+                            minimumParams:0
                              errorMessage:@"You must specify a message"
                                     error:error
-                                operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service createPost:[params componentsJoinedByString:@" "] replyID:nil
-                                                       error:error];
-                                }];
+                                operation:postOperation];
 }
 
 - (NSString *)usage {
