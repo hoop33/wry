@@ -15,9 +15,10 @@
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSError *error;
-@property(nonatomic) NSInteger count;
-@property(nonatomic) BOOL debug;
-@property(nonatomic) BOOL pretty;
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) BOOL debug;
+@property(nonatomic, assign) BOOL pretty;
+@property(nonatomic, assign) BOOL reverse;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 

@@ -19,10 +19,11 @@
 @property(nonatomic, strong) id <WryFormatter> formatter;
 @property(nonatomic, copy) NSString *format;
 @property(nonatomic, copy) NSString *user;
-@property(nonatomic) BOOL debug;
-@property(nonatomic) BOOL quiet;
-@property(nonatomic) BOOL pretty;
-@property(nonatomic) int count;
+@property(nonatomic, assign) BOOL debug;
+@property(nonatomic, assign) BOOL quiet;
+@property(nonatomic, assign) BOOL pretty;
+@property(nonatomic, assign) BOOL reverse;
+@property(nonatomic, assign) int count;
 
 - (int)run;
 - (void)print:(NSString *)output;
