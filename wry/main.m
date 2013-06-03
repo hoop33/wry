@@ -29,6 +29,8 @@ int main(int argc, const char *argv[]) {
           application.pretty = YES;
         } else if ([@[@"-r", @"--reverse"] containsObject:param]) {
           application.reverse = YES;
+        } else if ([@[@"-a", @"--annotations"] containsObject:param]) {
+          application.annotations = YES;
         } else if ([@[@"-c", @"--count"] containsObject:param]) {
           ++i;
           if (i >= argc) {

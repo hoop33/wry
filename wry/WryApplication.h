@@ -23,6 +23,7 @@
 @property(nonatomic, assign) BOOL quiet;
 @property(nonatomic, assign) BOOL pretty;
 @property(nonatomic, assign) BOOL reverse;
+@property(nonatomic, assign) BOOL annotations;
 @property(nonatomic, assign) int count;
 
 - (int)run;

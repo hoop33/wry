@@ -19,6 +19,7 @@
 @property(nonatomic, assign) BOOL debug;
 @property(nonatomic, assign) BOOL pretty;
 @property(nonatomic, assign) BOOL reverse;
+@property(nonatomic, assign) BOOL annotations;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 
