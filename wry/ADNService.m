@@ -21,7 +21,7 @@
 - (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
                     mapping:(RWJSONMapping *)mapping
                       error:(NSError **)error;
-- (NSString *)pathWithParameters:(NSString *)path resourceType:(ADNResourceType)resourceType;
+- (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount;
 @end
 
 @implementation ADNService
@@ -43,19 +43,10 @@
 }
 
 - (ADNResponse *)getUser:(NSString *)username error:(NSError **)error {
-  NSString *path = [self pathWithParameters:[NSString stringWithFormat:@"users/%@", username]
-                               resourceType:ADNResourceTypeUser];
-  [self performRequest:[self getURLRequestWithPath:path]];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-    return response;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self getItem:[NSString stringWithFormat:@"users/%@", username]
+               mapping:[ADNMappingProvider userMapping]
+                method:@"GET"
+                 error:error];
 }
 
 - (ADNResponse *)getFollowers:(NSError **)error {
@@ -63,8 +54,9 @@
 }
 
 - (ADNResponse *)getFollowers:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/followers", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/followers", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)getFollowing:(NSError **)error {
@@ -72,8 +64,9 @@
 }
 
 - (ADNResponse *)getFollowing:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/following", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/following", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)getMuted:(NSError **)error {
@@ -81,8 +74,9 @@
 }
 
 - (ADNResponse *)getMuted:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/muted", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/muted", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)follow:(NSString *)username error:(NSError **)error {
@@ -347,13 +341,14 @@
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
+  path = [self pathWithParameters:path includeCount:YES];
   NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
                                                     ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
                                                     self.count];
   [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSArray *results = (NSArray *)response.data;
+    NSArray *results = (NSArray *) response.data;
     NSEnumerator *enumerator = self.reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
     for (NSDictionary *dictionary in enumerator) {
@@ -371,6 +366,7 @@
 
 - (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error {
+  path = [self pathWithParameters:path includeCount:NO];
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = method;
   [self performRequest:request];
@@ -408,19 +404,17 @@
   }
 }
 
-- (NSString *)pathWithParameters:(NSString *)path resourceType:(ADNResourceType)resourceType {
-  if (self.annotations) {
-    NSMutableString *string = [NSMutableString stringWithString:path];
+- (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount {
+  NSMutableString *string = [NSMutableString stringWithString:path];
+  if (includeCount) {
     [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
-    switch (resourceType) {
-      case ADNResourceTypeUser:
-        [string appendString:@"include_user_annotations=1"];
-        break;
-
-    }
-    path = string;
+    [string appendFormat:@"count=%ld", self.count];
   }
-  return path;
+  if (self.annotations) {
+    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+    [string appendString:@"include_annotations=1"];
+  }
+  return [NSString stringWithString:string];
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
