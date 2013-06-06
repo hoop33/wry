@@ -10,6 +10,16 @@
 
 @class ADNResponse;
 
+typedef enum {
+  ADNResourceTypeNone,
+  ADNResourceTypeUser,
+  ADNResourceTypePost,
+  ADNResourceTypeChannel,
+  ADNResourceTypeMessage,
+  ADNResourceTypeFile,
+  ADNResourceTypeStream
+} ADNResourceType;
+
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
 @property(nonatomic, copy) NSString *accessToken;

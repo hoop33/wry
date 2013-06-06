@@ -21,6 +21,7 @@
 - (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
                     mapping:(RWJSONMapping *)mapping
                       error:(NSError **)error;
+- (NSString *)pathWithParameters:(NSString *)path resourceType:(ADNResourceType)resourceType;
 @end
 
 @implementation ADNService
@@ -42,7 +43,9 @@
 }
 
 - (ADNResponse *)getUser:(NSString *)username error:(NSError **)error {
-  [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@", username]]];
+  NSString *path = [self pathWithParameters:[NSString stringWithFormat:@"users/%@", username]
+                               resourceType:ADNResourceTypeUser];
+  [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
@@ -403,6 +406,21 @@
     }
     return nil;
   }
+}
+
+- (NSString *)pathWithParameters:(NSString *)path resourceType:(ADNResourceType)resourceType {
+  if (self.annotations) {
+    NSMutableString *string = [NSMutableString stringWithString:path];
+    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+    switch (resourceType) {
+      case ADNResourceTypeUser:
+        [string appendString:@"include_user_annotations=1"];
+        break;
+
+    }
+    path = string;
+  }
+  return path;
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
