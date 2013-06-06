@@ -7,11 +7,17 @@
 //
 
 #import "ADNFile.h"
+#import "ADNAnnotation.h"
 
 @implementation ADNFile
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"ID:%ld   %@   %@ (%ldB)", self.fileID, self.createdAt, self.name, self.totalSize];
+  NSMutableString *str = [NSMutableString string];
+  [str appendFormat:@"ID:%ld   %@   %@ (%ldB)", self.fileID, self.createdAt, self.name, self.totalSize];
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation description]];
+  }
+  return str;
 }
 
 @end

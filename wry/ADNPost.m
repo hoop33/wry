@@ -8,6 +8,7 @@
 
 #import "ADNPost.h"
 #import "ADNUser.h"
+#import "ADNAnnotation.h"
 
 @implementation ADNPost
 
@@ -17,6 +18,9 @@
   [str appendFormat:@"\n%@", (self.text == nil ? @"[REDACTED]" : self.text)];
   [str appendFormat:@"\nID: %ld -- %@", self.postID, self.createdAt];
   [str appendString:@"\n----------"];
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation description]];
+  }
   return str;
 }
 

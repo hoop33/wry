@@ -53,6 +53,7 @@
     @"created_at" : @"createdAt"
   }];
   [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;
 }
 
@@ -64,6 +65,7 @@
     @"total_size" : @"totalSize",
     @"created_at" : @"createdAt"
   }];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;
 }
 
@@ -78,6 +80,7 @@
     @"created_at" : @"createdAt"
   }];
   [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;
 }
 
