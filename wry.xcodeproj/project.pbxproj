@@ -74,6 +74,7 @@
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
 		C7CCEB7A16F60B83005DDBAB /* PostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7916F60B83005DDBAB /* PostCommand.m */; };
+		C7CEE0581760924C0028361F /* ChannelCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0571760924C0028361F /* ChannelCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -221,6 +222,8 @@
 		C7CCEB7816F60B83005DDBAB /* PostCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCommand.h; sourceTree = "<group>"; };
 		C7CCEB7916F60B83005DDBAB /* PostCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCommand.m; sourceTree = "<group>"; };
 		C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryErrorCodes.h; sourceTree = "<group>"; };
+		C7CEE0561760924C0028361F /* ChannelCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCommand.h; sourceTree = "<group>"; };
+		C7CEE0571760924C0028361F /* ChannelCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +344,8 @@
 		C784326F16ECB045000DED40 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				C7CEE0561760924C0028361F /* ChannelCommand.h */,
+				C7CEE0571760924C0028361F /* ChannelCommand.m */,
 				5F2376B9F411368597D162B3 /* PmCommand.h */,
 				5F237CF25F16BE1AB595D370 /* PmCommand.m */,
 				5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */,
@@ -574,6 +579,7 @@
 				C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */,
 				C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */,
 				C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */,
+				C7CEE0581760924C0028361F /* ChannelCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
