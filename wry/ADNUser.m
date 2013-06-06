@@ -8,6 +8,7 @@
 
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
+#import "ADNAnnotation.h"
 
 @implementation ADNUser
 
@@ -21,6 +22,9 @@
   [str appendString:[self shortDescription]];
   if (self.userDescription != nil) {
     [str appendFormat:@"\n%@", [self.userDescription description]];
+  }
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation description]];
   }
   [str appendString:@"\n----------"];
   return str;

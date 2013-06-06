@@ -34,6 +34,7 @@
     @"you_follow" : @"youFollow"
   }];
   [mapping addRelationshipMappingWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
+  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;
 }
 
