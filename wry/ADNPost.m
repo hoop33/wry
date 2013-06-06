@@ -17,10 +17,10 @@
   [str appendString:(self.user == nil ? @"[RETIRED USER]" : [self.user shortDescription])];
   [str appendFormat:@"\n%@", (self.text == nil ? @"[REDACTED]" : self.text)];
   [str appendFormat:@"\nID: %ld -- %@", self.postID, self.createdAt];
-  [str appendString:@"\n----------"];
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
+  [str appendString:@"\n----------"];
   return str;
 }
 
