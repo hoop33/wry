@@ -20,6 +20,7 @@
                                             app.appName]];
     [app println:@""];
     [app println:[NSString stringWithFormat:@"The %@ flags are:", app.appName]];
+    [app println:@"   -a, --annotations      Include annotations"];
     [app println:@"   -c, --count <n>        Limit count to n items"];
     [app println:@"   -d, --debug            Show debugging information"];
     [app println:@"   -f, --format <format>  Display output in format"];
