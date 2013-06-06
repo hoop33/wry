@@ -59,11 +59,12 @@
 
 + (RWJSONMapping *)fileMapping {
   RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNFile class]];
-  [mapping addAttributeMappingsFromArray:@[@"name", @"sha1"]];
+  [mapping addAttributeMappingsFromArray:@[@"name", @"sha1", @"url"]];
   [mapping addAttributeMappingsFromDictionary:@{
     @"id" : @"fileID",
     @"total_size" : @"totalSize",
-    @"created_at" : @"createdAt"
+    @"created_at" : @"createdAt",
+    @"url_short" : @"shortUrl"
   }];
   [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;

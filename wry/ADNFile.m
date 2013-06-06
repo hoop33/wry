@@ -14,9 +14,12 @@
 - (NSString *)description {
   NSMutableString *str = [NSMutableString string];
   [str appendFormat:@"ID:%ld   %@   %@ (%ldB)", self.fileID, self.createdAt, self.name, self.totalSize];
+  [str appendFormat:@"\nSHA1: %@", self.sha1];
+  [str appendFormat:@"\n%@", self.shortUrl.length > 0 ? self.shortUrl : self.url];
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
+  [str appendString:@"\n----------"];
   return str;
 }
 
