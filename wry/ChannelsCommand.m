@@ -27,7 +27,7 @@
 }
 
 - (NSString *)help {
-  return @"Displays your subscribed channels";
+  return @"Displays your subscribed channels.";
 }
 
 - (NSString *)summary {
