@@ -64,7 +64,8 @@
     @"id" : @"fileID",
     @"total_size" : @"totalSize",
     @"created_at" : @"createdAt",
-    @"url_short" : @"shortUrl"
+    @"url_short" : @"shortUrl",
+    @"public" : @"isPublic"
   }];
   [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
   return mapping;

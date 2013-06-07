@@ -15,6 +15,7 @@
 @property(nonatomic, strong) NSDate *createdAt;
 @property(nonatomic, copy) NSString *url;
 @property(nonatomic, copy) NSString *shortUrl;
+@property(nonatomic, assign) BOOL isPublic;
 @property(nonatomic, strong) NSArray *annotations;
 
 @end
