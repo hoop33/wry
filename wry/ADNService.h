@@ -63,6 +63,7 @@
 - (ADNResponse *)download:(NSString *)fileID error:(NSError **)error;
 - (ADNResponse *)getFiles:(NSError **)error;
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error;
+- (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic error:(NSError **)error;
 
 // Messages
 - (ADNResponse *)getMessages:(NSError **)error;

@@ -75,6 +75,7 @@
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
 		C7CCEB7A16F60B83005DDBAB /* PostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7916F60B83005DDBAB /* PostCommand.m */; };
 		C7CEE0581760924C0028361F /* ChannelCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0571760924C0028361F /* ChannelCommand.m */; };
+		C7CEE05B17616D7D0028361F /* ChmodCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE05A17616D7D0028361F /* ChmodCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -224,6 +225,8 @@
 		C7CCEB7B16F695F6005DDBAB /* WryErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryErrorCodes.h; sourceTree = "<group>"; };
 		C7CEE0561760924C0028361F /* ChannelCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCommand.h; sourceTree = "<group>"; };
 		C7CEE0571760924C0028361F /* ChannelCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCommand.m; sourceTree = "<group>"; };
+		C7CEE05917616D7D0028361F /* ChmodCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChmodCommand.h; sourceTree = "<group>"; };
+		C7CEE05A17616D7D0028361F /* ChmodCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChmodCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +422,8 @@
 				C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */,
 				C78C5BE81742471100F5C806 /* SendCommand.h */,
 				C78C5BE91742471100F5C806 /* SendCommand.m */,
+				C7CEE05917616D7D0028361F /* ChmodCommand.h */,
+				C7CEE05A17616D7D0028361F /* ChmodCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */,
 				C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */,
 				C7CEE0581760924C0028361F /* ChannelCommand.m in Sources */,
+				C7CEE05B17616D7D0028361F /* ChmodCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

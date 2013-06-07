@@ -18,9 +18,10 @@
 - (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
 - (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
-                    mapping:(RWJSONMapping *)mapping
-                      error:(NSError **)error;
+- (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
+                      contentHeader:(NSString *)contentHeader
+                            mapping:(RWJSONMapping *)mapping
+                              error:(NSError **)error;
 - (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount;
 @end
 
@@ -158,12 +159,13 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  return [self createItem:@"posts"
-                     body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-                       [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
-            contentHeader:nil
-                  mapping:[ADNMappingProvider postMapping]
-                    error:error];
+  return [self createOrUpdateItem:@"posts"
+                             body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
+                               [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
+                           create:YES
+                    contentHeader:nil
+                          mapping:[ADNMappingProvider postMapping]
+                            error:error];
 }
 
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error {
@@ -282,6 +284,30 @@
   }
 }
 
+- (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic
+                      error:(NSError **)error {
+  NSMutableDictionary *file = [NSMutableDictionary dictionary];
+  if (name.length > 0) {
+    [file setValue:name forKey:@"name"];
+  }
+  if (makePublic != nil) {
+    [file setValue:makePublic forKey:@"public"];
+  }
+  NSData *json = [NSJSONSerialization dataWithJSONObject:file
+                                                 options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createOrUpdateItem:[NSString stringWithFormat:@"files/%@", fileID]
+                               body:jsonString
+                             create:NO
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider fileMapping]
+                              error:error];
+  }
+  return nil;
+}
+
 #pragma mark - Message interactions
 
 - (ADNResponse *)getMessages:(NSError **)error {
@@ -314,11 +340,12 @@
                                                    error:error];
   if (json != nil) {
     NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
-                       body:jsonString
-              contentHeader:@"application/json"
-                    mapping:[ADNMappingProvider messageMapping]
-                      error:error];
+    return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                               body:jsonString
+                             create:YES
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider messageMapping]
+                              error:error];
   }
   return nil;
 }
@@ -382,11 +409,12 @@
   }
 }
 
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
-                    mapping:(RWJSONMapping *)mapping
-                      error:(NSError **)error {
+- (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
+                      contentHeader:(NSString *)contentHeader
+                            mapping:(RWJSONMapping *)mapping
+                              error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
-  request.HTTPMethod = @"POST";
+  request.HTTPMethod = create ? @"POST" : @"PUT";
   request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
   if (contentHeader.length != 0) {
     [request addValue:contentHeader forHTTPHeaderField:@"Content-Type"];
