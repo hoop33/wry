@@ -7,7 +7,7 @@
 //
 
 #import "ADNMappingProvider.h"
-#import "RWJSONMapping.h"
+#import "ADNJSONMapping.h"
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
 #import "ADNPost.h"
@@ -16,105 +16,130 @@
 #import "ADNChannel.h"
 #import "ADNAnnotation.h"
 #import "ADNAccessControlList.h"
+#import "ADNHashtag.h"
+#import "ADNLink.h"
+#import "ADNMappingEntry.h"
 
 @implementation ADNMappingProvider
 
-+ (RWJSONMapping *)adnWrapperMapping {
-  return nil;
-}
-
-+ (RWJSONMapping *)userMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNUser class]];
-  [mapping addAttributeMappingsFromArray:
-             @[@"username", @"name"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"id" : @"userID",
-    @"description" : @"userDescription",
-    @"follows_you" : @"followsYou",
-    @"you_follow" : @"youFollow"
-  }];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"description" mapping:[ADNMappingProvider userDescriptionMapping]];
-  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
++ (ADNJSONMapping *)userMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNUser class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"id" to:@"userID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"description" to:@"userDescription" mapping:[ADNMappingProvider userDescriptionMapping]],
+    [ADNMappingEntry mappingEntry:@"follows_you" to:@"followsYou" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"you_follow" to:@"youFollow" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"username" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"name" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)userDescriptionMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNUserDescription class]];
-  [mapping addAttributeMappingsFromArray:
-             @[@"text"]];
++ (ADNJSONMapping *)userDescriptionMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNUserDescription class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)postMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNPost class]];
-  [mapping addAttributeMappingsFromArray:@[@"text"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"id" : @"postID",
-    @"created_at" : @"createdAt"
-  }];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
-  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
++ (ADNJSONMapping *)postMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNPost class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"id" to:@"postID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"entities.links" to:@"links" mapping:[ADNMappingProvider linkMapping]],
+    [ADNMappingEntry mappingEntry:@"entities.hashtags" to:@"hashtags" mapping:[ADNMappingProvider hashtagMapping]],
+    [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)fileMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNFile class]];
-  [mapping addAttributeMappingsFromArray:@[@"name", @"sha1", @"url"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"id" : @"fileID",
-    @"total_size" : @"totalSize",
-    @"created_at" : @"createdAt",
-    @"url_short" : @"shortUrl",
-    @"public" : @"isPublic"
-  }];
-  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
++ (ADNJSONMapping *)fileMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNFile class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"name" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"sha1" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"url" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"fileID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"total_size" to:@"totalSize" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"url_short" to:@"shortUrl" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"public" to:@"isPublic" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)messageMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNMessage class]];
-  [mapping addAttributeMappingsFromArray:@[@"text"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"id" : @"messageID",
-    @"channel_id" : @"channelID",
-    @"thread_id" : @"rootMessageID",
-    @"reply_to" : @"replyToID",
-    @"created_at" : @"createdAt"
-  }];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[ADNMappingProvider userMapping]];
-  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
++ (ADNJSONMapping *)messageMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNMessage class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"messageID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"channel_id" to:@"channelID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"thread_id" to:@"threadID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"reply_to" to:@"replyToID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)channelMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNChannel class]];
-  [mapping addAttributeMappingsFromArray:@[@"type"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"id" : @"channelID",
-    @"you_muted" : @"muted",
-    @"you_subscribed" : @"subscribed",
-    @"you_can_edit" : @"edit"
-  }];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"owner" mapping:[ADNMappingProvider userMapping]];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"readers" mapping:[ADNMappingProvider accessControlListMapping]];
-  [mapping addRelationshipMappingWithSourceKeyPath:@"writers" mapping:[ADNMappingProvider accessControlListMapping]];
-  [mapping addListMappingWithSourceKeyPath:@"annotations" mapping:[ADNMappingProvider annotationMapping]];
++ (ADNJSONMapping *)channelMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNChannel class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"type" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"channelID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"you_muted" to:@"muted" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"you_subscribed" to:@"subscribed" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"you_can_edit" to:@"edit" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"owner" to:nil mapping:[ADNMappingProvider userMapping]],
+    [ADNMappingEntry mappingEntry:@"readers" to:nil mapping:[ADNMappingProvider accessControlListMapping]],
+    [ADNMappingEntry mappingEntry:@"writers" to:nil mapping:[ADNMappingProvider accessControlListMapping]],
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)annotationMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAnnotation class]];
-  [mapping addAttributeMappingsFromArray:@[@"type", @"value"]];
++ (ADNJSONMapping *)annotationMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNAnnotation class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"type" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"value" to:nil mapping:nil]
+  ];
   return mapping;
 }
 
-+ (RWJSONMapping *)accessControlListMapping {
-  RWJSONMapping *mapping = [[RWJSONMapping alloc] initWithClass:[ADNAccessControlList class]];
-  [mapping addAttributeMappingsFromArray:@[@"immutable", @"public", @"you"]];
-  [mapping addAttributeMappingsFromDictionary:@{
-    @"any_user" : @"anyUser",
-    @"user_ids" : @"userIDs"
-  }];
++ (ADNJSONMapping *)hashtagMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNHashtag class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"name" to:@"text" mapping:nil]
+  ];
+  return mapping;
+}
+
++ (ADNJSONMapping *)linkMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNLink class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"url" to:nil mapping:nil]
+  ];
+  return mapping;
+}
+
++ (ADNJSONMapping *)accessControlListMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNAccessControlList class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"immutable" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"public" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"you" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"any_user" to:@"anyUser" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"user_ids" to:@"userIDs" mapping:nil]
+  ];
   return mapping;
 }
 

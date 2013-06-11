@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@class RWJSONMapping;
+@class ADNJSONMapping;
 
 @interface ADNMappingProvider : NSObject
 
-+ (RWJSONMapping *)userMapping;
-+ (RWJSONMapping *)userDescriptionMapping;
-+ (RWJSONMapping *)postMapping;
-+ (RWJSONMapping *)fileMapping;
-+ (RWJSONMapping *)messageMapping;
-+ (RWJSONMapping *)channelMapping;
-+ (RWJSONMapping *)annotationMapping;
-+ (RWJSONMapping *)accessControlListMapping;
++ (ADNJSONMapping *)userMapping;
++ (ADNJSONMapping *)userDescriptionMapping;
++ (ADNJSONMapping *)postMapping;
++ (ADNJSONMapping *)fileMapping;
++ (ADNJSONMapping *)messageMapping;
++ (ADNJSONMapping *)channelMapping;
++ (ADNJSONMapping *)annotationMapping;
++ (ADNJSONMapping *)accessControlListMapping;
 
 @end

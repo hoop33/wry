@@ -15,12 +15,12 @@
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
-- (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
-- (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+- (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error;
+- (ADNResponse *)getItem:(NSString *)path mapping:(ADNJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
 - (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
                       contentHeader:(NSString *)contentHeader
-                            mapping:(RWJSONMapping *)mapping
+                            mapping:(ADNJSONMapping *)mapping
                               error:(NSError **)error;
 - (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount;
 @end
@@ -367,7 +367,7 @@
 
 #pragma mark - Helper methods
 
-- (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
+- (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error {
   path = [self pathWithParameters:path includeCount:YES];
   NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
                                                     ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
@@ -391,7 +391,7 @@
   }
 }
 
-- (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+- (ADNResponse *)getItem:(NSString *)path mapping:(ADNJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error {
   path = [self pathWithParameters:path includeCount:NO];
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
@@ -411,7 +411,7 @@
 
 - (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
                       contentHeader:(NSString *)contentHeader
-                            mapping:(RWJSONMapping *)mapping
+                            mapping:(ADNJSONMapping *)mapping
                               error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = create ? @"POST" : @"PUT";
