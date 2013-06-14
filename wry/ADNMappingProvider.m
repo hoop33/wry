@@ -80,7 +80,7 @@
     [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"id" to:@"messageID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"channel_id" to:@"channelID" mapping:nil],
-    [ADNMappingEntry mappingEntry:@"thread_id" to:@"threadID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"thread_id" to:@"rootMessageID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"reply_to" to:@"replyToID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
     [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
