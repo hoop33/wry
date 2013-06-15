@@ -9,41 +9,57 @@
 #import "PmCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "WryComposer.h"
 
 @implementation PmCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [WryUtils performObjectOperation:app
                                    params:params
-                            minimumParams:2
-                             errorMessage:@"You must specify a message and a user to send to"
+                            minimumParams:1
+                             errorMessage:@"You must specify a user to send to"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  NSCharacterSet *numbers = [NSCharacterSet decimalDigitCharacterSet];
                                   NSMutableArray *users = [NSMutableArray array];
                                   NSString *replyID = nil;
-                                  for (NSUInteger i = 0, n = params.count - 1; i < n; i++) {
-                                    NSString *param = [params objectAtIndex:i];
+                                  NSString *text = nil;
+                                  for (NSString *param in params) {
                                     if ([param hasPrefix:@"@"]) {
                                       [users addObject:param];
-                                    } else {
+                                    } else if (replyID == nil &&
+                                      [numbers isSupersetOfSet:
+                                                 [NSCharacterSet characterSetWithCharactersInString:param]]) {
                                       replyID = param;
+                                    } else {
+                                      text = param;
                                     }
                                   }
+                                  if (!text.length) {
+                                    WryComposer *composer = [[WryComposer alloc] init];
+                                    text = [composer compose];
+                                  }
                                   return [service sendMessage:users replyID:replyID
-                                                    channelID:nil text:[params lastObject]
+                                                    channelID:nil text:text
                                                         error:error];
-                              }];
+                                }];
 }
 
 - (NSString *)usage {
-  return @"<@username1 @username2 @username3 ...> [messageid] <text>";
+  return @"<@username1 @username2 @username3 ...> [messageid] [text]";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Sends a private message to the specified user or users. You can specify\n"];
-  [help appendString:@"multiple users by separating with spaces. You can also reply to a message\n"];
-  [help appendString:@"by specifying the ID of the message to reply to."];
+  [help appendString:
+          @"Sends a private message to the specified user or users. You can specify\n"
+            @"multiple users by separating with spaces. You can also reply to a message\n"
+            @"by specifying the ID of the message to reply to. If supplying the text of\n"
+            @"your message as command-line arguments, note that the shell's parsing rules\n"
+            @"are respected, so escape your text appropriately.\n"
+            "Note that quotes are NOT optional.\n"
+            @"\n"];
+  [help appendString:[WryComposer help]];
   return help;
 }
 

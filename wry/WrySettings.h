@@ -12,5 +12,7 @@
 
 + (NSString *)defaultUser;
 + (void)setDefaultUser:(NSString *)defaultUser;
++ (NSString *)editor;
++ (void)setEditor:(NSString *)editor;
 
 @end

@@ -9,47 +9,38 @@
 #import "PostCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "WryComposer.h"
 
 @implementation PostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  ADNOperationBlock postOperation = ^(ADNService *service) {
-    NSString *text = [params componentsJoinedByString:@" "];
-    if (!text.length) {
-      NSFileHandle *input = [NSFileHandle fileHandleWithStandardInput];
-      NSData *textData = [input readDataToEndOfFile];
-      text = [[NSString alloc]
-              initWithData:textData encoding:NSUTF8StringEncoding];
-
-      /* Remove any final newline. */
-      if ([text hasSuffix:@"\n"]) {
-        text = [text substringToIndex:text.length - 1];
-      }
-    }
-    return [service createPost:text replyID:nil error:error];
-  };
   return [WryUtils performObjectOperation:app
                                    params:params
                             minimumParams:0
-                             errorMessage:@"You must specify a message"
+                             errorMessage:nil
                                     error:error
-                                operation:postOperation];
+                                operation:(ADNOperationBlock) ^(ADNService *service) {
+                                  NSString *text = [params componentsJoinedByString:@" "];
+                                  if (!text.length) {
+                                    WryComposer *composer = [[WryComposer alloc] init];
+                                    text = [composer compose];
+                                  }
+                                  return [service createPost:text replyID:nil error:error];
+                                }];
 }
 
 - (NSString *)usage {
-  return @"[<text>]\n(omit text to read from stdin)";
+  return @"[text]";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-   @"Creates a new post with the text you specify. If supplying text as command-\n"
-   @"line arguments, note that the shell's parsing rules are respected, so escape\n"
-   @"your text appropriately. Quotes are optional.\n"
-   @"\n"
-   @"Alternatively, supply no arguments and the post body will be read from stdin.\n"
-   @"Enter EOF (^D) to end the post. This lets you avoid all shell quoting, as\n"
-   @"well as create posts by piping input from other commands."];
+          @"Creates a new post with the text you specify. If supplying text as command-\n"
+            @"line arguments, note that the shell's parsing rules are respected, so escape\n"
+            @"your text appropriately. Quotes are optional.\n"
+            @"\n"];
+  [help appendString:[WryComposer help]];
   return help;
 }
 
