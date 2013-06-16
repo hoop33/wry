@@ -10,5 +10,7 @@
 
 @property(nonatomic, copy) NSString *text;
 @property(nonatomic, copy) NSString *url;
+@property(nonatomic, assign) NSUInteger position;
+@property(nonatomic, assign) NSUInteger length;
 
 @end

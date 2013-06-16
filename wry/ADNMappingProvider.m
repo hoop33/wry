@@ -26,7 +26,8 @@
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNUser class]];
   mapping.entries = @[
     [ADNMappingEntry mappingEntry:@"id" to:@"userID" mapping:nil],
-    [ADNMappingEntry mappingEntry:@"description" to:@"userDescription" mapping:[ADNMappingProvider userDescriptionMapping]],
+    [ADNMappingEntry mappingEntry:@"description" to:@"userDescription"
+                          mapping:[ADNMappingProvider userDescriptionMapping]],
     [ADNMappingEntry mappingEntry:@"follows_you" to:@"followsYou" mapping:nil],
     [ADNMappingEntry mappingEntry:@"you_follow" to:@"youFollow" mapping:nil],
     [ADNMappingEntry mappingEntry:@"username" to:nil mapping:nil],
@@ -126,7 +127,9 @@
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNLink class]];
   mapping.entries = @[
     [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
-    [ADNMappingEntry mappingEntry:@"url" to:nil mapping:nil]
+    [ADNMappingEntry mappingEntry:@"url" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pos" to:@"position" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"len" to:@"length" mapping:nil]
   ];
   return mapping;
 }
