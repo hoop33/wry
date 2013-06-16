@@ -159,13 +159,24 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  return [self createOrUpdateItem:@"posts"
-                             body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-                               [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
-                           create:YES
-                    contentHeader:nil
-                          mapping:[ADNMappingProvider postMapping]
-                            error:error];
+  NSMutableDictionary *post = [NSMutableDictionary dictionary];
+  if (replyID.length != 0) {
+    [post setObject:replyID forKey:@"reply_to"];
+  }
+  [post setObject:text forKey:@"text"];
+  NSData *json = [NSJSONSerialization dataWithJSONObject:post
+                                                 options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createOrUpdateItem:@"posts"
+                               body:jsonString
+                             create:YES
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider postMapping]
+                              error:error];
+  }
+  return nil;
 }
 
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error {
