@@ -9,7 +9,6 @@
 #import "UserCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
-#import "NSString+Atification.h"
 
 @implementation UserCommand
 

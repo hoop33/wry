@@ -8,7 +8,6 @@
 
 #import "WryApplication.h"
 #import "WryCommand.h"
-#import "WryFormatter.h"
 #import "WryErrorCodes.h"
 #import "SSKeychain.h"
 #import "WryUtils.h"
