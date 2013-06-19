@@ -14,4 +14,13 @@
   return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
 }
 
+- (NSDictionary *)asDictionary {
+  // Note that we omit text, as per ADN guidelines
+  return @{
+    @"url" : self.url,
+    @"pos" : [NSNumber numberWithLong:self.position],
+    @"len" : [NSNumber numberWithLong:self.length]
+  };
+}
+
 @end

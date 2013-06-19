@@ -11,6 +11,8 @@
 #import "ADNResponse.h"
 #import "NSDictionary+JSONMapping.h"
 #import "ADNFile.h"
+#import "WryEnhancer.h"
+#import "LinkEnhancer.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
@@ -164,6 +166,8 @@
     [post setObject:replyID forKey:@"reply_to"];
   }
   [post setObject:text forKey:@"text"];
+  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  [linkEnhancer enhance:post];
   NSData *json = [NSJSONSerialization dataWithJSONObject:post
                                                  options:0
                                                    error:error];
@@ -347,6 +351,8 @@
   if (users.count != 0) {
     [message setObject:users forKey:@"destinations"];
   }
+  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  [linkEnhancer enhance:message];
   NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
                                                    error:error];
   if (json != nil) {

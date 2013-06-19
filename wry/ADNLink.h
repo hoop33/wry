@@ -13,4 +13,6 @@
 @property(nonatomic, assign) NSUInteger position;
 @property(nonatomic, assign) NSUInteger length;
 
+- (NSDictionary *)asDictionary; // Used for JSON serialization
+
 @end
