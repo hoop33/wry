@@ -1,5 +1,16 @@
 # Release Notes
 
+## Version 1.6 (6/19/2013)
+* Add -r/--reverse flag to reverse order of output
+* Add posting/replying/messaging from stdin (Thanks, @jws!)
+* Add external editor support for posting/replying/messaging
+* Add -a/--annotations flag for pulling annotations
+* Add URL/Short URL and public/private to output for Files
+* Add chmod command to change public/private status for a File
+* Add mv command to rename a File
+* Add hashtags and links to Post output
+* Add support for creating links in posts, replies, and messages using Markdown: [link text])(http://example.com)
+
 ## Version 1.5 (5/14/2013)
 * Add Private Message support
 * Add Patter Room support
