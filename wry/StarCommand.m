@@ -12,7 +12,6 @@
 
 @implementation StarCommand
 
-// TODO refactor these common methods
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [WryUtils performObjectOperation:app
                                    params:params

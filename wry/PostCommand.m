@@ -9,29 +9,38 @@
 #import "PostCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
+#import "WryComposer.h"
 
 @implementation PostCommand
 
 - (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
   return [WryUtils performObjectOperation:app
                                    params:params
-                            minimumParams:1
-                             errorMessage:@"You must specify a message"
+                            minimumParams:0
+                             errorMessage:nil
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service createPost:[params componentsJoinedByString:@" "] replyID:nil
-                                                       error:error];
+                                  NSString *text = [params componentsJoinedByString:@" "];
+                                  if (!text.length) {
+                                    WryComposer *composer = [[WryComposer alloc] init];
+                                    text = [composer compose];
+                                  }
+                                  return [service createPost:text replyID:nil error:error];
                                 }];
 }
 
 - (NSString *)usage {
-  return @"<text>";
+  return @"[text]";
 }
 
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
-  [help appendString:@"Creates a new post with the text you specify. Note that the shell's parsing\n"];
-  [help appendString:@"rules are respected, so escape your text appropriately. Quotes are optional."];
+  [help appendString:
+          @"Creates a new post with the text you specify. If supplying text as command-\n"
+            @"line arguments, note that the shell's parsing rules are respected, so escape\n"
+            @"your text appropriately. Quotes are optional.\n"
+            @"\n"];
+  [help appendString:[WryComposer help]];
   return help;
 }
 

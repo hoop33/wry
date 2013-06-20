@@ -109,6 +109,8 @@
     service.count = app.count;
     service.debug = app.debug;
     service.pretty = app.pretty;
+    service.reverse = app.reverse;
+    service.annotations = app.annotations;
     ADNResponse *response = operation(service);
     if (response != nil) {
       if (response.meta != nil) {

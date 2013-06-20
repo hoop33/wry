@@ -16,8 +16,8 @@
 
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
-  [str appendString:self.type];
-  [self appendDictionary:self.value toString:str indentationLevel:0];
+  [str appendFormat:@"* %@", self.type];
+  [self appendDictionary:self.value toString:str indentationLevel:2];
   return str;
 }
 
@@ -27,7 +27,11 @@
     if ([value isKindOfClass:[NSDictionary class]]) {
       [self appendDictionary:value toString:string indentationLevel:(level + 2)];
     } else {
-      [string appendFormat:@"\n%@ : %@", key, value];
+      [string appendString:@"\n"];
+      for (int i = 0; i < level; i++) {
+        [string appendString:@" "];
+      }
+      [string appendFormat:@"%@ : %@", key, value];
     }
   }
 }

@@ -8,6 +8,7 @@
 
 #import "ADNMessage.h"
 #import "ADNUser.h"
+#import "ADNAnnotation.h"
 
 @implementation ADNMessage
 
@@ -17,6 +18,9 @@
   [str appendFormat:@"\nChannel ID: %ld", self.channelID];
   [str appendFormat:@"\n%@", (self.text == nil ? @"[REDACTED]" : self.text)];
   [str appendFormat:@"\nID: %ld -- %@", self.messageID, self.createdAt];
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation description]];
+  }
   [str appendString:@"\n----------"];
   return str;
 }

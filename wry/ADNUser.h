@@ -16,6 +16,7 @@
 @property(nonatomic, strong) ADNUserDescription *userDescription;
 @property(nonatomic, assign) BOOL followsYou;
 @property(nonatomic, assign) BOOL youFollow;
+@property(nonatomic, strong) NSArray *annotations;
 
 - (NSString *)shortDescription;
 

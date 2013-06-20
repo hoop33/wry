@@ -8,13 +8,12 @@
 
 #import "WryApplication.h"
 #import "WryCommand.h"
-#import "WryFormatter.h"
 #import "WryErrorCodes.h"
 #import "SSKeychain.h"
 #import "WryUtils.h"
 #import "WrySettings.h"
 
-#define kVersion @"1.5"
+#define kVersion @"1.6"
 #define kErrorDomain @"com.grailbox.wry"
 #define kDefaultFormat @"text"
 #define kDefaultCount 20

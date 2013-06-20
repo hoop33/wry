@@ -14,5 +14,8 @@
 @property(nonatomic, strong) ADNUser *user;
 @property(nonatomic, strong) NSDate *createdAt;
 @property(nonatomic, copy) NSString *text;
+@property(nonatomic, strong) NSArray *annotations;
+@property(nonatomic, strong) NSArray *hashtags;
+@property(nonatomic, strong) NSArray *links;
 
 @end

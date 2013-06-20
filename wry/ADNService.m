@@ -11,16 +11,20 @@
 #import "ADNResponse.h"
 #import "NSDictionary+JSONMapping.h"
 #import "ADNFile.h"
+#import "WryEnhancer.h"
+#import "LinkEnhancer.h"
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
-- (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error;
-- (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+- (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error;
+- (ADNResponse *)getItem:(NSString *)path mapping:(ADNJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error;
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
-                    mapping:(RWJSONMapping *)mapping
-                      error:(NSError **)error;
+- (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
+                      contentHeader:(NSString *)contentHeader
+                            mapping:(ADNJSONMapping *)mapping
+                              error:(NSError **)error;
+- (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount;
 @end
 
 @implementation ADNService
@@ -42,17 +46,10 @@
 }
 
 - (ADNResponse *)getUser:(NSString *)username error:(NSError **)error {
-  [self performRequest:[self getURLRequestWithPath:[NSString stringWithFormat:@"users/%@", username]]];
-  if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider userMapping]];
-    return response;
-  } else {
-    if (error != NULL) {
-      *error = self.error;
-    }
-    return nil;
-  }
+  return [self getItem:[NSString stringWithFormat:@"users/%@", username]
+               mapping:[ADNMappingProvider userMapping]
+                method:@"GET"
+                 error:error];
 }
 
 - (ADNResponse *)getFollowers:(NSError **)error {
@@ -60,8 +57,9 @@
 }
 
 - (ADNResponse *)getFollowers:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/followers", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/followers", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)getFollowing:(NSError **)error {
@@ -69,8 +67,9 @@
 }
 
 - (ADNResponse *)getFollowing:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/following", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/following", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)getMuted:(NSError **)error {
@@ -78,8 +77,9 @@
 }
 
 - (ADNResponse *)getMuted:(NSString *)username error:(NSError **)error {
-  NSString *path = [NSString stringWithFormat:@"users/%@/muted", username];
-  return [self getItems:path mapping:[ADNMappingProvider userMapping] error:error];
+  return [self getItems:[NSString stringWithFormat:@"users/%@/muted", username]
+                mapping:[ADNMappingProvider userMapping]
+                  error:error];
 }
 
 - (ADNResponse *)follow:(NSString *)username error:(NSError **)error {
@@ -161,12 +161,26 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  return [self createItem:@"posts"
-                     body:(replyID == nil ? [NSString stringWithFormat:@"text=%@", text] :
-                       [NSString stringWithFormat:@"reply_to=%@&text=%@", replyID, text])
-            contentHeader:nil
-                  mapping:[ADNMappingProvider postMapping]
-                    error:error];
+  NSMutableDictionary *post = [NSMutableDictionary dictionary];
+  if (replyID.length != 0) {
+    [post setObject:replyID forKey:@"reply_to"];
+  }
+  [post setObject:text forKey:@"text"];
+  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  [linkEnhancer enhance:post];
+  NSData *json = [NSJSONSerialization dataWithJSONObject:post
+                                                 options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createOrUpdateItem:@"posts"
+                               body:jsonString
+                             create:YES
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider postMapping]
+                              error:error];
+  }
+  return nil;
 }
 
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error {
@@ -285,6 +299,30 @@
   }
 }
 
+- (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic
+                      error:(NSError **)error {
+  NSMutableDictionary *file = [NSMutableDictionary dictionary];
+  if (name.length > 0) {
+    [file setValue:name forKey:@"name"];
+  }
+  if (makePublic != nil) {
+    [file setValue:makePublic forKey:@"public"];
+  }
+  NSData *json = [NSJSONSerialization dataWithJSONObject:file
+                                                 options:0
+                                                   error:error];
+  if (json != nil) {
+    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return [self createOrUpdateItem:[NSString stringWithFormat:@"files/%@", fileID]
+                               body:jsonString
+                             create:NO
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider fileMapping]
+                              error:error];
+  }
+  return nil;
+}
+
 #pragma mark - Message interactions
 
 - (ADNResponse *)getMessages:(NSError **)error {
@@ -313,15 +351,18 @@
   if (users.count != 0) {
     [message setObject:users forKey:@"destinations"];
   }
+  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  [linkEnhancer enhance:message];
   NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
                                                    error:error];
   if (json != nil) {
     NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
-                       body:jsonString
-              contentHeader:@"application/json"
-                    mapping:[ADNMappingProvider messageMapping]
-                      error:error];
+    return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                               body:jsonString
+                             create:YES
+                      contentHeader:@"application/json"
+                            mapping:[ADNMappingProvider messageMapping]
+                              error:error];
   }
   return nil;
 }
@@ -343,15 +384,18 @@
 
 #pragma mark - Helper methods
 
-- (ADNResponse *)getItems:(NSString *)path mapping:(RWJSONMapping *)mapping error:(NSError **)error {
+- (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error {
+  path = [self pathWithParameters:path includeCount:YES];
   NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
                                                     ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
                                                     self.count];
   [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSMutableArray *items = [NSMutableArray array];
-    for (NSDictionary *dictionary in response.data) {
+    NSArray *results = (NSArray *) response.data;
+    NSEnumerator *enumerator = self.reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
+    for (NSDictionary *dictionary in enumerator) {
       [items addObject:[dictionary mapToObjectWithMapping:mapping]];
     }
     response.object = [NSArray arrayWithArray:items];
@@ -364,8 +408,9 @@
   }
 }
 
-- (ADNResponse *)getItem:(NSString *)path mapping:(RWJSONMapping *)mapping method:(NSString *)method
+- (ADNResponse *)getItem:(NSString *)path mapping:(ADNJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error {
+  path = [self pathWithParameters:path includeCount:NO];
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
   request.HTTPMethod = method;
   [self performRequest:request];
@@ -381,11 +426,12 @@
   }
 }
 
-- (ADNResponse *)createItem:(NSString *)path body:(NSString *)body contentHeader:(NSString *)contentHeader
-                    mapping:(RWJSONMapping *)mapping
-                      error:(NSError **)error {
+- (ADNResponse *)createOrUpdateItem:(NSString *)path body:(NSString *)body create:(BOOL)create
+                      contentHeader:(NSString *)contentHeader
+                            mapping:(ADNJSONMapping *)mapping
+                              error:(NSError **)error {
   NSMutableURLRequest *request = [self getURLRequestWithPath:path];
-  request.HTTPMethod = @"POST";
+  request.HTTPMethod = create ? @"POST" : @"PUT";
   request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
   if (contentHeader.length != 0) {
     [request addValue:contentHeader forHTTPHeaderField:@"Content-Type"];
@@ -401,6 +447,19 @@
     }
     return nil;
   }
+}
+
+- (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount {
+  NSMutableString *string = [NSMutableString stringWithString:path];
+  if (includeCount) {
+    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+    [string appendFormat:@"count=%ld", self.count];
+  }
+  if (self.annotations) {
+    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+    [string appendString:@"include_annotations=1"];
+  }
+  return [NSString stringWithString:string];
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods

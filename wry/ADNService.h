@@ -15,9 +15,11 @@
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSError *error;
-@property(nonatomic) NSInteger count;
-@property(nonatomic) BOOL debug;
-@property(nonatomic) BOOL pretty;
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) BOOL debug;
+@property(nonatomic, assign) BOOL pretty;
+@property(nonatomic, assign) BOOL reverse;
+@property(nonatomic, assign) BOOL annotations;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 
@@ -61,6 +63,7 @@
 - (ADNResponse *)download:(NSString *)fileID error:(NSError **)error;
 - (ADNResponse *)getFiles:(NSError **)error;
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error;
+- (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic error:(NSError **)error;
 
 // Messages
 - (ADNResponse *)getMessages:(NSError **)error;

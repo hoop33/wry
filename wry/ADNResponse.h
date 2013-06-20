@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RWJSONMapping;
+@class ADNJSONMapping;
 
 @interface ADNResponse : NSObject
 

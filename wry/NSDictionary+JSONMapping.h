@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class RWJSONMapping;
+@class ADNJSONMapping;
 
 @interface NSDictionary (JSONMapping)
 
-- (NSObject *)mapToObjectWithMapping:(RWJSONMapping *)mapping;
+- (NSObject *)mapToObjectWithMapping:(ADNJSONMapping *)mapping;
 
 @end
