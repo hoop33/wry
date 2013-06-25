@@ -10,9 +10,9 @@
 
 @interface WrySettings : NSObject
 
-+ (NSString *)defaultUser;
-+ (void)setDefaultUser:(NSString *)defaultUser;
-+ (NSString *)editor;
-+ (void)setEditor:(NSString *)editor;
+@property(nonatomic, copy) NSString *defaultUser;
+@property(nonatomic, copy) NSString *editor;
+
+- (void)save;
 
 @end

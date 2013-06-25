@@ -12,6 +12,7 @@
 
 @interface WryApplication : NSObject
 
+@property(nonatomic, strong) WrySettings *settings;
 @property(nonatomic, copy) NSString *appName;
 @property(nonatomic, copy) NSString *commandName;
 @property(nonatomic, strong) NSArray *params;

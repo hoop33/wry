@@ -16,7 +16,7 @@
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   if (params == nil || params.count == 0) {
-    NSString *defaultUser = [WrySettings defaultUser];
+    NSString *defaultUser = app.settings.defaultUser;
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {
       NSString *user = [account valueForKey:@"acct"];
       [app print:[defaultUser isEqualToString:user] ? @"*" : @" "];
@@ -36,7 +36,8 @@
             [SSKeychain deletePasswordForService:app.appName account:user];
             [app println:[NSString stringWithFormat:@"Deleted user '%@'", user]];
           } else {
-            [WrySettings setDefaultUser:user];
+            app.settings.defaultUser = user;
+            [app.settings save];
             [app println:[NSString stringWithFormat:@"User '%@' now default", user]];
           }
         }

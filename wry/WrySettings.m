@@ -12,35 +12,35 @@
 #define kEditor @"Editor"
 
 @interface WrySettings ()
-+ (id)property:(NSString *)name;
-+ (void)setProperty:(NSString *)name value:(id)value;
+- (id)property:(NSString *)name;
+- (void)setProperty:(NSString *)name value:(id)value;
 @end
 
 @implementation WrySettings
 
-+ (NSString *)defaultUser {
-  return [WrySettings property:kDefaultUser];
+- (id)init {
+  self = [super init];
+  if (self != nil) {
+    self.defaultUser = [self property:kDefaultUser];
+    self.editor = [self property:kEditor];
+    NSLog(@"Default: %@", self.defaultUser);
+    NSLog(@"Editor: %@", self.editor);
+  }
+  return self;
 }
 
-+ (void)setDefaultUser:(NSString *)defaultUser {
-  [WrySettings setProperty:kDefaultUser value:defaultUser];
+- (void)save {
+  [self setProperty:kDefaultUser value:self.defaultUser];
+  [self setProperty:kEditor value:self.editor];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSString *)editor {
-  return [WrySettings property:kEditor];
-}
-
-+ (void)setEditor:(NSString *)editor {
-  [WrySettings setProperty:kEditor value:editor];
-}
-
-+ (id)property:(NSString *)name {
+- (id)property:(NSString *)name {
   return [[NSUserDefaults standardUserDefaults] objectForKey:name];
 }
 
-+ (void)setProperty:(NSString *)name value:(id)value {
+- (void)setProperty:(NSString *)name value:(id)value {
   [[NSUserDefaults standardUserDefaults] setObject:value forKey:name];
-  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

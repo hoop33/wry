@@ -8,14 +8,12 @@
 
 #import "WryComposer.h"
 #import "WrySettings.h"
+#import "WryApplication.h"
 
 @interface WryComposer ()
 - (BOOL)interactive;
-
 - (NSString *)shell;
-
 - (NSString *)editor;
-
 - (NSString *)tempFileName;
 @end
 
@@ -75,7 +73,7 @@
 
 - (NSString *)editor {
   NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-  NSString *editor = [WrySettings editor];
+  NSString *editor = [WryApplication application].settings.editor;
   if (editor.length == 0) editor = [environment objectForKey:@"WRY_EDITOR"];
   if (editor.length == 0) editor = [environment objectForKey:@"VISUAL"];
   if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];

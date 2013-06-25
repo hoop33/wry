@@ -34,10 +34,11 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
+    self.settings = [[WrySettings alloc] init];
     self.quiet = NO;
     self.count = kDefaultCount;
     self.format = kDefaultFormat;
-    self.user = [WrySettings defaultUser];
+    self.user = self.settings.defaultUser;
   }
   return self;
 }
@@ -106,7 +107,8 @@
   [SSKeychain setPassword:accessToken forService:self.appName
                   account:self.user];
   if ([SSKeychain accountsForService:self.appName].count == 1) {
-    [WrySettings setDefaultUser:self.user];
+    self.settings.defaultUser = self.user;
+    [self.settings save];
   }
 }
 
