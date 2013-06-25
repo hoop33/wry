@@ -34,6 +34,8 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
+    _interactiveIn = isatty(fileno(stdin)) != 0;
+    _interactiveOut = isatty(fileno(stdout)) != 0;
     self.settings = [[WrySettings alloc] init];
     self.quiet = NO;
     self.count = kDefaultCount;

@@ -12,6 +12,8 @@
 
 @interface WryApplication : NSObject
 
+@property(nonatomic, assign, readonly) BOOL interactiveIn;
+@property(nonatomic, assign, readonly) BOOL interactiveOut;
 @property(nonatomic, strong) WrySettings *settings;
 @property(nonatomic, copy) NSString *appName;
 @property(nonatomic, copy) NSString *commandName;

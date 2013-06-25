@@ -11,7 +11,6 @@
 #import "WryApplication.h"
 
 @interface WryComposer ()
-- (BOOL)interactive;
 - (NSString *)shell;
 - (NSString *)editor;
 - (NSString *)tempFileName;
@@ -38,7 +37,7 @@
 - (NSString *)compose {
   NSString *text = nil;
   NSString *editor = [self editor];
-  if ([self interactive] && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
+  if ([WryApplication application].interactiveIn && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
     NSString *tempFileName = [self tempFileName];
     if (tempFileName != nil) {
       NSTask *task = [NSTask new];
@@ -61,10 +60,6 @@
     text = [[NSString alloc] initWithData:textData encoding:NSUTF8StringEncoding];
   }
   return [text hasSuffix:@"\n"] ? [text substringToIndex:text.length - 1] : text;
-}
-
-- (BOOL)interactive {
-  return isatty(0) != 0;
 }
 
 - (NSString *)shell {
