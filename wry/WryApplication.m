@@ -40,7 +40,7 @@
     self.quiet = NO;
     self.count = kDefaultCount;
     self.format = kDefaultFormat;
-    self.user = self.settings.defaultUser;
+    self.user = [self.settings getString:SettingsDefaultUser];
   }
   return self;
 }
@@ -109,8 +109,7 @@
   [SSKeychain setPassword:accessToken forService:self.appName
                   account:self.user];
   if ([SSKeychain accountsForService:self.appName].count == 1) {
-    self.settings.defaultUser = self.user;
-    [self.settings save];
+    [self.settings set:SettingsDefaultUser value:self.user];
   }
 }
 

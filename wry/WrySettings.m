@@ -8,37 +8,29 @@
 
 #import "WrySettings.h"
 
-#define kDefaultUser @"DefaultUser"
-#define kEditor @"Editor"
-
-@interface WrySettings ()
-- (id)property:(NSString *)name;
-- (void)setProperty:(NSString *)name value:(id)value;
-@end
+NSString * const SettingsDefaultUser = @"DefaultUser";
+NSString * const SettingsEditor = @"Editor";
+NSString * const SettingsTextColor = @"TextColor";
 
 @implementation WrySettings
 
 - (id)init {
   self = [super init];
   if (self != nil) {
-    self.defaultUser = [self property:kDefaultUser];
-    self.editor = [self property:kEditor];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+      SettingsTextColor : @"31m"
+    }];
   }
   return self;
 }
 
-- (void)save {
-  [self setProperty:kDefaultUser value:self.defaultUser];
-  [self setProperty:kEditor value:self.editor];
+- (NSObject *)getString:(NSString *)key {
+  return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
+- (void)set:(NSString *)key value:(NSObject *)value {
+  [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (id)property:(NSString *)name {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:name];
-}
-
-- (void)setProperty:(NSString *)name value:(id)value {
-  [[NSUserDefaults standardUserDefaults] setObject:value forKey:name];
 }
 
 @end

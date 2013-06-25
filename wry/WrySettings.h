@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const SettingsDefaultUser;
+extern NSString * const SettingsEditor;
+extern NSString * const SettingsTextColor;
+
 @interface WrySettings : NSObject
 
-@property(nonatomic, copy) NSString *defaultUser;
-@property(nonatomic, copy) NSString *editor;
-
-- (void)save;
+- (NSString *)getString:(NSString *)key;
+- (void)set:(NSString *)key value:(NSObject *)value;
 
 @end

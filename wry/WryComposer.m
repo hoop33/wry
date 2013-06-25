@@ -68,7 +68,7 @@
 
 - (NSString *)editor {
   NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-  NSString *editor = [WryApplication application].settings.editor;
+  NSString *editor = [[WryApplication application].settings getString:SettingsEditor];
   if (editor.length == 0) editor = [environment objectForKey:@"WRY_EDITOR"];
   if (editor.length == 0) editor = [environment objectForKey:@"VISUAL"];
   if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];
