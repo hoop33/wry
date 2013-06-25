@@ -25,4 +25,25 @@
   return str;
 }
 
+- (NSString *)colorDescription {
+  NSMutableString *str = [NSMutableString string];
+  [str appendFormat:@"ID:%@   %@   %@ (%@)",
+                    [self colorize:[NSString stringWithFormat:@"%ld", self.fileID] colorSetting:SettingsIDColor],
+                    [self colorize:[self.createdAt description] colorSetting:SettingsMutedColor],
+                    [self colorize:self.name colorSetting:SettingsNameColor],
+                    [self colorize:[NSString stringWithFormat:@"%ldB", self.totalSize] colorSetting:SettingsIDColor]
+  ];
+  [str appendFormat:@"\n(%@)   SHA1: %@",
+                    self.isPublic ? @"Public" : @"Private",
+                    [self colorize:self.sha1 colorSetting:SettingsMutedColor]
+  ];
+  [str appendFormat:@"\n%@", [self colorize:(self.shortUrl.length > 0 ? self.shortUrl : self.url)
+                               colorSetting:SettingsLinkColor]];
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation colorDescription]];
+  }
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
+  return str;
+}
+
 @end
