@@ -13,7 +13,8 @@
 
 @implementation UsersCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  WryApplication *app = [WryApplication application];
   if (params == nil || params.count == 0) {
     NSString *defaultUser = [WrySettings defaultUser];
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {

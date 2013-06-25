@@ -14,8 +14,9 @@
 
 @implementation AuthorizeCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
+  WryApplication *app = [WryApplication application];
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -31,8 +32,7 @@
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
     ADNResponse *response;
-    success = [WryUtils getADNResponseForOperation:app
-                                       accessToken:accessToken
+    success = [WryUtils getADNResponseForOperation:accessToken
                                             params:nil
                                      minimumParams:0
                                       errorMessage:nil

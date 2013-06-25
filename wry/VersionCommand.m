@@ -10,7 +10,8 @@
 
 @implementation VersionCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  WryApplication *app = [WryApplication application];
   [app println:[NSString stringWithFormat:@"%@ version %@", app.appName, app.version]];
   [app println:@"Copyright (C) 2013, Rob Warner (@hoop33)"];
   [app println:@"http://grailbox.com/wry"];

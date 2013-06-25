@@ -11,8 +11,11 @@
 
 @interface WryComposer ()
 - (BOOL)interactive;
+
 - (NSString *)shell;
+
 - (NSString *)editor;
+
 - (NSString *)tempFileName;
 @end
 
@@ -85,12 +88,12 @@
   NSString *tempFileName = nil;
   NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX"];
   const char *templateCString = [template fileSystemRepresentation];
-  char *tempFileNameCString = (char *)malloc(strlen(templateCString) + 1);
+  char *tempFileNameCString = (char *) malloc(strlen(templateCString) + 1);
   strcpy(tempFileNameCString, templateCString);
   int fileDescriptor = mkstemp(tempFileNameCString);
   if (fileDescriptor != -1) {
-    tempFileName =  [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString
-                                                                                length:strlen(tempFileNameCString)];
+    tempFileName = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString
+                                                                               length:strlen(tempFileNameCString)];
   }
   free(tempFileNameCString);
   return tempFileName;

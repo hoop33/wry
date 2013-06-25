@@ -11,9 +11,10 @@
 
 @implementation CommandsCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
   response.object = [WryUtils allCommands];
+  WryApplication *app = [WryApplication application];
   [app println:[app.formatter format:response]];
   return YES;
 }

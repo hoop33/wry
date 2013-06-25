@@ -12,9 +12,8 @@
 
 @implementation DownloadCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a file ID to download" error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {

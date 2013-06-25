@@ -13,8 +13,9 @@
 
 @implementation HelpCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
+  WryApplication *app = [WryApplication application];
   if (params.count == 0) {
     [app println:[NSString stringWithFormat:@"usage: %@ [flags] <command> [<args>]",
                                             app.appName]];
@@ -40,7 +41,7 @@
     for (Class cls in [WryUtils allCommands]) {
       id <WryCommand> command = [[cls alloc] init];
       [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:command]
-                                                                        UTF8String], [command summary]]];
+        UTF8String], [command summary]]];
     }
     [app println:@""];
     [app println:[NSString stringWithFormat:@"See '%@ help <command>' for more information on a specific command.",

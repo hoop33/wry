@@ -61,7 +61,7 @@
         returnCode = WryErrorCodeBadInput;
       } else {
         NSError *error;
-        if (![wryCommand run:self params:self.params error:&error]) {
+        if (![wryCommand run:self.params error:&error]) {
           if (error != nil) {
             [self println:error.localizedDescription];
             returnCode = (int) error.code;

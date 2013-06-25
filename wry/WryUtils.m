@@ -16,8 +16,7 @@
 #define kFormatterSuffix @"Formatter"
 
 @interface WryUtils ()
-+ (BOOL)performOperation:(WryApplication *)app
-             accessToken:(NSString *)accessToken
++ (BOOL)performOperation:(NSString *)accessToken
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
@@ -28,16 +27,14 @@
 
 @implementation WryUtils
 
-+ (BOOL)getADNResponseForOperation:(WryApplication *)app
-                       accessToken:(NSString *)accessToken
++ (BOOL)getADNResponseForOperation:(NSString *)accessToken
                             params:(NSArray *)params
                      minimumParams:(NSInteger)minimumParams
                       errorMessage:(NSString *)errorMessage
                              error:(NSError **)error
                           response:(ADNResponse **)adnResponse
                          operation:(ADNOperationBlock)operation {
-  return [WryUtils performOperation:app
-                        accessToken:accessToken
+  return [WryUtils performOperation:accessToken
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
@@ -50,32 +47,29 @@
                     }];
 }
 
-+ (BOOL)performObjectOperation:(WryApplication *)app
-                        params:(NSArray *)params
++ (BOOL)performObjectOperation:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams
                   errorMessage:(NSString *)errorMessage
                          error:(NSError **)error
                      operation:(ADNOperationBlock)operation {
-  return [WryUtils performOperation:app
-                        accessToken:nil
+  return [WryUtils performOperation:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
                               error:error
                           operation:operation
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
+                      WryApplication *app = [WryApplication application];
                       [app println:[app.formatter format:response]];
                     }];
 }
 
-+ (BOOL)performListOperation:(WryApplication *)app
-                      params:(NSArray *)params
++ (BOOL)performListOperation:(NSArray *)params
                minimumParams:(NSInteger)minimumParams
                 errorMessage:(NSString *)errorMessage
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation {
-  return [WryUtils performOperation:app
-                        accessToken:nil
+  return [WryUtils performOperation:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
@@ -84,13 +78,13 @@
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                       NSArray *list = (NSArray *) response.object;
                       if (list.count > 0) {
+                        WryApplication *app = [WryApplication application];
                         [app println:[app.formatter format:response]];
                       }
                     }];
 }
 
-+ (BOOL)performOperation:(WryApplication *)app
-             accessToken:(NSString *)accessToken
++ (BOOL)performOperation:(NSString *)accessToken
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
@@ -98,6 +92,7 @@
                operation:(ADNOperationBlock)operation
          outputOperation:(ADNOutputOperationBlock)outputOperation {
   BOOL success = YES;
+  WryApplication *app = [WryApplication application];
   if (params.count < minimumParams) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain

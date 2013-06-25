@@ -13,7 +13,8 @@
 
 @implementation UploadCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  WryApplication *app = [WryApplication application];
   if (params.count == 0) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain code:WryErrorCodeBadInput
@@ -32,8 +33,7 @@
     }
     return NO;
   }
-  return [WryUtils performObjectOperation:app
-                                   params:params
+  return [WryUtils performObjectOperation:params
                             minimumParams:0
                              errorMessage:nil error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {

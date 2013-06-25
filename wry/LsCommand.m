@@ -12,17 +12,15 @@
 
 @implementation LsCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   return params.count > 0 ?
-    [WryUtils performObjectOperation:app
-                              params:params
+    [WryUtils performObjectOperation:params
                        minimumParams:0
                         errorMessage:nil error:error
                            operation:^id(ADNService *service) {
                              return [service getFile:[params objectAtIndex:0] error:error];
                            }] :
-    [WryUtils performListOperation:app
-                            params:params
+    [WryUtils performListOperation:params
                      minimumParams:0
                       errorMessage:nil error:error
                          operation:^id(ADNService *service) {

@@ -13,9 +13,8 @@
 
 @implementation PostCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:0
                              errorMessage:nil
                                     error:error
@@ -36,10 +35,10 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Creates a new post with the text you specify. If supplying text as command-\n"
-            @"line arguments, note that the shell's parsing rules are respected, so escape\n"
-            @"your text appropriately. Quotes are optional.\n"
-            @"\n"];
+    @"Creates a new post with the text you specify. If supplying text as command-\n"
+      @"line arguments, note that the shell's parsing rules are respected, so escape\n"
+      @"your text appropriately. Quotes are optional.\n"
+      @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }
