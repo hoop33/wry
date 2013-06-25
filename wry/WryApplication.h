@@ -26,6 +26,8 @@
 @property(nonatomic, assign) BOOL annotations;
 @property(nonatomic, assign) int count;
 
++ (WryApplication *)application;
+
 - (int)run;
 - (void)print:(NSString *)output;
 - (void)println:(NSObject *)output;

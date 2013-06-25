@@ -22,6 +22,15 @@
 
 @implementation WryApplication
 
++ (WryApplication *)application {
+  static WryApplication *application;
+
+  @synchronized (self) {
+    if (!application) application = [[WryApplication alloc] init];
+    return application;
+  }
+}
+
 - (id)init {
   self = [super init];
   if (self != nil) {

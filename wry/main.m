@@ -12,7 +12,7 @@
 
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
-    WryApplication *application = [[WryApplication alloc] init];
+    WryApplication *application = [WryApplication application];
     application.appName = [[NSString stringWithUTF8String:argv[0]] lastPathComponent];
 
     NSString *errorMessage = nil;
