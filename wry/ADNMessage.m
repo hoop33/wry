@@ -9,6 +9,8 @@
 #import "ADNMessage.h"
 #import "ADNUser.h"
 #import "ADNAnnotation.h"
+#import "WrySettings.h"
+#import "WryApplication.h"
 
 @implementation ADNMessage
 
@@ -21,7 +23,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 

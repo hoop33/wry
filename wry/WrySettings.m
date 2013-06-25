@@ -10,6 +10,7 @@
 
 NSString * const SettingsDefaultUser = @"DefaultUser";
 NSString * const SettingsEditor = @"Editor";
+NSString * const SettingsSeparator = @"Separator";
 NSString * const SettingsTextColor = @"TextColor";
 NSString * const SettingsAlertColor = @"AlertColor";
 NSString * const SettingsUserColor = @"UserColor";
@@ -25,6 +26,7 @@ NSString * const SettingsHashtagColor = @"HashtagColor";
   self = [super init];
   if (self != nil) {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+      SettingsSeparator : @"----------",
       SettingsTextColor : @"32m",
       SettingsAlertColor : @"31m",
       SettingsUserColor : @"33m",

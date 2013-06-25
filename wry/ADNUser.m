@@ -11,6 +11,7 @@
 #import "ADNAnnotation.h"
 #import "WrySettings.h"
 #import "NSString+Atification.h"
+#import "WryApplication.h"
 
 @implementation ADNUser
 
@@ -43,7 +44,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 
@@ -56,7 +57,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 

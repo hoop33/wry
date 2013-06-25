@@ -12,6 +12,7 @@
 #import "ADNLink.h"
 #import "ADNHashtag.h"
 #import "WrySettings.h"
+#import "WryApplication.h"
 
 @implementation ADNPost
 
@@ -29,7 +30,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 
@@ -50,7 +51,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation colorDescription]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 

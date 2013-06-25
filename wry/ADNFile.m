@@ -8,6 +8,8 @@
 
 #import "ADNFile.h"
 #import "ADNAnnotation.h"
+#import "WryApplication.h"
+#import "WrySettings.h"
 
 @implementation ADNFile
 
@@ -19,7 +21,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
   return str;
 }
 
