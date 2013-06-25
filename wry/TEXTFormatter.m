@@ -7,17 +7,19 @@
 //
 
 #import "TEXTFormatter.h"
+#import "WryApplication.h"
 
 @implementation TEXTFormatter
 
 - (NSString *)format:(ADNResponse *)response {
+  BOOL inColor = [WryApplication application].interactiveOut;
   NSMutableString *string = [NSMutableString string];
   if ([response.object isKindOfClass:[NSArray class]]) {
     for (id item in (NSArray *) response.object) {
-      [string appendFormat:@"%@\n", [item description]];
+      [string appendFormat:@"%@\n", inColor ? [item colorDescription] : [item description]];
     }
   } else {
-    [string appendString:[response.object description]];
+    [string appendString: inColor ? [response.object colorDescription] : [response.object description]];
   }
   return string;
 }

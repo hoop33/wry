@@ -11,6 +11,7 @@
 #import "ADNAnnotation.h"
 #import "ADNLink.h"
 #import "ADNHashtag.h"
+#import "WrySettings.h"
 
 @implementation ADNPost
 
@@ -27,6 +28,27 @@
   }
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
+  }
+  [str appendString:@"\n----------"];
+  return str;
+}
+
+- (NSString *)colorDescription {
+  NSMutableString *str = [[NSMutableString alloc] init];
+  [str appendString:(self.user == nil ? [self colorize:@"[RETIRED USER]" colorSetting:SettingsAlertColor] : [self.user colorShortDescription])];
+  [str appendFormat:@"\n%@", (self.text == nil ? [self colorize:@"[REDACTED]" colorSetting:SettingsAlertColor] : [self colorize:self.text colorSetting:SettingsTextColor])];
+  [str appendFormat:@"\nID: %@ -- %@",
+    [self colorize:[NSString stringWithFormat:@"%ld", self.postID] colorSetting:SettingsIDColor],
+    [self colorize:[self.createdAt description] colorSetting:SettingsMutedColor]
+  ];
+  for (ADNLink *link in self.links) {
+    [str appendFormat:@"\n%@", [link colorDescription]];
+  }
+  for (ADNHashtag *hashtag in self.hashtags) {
+    [str appendFormat:@"\n%@", [hashtag colorDescription]];
+  }
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation colorDescription]];
   }
   [str appendString:@"\n----------"];
   return str;

@@ -7,11 +7,16 @@
 //
 
 #import "ADNHashtag.h"
+#import "WrySettings.h"
 
 @implementation ADNHashtag
 
 - (NSString *)description {
   return [NSString stringWithFormat:@"#%@", self.text];
+}
+
+- (NSString *)colorDescription {
+  return [self colorize:[NSString stringWithFormat:@"#%@", self.text] colorSetting:SettingsHashtagColor];
 }
 
 @end

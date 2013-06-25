@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+#import "ADNObject.h"
+
 @class ADNUser;
 
-@interface ADNPost : NSObject
+@interface ADNPost : ADNObject
 
 @property(nonatomic, assign) NSInteger postID;
 @property(nonatomic, strong) ADNUser *user;

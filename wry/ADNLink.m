@@ -7,11 +7,19 @@
 //
 
 #import "ADNLink.h"
+#import "WrySettings.h"
 
 @implementation ADNLink
 
 - (NSString *)description {
   return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
+}
+
+- (NSString *)colorDescription {
+  return [NSString stringWithFormat:@"[%@](%@)",
+    [self colorize:self.text colorSetting:SettingsTextColor],
+    [self colorize:self.url colorSetting:SettingsLinkColor]
+  ];
 }
 
 - (NSDictionary *)asDictionary {

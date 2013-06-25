@@ -7,11 +7,16 @@
 //
 
 #import "ADNUserDescription.h"
+#import "WrySettings.h"
 
 @implementation ADNUserDescription
 
 - (NSString *)description {
   return self.text;
+}
+
+- (NSString *)colorDescription {
+  return [self colorize:self.text colorSetting:SettingsTextColor];
 }
 
 @end

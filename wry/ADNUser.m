@@ -9,12 +9,29 @@
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
 #import "ADNAnnotation.h"
+#import "WrySettings.h"
+#import "NSString+Atification.h"
 
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (@%@) (%ld) %@==%@ You", self.name, self.username, (long) self.userID,
-                                    (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")];
+  return [NSString stringWithFormat:@"%@ (%@) (%ld) %@==%@ You",
+                                    self.name,
+                                    [self.username atify],
+                                    (long) self.userID,
+                                    (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")
+  ];
+}
+
+- (NSString *)colorShortDescription {
+  return [NSString stringWithFormat:@"%@ (%@) (%@) %@==%@ You",
+                                    [self colorize:self.name colorSetting:SettingsNameColor],
+                                    [self colorize:[self.username atify] colorSetting:SettingsUserColor],
+                                    [self colorize:[NSString stringWithFormat:@"%ld", (long) self.userID]
+                                      colorSetting:SettingsIDColor],
+                                    (self.youFollow ? @"<" : @""),
+                                    (self.followsYou ? @">" : @"")
+  ];
 }
 
 - (NSString *)description {
@@ -22,6 +39,19 @@
   [str appendString:[self shortDescription]];
   if (self.userDescription != nil) {
     [str appendFormat:@"\n%@", [self.userDescription description]];
+  }
+  for (ADNAnnotation *annotation in self.annotations) {
+    [str appendFormat:@"\n%@", [annotation description]];
+  }
+  [str appendString:@"\n----------"];
+  return str;
+}
+
+- (NSString *)colorDescription {
+  NSMutableString *str = [[NSMutableString alloc] init];
+  [str appendString:[self colorShortDescription]];
+  if (self.userDescription != nil) {
+    [str appendFormat:@"\n%@", [self.userDescription colorDescription]];
   }
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];

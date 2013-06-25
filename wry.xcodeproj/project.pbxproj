@@ -82,6 +82,7 @@
 		C7CEE05E17617AFE0028361F /* MvCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE05D17617AFE0028361F /* MvCommand.m */; };
 		C7CEE0611761FBE70028361F /* ADNHashtag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0601761FBE70028361F /* ADNHashtag.m */; };
 		C7CEE0641761FBF70028361F /* ADNLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0631761FBF70028361F /* ADNLink.m */; };
+		C7D2963A177A380B00649A29 /* ADNObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D29639177A380B00649A29 /* ADNObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -246,6 +247,8 @@
 		C7CEE0601761FBE70028361F /* ADNHashtag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNHashtag.m; sourceTree = "<group>"; };
 		C7CEE0621761FBF70028361F /* ADNLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNLink.h; sourceTree = "<group>"; };
 		C7CEE0631761FBF70028361F /* ADNLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNLink.m; sourceTree = "<group>"; };
+		C7D29638177A380B00649A29 /* ADNObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNObject.h; sourceTree = "<group>"; };
+		C7D29639177A380B00649A29 /* ADNObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,8 +475,8 @@
 				C784328216EF85A8000DED40 /* ADNUser.m */,
 				C70028F616F330DF00D5B222 /* ADNResponse.h */,
 				C70028F716F330DF00D5B222 /* ADNResponse.m */,
-				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
 				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
+				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
 				5F2374343F648724555A4F33 /* ADNFile.h */,
 				5F237098E0588D727AABD325 /* ADNFile.m */,
 				C78C5BD61740E4E700F5C806 /* ADNChannel.h */,
@@ -486,6 +489,8 @@
 				C7CEE0601761FBE70028361F /* ADNHashtag.m */,
 				C7CEE0621761FBF70028361F /* ADNLink.h */,
 				C7CEE0631761FBF70028361F /* ADNLink.m */,
+				C7D29638177A380B00649A29 /* ADNObject.h */,
+				C7D29639177A380B00649A29 /* ADNObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				C73429CF1765F12D0022AEE2 /* ADNMappingEntry.m in Sources */,
 				C7457504176B822D006B4893 /* WryComposer.m in Sources */,
 				C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */,
+				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+#import "ADNObject.h"
+
 @class ADNUserDescription;
 
-@interface ADNUser : NSObject
+@interface ADNUser : ADNObject
 
 @property(nonatomic, assign) NSInteger userID;
 @property(nonatomic, copy) NSString *username;
@@ -19,5 +21,6 @@
 @property(nonatomic, strong) NSArray *annotations;
 
 - (NSString *)shortDescription;
+- (NSString *)colorShortDescription;
 
 @end

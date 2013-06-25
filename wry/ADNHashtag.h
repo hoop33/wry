@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@interface ADNHashtag : NSObject
+#import "ADNObject.h"
+
+@interface ADNHashtag : ADNObject
 
 @property(nonatomic, copy) NSString *text;
 

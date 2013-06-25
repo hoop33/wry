@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@interface ADNUserDescription : NSObject
+#import "ADNObject.h"
+
+@interface ADNUserDescription : ADNObject
 
 @property(nonatomic, copy) NSString *text;
 

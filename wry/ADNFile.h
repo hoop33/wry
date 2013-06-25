@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@interface ADNFile : NSObject
+#import "ADNObject.h"
+
+@interface ADNFile : ADNObject
 
 @property(nonatomic, assign) NSInteger fileID;
 @property(nonatomic, copy) NSString *name;

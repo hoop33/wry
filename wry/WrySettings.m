@@ -11,6 +11,13 @@
 NSString * const SettingsDefaultUser = @"DefaultUser";
 NSString * const SettingsEditor = @"Editor";
 NSString * const SettingsTextColor = @"TextColor";
+NSString * const SettingsAlertColor = @"AlertColor";
+NSString * const SettingsUserColor = @"UserColor";
+NSString * const SettingsNameColor = @"NameColor";
+NSString * const SettingsIDColor = @"IDColor";
+NSString * const SettingsMutedColor = @"MutedColor";
+NSString * const SettingsLinkColor = @"LinkColor";
+NSString * const SettingsHashtagColor = @"HashtagColor";
 
 @implementation WrySettings
 
@@ -18,13 +25,20 @@ NSString * const SettingsTextColor = @"TextColor";
   self = [super init];
   if (self != nil) {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
-      SettingsTextColor : @"31m"
+      SettingsTextColor : @"32m",
+      SettingsAlertColor : @"31m",
+      SettingsUserColor : @"33m",
+      SettingsNameColor : @"34m",
+      SettingsIDColor : @"35m",
+      SettingsMutedColor : @"36m",
+      SettingsLinkColor : @"34m\x1b[4m",
+      SettingsHashtagColor : @"44m"
     }];
   }
   return self;
 }
 
-- (NSObject *)getString:(NSString *)key {
+- (NSString *)getString:(NSString *)key {
   return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 

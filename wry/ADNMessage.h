@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+#import "ADNObject.h"
+
 @class ADNUser;
 
-@interface ADNMessage : NSObject
+@interface ADNMessage : ADNObject
 
 @property(nonatomic, assign) NSInteger messageID;
 @property(nonatomic, assign) NSInteger channelID;
