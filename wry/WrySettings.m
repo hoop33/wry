@@ -23,8 +23,6 @@
   if (self != nil) {
     self.defaultUser = [self property:kDefaultUser];
     self.editor = [self property:kEditor];
-    NSLog(@"Default: %@", self.defaultUser);
-    NSLog(@"Editor: %@", self.editor);
   }
   return self;
 }
