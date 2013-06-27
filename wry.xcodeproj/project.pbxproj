@@ -83,6 +83,7 @@
 		C7CEE0611761FBE70028361F /* ADNHashtag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0601761FBE70028361F /* ADNHashtag.m */; };
 		C7CEE0641761FBF70028361F /* ADNLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0631761FBF70028361F /* ADNLink.m */; };
 		C7D2963A177A380B00649A29 /* ADNObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D29639177A380B00649A29 /* ADNObject.m */; };
+		C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -249,6 +250,8 @@
 		C7CEE0631761FBF70028361F /* ADNLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNLink.m; sourceTree = "<group>"; };
 		C7D29638177A380B00649A29 /* ADNObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNObject.h; sourceTree = "<group>"; };
 		C7D29639177A380B00649A29 /* ADNObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNObject.m; sourceTree = "<group>"; };
+		C7D2967E177CA1F000649A29 /* TextTooLongEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTooLongEnhancer.h; sourceTree = "<group>"; };
+		C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +309,8 @@
 				C7457505176E6AF3006B4893 /* WryEnhancer.h */,
 				C7457507176E6B5F006B4893 /* LinkEnhancer.h */,
 				C7457508176E6B5F006B4893 /* LinkEnhancer.m */,
+				C7D2967E177CA1F000649A29 /* TextTooLongEnhancer.h */,
+				C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */,
 			);
 			name = Enhancers;
 			sourceTree = "<group>";
@@ -630,6 +635,7 @@
 				C7457504176B822D006B4893 /* WryComposer.m in Sources */,
 				C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */,
 				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
+				C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
