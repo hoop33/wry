@@ -1,0 +1,128 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+SSKeychainErrorBadArguments	wry/SSKeychain.h	/^    SSKeychainErrorBadArguments = -1001,$/;"	e	enum:__anon1
+SSKeychainErrorCode	wry/SSKeychain.h	/^} SSKeychainErrorCode;$/;"	t	typeref:enum:__anon1
+TextTooLongOption	wry/TextTooLongEnhancer.h	/^} TextTooLongOption;$/;"	t	typeref:enum:__anon2
+TextTooLongOptionAsk	wry/TextTooLongEnhancer.h	/^  TextTooLongOptionAsk = 0,$/;"	e	enum:__anon2
+TextTooLongOptionReject	wry/TextTooLongEnhancer.h	/^  TextTooLongOptionReject,$/;"	e	enum:__anon2
+TextTooLongOptionSplit	wry/TextTooLongEnhancer.h	/^  TextTooLongOptionSplit$/;"	e	enum:__anon2
+TextTooLongOptionTruncate	wry/TextTooLongEnhancer.h	/^  TextTooLongOptionTruncate,$/;"	e	enum:__anon2
+WryCommand	wry/WryApplication.h	/^@protocol WryCommand;$/;"	v
+WryErrorCodeBadInput	wry/WryErrorCodes.h	/^#define WryErrorCodeBadInput /;"	d
+WryErrorCodeUnknown	wry/WryErrorCodes.h	/^#define WryErrorCodeUnknown /;"	d
+WryFormatter	wry/WryApplication.h	/^@protocol WryFormatter;$/;"	v
+WrySuccessCode	wry/WryErrorCodes.h	/^#define WrySuccessCode /;"	d
+accessControlListMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)accessControlListMapping;$/;"	v
+accessGroup	wry/SSKeychainQuery.h	/^@property (nonatomic, copy) NSString *accessGroup;$/;"	v
+accessToken	wry/ADNService.h	/^@property(nonatomic, copy) NSString *accessToken;$/;"	v
+accessToken	wry/WryApplication.h	/^@property(nonatomic, copy) NSString *accessToken;$/;"	v
+accessibilityType	wry/SSKeychain.h	/^+ (CFTypeRef)accessibilityType;$/;"	v
+account	wry/SSKeychainQuery.h	/^@property(nonatomic, copy) NSString *account;$/;"	v
+allAccounts	wry/SSKeychain.h	/^+ (NSArray *)allAccounts;$/;"	v
+allCommands	wry/WryUtils.h	/^+ (NSArray *)allCommands;$/;"	v
+allFormats	wry/WryUtils.h	/^+ (NSArray *)allFormats;$/;"	v
+allSettings	wry/WryUtils.h	/^+ (NSArray *)allSettings;$/;"	v
+allowedValues	wry/WrySetting.h	/^+ (NSArray *)allowedValues;$/;"	v
+annotationMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)annotationMapping;$/;"	v
+annotations	wry/ADNChannel.h	/^@property(nonatomic, strong) NSArray *annotations;$/;"	v
+annotations	wry/ADNFile.h	/^@property(nonatomic, strong) NSArray *annotations;$/;"	v
+annotations	wry/ADNMessage.h	/^@property(nonatomic, strong) NSArray *annotations;$/;"	v
+annotations	wry/ADNPost.h	/^@property(nonatomic, strong) NSArray *annotations;$/;"	v
+annotations	wry/ADNService.h	/^@property(nonatomic, assign) BOOL annotations;$/;"	v
+annotations	wry/ADNUser.h	/^@property(nonatomic, strong) NSArray *annotations;$/;"	v
+annotations	wry/WryApplication.h	/^@property(nonatomic, assign) BOOL annotations;$/;"	v
+anyUser	wry/ADNAccessControlList.h	/^@property(nonatomic, assign) BOOL anyUser;$/;"	v
+appName	wry/WryApplication.h	/^@property(nonatomic, copy) NSString *appName;$/;"	v
+application	wry/WryApplication.h	/^+ (WryApplication *)application;$/;"	v
+channelID	wry/ADNChannel.h	/^@property(nonatomic, assign) NSInteger channelID;$/;"	v
+channelID	wry/ADNMessage.h	/^@property(nonatomic, assign) NSInteger channelID;$/;"	v
+channelMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)channelMapping;$/;"	v
+cls	wry/ADNJSONMapping.h	/^@property(nonatomic, strong) Class cls;$/;"	v
+commandName	wry/WryApplication.h	/^@property(nonatomic, copy) NSString *commandName;$/;"	v
+count	wry/ADNService.h	/^@property(nonatomic, assign) NSInteger count;$/;"	v
+count	wry/WryApplication.h	/^@property(nonatomic, assign) int count;$/;"	v
+createdAt	wry/ADNFile.h	/^@property(nonatomic, strong) NSDate *createdAt;$/;"	v
+createdAt	wry/ADNMessage.h	/^@property(nonatomic, strong) NSDate *createdAt;$/;"	v
+createdAt	wry/ADNPost.h	/^@property(nonatomic, strong) NSDate *createdAt;$/;"	v
+data	wry/ADNResponse.h	/^@property(nonatomic, strong) id data;$/;"	v
+data	wry/ADNService.h	/^@property(nonatomic, strong) NSMutableData *data;$/;"	v
+debug	wry/ADNService.h	/^@property(nonatomic, assign) BOOL debug;$/;"	v
+debug	wry/WryApplication.h	/^@property(nonatomic, assign) BOOL debug;$/;"	v
+edit	wry/ADNChannel.h	/^@property(nonatomic, assign) BOOL edit;$/;"	v
+entries	wry/ADNJSONMapping.h	/^@property(nonatomic, strong) NSArray *entries;$/;"	v
+error	wry/ADNService.h	/^@property(nonatomic, strong) NSError *error;$/;"	v
+fileID	wry/ADNFile.h	/^@property(nonatomic, assign) NSInteger fileID;$/;"	v
+fileMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)fileMapping;$/;"	v
+followsYou	wry/ADNUser.h	/^@property(nonatomic, assign) BOOL followsYou;$/;"	v
+format	wry/WryApplication.h	/^@property(nonatomic, copy) NSString *format;$/;"	v
+formatter	wry/WryApplication.h	/^@property(nonatomic, strong) id <WryFormatter> formatter;$/;"	v
+from	wry/ADNMappingEntry.h	/^@property(nonatomic, copy) NSString *from;$/;"	v
+hashtags	wry/ADNPost.h	/^@property(nonatomic, strong) NSArray *hashtags;$/;"	v
+immutable	wry/ADNAccessControlList.h	/^@property(nonatomic, assign) BOOL immutable;$/;"	v
+interactiveIn	wry/WryApplication.h	/^@property(nonatomic, assign, readonly) BOOL interactiveIn;$/;"	v
+interactiveOut	wry/WryApplication.h	/^@property(nonatomic, assign, readonly) BOOL interactiveOut;$/;"	v
+isPublic	wry/ADNFile.h	/^@property(nonatomic, assign) BOOL isPublic;$/;"	v
+json	wry/ADNResponse.h	/^@property(nonatomic, copy) NSString *json;$/;"	v
+kMaxTextLength	wry/TextTooLongEnhancer.h	/^#define kMaxTextLength /;"	d
+label	wry/SSKeychainQuery.h	/^@property(nonatomic, copy) NSString *label;$/;"	v
+length	wry/ADNLink.h	/^@property(nonatomic, assign) NSUInteger length;$/;"	v
+links	wry/ADNPost.h	/^@property(nonatomic, strong) NSArray *links;$/;"	v
+mapping	wry/ADNMappingEntry.h	/^@property(nonatomic, strong) ADNJSONMapping *mapping;$/;"	v
+messageID	wry/ADNMessage.h	/^@property(nonatomic, assign) NSInteger messageID;$/;"	v
+messageMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)messageMapping;$/;"	v
+meta	wry/ADNResponse.h	/^@property(nonatomic, strong) NSDictionary *meta;$/;"	v
+muted	wry/ADNChannel.h	/^@property(nonatomic, assign) BOOL muted;$/;"	v
+name	wry/ADNFile.h	/^@property(nonatomic, copy) NSString *name;$/;"	v
+name	wry/ADNUser.h	/^@property(nonatomic, copy) NSString *name;$/;"	v
+numberOfParameters	wry/WrySetting.h	/^+ (NSUInteger)numberOfParameters;$/;"	v
+object	wry/ADNResponse.h	/^@property(nonatomic, strong) id object;$/;"	v
+owner	wry/ADNChannel.h	/^@property(nonatomic, strong) ADNUser *owner;$/;"	v
+params	wry/WryApplication.h	/^@property(nonatomic, strong) NSArray *params;$/;"	v
+password	wry/SSKeychainQuery.h	/^@property(nonatomic, copy) NSString *password;$/;"	v
+passwordData	wry/SSKeychainQuery.h	/^@property(nonatomic, copy) NSData *passwordData;$/;"	v
+position	wry/ADNLink.h	/^@property(nonatomic, assign) NSUInteger position;$/;"	v
+postID	wry/ADNPost.h	/^@property(nonatomic, assign) NSInteger postID;$/;"	v
+postMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)postMapping;$/;"	v
+pretty	wry/ADNService.h	/^@property(nonatomic, assign) BOOL pretty;$/;"	v
+pretty	wry/WryApplication.h	/^@property(nonatomic, assign) BOOL pretty;$/;"	v
+quiet	wry/WryApplication.h	/^@property(nonatomic, assign) BOOL quiet;$/;"	v
+readers	wry/ADNChannel.h	/^@property(nonatomic, strong) ADNAccessControlList *readers;$/;"	v
+replyToID	wry/ADNMessage.h	/^@property(nonatomic, assign) NSInteger replyToID;$/;"	v
+response	wry/WryUtils.h	/^typedef void (^ADNOutputOperationBlock)(NSObject *response);$/;"	v
+reverse	wry/ADNService.h	/^@property(nonatomic, assign) BOOL reverse;$/;"	v
+reverse	wry/WryApplication.h	/^@property(nonatomic, assign) BOOL reverse;$/;"	v
+rootMessageID	wry/ADNMessage.h	/^@property(nonatomic, assign) NSInteger rootMessageID;$/;"	v
+service	wry/SSKeychainQuery.h	/^@property(nonatomic, copy) NSString *service;$/;"	v
+service	wry/WryUtils.h	/^typedef id (^ADNOperationBlock)(ADNService *service);$/;"	v
+settings	wry/WryApplication.h	/^@property(nonatomic, strong) WrySettings *settings;$/;"	v
+sha1	wry/ADNFile.h	/^@property(nonatomic, copy) NSString *sha1;$/;"	v
+shortUrl	wry/ADNFile.h	/^@property(nonatomic, copy) NSString *shortUrl;$/;"	v
+subscribed	wry/ADNChannel.h	/^@property(nonatomic, assign) BOOL subscribed;$/;"	v
+summary	wry/WrySetting.h	/^+ (NSString *)summary;$/;"	v
+text	wry/ADNHashtag.h	/^@property(nonatomic, copy) NSString *text;$/;"	v
+text	wry/ADNLink.h	/^@property(nonatomic, copy) NSString *text;$/;"	v
+text	wry/ADNMessage.h	/^@property(nonatomic, copy) NSString *text;$/;"	v
+text	wry/ADNPost.h	/^@property(nonatomic, copy) NSString *text;$/;"	v
+text	wry/ADNUserDescription.h	/^@property(nonatomic, copy) NSString *text;$/;"	v
+to	wry/ADNMappingEntry.h	/^@property(nonatomic, copy) NSString *to;$/;"	v
+totalSize	wry/ADNFile.h	/^@property(nonatomic, assign) NSInteger totalSize;$/;"	v
+type	wry/ADNAnnotation.h	/^@property(nonatomic, copy) NSString *type;$/;"	v
+type	wry/ADNChannel.h	/^@property(nonatomic, copy) NSString *type;$/;"	v
+url	wry/ADNFile.h	/^@property(nonatomic, copy) NSString *url;$/;"	v
+url	wry/ADNLink.h	/^@property(nonatomic, copy) NSString *url;$/;"	v
+user	wry/ADNMessage.h	/^@property(nonatomic, strong) ADNUser *user;$/;"	v
+user	wry/ADNPost.h	/^@property(nonatomic, strong) ADNUser *user;$/;"	v
+user	wry/WryApplication.h	/^@property(nonatomic, copy) NSString *user;$/;"	v
+userDescription	wry/ADNUser.h	/^@property(nonatomic, strong) ADNUserDescription *userDescription;$/;"	v
+userDescriptionMapping	wry/ADNMappingProvider.h	/^+ (ADNJSONMapping *)userDescriptionMapping;$/;"	v
+userID	wry/ADNUser.h	/^@property(nonatomic, assign) NSInteger userID;$/;"	v
+userIDs	wry/ADNAccessControlList.h	/^@property(nonatomic, strong) NSArray *userIDs;$/;"	v
+username	wry/ADNUser.h	/^@property(nonatomic, copy) NSString *username;$/;"	v
+value	wry/ADNAnnotation.h	/^@property(nonatomic, strong) NSDictionary *value;$/;"	v
+writers	wry/ADNChannel.h	/^@property(nonatomic, strong) ADNAccessControlList *writers;$/;"	v
+you	wry/ADNAccessControlList.h	/^@property(nonatomic, assign) BOOL you;$/;"	v
+youFollow	wry/ADNUser.h	/^@property(nonatomic, assign) BOOL youFollow;$/;"	v
