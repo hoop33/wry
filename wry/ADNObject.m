@@ -22,7 +22,7 @@ NSString * const TagColorEnd = @"\x1b[0m";
 - (NSString *)colorize:(NSString *)text colorSetting:(NSString *)settingName {
   return [NSString stringWithFormat:@"%@%@%@%@",
     TagColorStart,
-    [[WryApplication application].settings getString:settingName],
+    [[WryApplication application].settings stringValue:settingName],
     text,
     TagColorEnd
   ];

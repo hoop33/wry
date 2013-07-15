@@ -43,7 +43,7 @@ static NSDictionary *NamesForTypes;
       [str appendFormat:@"\n%@", [annotation description]];
     }
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
   return str;
 }
 

@@ -9,6 +9,13 @@
 #import "WrySettings.h"
 
 NSString * const SettingsDefaultUser = @"DefaultUser";
+NSString * const SettingsIncludeAnnotations = @"IncludeAnnotations";
+NSString * const SettingsCount = @"Count";
+NSString * const SettingsDebug = @"Debug";
+NSString * const SettingsFormat = @"Format";
+NSString * const SettingsPretty = @"Pretty";
+NSString * const SettingsQuiet = @"Quiet";
+NSString * const SettingsReverse = @"Reverse";
 NSString * const SettingsEditor = @"Editor";
 NSString * const SettingsSeparator = @"Separator";
 NSString * const SettingsTextColor = @"TextColor";
@@ -26,6 +33,13 @@ NSString * const SettingsHashtagColor = @"HashtagColor";
   self = [super init];
   if (self != nil) {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+      SettingsIncludeAnnotations : @NO,
+      SettingsCount : @20,
+      SettingsDebug : @NO,
+      SettingsFormat : @"text",
+      SettingsPretty : @NO,
+      SettingsQuiet : @NO,
+      SettingsReverse : @NO,
       SettingsSeparator : @"----------",
       SettingsTextColor : @"32m",
       SettingsAlertColor : @"31m",
@@ -40,8 +54,16 @@ NSString * const SettingsHashtagColor = @"HashtagColor";
   return self;
 }
 
-- (NSString *)getString:(NSString *)key {
+- (NSString *)stringValue:(NSString *)key {
   return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
+- (NSInteger)integerValue:(NSString *)key {
+  return [[NSUserDefaults standardUserDefaults] integerForKey:key];
+}
+
+- (BOOL)boolValue:(NSString *)key {
+  return [[NSUserDefaults standardUserDefaults] boolForKey:key];
 }
 
 - (void)set:(NSString *)key value:(NSObject *)value {

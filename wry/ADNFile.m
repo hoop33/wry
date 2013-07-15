@@ -21,7 +21,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
   return str;
 }
 
@@ -42,7 +42,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation colorDescription]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings getString:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
   return str;
 }
 

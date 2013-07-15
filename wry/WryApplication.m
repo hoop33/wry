@@ -15,8 +15,6 @@
 
 #define kVersion @"1.6"
 #define kErrorDomain @"com.grailbox.wry"
-#define kDefaultFormat @"text"
-#define kDefaultCount 20
 #define kMaxCount 200
 #define kInputBufferSize 512
 
@@ -37,10 +35,14 @@
     _interactiveIn = isatty(fileno(stdin)) != 0;
     _interactiveOut = isatty(fileno(stdout)) != 0;
     self.settings = [[WrySettings alloc] init];
-    self.quiet = NO;
-    self.count = kDefaultCount;
-    self.format = kDefaultFormat;
-    self.user = [self.settings getString:SettingsDefaultUser];
+    self.annotations = [self.settings boolValue:SettingsIncludeAnnotations];
+    self.count = [self.settings integerValue:SettingsCount];
+    self.debug = [self.settings boolValue:SettingsDebug];
+    self.format = [self.settings stringValue:SettingsFormat];
+    self.pretty = [self.settings boolValue:SettingsPretty];
+    self.quiet = [self.settings boolValue:SettingsQuiet];
+    self.reverse = [self.settings boolValue:SettingsReverse];
+    self.user = [self.settings stringValue:SettingsDefaultUser];
   }
   return self;
 }

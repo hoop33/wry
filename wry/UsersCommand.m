@@ -16,7 +16,7 @@
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   if (params == nil || params.count == 0) {
-    NSString *defaultUser = [app.settings getString:SettingsDefaultUser];
+    NSString *defaultUser = [app.settings stringValue:SettingsDefaultUser];
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {
       NSString *user = [account valueForKey:@"acct"];
       [app print:[defaultUser isEqualToString:user] ? @"*" : @" "];
