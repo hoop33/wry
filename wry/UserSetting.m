@@ -10,4 +10,24 @@
 
 @implementation UserSetting
 
+- (NSString *)shortFlag {
+  return @"u";
+}
+
+- (NSString *)summary {
+  return @"Run as <user>";
+}
+
+- (NSString *)help {
+  return @"Specifies the App.net user to run as for this command.";
+}
+
+- (NSUInteger)numberOfParameters {
+  return 1;
+}
+
+- (NSArray *)allowedValues {
+  return nil;
+}
+
 @end

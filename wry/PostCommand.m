@@ -10,6 +10,8 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryEnhancer.h"
+#import "TextTooLongEnhancer.h"
 
 @implementation PostCommand
 
@@ -24,7 +26,19 @@
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
                                   }
-                                  return [service createPost:text replyID:nil error:error];
+                                  if (text.length > kMaxTextLength) {
+                                    id <WryEnhancer> textTooLongEnhancer = [[TextTooLongEnhancer alloc] init];
+                                    id enhanced = [textTooLongEnhancer enhance:text];
+                                    if ([enhanced isKindOfClass:[NSArray class]]) {
+                                      for (NSString *part in enhanced) {
+                                        NSLog(@"Text: %@***", part);
+                                      }
+                                    } else {
+                                      NSLog(@"Text: %@", enhanced);
+                                    }
+                                  }
+                                  return nil;
+//                                  return [service createPost:text replyID:nil error:error];
                                 }];
 }
 
@@ -35,10 +49,10 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-    @"Creates a new post with the text you specify. If supplying text as command-\n"
-      @"line arguments, note that the shell's parsing rules are respected, so escape\n"
-      @"your text appropriately. Quotes are optional.\n"
-      @"\n"];
+          @"Creates a new post with the text you specify. If supplying text as command-\n"
+            @"line arguments, note that the shell's parsing rules are respected, so escape\n"
+            @"your text appropriately. Quotes are optional.\n"
+            @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }

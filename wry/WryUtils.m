@@ -14,6 +14,7 @@
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
+#define kSettingSuffix @"Setting"
 
 @interface WryUtils ()
 + (BOOL)performOperation:(NSString *)accessToken
@@ -23,9 +24,41 @@
                    error:(NSError **)error
                operation:(ADNOperationBlock)operation
          outputOperation:(ADNOutputOperationBlock)outputOperation;
++ (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol;
++ (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix;
 @end
 
 @implementation WryUtils
+
+static NSArray *allClasses;
+
++ (void)initialize {
+  NSMutableArray *array = [NSMutableArray array];
+  Class *classes = NULL;
+  int numClasses = objc_getClassList(NULL, 0);
+  if (numClasses > 0) {
+    classes = (__unsafe_unretained Class *) malloc(sizeof(Class) * numClasses);
+    int n = objc_getClassList(classes, numClasses);
+    for (int i = 0; i < n; i++) {
+      Class cls = classes[i];
+      NSString *className = [NSString stringWithUTF8String:class_getName(cls)];
+      if (([className hasSuffix:kCommandSuffix] ||
+           [className hasSuffix:kFormatterSuffix] ||
+           [className hasSuffix:kSettingSuffix]) &&
+          ([cls conformsToProtocol:@protocol(WryCommand)] ||
+           [cls conformsToProtocol:@protocol(WryFormatter)] ||
+           [cls conformsToProtocol:@protocol(WrySetting)])) {
+        [array addObject:cls];
+      }
+    }
+    free(classes);
+  }
+  allClasses = [array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    NSString *first = [(Class) a description];
+    NSString *second = [(Class) b description];
+    return [first compare:second];
+  }];
+}
 
 + (BOOL)getADNResponseForOperation:(NSString *)accessToken
                             params:(NSArray *)params
@@ -134,77 +167,75 @@
 }
 
 + (id <WryCommand>)commandForName:(NSString *)name {
-  id <WryCommand> wryCommand = nil;
-  Class cls = NSClassFromString([NSString stringWithFormat:@"%@%@", [name capitalizedString], kCommandSuffix]);
-  if (cls != nil && [cls conformsToProtocol:@protocol(WryCommand)]) {
-    wryCommand = [[cls alloc] init];
-  }
-  return wryCommand;
-}
-
-+ (NSString *)nameForCommand:(id <WryCommand>)command {
-  NSString *string = [[command.class description] lowercaseString];
-  return [string substringToIndex:(string.length - kCommandSuffix.length)];
-}
-
-+ (NSArray *)allCommands {
-  NSMutableArray *commands = [NSMutableArray array];
-  Class *classes = NULL;
-  int numClasses = objc_getClassList(NULL, 0);
-  if (numClasses > 0) {
-    classes = (__unsafe_unretained Class *) malloc(sizeof(Class) * numClasses);
-    int n = objc_getClassList(classes, numClasses);
-    for (int i = 0; i < n; i++) {
-      Class cls = classes[i];
-      NSString *className = [NSString stringWithUTF8String:class_getName(classes[i])];
-      if ([className hasSuffix:kCommandSuffix] && [cls conformsToProtocol:@protocol(WryCommand)]) {
-        [commands addObject:cls];
-      }
-    }
-    free(classes);
-  }
-  return [commands sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-    NSString *first = [(Class) a description];
-    NSString *second = [(Class) b description];
-    return [first compare:second];
-  }];
+  return [WryUtils instanceForName:[name capitalizedString] suffix:kCommandSuffix protocol:@protocol(WryCommand)];
 }
 
 + (id <WryFormatter>)formatterForName:(NSString *)name {
-  id <WryFormatter> wryFormatter = nil;
-  Class cls = NSClassFromString([NSString stringWithFormat:@"%@%@", [name uppercaseString], kFormatterSuffix]);
-  if (cls != nil && [cls conformsToProtocol:@protocol(WryFormatter)]) {
-    wryFormatter = [[cls alloc] init];
+  return [WryUtils instanceForName:[name uppercaseString] suffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+}
+
++ (id <WrySetting>)settingForName:(NSString *)name {
+  return [WryUtils instanceForName:[name capitalizedString] suffix:kSettingSuffix protocol:@protocol(WrySetting)];
+}
+
++ (id <WrySetting>)settingForShortFlag:(NSString *)shortFlag {
+  id <WrySetting> setting = nil;
+  for (Class cls in [WryUtils allSettings]) {
+    id <WrySetting> tempSetting = [[cls alloc] init];
+    if ([[tempSetting shortFlag] isEqualToString:shortFlag]) {
+      setting = tempSetting;
+      break;
+    }
   }
-  return wryFormatter;
+  return setting;
+}
+
++ (NSString *)nameForCommand:(id <WryCommand>)command {
+  return [WryUtils nameForInstance:(NSObject *)command suffix:kCommandSuffix];
 }
 
 + (NSString *)nameForFormatter:(id <WryFormatter>)formatter {
-  NSString *string = [[formatter.class description] lowercaseString];
-  return [string substringToIndex:(string.length - kFormatterSuffix.length)];
+  return [WryUtils nameForInstance:(NSObject *)formatter suffix:kFormatterSuffix];
 }
 
-+ (NSArray *)allFormats {
-  NSMutableArray *formats = [NSMutableArray array];
-  Class *classes = NULL;
-  int numClasses = objc_getClassList(NULL, 0);
-  if (numClasses > 0) {
-    classes = (__unsafe_unretained Class *) malloc(sizeof(Class) * numClasses);
-    int n = objc_getClassList(classes, numClasses);
-    for (int i = 0; i < n; i++) {
-      Class cls = classes[i];
-      NSString *className = [NSString stringWithUTF8String:class_getName(classes[i])];
-      if ([className hasSuffix:kFormatterSuffix] && [cls conformsToProtocol:@protocol(WryFormatter)]) {
-        [formats addObject:cls];
-      }
++ (NSString *)nameForSetting:(id<WrySetting>)setting {
+  return [WryUtils nameForInstance:(NSObject *)setting suffix:kSettingSuffix];
+}
+
++ (NSArray *)allCommands {
+  return [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
+}
+
++ (NSArray *)allFormatters {
+  return [WryUtils allClassesWithSuffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+}
+
++ (NSArray *)allSettings {
+  return [WryUtils allClassesWithSuffix:kSettingSuffix protocol:@protocol(WrySetting)];
+}
+
+#pragma mark - Private methods
+
++ (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol {
+  Class cls = NSClassFromString([NSString stringWithFormat:@"%@%@", name, suffix]);
+  return (cls != nil && [cls conformsToProtocol:protocol]) ? [[cls alloc] init] : nil;
+}
+
++ (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix {
+  NSString *string = [[instance.class description] lowercaseString];
+  return [string substringToIndex:(string.length - suffix.length)];
+}
+
++ (NSArray *)allClassesWithSuffix:(NSString *)suffix protocol:(id)protocol {
+  // TODO can we use an NSPredicate here? Not sure how that would work with class_getName....
+  NSMutableArray *array = [NSMutableArray array];
+  for (Class cls in allClasses) {
+    NSString *className = [NSString stringWithUTF8String:class_getName(cls)];
+    if ([className hasSuffix:suffix] && [cls conformsToProtocol:protocol]) {
+      [array addObject:cls];
     }
-    free(classes);
   }
-  return [formats sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-    NSString *first = [(Class) a description];
-    NSString *second = [(Class) b description];
-    return [first compare:second];
-  }];
+  return array;
 }
 
 @end

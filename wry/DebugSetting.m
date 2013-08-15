@@ -10,4 +10,24 @@
 
 @implementation DebugSetting
 
+- (NSString *)shortFlag {
+  return @"d";
+}
+
+- (NSString *)summary {
+  return @"Show debugging information";
+}
+
+- (NSString *)help {
+  return @"Show debugging information in the standard output. Useful for troubleshooting.";
+}
+
+- (NSUInteger)numberOfParameters {
+  return 0;
+}
+
+- (NSArray *)allowedValues {
+  return @[@NO, @YES];
+}
+
 @end

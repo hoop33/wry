@@ -38,7 +38,6 @@
           break;
       }
     }
-
   }
   return object;
 }
@@ -63,7 +62,32 @@
 }
 
 - (id)split:(NSString *)text {
-  return nil;
+  // Return an array of texts, split into kMaxTextLength-ish chunks on word boundaries
+  NSMutableArray *texts = [NSMutableArray array];
+  NSUInteger index = 0, end = text.length;
+  while (index < end) {
+    NSUInteger maxLength = MIN(kMaxTextLength, end - index);
+
+    // Grab a maxLength chunk
+    NSString *substring = [text substringWithRange:NSMakeRange(index, maxLength)];
+
+    // Walk backwards to find some whitespace
+    NSUInteger lastIndex = substring.length - 1;
+    while (lastIndex > 1 &&
+            ![[NSCharacterSet whitespaceAndNewlineCharacterSet]
+              characterIsMember:[substring characterAtIndex:lastIndex]]) {
+      --lastIndex;
+    }
+    // If we didn't find whitespace, use a maxLength chunk
+    substring = [substring substringToIndex:lastIndex == 1 ? maxLength : lastIndex];
+
+    // Add the chunk to the list of texts
+    [texts addObject:substring];
+
+    // Move the index
+    index += substring.length + 1;
+  }
+  return texts;
 }
 
 @end

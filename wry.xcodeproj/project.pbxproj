@@ -23,10 +23,20 @@
 		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
+		C709DC0217B85AA100D5E56D /* WryRange.m in Sources */ = {isa = PBXBuildFile; fileRef = C709DC0117B85AA100D5E56D /* WryRange.m */; };
+		C716222E17B3DBD900AE9C6A /* LongSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C716222D17B3DBD900AE9C6A /* LongSetting.m */; };
+		C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C718D0C617A9A5E7000ABF4E /* DebugSetting.m */; };
 		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
 		C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
 		C71BF68B172FD27C004C228B /* WrySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68A172FD27C004C228B /* WrySettings.m */; };
 		C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Atification.m */; };
+		C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631317AC2E3E00B9B189 /* QuietSetting.m */; };
+		C726631717AC485800B9B189 /* PrettySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631617AC485800B9B189 /* PrettySetting.m */; };
+		C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631917AC4A2E00B9B189 /* ReverseSetting.m */; };
+		C726631D17AC4ACD00B9B189 /* AnnotationsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */; };
+		C726632017AC4B4400B9B189 /* CountSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631F17AC4B4300B9B189 /* CountSetting.m */; };
+		C726632317AC4BE100B9B189 /* FormatSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632217AC4BE100B9B189 /* FormatSetting.m */; };
+		C726632617AC4CD800B9B189 /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632517AC4CD800B9B189 /* UserSetting.m */; };
 		C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
@@ -128,6 +138,13 @@
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
 		C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMapping.h"; sourceTree = "<group>"; };
 		C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMapping.m"; sourceTree = "<group>"; };
+		C709DC0017B85AA100D5E56D /* WryRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryRange.h; sourceTree = "<group>"; };
+		C709DC0117B85AA100D5E56D /* WryRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryRange.m; sourceTree = "<group>"; };
+		C716222C17B3DBD900AE9C6A /* LongSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongSetting.h; sourceTree = "<group>"; };
+		C716222D17B3DBD900AE9C6A /* LongSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongSetting.m; sourceTree = "<group>"; };
+		C718D0C317A9A54D000ABF4E /* WrySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySetting.h; sourceTree = "<group>"; };
+		C718D0C517A9A5E7000ABF4E /* DebugSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSetting.h; sourceTree = "<group>"; };
+		C718D0C617A9A5E7000ABF4E /* DebugSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSetting.m; sourceTree = "<group>"; };
 		C71BF682172D42E6004C228B /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		C71BF683172D42E6004C228B /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		C71BF684172D42E6004C228B /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
@@ -136,6 +153,20 @@
 		C71BF68A172FD27C004C228B /* WrySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettings.m; sourceTree = "<group>"; };
 		C71BF68D1731BF0D004C228B /* NSString+Atification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Atification.h"; sourceTree = "<group>"; };
 		C71BF68E1731BF0D004C228B /* NSString+Atification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Atification.m"; sourceTree = "<group>"; };
+		C726631217AC2E3E00B9B189 /* QuietSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuietSetting.h; sourceTree = "<group>"; };
+		C726631317AC2E3E00B9B189 /* QuietSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuietSetting.m; sourceTree = "<group>"; };
+		C726631517AC485800B9B189 /* PrettySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettySetting.h; sourceTree = "<group>"; };
+		C726631617AC485800B9B189 /* PrettySetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettySetting.m; sourceTree = "<group>"; };
+		C726631817AC4A2E00B9B189 /* ReverseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseSetting.h; sourceTree = "<group>"; };
+		C726631917AC4A2E00B9B189 /* ReverseSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseSetting.m; sourceTree = "<group>"; };
+		C726631B17AC4ACD00B9B189 /* AnnotationsSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationsSetting.h; sourceTree = "<group>"; };
+		C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationsSetting.m; sourceTree = "<group>"; };
+		C726631E17AC4B4300B9B189 /* CountSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountSetting.h; sourceTree = "<group>"; };
+		C726631F17AC4B4300B9B189 /* CountSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountSetting.m; sourceTree = "<group>"; };
+		C726632117AC4BE100B9B189 /* FormatSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatSetting.h; sourceTree = "<group>"; };
+		C726632217AC4BE100B9B189 /* FormatSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatSetting.m; sourceTree = "<group>"; };
+		C726632417AC4CD800B9B189 /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
+		C726632517AC4CD800B9B189 /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 		C72BF7AD1710C91800F0039D /* WryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryFormatter.h; sourceTree = "<group>"; };
 		C72BF7AF1710C96600F0039D /* TEXTFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXTFormatter.h; sourceTree = "<group>"; };
 		C72BF7B01710C96600F0039D /* TEXTFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXTFormatter.m; sourceTree = "<group>"; };
@@ -267,6 +298,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C718D0C417A9A55D000ABF4E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C718D0C317A9A54D000ABF4E /* WrySetting.h */,
+				C718D0C517A9A5E7000ABF4E /* DebugSetting.h */,
+				C718D0C617A9A5E7000ABF4E /* DebugSetting.m */,
+				C726631217AC2E3E00B9B189 /* QuietSetting.h */,
+				C726631317AC2E3E00B9B189 /* QuietSetting.m */,
+				C726631517AC485800B9B189 /* PrettySetting.h */,
+				C726631617AC485800B9B189 /* PrettySetting.m */,
+				C726631817AC4A2E00B9B189 /* ReverseSetting.h */,
+				C726631917AC4A2E00B9B189 /* ReverseSetting.m */,
+				C726631B17AC4ACD00B9B189 /* AnnotationsSetting.h */,
+				C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */,
+				C726631E17AC4B4300B9B189 /* CountSetting.h */,
+				C726631F17AC4B4300B9B189 /* CountSetting.m */,
+				C726632117AC4BE100B9B189 /* FormatSetting.h */,
+				C726632217AC4BE100B9B189 /* FormatSetting.m */,
+				C726632417AC4CD800B9B189 /* UserSetting.h */,
+				C726632517AC4CD800B9B189 /* UserSetting.m */,
+				C716222C17B3DBD900AE9C6A /* LongSetting.h */,
+				C716222D17B3DBD900AE9C6A /* LongSetting.m */,
+				C709DC0017B85AA100D5E56D /* WryRange.h */,
+				C709DC0117B85AA100D5E56D /* WryRange.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		C71BF688172D42EC004C228B /* SSKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +428,7 @@
 				C7457506176E6AFC006B4893 /* Enhancers */,
 				C72BF7AE1710C91E00F0039D /* Formatters */,
 				C784326F16ECB045000DED40 /* Commands */,
+				C718D0C417A9A55D000ABF4E /* Settings */,
 				C784328A16EF8AAF000DED40 /* ADN */,
 				C784326816EBBA0F000DED40 /* WryApplication.h */,
 				C784326916EBBA0F000DED40 /* WryApplication.m */,
@@ -636,6 +696,16 @@
 				C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */,
 				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
 				C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */,
+				C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */,
+				C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */,
+				C726631717AC485800B9B189 /* PrettySetting.m in Sources */,
+				C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */,
+				C726631D17AC4ACD00B9B189 /* AnnotationsSetting.m in Sources */,
+				C726632017AC4B4400B9B189 /* CountSetting.m in Sources */,
+				C726632317AC4BE100B9B189 /* FormatSetting.m in Sources */,
+				C726632617AC4CD800B9B189 /* UserSetting.m in Sources */,
+				C716222E17B3DBD900AE9C6A /* LongSetting.m in Sources */,
+				C709DC0217B85AA100D5E56D /* WryRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

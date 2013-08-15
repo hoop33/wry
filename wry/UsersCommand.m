@@ -36,7 +36,7 @@
             [SSKeychain deletePasswordForService:app.appName account:user];
             [app println:[NSString stringWithFormat:@"Deleted user '%@'", user]];
           } else {
-            [app.settings set:SettingsDefaultUser value:user];
+            [app.settings setObject:user forKey:SettingsDefaultUser];
             [app println:[NSString stringWithFormat:@"User '%@' now default", user]];
           }
         }

@@ -8,6 +8,7 @@
 
 #import "WrySettings.h"
 
+// TODO This class should contain a dictionary of WrySetting names and the actual values
 NSString * const SettingsDefaultUser = @"DefaultUser";
 NSString * const SettingsIncludeAnnotations = @"IncludeAnnotations";
 NSString * const SettingsCount = @"Count";
@@ -66,7 +67,7 @@ NSString * const SettingsHashtagColor = @"HashtagColor";
   return [[NSUserDefaults standardUserDefaults] boolForKey:key];
 }
 
-- (void)set:(NSString *)key value:(NSObject *)value {
+- (void)setObject:(NSObject *)value forKey:(NSString *)key {
   [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
   [[NSUserDefaults standardUserDefaults] synchronize];
 }

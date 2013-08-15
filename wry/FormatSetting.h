@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "WrySetting.h"
 
-@interface FormatSetting : NSObject
+@interface FormatSetting : NSObject <WrySetting>
 
 @end

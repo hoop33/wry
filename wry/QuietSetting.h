@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "WrySetting.h"
 
-@interface QuietSetting : NSObject
+@interface QuietSetting : NSObject <WrySetting>
 
 @end

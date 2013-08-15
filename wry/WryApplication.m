@@ -29,6 +29,10 @@
   }
 }
 
++ (int)maximumPostLength {
+  return 256;
+}
+
 - (id)init {
   self = [super init];
   if (self != nil) {
@@ -111,7 +115,7 @@
   [SSKeychain setPassword:accessToken forService:self.appName
                   account:self.user];
   if ([SSKeychain accountsForService:self.appName].count == 1) {
-    [self.settings set:SettingsDefaultUser value:self.user];
+    [self.settings setObject:self.user forKey:SettingsDefaultUser];
   }
 }
 

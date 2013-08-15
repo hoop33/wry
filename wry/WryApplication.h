@@ -30,6 +30,7 @@
 @property(nonatomic, assign) int count;
 
 + (WryApplication *)application;
++ (int)maximumPostLength;
 
 - (int)run;
 - (void)print:(NSString *)output;

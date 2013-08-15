@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @protocol WrySetting <NSObject>
+
+- (NSString *)shortFlag;
+- (NSString *)summary;
+- (NSString *)help;
+- (NSUInteger)numberOfParameters;
+- (NSArray *)allowedValues;
 
 @end

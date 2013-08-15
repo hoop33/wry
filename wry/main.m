@@ -8,7 +8,12 @@
 
 #import "WryApplication.h"
 #import "WryErrorCodes.h"
+#import "WrySetting.h"
+#import "WryUtils.h"
 #import "NSString+Atification.h"
+#import "WrySettings.h"
+
+id<WrySetting> settingForFlag(NSString *flag);
 
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
@@ -17,47 +22,22 @@ int main(int argc, const char *argv[]) {
 
     NSString *errorMessage = nil;
     NSMutableArray *params = [NSMutableArray array];
-    // TODO clean up this ugly code
     for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
       if ([param hasPrefix:@"-"]) {
-        if ([@[@"-d", @"--debug"] containsObject:param]) {
-          application.debug = YES;
-        } else if ([@[@"-q", @"--quiet"] containsObject:param]) {
-          application.quiet = YES;
-        } else if ([@[@"-p", @"--pretty"] containsObject:param]) {
-          application.pretty = YES;
-        } else if ([@[@"-r", @"--reverse"] containsObject:param]) {
-          application.reverse = YES;
-        } else if ([@[@"-a", @"--annotations"] containsObject:param]) {
-          application.annotations = YES;
-        } else if ([@[@"-c", @"--count"] containsObject:param]) {
-          ++i;
-          if (i >= argc) {
-            errorMessage = [NSString stringWithFormat:@"You must specify a count when passing %@", param];
-            break;
-          } else {
-            application.count = [[NSString stringWithUTF8String:argv[i]] intValue];
-          }
-        } else if ([@[@"-f", @"--format"] containsObject:param]) {
-          ++i;
-          if (i >= argc) {
-            errorMessage = [NSString stringWithFormat:@"You must specify a format when passing %@", param];
-            break;
-          } else {
-            application.format = [NSString stringWithUTF8String:argv[i]];
-          }
-        } else if ([@[@"-u", @"--user"] containsObject:param]) {
-          ++i;
-          if (i >= argc) {
-            errorMessage = [NSString stringWithFormat:@"You must specify a user when passing %@", param];
-            break;
-          } else {
-            application.user = [[NSString stringWithUTF8String:argv[i]] deatify];
-          }
-        } else {
+        id<WrySetting> setting = settingForFlag([param stringByReplacingOccurrencesOfString:@"-" withString:@""]);
+        if (setting == nil) {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];
           break;
+        } else {
+          NSUInteger num = [setting numberOfParameters];
+          i += num;
+          if (i >= argc) {
+            errorMessage = [NSString stringWithFormat:@"Missing parameter for %@", param];
+            break;
+          } else {
+            [application.settings setObject:[NSString stringWithUTF8String:argv[i]] forKey:[WryUtils nameForSetting:setting]];
+          }
         }
       } else if (application.commandName == nil) {
         application.commandName = param;
@@ -76,4 +56,19 @@ int main(int argc, const char *argv[]) {
       return [application run];
     }
   }
+}
+
+id<WrySetting> settingForFlag(NSString *flag) {
+  id<WrySetting> setting = nil;
+  switch (flag.length) {
+    case 0:
+      break;
+    case 1:
+      setting = [WryUtils settingForShortFlag:flag];
+      break;
+    default:
+      setting = [WryUtils settingForName:flag];
+      break;
+  }
+  return setting;
 }

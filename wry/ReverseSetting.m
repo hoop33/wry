@@ -10,4 +10,24 @@
 
 @implementation ReverseSetting
 
+- (NSString *)shortFlag {
+  return @"r";
+}
+
+- (NSString *)summary {
+  return @"Reverse the order of the output";
+}
+
+- (NSString *)help {
+  return @"Reverses the order of any output that App.net sends.";
+}
+
+- (NSUInteger)numberOfParameters {
+  return 0;
+}
+
+- (NSArray *)allowedValues {
+  return @[@NO, @YES];
+}
+
 @end

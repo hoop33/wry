@@ -8,6 +8,7 @@
 
 #import "WryCommand.h"
 #import "WryFormatter.h"
+#import "WrySetting.h"
 
 @class ADNUser;
 @class ADNService;
@@ -40,6 +41,10 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (NSArray *)allCommands;
 + (id <WryFormatter>)formatterForName:(NSString *)name;
 + (NSString *)nameForFormatter:(id <WryFormatter>)formatter;
-+ (NSArray *)allFormats;
++ (NSArray *)allFormatters;
++ (id <WrySetting>)settingForName:(NSString *)name;
++ (id <WrySetting>)settingForShortFlag:(NSString *)shortFlag;
++ (NSString *)nameForSetting:(id <WrySetting>)setting;
++ (NSArray *)allSettings;
 
 @end
