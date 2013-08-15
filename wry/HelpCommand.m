@@ -62,6 +62,8 @@
   [app println:[NSString stringWithFormat:@"usage: %@ [settings] <command> [<args>]",
                                           app.appName]];
   [app println:@""];
+
+  // Show the settings
   [app println:[NSString stringWithFormat:@"The %@ settings are:", app.appName]];
   for (Class cls in [WryUtils allSettings]) {
     id <WrySetting> setting = [[cls alloc] init];
@@ -74,6 +76,8 @@
                                             [setting summary]]];
   }
   [app println:@""];
+
+  // Show the formatters
   [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
   for (Class cls in [WryUtils allFormatters]) {
     id <WryFormatter> formatter = [[cls alloc] init];
@@ -81,6 +85,8 @@
                                             [formatter summary]]];
   }
   [app println:@""];
+
+  // Show the commands
   [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
   for (Class cls in [WryUtils allCommands]) {
     id <WryCommand> command = [[cls alloc] init];
