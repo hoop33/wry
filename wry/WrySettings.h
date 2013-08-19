@@ -29,15 +29,9 @@ extern NSString * const SettingsHashtagColor;
 
 @interface WrySettings : NSObject
 
-<<<<<<< HEAD
 - (NSString *)stringValue:(NSString *)key;
 - (NSInteger)integerValue:(NSString *)key;
 - (BOOL)boolValue:(NSString *)key;
-- (void)set:(NSString *)key value:(NSObject *)value;
-=======
-- (NSInteger)getInteger:(NSString *)key;
-- (NSString *)getString:(NSString *)key;
 - (void)setObject:(NSObject *)value forKey:(NSString *)key;
->>>>>>> Issue #54. Convert all the settings to standalone classes.
 
 @end

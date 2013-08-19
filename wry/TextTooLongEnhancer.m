@@ -24,7 +24,7 @@
     NSString *text = (NSString *)object;
     if (text.length > kMaxTextLength) {
       LongSetting *longSetting = [[LongSetting alloc] init];
-      NSString *option = [[WryApplication application].settings getString:[WryUtils nameForSetting:longSetting]];
+      NSString *option = [[WryApplication application].settings stringValue:[WryUtils nameForSetting:longSetting]];
       if (![[longSetting allowedValues] containsObject:option]) {
         option = @"ask";
       }
