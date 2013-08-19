@@ -1,0 +1,124 @@
+#!/usr/bin/env python
+## Massages wry help output into mdoc format for inclusion in the manpage's
+## COMMANDS section.
+##
+## Use from vim like:
+##     :r! wry-mdoc command
+## to read in the command.
+##
+## Be sure to set WRY_PATH env var to point to the wry you're documenting!
+import os
+import re
+import subprocess
+import sys
+
+def wry(args):
+    """Runs wry and returns its output."""
+    wry_path = os.getenv('WRY_PATH', 'wry')
+    full_args = [wry_path] + args
+    output = subprocess.check_output(full_args)
+    return output
+
+def commands_and_summaries():
+    """Returns a pair, head the list of wry commands, tail their summaries."""
+    output = wry(["help"])
+    hit_commands = False
+    commands = []
+    summaries = []
+    for line in output.splitlines():
+        if not hit_commands:
+            if line.endswith("commands are:"):
+                hit_commands = True
+            continue
+        if len(line) == 0:
+            break
+        # Line like: '  blah    Does blah'
+        command, summary = line.split(None, 1)
+        commands.append(command)
+        summaries.append(summary)
+    return (commands, summaries)
+
+def description(command):
+    """Returns the description (help text) of |command|."""
+    # Looks like a usage: line, then a blank, then text.
+    output = wry(["help", command])
+    return output
+
+def mdoc_escape(text):
+    """Escapes mdoc special characters."""
+    # Currently a NOP.
+    return text
+
+def mdoc_wrap(text):
+    """
+    Breaks lines at sentence-final punctuation.
+    """
+    dumb_lines = text.split('\n')
+    if len(dumb_lines[-1]) == 0:
+        dumb_lines = dumb_lines[:-1]
+    lines = []
+    for line in dumb_lines:
+        # Pass request/macro lines right on through.
+        if line.startswith('.'):
+            lines.append(line)
+            continue
+        elif len(line) == 0:
+            lines.append('.Pp')
+            continue
+        # Break after sentence-final punctuation.
+        sublines = re.split("(?<=[.?!]) ", line)
+        lines.extend(sublines)
+    wrapped_text = "\n".join(lines)
+    return wrapped_text
+
+def mdoc_list_entry(command, summary, description):
+    """Pretty-prints the list item for inclusion in a .Bl/.El section."""
+    item = ".It {0}".format(command)
+    wrapped_summary = mdoc_wrap(mdoc_escape(summary))
+    wrapped_desc = mdoc_wrap(mdoc_escape(description))
+    entry = "\n".join([item, wrapped_summary, '.Pp', wrapped_desc])
+    return entry
+
+def list_entries(commands, summaries, descriptions):
+    """
+    Returns a string representing an mdoc list entry corresponding to each of
+    (command, summary, description) triple.
+    """
+    command_infos = zip(commands, summaries, descriptions)
+    entries = [mdoc_list_entry(*info) for info in command_infos]
+    return entries
+
+def mdoc_list(mdoc_entries):
+    """Builds the overall list."""
+    # XXX: LATER?
+    return mdoc_entries
+
+def cmd_entry(command):
+    """Returns the list entry for |command|."""
+    commands, summaries = commands_and_summaries()
+    try:
+        i = commands.index(command)
+        command = commands[i]
+        summary = summaries[i]
+        desc = description(command)
+        out = mdoc_list_entry(command, summary, desc)
+        return out
+    except ValueError:
+        print >>sys.stderr, "ERROR: command {0} not found!".format(command)
+        return ""
+
+def main():
+    commands, summaries = commands_and_summaries()
+    descriptions = [description(command) for command in commands]
+
+    entries = list_entries(commands, summaries, descriptions)
+    mdoc = mdoc_list(entries)
+    print mdoc
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        cmd = sys.argv[1]
+        entry = cmd_entry(cmd)
+        print entry
+    else:
+        main()

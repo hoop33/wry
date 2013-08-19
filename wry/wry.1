@@ -1,79 +1,784 @@
+.\" Wry is released under the MIT License.
+.\" See http://opensource.org/licenses/MIT for more information.
+.\"
 .\"Modified from man(1) of FreeBSD, the NetBSD mdoc.template, and mdoc.samples.
 .\"See Also:
 .\"man mdoc.samples for a complete listing of options
 .\"man mdoc for the short list of editing options
 .\"/usr/share/misc/mdoc.template
-.Dd 3/8/13               \" DATE 
-.Dt wry 1      \" Program name and manual section number 
+.\"
+.\" NOTES FOR MAINTAINERS
+.\" For testing during writing, run:
+.\"     man ./wry.1
+.\" Including a slash in man's argument causes it to read the file directly
+.\" rather than go on a search.
+.\"
+.\" To list commands documented:
+.\"     awk 'BEGIN{x = 0} /^\.Sh COMMANDS/{x = 1}
+.\"          /^\.It/{ if (x > 0) print $2;} /\.Pp/{if (x > 0) x = 0;}' wry.1
+.\"         | sort > documented
+.\"
+.\" To list all known commands:
+.\"     ./wry help | awk 'BEGIN{x = 0; c = 0;} /commands are/{x = 1}
+.\"                       /^   ./{if (x > 0) print $1;}' | sort > known
+.\"
+.\" You can then check for which occur in one or the other using comm(1)
+.\" with the -1 and -2 options:
+.\"     comm -1 known documented  # commands known but not documented
+.\"     comm -2 known documented  # commands documented but no longer known
+.Dd July 26, 2013
+.Dt wry 1
 .Os Darwin
-.Sh NAME                 \" Section Header - required - don't modify 
-.Nm wry,
+.Sh NAME
+.Nm wry
 .\" The following lines are read in generating the apropos(man -k) database. Use only key
 .\" words here as the database is built based on the words here and in the .ND line. 
-.Nm Other_name_for_same_program(),
-.Nm Yet another name for the same program.
-.\" Use .Nm macro to designate other names for the documented program.
-.Nd This line parsed for whatis database.
-.Sh SYNOPSIS             \" Section Header - required - don't modify
+.Nd command line client for App.net (ADN)
+.Sh SYNOPSIS
 .Nm
-.Op Fl abcd              \" [-abcd]
-.Op Fl a Ar path         \" [-a path] 
-.Op Ar file              \" [file]
-.Op Ar                   \" [file ...]
-.Ar arg0                 \" Underlined argument - use .Ar anywhere to underline
-arg2 ...                 \" Arguments
-.Sh DESCRIPTION          \" Section Header - required - don't modify
-Use the .Nm macro to refer to your program throughout the man page like such:
+.Op Fl adpqr
+.Op Fl c Ar count
+.Op Fl f Ar format
+.Op Fl u Ar user
+.Ao Ar command Ac
+.Ao Ar args Ac
+.Sh DESCRIPTION
 .Nm
-Underlining is accomplished with the .Ar macro like this:
-.Ar underlined text .
-.Pp                      \" Inserts a space
-A list of items with descriptions:
-.Bl -tag -width -indent  \" Begins a tagged list 
-.It item a               \" Each item preceded by .It macro
-Description of item a
-.It item b
-Description of item b
-.El                      \" Ends the list
+Wry is a command-line client for App.net for Mac OS X 10.7+ (Lion), written in
+Objective-C.
+App.net is a social network.
+Read more at
+.Pa https://join.app.net/ .
 .Pp
-A list of flags and their descriptions:
-.Bl -tag -width -indent  \" Differs from above in tag removed 
-.It Fl a                 \"-a flag as a list item
-Description of -a flag
-.It Fl b
-Description of -b flag
-.El                      \" Ends the list
+The
+.Ao Ar command Ac
+is the name of a
+.Nm
+command.
+See the
+.Sx COMMANDS
+section below for details.
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl a , Fl Fl annotations
+Include annotations
+.It Fl c , Fl Fl count Ar num
+Limit the number of items listed to
+.Ar num
+items.
+.It Fl d , Fl Fl debug
+Show debugging information.
+.It Fl f , Fl Fl format Ar format
+Display output in
+.Ar format .
 .Pp
-.\" .Sh ENVIRONMENT      \" May not be needed
+Valid formats are:
+.Bl -tag -width Ds
+.It alfred
+The XML format required by Alfred Workflows.
+.It json
+The raw App.net JSON response.
+.It text
+A human-optimized text format.
+This is the default output format.
+.El
+.It Fl p , Fl Fl pretty
+Pretty-print the JSON response.
+Ignored unless the JSON format has been selected using the
+.Fl f
+option.
+.It Fl q , Fl Fl quiet
+Mute all output.
+.It Fl r , Fl Fl reverse
+Reverse the order of the output.
+.It Fl u , Fl Fl user Ar name
+Specify the account to use by the user's @name.
+You should not include the leading
+.Ql @
+in the name.
+.El
+.Sh COMMANDS
+.\" The model for this section was hg(1)'s manpage.
+.\"
+.\" I've taken the liberty of organizing the commands listed in the help output
+.\" into functional groups. Some of these could go in multiple sections.
+.\" The ADN API site has its own grouping; we might want to adopt that later,
+.\" or not, depending on how user-friendly it is.
+.\"
+.\" The text of the various command items should not vary from that output
+.\" by `wry help command` except in formatting.
+.\" To assist in this, there is a script: XXX
+.Ss Channel and Private Message Commands
+.Bl -tag -width Ds
+.It channel
+Display information about a channel
+.Pp
+usage: wry channel <channelid>
+.Pp
+Displays information about a channel.
+You must specify a channel ID.
+.It channels
+Display your subscribed channels
+.Pp
+usage: wry channels 
+.Pp
+Displays your subscribed channels.
+.It messages
+Display messages
+.Pp
+usage: wry messages [channel ID]
+.Pp
+Displays messages.
+If you specify a channel ID, shows the messages in that
+channel.
+Otherwise, shows your messages.
+.It pm
+Send a private message
+.Pp
+usage: wry pm <@username1 @username2 @username3 ...> [messageid] [text]
+.Pp
+Sends a private message to the specified user or users.
+You can specify
+multiple users by separating with spaces.
+You can also reply to a message
+by specifying the ID of the message to reply to.
+If supplying the text of
+your message as command-line arguments, note that the shell's parsing rules
+are respected, so escape your text appropriately.
+Note that quotes are NOT optional.
+.Pp
+If you don't supply text, an editor will launch to let you compose your text.
+Type your text and quit your editor to proceed.
+This lets you avoid all shell
+quoting.
+You can also pipe input from other commands to create your text.
+.Pp
+The editor used will be one of these, in this order:
+  1.
+The value for Editor in wry.plist
+  2.
+$WRY_EDITOR
+  3.
+$VISUAL
+  4.
+$EDITOR
+  5.
+vi
+.Pp
+Note: You can set the editor to STDIN to type your text in the terminal, and
+press ^D to finish typing.
+.It send
+Send a message to a channel
+.Pp
+usage: wry send <channelid> [text]
+.Pp
+Sends a message to the specified channel.
+You must specify the channel.
+If supplying the text of your message as command-line arguments, note
+that the shell's parsing rules are respected, so escape
+your text appropriately.
+Quotes are optional.
+.Pp
+If you don't supply text, an editor will launch to let you compose your text.
+Type your text and quit your editor to proceed.
+This lets you avoid all shell
+quoting.
+You can also pipe input from other commands to create your text.
+.Pp
+The editor used will be one of these, in this order:
+.Bl -enum -offset indent -compact
+.It
+The value for Editor in wry.plist
+.It
+.Ev WRY_EDITOR
+.It
+.Ev VISUAL
+.It
+.Ev EDITOR
+.It
+.Ev vi
+.El
+.Pp
+Note: You can set the editor to
+.Dv STDIN
+to type your text in the terminal, and
+press ^D to finish typing.
+.El
+.Ss File Commands
+.Bl -tag -width Ds
+.It chmod
+Change the permissions on a file
+.Pp
+usage: wry chmod <fileid> <public | private>
+.Pp
+Changes the permissions on a file.
+You must specify a file ID
+and either 'public' or 'private'.
+.It download
+Download a file
+.Pp
+usage: wry download <file ID>
+.Pp
+Downloads the file with the file ID you specify and saves it in the
+current directory.
+.It ls
+Get a file listing
+.Pp
+usage: wry ls [file ID]
+.Pp
+Displays information about a file.
+If you specify a file ID,
+displays information about that file.
+Otherwise, displays information
+about all your files.
+.It mv
+Rename a file
+.Pp
+usage: wry mv <fileid> <filename>
+.Pp
+Renames a file.
+You must specify a file ID and a filename.
+.It upload
+Upload a file
+.Pp
+usage: wry upload <path to file>
+.Pp
+Uploads the file you specify.
+You can specify a full or a relative
+path to the file you wish to upload.
+.El
+.Ss Meta Commands
+.Bl -tag -width Ds
+.It authorize
+Authorize with App.net
+.Pp
+usage: wry authorize 
+.Pp
+Opens a browser to sign in to App.net and authorize this application.
+After authorization, your browser will show you a code.
+Return to your terminal and paste this code to complete authorization.
+This code is then stored in your Mac OS X Keychain for future use.
+Note that you can call authorize multiple times to authorize multiple users.
+Each user will be stored in your Keychain.
+You can specify which user to use
+each time you use Wry with the -u, --user option.
+You can use the 'users' command to delete your authorized users from the
+Keychain or to set a default user.
+See the 'users' command for more information.
+.It commands
+List available commands
+.Pp
+usage: wry commands 
+.Pp
+Lists all the available commands.
+.It help
+Display help
+.Pp
+usage: wry help [command]
+.Pp
+Displays help.
+If you specify a command, displays help for that command.
+Otherwise, displays a summary of help.
+.It users
+Manage the users you've authorized on this computer
+.Pp
+usage: wry users [option] [user]
+.Pp
+Manages the users you've authorized on this computer.
+These are the users
+you can pass using the -u, --user flag to run a command as that user.
+Options:
+.Bl -hang -offset indent -compact
+.It users
+List the authorized users
+.It users delete Ao Ar user Ac
+Delete the specified user
+.It users default Ao Ar user Ac
+Make the specified user the default
+.El
+.It version
+Display version information
+.Pp
+usage: wry version 
+.Pp
+Displays version information about this application
+.El
+.Ss Post Commands
+.Bl -tag -width Ds
+.It delete
+Delete a post
+.Pp
+usage: wry delete <postid>
+.Pp
+Deletes a post.
+You must specify the ID of the post you wish to delete.
+.It post
+Create a post
+.Pp
+usage: wry post [text]
+.Pp
+Creates a new post with the text you specify.
+If supplying text as command-
+line arguments, note that the shell's parsing rules are respected, so escape
+your text appropriately.
+Quotes are optional.
+.Pp
+If you don't supply text, an editor will launch to let you compose your text.
+Type your text and quit your editor to proceed.
+This lets you avoid all shell
+quoting.
+You can also pipe input from other commands to create your text.
+.Pp
+The editor used will be one of these, in this order:
+.Bl -enum -offset indent -compact
+.It
+The value for Editor in wry.plist
+.It
+.Ev WRY_EDITOR
+.It
+.Ev VISUAL
+.It
+.Ev EDITOR
+.It
+.Ev vi
+.El
+.Pp
+Note: You can set the editor to
+.Dv STDIN
+to type your text in the terminal, and
+press ^D to finish typing.
+.It read
+Read a post
+.Pp
+usage: wry read <postid>
+.Pp
+Reads a post.
+You must specify the ID of the post you wish to read.
+.It repost
+Repost a post
+.Pp
+usage: wry repost <postid>
+.Pp
+Reposts a post.
+You must specify the ID of the post you wish to repost.
+.It replies
+Display the replies to a post
+.Pp
+usage: wry replies 
+.Pp
+Displays the replies to a post.
+You must specify the ID of the post you wish to see replies for.
+.It reply
+Reply to a post
+.Pp
+usage: wry reply <postid> [text]
+.Pp
+Replies to an existing post.
+You must specify the ID of the post to reply
+to.
+If supplying the text of your reply as command-line arguments, note
+that the shell's parsing rules are respected, so escape
+your text appropriately.
+Quotes are optional.
+.Pp
+If you don't supply text, an editor will launch to let you compose your text.
+Type your text and quit your editor to proceed.
+This lets you avoid all shell
+quoting.
+You can also pipe input from other commands to create your text.
+.Pp
+The editor used will be one of these, in this order:
+.Bl -enum -offset indent -compact
+.It
+The value for Editor in wry.plist
+.It
+.Ev WRY_EDITOR
+.It
+.Ev VISUAL
+.It
+.Ev EDITOR
+.It
+.Ev vi
+.El
+.Pp
+Note: You can set the editor to
+.Dv STDIN
+to type your text in the terminal, and
+press ^D to finish typing.
+.It star
+Star a post
+.Pp
+usage: wry star <postid>
+.Pp
+Stars a post.
+You must specify the ID of the post you wish to star.
+.El
+.Ss Stream Commands
+.Bl -tag -width Ds
+.It global
+Display the global stream
+.Pp
+usage: wry global 
+.Pp
+Displays the global stream, which contains the most recent posts from all users.
+.It search
+Search for hashtag
+.Pp
+usage: wry search <hashtag>
+.Pp
+Searches posts for the specified hashtag.
+.It stream
+Display the current user's stream
+.Pp
+usage: wry stream 
+.Pp
+Displays your stream, which contains the most recent posts from the users
+you follow.
+.It unified
+Display the current user's unified stream
+.Pp
+usage: wry unified 
+.Pp
+Displays your unified stream, which contains the most recent posts from
+the users you follow, mixed with the posts you're mentioned in.
+.El
+.Ss Stream Management Commands
+.Bl -tag -width Ds
+.It block
+Block a user
+.Pp
+usage: wry block <userid | @username>
+.Pp
+Blocks a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've blocked.
+.It follow
+Follow a user
+.Pp
+usage: wry follow <userid | @username>
+.Pp
+Follows a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've followed.
+.It mute
+Mute a user
+.Pp
+usage: wry mute <userid | @username>
+.Pp
+Mutes a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've muted.
+.It unblock
+Unblock a user
+.Pp
+usage: wry unblock <userid | @username>
+.Pp
+Unblocks a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've unblocked.
+.It unfollow
+Unfollow a user
+.Pp
+usage: wry unfollow <userid | @username>
+.Pp
+Unfollows a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've unfollowed.
+.It unmute
+Unmute a user
+.Pp
+usage: wry unmute <userid | @username>
+.Pp
+Unmutes a user.
+You must specify either the user's ID or @username.
+Displays the user information for the user you've unmuted.
+.El
+.Ss User Commands
+.Bl -tag -width Ds
+.It find
+Finds users
+.Pp
+usage: wry find <search string>
+.Pp
+Finds users that match the specified search string.
+The search string can be
+a @username or search terms.
+Searches @usernames, names, and bios.
+.It followers
+List the users following a user
+.Pp
+usage: wry followers [userid | @username]
+.Pp
+Lists a user's followers.
+You can specify either the user's ID or @username
+to list followers for that user.
+If you don't specify a user ID or @username,
+lists your followers.
+.It following
+List the users a user is following
+.Pp
+usage: wry following [userid | @username]
+.Pp
+Lists users a user is following.
+You can specify either the user's ID or
+@username to list users that user is following.
+If you don't specify a user ID
+or @username, lists users you're following.
+.It mentions
+Display the mentions for a user
+.Pp
+usage: wry mentions [userid | @username]
+.Pp
+Displays the mentions for a user.
+If no user is specified, displays your mentions.
+.It muted
+List the users that a user has muted
+.Pp
+usage: wry muted [userid | @username]
+.Pp
+Lists the users that a user has muted.
+You can specify either the user's ID
+or @username to list the muted users for that user.
+If you don't specify
+a user ID or @username, lists the users you have muted.
+.It posts
+Display a user's posts
+.Pp
+usage: wry posts [userid | @username]
+.Pp
+Displays a user's posts.
+If no user is specified, displays your posts.
+.It user
+Display information about a user
+.Pp
+usage: wry user [userid | @username]
+.Pp
+Displays information about a user.
+If you specify a user ID or @username,
+displays information about that user.
+Otherwise, displays information
+about yourself.
+.El
+.Pp
+.Sh ENVIRONMENT
 .\" .Bl -tag -width "ENV_VAR_1" -indent \" ENV_VAR_1 is width of the string ENV_VAR_1
-.\" .It Ev ENV_VAR_1
-.\" Description of ENV_VAR_1
-.\" .It Ev ENV_VAR_2
-.\" Description of ENV_VAR_2
-.\" .El                      
-.Sh FILES                \" File used or created by the topic of the man page
-.Bl -tag -width "/Users/joeuser/Library/really_long_file_name" -compact
-.It Pa /usr/share/file_name
-FILE_1 description
-.It Pa /Users/joeuser/Library/really_long_file_name
-FILE_2 description
-.El                      \" Ends the list
-.\" .Sh DIAGNOSTICS       \" May not be needed
-.\" .Bl -diag
-.\" .It Diagnostic Tag
-.\" Diagnostic informtion here.
-.\" .It Diagnostic Tag
-.\" Diagnostic informtion here.
-.\" .El
+.Bl -tag -width Ds
+.It Ev WRY_EDITOR
+Specifies the editor used by various commands.
+It overrides
+.Ev EDITOR
+and
+.Ev VISUAL
+and is overridden by any
+.Qq Editor
+setting in
+.Pa wry.plist .
+.Pp
+The default editor is
+.Xr vi 1 .
+.It Ev SHELL
+Used to launch the editor.
+.El
+.Sh DEFAULTS
+Wry uses the OS X user defaults system to allow additional configuration.
+.Pp
+You can use
+.Xr defaults 1
+to read and write default settings.
+.Ss Option Defaults
+These defaults are equivalent to passing options to
+.Nm
+on the command line.
+.Pp
+.Bl -inset -offset indent
+.It Sy NOTE
+Wherever a default is equivalent to a
+.Nm
+option,
+the value supplied to the option on the command line
+will override the default value.
+.El
+.Pp
+.Bl -tag -width Ds -compact
+.It Count
+.Vt integer
+Equivalent to the
+.Fl c
+option.
+.Pp
+Its default value is
+.Sy 20 .
+.It Debug
+.Vt boolean
+Equivalent to the
+.Fl d
+option.
+.Pp
+Its default value is
+.Sy NO .
+.It DefaultUser
+.Vt string
+Equivalent to the
+.Fl u
+option, except that unlike
+.Fl u ,
+the value MUST NOT include the prefixed
+.Ql @ .
+.Pp
+It has no default value.
+.It Format
+.Vt string
+Equivalent to the
+.Fl f
+option.
+.Pp
+Its default value is
+.Qq text .
+.It Pretty
+Equivalent to the
+.Fl p
+option.
+.Pp
+Its default value is
+.Sy NO .
+.It Quiet
+Equivalent to the
+.Fl q
+option.
+.Pp
+Its default value is
+.Sy NO .
+.It Reverse
+Equivalent to the
+.Fl r
+option.
+.Pp
+Its default value is
+.Sy NO .
+.El
+.Ss Color Defaults
+All color defaults are specified as strings using the arcane ANSI escape code
+system.
+The string value will be prefixed with the control sequence introducer
+.Po written
+.Sy ESC-[
+or
+.Sy \ex1b[
+.Pc .
+.Pp
+.Bl -tag -width Ds -compact
+.It AlertColor
+.Vt string
+Used when printing alerts, such as when a user no longer exists
+or a post's text has been deleted.
+.Pp
+Its default value is
+.Qq 31m
+.Pq normal red .
+.It HashtagColor
+.Vt string
+Used when printing hashtags.
+.Pp
+Its default value is
+.Qq 44m
+.Pq background of normal blue .
+.It IDColor
+.Vt string
+Used when printing file and post IDs
+as well as file sizes.
+.Pp
+Its default value is
+.Qq 35m
+.Pq normal magenta .
+.It LinkColor
+.Vt string
+Used when printing file and link entity URLs.
+.Pp
+Its default value is
+.Qq 34m\ex1b[4m
+.Pq normal blue , underlined .
+.It MutedColor
+.Vt string
+Used when printing secondary details,
+such as post and file creation dates
+and file hashes.
+.Pp
+This setting has absolutely nothing to do with muting users;
+it is simply intended to have the opposite effect of bolding text
+for emphasis.
+.Pp
+Its default value is
+.Qq 36m
+.Pq normal cyan .
+.It NameColor
+.Vt string
+Used when printing file and user long names.
+.Pp
+Its default value is
+.Qq 34m
+.Pq normal blue .
+.It TextColor
+.Vt string
+Used when printing link entity text,
+post text,
+and user info.\" XXX: At least, that's what I think ADNUserDescription is for.
+.Pp
+Its default value is
+.Qq 32m
+.Pq normal green .
+.It UserColor
+.Vt string
+Used when printing user account names
+.Po the ones with
+.Ql @
+signs
+.Pc .
+.Pp
+Its default value is
+.Qq 33m
+.Pq normal yellow .
+.El
+.Ss Miscellaneous Defaults
+.Bl -tag -width Ds -compact
+.It Editor
+.Vt string
+Name or path of editor to launch. Resolved using
+.Ev SHELL .
+.Pp
+It has no default value, but editor lookup proceeds through several environment
+variables before falling back on
+.Xr vi 1 .
+.It IncludeAnnotations
+.Vt boolean
+Whether annotations attached to channels, files, messages, and posts
+should be printed.
+.Pp
+Its default value is
+.Sy NO .
+.It Separator
+.Vt string
+The text to print between items when listing channels, files, messages, posts,
+or users.
+.Pp
+Its default value is
+.Qq ---------- .
+.El
+.Sh EXIT STATUS
+.Ex -std
+.\".Sh EXAMPLES
 .Sh SEE ALSO 
-.\" List links in ascending order by section, alphabetically within a section.
-.\" Please do not reference files that do not exist without filing a bug report
-.Xr a 1 , 
-.Xr b 1 ,
-.Xr c 1 ,
-.Xr a 2 ,
-.Xr b 2 ,
-.Xr a 3 ,
-.Xr b 3 
-.\" .Sh BUGS              \" Document known, unremedied bugs 
-.\" .Sh HISTORY           \" Document history if command behaves in a unique manner
+.\" NOTE: Sort cross-refs by section then alphabetically within the section.
+.Xr defaults 1 ,
+.Xr vi 1
+.Sh STANDARDS
+.Nm
+fully complies with the App.net Terms of Service.
+.Pp
+The API used is documented at
+.Pa http://developers.app.net/ .
+.Sh AUTHORS
+The
+.Nm
+reference was written by
+.An Jeremy W. Sherman ,
+.Mt me@jeremywsherman.com .
