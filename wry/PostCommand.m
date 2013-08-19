@@ -22,6 +22,7 @@
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *text = [params componentsJoinedByString:@" "];
+                                  NSArray *posts = @[text];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
@@ -29,16 +30,14 @@
                                   if (text.length > kMaxTextLength) {
                                     id <WryEnhancer> textTooLongEnhancer = [[TextTooLongEnhancer alloc] init];
                                     id enhanced = [textTooLongEnhancer enhance:text];
-                                    if ([enhanced isKindOfClass:[NSArray class]]) {
-                                      for (NSString *part in enhanced) {
-                                        NSLog(@"Text: %@***", part);
-                                      }
-                                    } else {
-                                      NSLog(@"Text: %@", enhanced);
-                                    }
+                                    posts = [enhanced isKindOfClass:[NSArray class]] ? enhanced : @[(NSString *)enhanced];
                                   }
-                                  return nil;
-//                                  return [service createPost:text replyID:nil error:error];
+                                  ADNResponse *response = nil;
+                                  for (NSString *post in posts) {
+                                    response = [service createPost:post replyID:nil error:error];
+                                    if (response == nil) break;
+                                  }
+                                  return response;
                                 }];
 }
 

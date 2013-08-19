@@ -26,7 +26,6 @@ extern NSString * const SettingsIDColor;
 extern NSString * const SettingsMutedColor;
 extern NSString * const SettingsLinkColor;
 extern NSString * const SettingsHashtagColor;
-extern NSString * const SettingsTextTooLongOption;
 
 @interface WrySettings : NSObject
 

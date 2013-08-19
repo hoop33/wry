@@ -9,6 +9,8 @@
 #import "TextTooLongEnhancer.h"
 #import "WryApplication.h"
 #import "WrySettings.h"
+#import "WryUtils.h"
+#import "LongSetting.h"
 
 @interface TextTooLongEnhancer ()
 - (id)ask:(NSString *)text;
@@ -21,22 +23,12 @@
   if ([object isKindOfClass:[NSString class]]) {
     NSString *text = (NSString *)object;
     if (text.length > kMaxTextLength) {
-      switch ([[WryApplication application].settings getInteger:SettingsTextTooLongOption]) {
-        case TextTooLongOptionAsk:
-          object = [self ask:text];
-          break;
-        case TextTooLongOptionReject:
-          object = nil;
-          break;
-        case TextTooLongOptionTruncate:
-          object = [text substringToIndex:kMaxTextLength];
-          break;
-        case TextTooLongOptionSplit:
-          object = [self split:text];
-          break;
-        default:
-          break;
+      LongSetting *longSetting = [[LongSetting alloc] init];
+      NSString *option = [[WryApplication application].settings getString:[WryUtils nameForSetting:longSetting]];
+      if (![[longSetting allowedValues] containsObject:option]) {
+        option = @"ask";
       }
+      object = [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:", option]) withObject:text];
     }
   }
   return object;
@@ -59,6 +51,14 @@
   [app print:@"Use this text? (y/N) --> "];
   NSString *useText = [app getInput];
   return [[useText lowercaseString] hasPrefix:@"y"] ? [text substringToIndex:kMaxTextLength] : nil;
+}
+
+- (id)reject:(NSString *)text {
+  return nil;
+}
+
+- (id)truncate:(NSString *)text {
+  return [text substringToIndex:kMaxTextLength];
 }
 
 - (id)split:(NSString *)text {

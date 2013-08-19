@@ -10,13 +10,6 @@
 
 #define kMaxTextLength 256
 
-typedef enum {
-  TextTooLongOptionAsk = 0,
-  TextTooLongOptionReject,
-  TextTooLongOptionTruncate,
-  TextTooLongOptionSplit
-} TextTooLongOption;
-
 @interface TextTooLongEnhancer : NSObject <WryEnhancer>
 
 @end
