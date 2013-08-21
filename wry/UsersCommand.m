@@ -20,7 +20,7 @@
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {
       NSString *user = [account valueForKey:@"acct"];
       [app print:[defaultUser isEqualToString:user] ? @"*" : @" "];
-      [app println:[account valueForKey:@"acct"]];
+      [app println:user];
     }
   } else {
     NSString *command = [params objectAtIndex:0];
