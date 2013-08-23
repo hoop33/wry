@@ -30,4 +30,8 @@
   return @[@NO, @YES];
 }
 
+- (WrySettingType)type {
+  return WrySettingBooleanType;
+}
+
 @end

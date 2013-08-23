@@ -44,4 +44,8 @@
   return values;
 }
 
+- (WrySettingType)type {
+  return WrySettingStringType;
+}
+
 @end

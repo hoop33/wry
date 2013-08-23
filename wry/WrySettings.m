@@ -7,40 +7,45 @@
 //
 
 #import "WrySettings.h"
+#import "WryUtils.h"
+#import "AnnotationsSetting.h"
+#import "CountSetting.h"
+#import "DebugSetting.h"
+#import "FormatSetting.h"
+#import "PrettySetting.h"
+#import "QuietSetting.h"
+#import "ReverseSetting.h"
 
-// TODO This class should contain a dictionary of WrySetting names and the actual values
-NSString * const SettingsDefaultUser = @"DefaultUser";
-NSString * const SettingsIncludeAnnotations = @"IncludeAnnotations";
-NSString * const SettingsCount = @"Count";
-NSString * const SettingsDebug = @"Debug";
-NSString * const SettingsFormat = @"Format";
-NSString * const SettingsPretty = @"Pretty";
-NSString * const SettingsQuiet = @"Quiet";
-NSString * const SettingsReverse = @"Reverse";
-NSString * const SettingsEditor = @"Editor";
-NSString * const SettingsSeparator = @"Separator";
-NSString * const SettingsTextColor = @"TextColor";
-NSString * const SettingsAlertColor = @"AlertColor";
-NSString * const SettingsUserColor = @"UserColor";
-NSString * const SettingsNameColor = @"NameColor";
-NSString * const SettingsIDColor = @"IDColor";
-NSString * const SettingsMutedColor = @"MutedColor";
-NSString * const SettingsLinkColor = @"LinkColor";
-NSString * const SettingsHashtagColor = @"HashtagColor";
+NSString *const SettingsDefaultUser = @"DefaultUser";
+NSString *const SettingsEditor = @"Editor";
+NSString *const SettingsSeparator = @"Separator";
+NSString *const SettingsTextColor = @"TextColor";
+NSString *const SettingsAlertColor = @"AlertColor";
+NSString *const SettingsUserColor = @"UserColor";
+NSString *const SettingsNameColor = @"NameColor";
+NSString *const SettingsIDColor = @"IDColor";
+NSString *const SettingsMutedColor = @"MutedColor";
+NSString *const SettingsLinkColor = @"LinkColor";
+NSString *const SettingsHashtagColor = @"HashtagColor";
+
+@interface WrySettings ()
+@property(nonatomic, strong) NSMutableDictionary *overrides;
+@end
 
 @implementation WrySettings
 
 - (id)init {
   self = [super init];
   if (self != nil) {
+    self.overrides = [[NSMutableDictionary alloc] init];
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
-      SettingsIncludeAnnotations : @NO,
-      SettingsCount : @20,
-      SettingsDebug : @NO,
-      SettingsFormat : @"text",
-      SettingsPretty : @NO,
-      SettingsQuiet : @NO,
-      SettingsReverse : @NO,
+      [WryUtils nameForSettingForClass:[AnnotationsSetting class]] : @NO,
+      [WryUtils nameForSettingForClass:[CountSetting class]] : @20,
+      [WryUtils nameForSettingForClass:[DebugSetting class]] : @NO,
+      [WryUtils nameForSettingForClass:[FormatSetting class]] : @"text",
+      [WryUtils nameForSettingForClass:[PrettySetting class]] : @NO,
+      [WryUtils nameForSettingForClass:[QuietSetting class]] : @NO,
+      [WryUtils nameForSettingForClass:[ReverseSetting class]] : @NO,
       SettingsSeparator : @"----------",
       SettingsTextColor : @"32m",
       SettingsAlertColor : @"31m",
@@ -56,15 +61,34 @@ NSString * const SettingsHashtagColor = @"HashtagColor";
 }
 
 - (NSString *)stringValue:(NSString *)key {
-  return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:key];
+  return [[self.overrides allKeys] containsObject:key] ? (NSString *) self.overrides[key] :
+    (NSString *) [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
 - (NSInteger)integerValue:(NSString *)key {
-  return [[NSUserDefaults standardUserDefaults] integerForKey:key];
+  return [[self.overrides allKeys] containsObject:key] ? [(NSNumber *) self.overrides[key] integerValue] :
+    [[NSUserDefaults standardUserDefaults] integerForKey:key];
 }
 
 - (BOOL)boolValue:(NSString *)key {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:key];
+  return [[self.overrides allKeys] containsObject:key] ? [(NSNumber *) self.overrides[key] boolValue] :
+    [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
+
+- (void)setTransientValue:(NSString *)value forSetting:(id <WrySetting>)setting {
+  NSObject *object = nil;
+  switch ([setting type]) {
+    case WrySettingBooleanType:
+      object = [NSNumber numberWithBool:[value boolValue]];
+      break;
+    case WrySettingIntegerType:
+      object = [NSNumber numberWithInteger:[value integerValue]];
+      break;
+    case WrySettingStringType:
+      object = value;
+      break;
+  }
+  [self.overrides setObject:object forKey:[WryUtils nameForSetting:setting]];
 }
 
 - (void)setObject:(NSObject *)value forKey:(NSString *)key {

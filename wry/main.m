@@ -36,7 +36,7 @@ int main(int argc, const char *argv[]) {
             errorMessage = [NSString stringWithFormat:@"Missing parameter for %@", param];
             break;
           } else {
-            [application.settings setObject:[NSString stringWithUTF8String:argv[i]] forKey:[WryUtils nameForSetting:setting]];
+            [application.settings setTransientValue:[NSString stringWithUTF8String:argv[i]] forSetting:setting];
           }
         }
       } else if (application.commandName == nil) {

@@ -26,6 +26,7 @@
          outputOperation:(ADNOutputOperationBlock)outputOperation;
 + (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol;
 + (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix;
++ (NSString *)nameForClass:(Class)cls suffix:(NSString *)suffix;
 @end
 
 @implementation WryUtils
@@ -202,6 +203,10 @@ static NSArray *allClasses;
   return [WryUtils nameForInstance:(NSObject *)setting suffix:kSettingSuffix];
 }
 
++ (NSString *)nameForSettingForClass:(Class)cls {
+  return [WryUtils nameForClass:cls suffix:kSettingSuffix];
+}
+
 + (NSArray *)allCommands {
   return [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
 }
@@ -222,7 +227,11 @@ static NSArray *allClasses;
 }
 
 + (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix {
-  NSString *string = [[instance.class description] lowercaseString];
+  return [WryUtils nameForClass:[instance class] suffix:suffix];
+}
+
++ (NSString *)nameForClass:(Class)cls suffix:(NSString *)suffix {
+  NSString *string = [[cls description] lowercaseString];
   return [string substringToIndex:(string.length - suffix.length)];
 }
 

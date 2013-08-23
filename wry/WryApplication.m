@@ -12,6 +12,13 @@
 #import "SSKeychain.h"
 #import "WryUtils.h"
 #import "WrySettings.h"
+#import "AnnotationsSetting.h"
+#import "CountSetting.h"
+#import "DebugSetting.h"
+#import "FormatSetting.h"
+#import "PrettySetting.h"
+#import "QuietSetting.h"
+#import "ReverseSetting.h"
 
 #define kVersion @"1.6"
 #define kErrorDomain @"com.grailbox.wry"
@@ -39,13 +46,13 @@
     _interactiveIn = isatty(fileno(stdin)) != 0;
     _interactiveOut = isatty(fileno(stdout)) != 0;
     self.settings = [[WrySettings alloc] init];
-    self.annotations = [self.settings boolValue:SettingsIncludeAnnotations];
-    self.count = [self.settings integerValue:SettingsCount];
-    self.debug = [self.settings boolValue:SettingsDebug];
-    self.format = [self.settings stringValue:SettingsFormat];
-    self.pretty = [self.settings boolValue:SettingsPretty];
-    self.quiet = [self.settings boolValue:SettingsQuiet];
-    self.reverse = [self.settings boolValue:SettingsReverse];
+    self.annotations = [self.settings boolValue:[WryUtils nameForSettingForClass:[AnnotationsSetting class]]];
+    self.count = [self.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]];
+    self.debug = [self.settings boolValue:[WryUtils nameForSettingForClass:[DebugSetting class]]];
+    self.format = [self.settings stringValue:[WryUtils nameForSettingForClass:[FormatSetting class]]];
+    self.pretty = [self.settings boolValue:[WryUtils nameForSettingForClass:[PrettySetting class]]];
+    self.quiet = [self.settings boolValue:[WryUtils nameForSettingForClass:[QuietSetting class]]];
+    self.reverse = [self.settings boolValue:[WryUtils nameForSettingForClass:[ReverseSetting class]]];
     self.user = [self.settings stringValue:SettingsDefaultUser];
   }
   return self;

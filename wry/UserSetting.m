@@ -7,6 +7,8 @@
 //
 
 #import "UserSetting.h"
+#import "SSKeychain.h"
+#import "WryApplication.h"
 
 @implementation UserSetting
 
@@ -27,7 +29,15 @@
 }
 
 - (NSArray *)allowedValues {
-  return nil;
+  NSMutableArray *users = [[NSMutableArray alloc] init];
+  for (NSDictionary *account in [SSKeychain accountsForService:[[WryApplication application] appName]]) {
+    [users addObject:[account valueForKey:@"acct"]];
+  }
+  return users;
+}
+
+- (WrySettingType)type {
+  return WrySettingStringType;
 }
 
 @end

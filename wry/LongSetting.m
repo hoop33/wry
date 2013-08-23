@@ -39,4 +39,8 @@
   return @[@"ask", @"reject", @"split", @"truncate"];
 }
 
+- (WrySettingType)type {
+  return WrySettingStringType;
+}
+
 @end

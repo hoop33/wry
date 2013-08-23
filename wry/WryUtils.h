@@ -44,6 +44,7 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (NSArray *)allFormatters;
 + (id <WrySetting>)settingForName:(NSString *)name;
 + (id <WrySetting>)settingForShortFlag:(NSString *)shortFlag;
++ (NSString *)nameForSettingForClass:(Class)cls;
 + (NSString *)nameForSetting:(id <WrySetting>)setting;
 + (NSArray *)allSettings;
 

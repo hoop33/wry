@@ -35,4 +35,8 @@
   return @[[[WryRange alloc] initWithFrom:1 to:200]];
 }
 
+- (WrySettingType)type {
+  return WrySettingIntegerType;
+}
+
 @end

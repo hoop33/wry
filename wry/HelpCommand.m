@@ -108,11 +108,15 @@
   if (instance != nil) {
     WryApplication *app = [WryApplication application];
     if ([instance conformsToProtocol:@protocol(WryCommand)]) {
-      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, [WryUtils nameForCommand:instance], [instance usage]]];
+      NSString *name = [WryUtils nameForCommand:instance];
+      [app println:[NSString stringWithFormat:@"\nHelp for command \"%@\"", name]];
+      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, name, [instance usage]]];
     } else if ([instance conformsToProtocol:@protocol(WrySetting)]) {
+      NSString *name = [WryUtils nameForSetting:instance];
+      [app println:[NSString stringWithFormat:@"\nHelp for setting \"%@\"", name]];
       [app println:[NSString stringWithFormat:@"usage: -%@, --%@%@",
           [instance shortFlag],
-          [WryUtils nameForSetting:instance],
+          name,
           [instance numberOfParameters] == 0 ? @"" : @" <option>"]];
       [app print:[NSString stringWithFormat:@"options: "]];
       NSMutableString *allowed = [NSMutableString string];
