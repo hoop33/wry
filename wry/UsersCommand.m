@@ -10,13 +10,15 @@
 #import "SSKeychain.h"
 #import "WrySettings.h"
 #import "NSString+Atification.h"
+#import "WryUtils.h"
+#import "UserSetting.h"
 
 @implementation UsersCommand
 
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   if (params == nil || params.count == 0) {
-    NSString *defaultUser = [app.settings stringValue:SettingsDefaultUser];
+    NSString *defaultUser = [app.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {
       NSString *user = [account valueForKey:@"acct"];
       [app print:[defaultUser isEqualToString:user] ? @"*" : @" "];
@@ -36,7 +38,7 @@
             [SSKeychain deletePasswordForService:app.appName account:user];
             [app println:[NSString stringWithFormat:@"Deleted user '%@'", user]];
           } else {
-            [app.settings setObject:user forKey:SettingsDefaultUser];
+            [app.settings setObject:user forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
             [app println:[NSString stringWithFormat:@"User '%@' now default", user]];
           }
         }

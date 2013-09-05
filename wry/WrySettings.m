@@ -15,10 +15,9 @@
 #import "PrettySetting.h"
 #import "QuietSetting.h"
 #import "ReverseSetting.h"
+#import "LongSetting.h"
+#import "SeparatorSetting.h"
 
-NSString *const SettingsDefaultUser = @"DefaultUser";
-NSString *const SettingsEditor = @"Editor";
-NSString *const SettingsSeparator = @"Separator";
 NSString *const SettingsTextColor = @"TextColor";
 NSString *const SettingsAlertColor = @"AlertColor";
 NSString *const SettingsUserColor = @"UserColor";
@@ -30,23 +29,31 @@ NSString *const SettingsHashtagColor = @"HashtagColor";
 
 @interface WrySettings ()
 @property(nonatomic, strong) NSMutableDictionary *overrides;
+@property(nonatomic, strong) NSDictionary *legacy;
 @end
 
-@implementation WrySettings
+@implementation WrySettings {
+}
 
 - (id)init {
   self = [super init];
   if (self != nil) {
     self.overrides = [[NSMutableDictionary alloc] init];
+    self.legacy = @{
+      @"user" : @"DefaultUser",
+      @"editor" : @"Editor",
+      @"separator" : @"Separator"
+    };
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
       [WryUtils nameForSettingForClass:[AnnotationsSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[CountSetting class]] : @20,
       [WryUtils nameForSettingForClass:[DebugSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[FormatSetting class]] : @"text",
+      [WryUtils nameForSettingForClass:[LongSetting class]] : @"ask",
       [WryUtils nameForSettingForClass:[PrettySetting class]] : @NO,
       [WryUtils nameForSettingForClass:[QuietSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[ReverseSetting class]] : @NO,
-      SettingsSeparator : @"----------",
+      [WryUtils nameForSettingForClass:[SeparatorSetting class]] : @"----------",
       SettingsTextColor : @"32m",
       SettingsAlertColor : @"31m",
       SettingsUserColor : @"33m",
@@ -61,8 +68,21 @@ NSString *const SettingsHashtagColor = @"HashtagColor";
 }
 
 - (NSString *)stringValue:(NSString *)key {
-  return [[self.overrides allKeys] containsObject:key] ? (NSString *) self.overrides[key] :
-    (NSString *) [[NSUserDefaults standardUserDefaults] objectForKey:key];
+  NSString *value = nil;
+  // Check for a command-line override
+  if ([[self.overrides allKeys] containsObject:key]) {
+    value = (NSString *) self.overrides[key];
+  } else {
+    // Check if they've configured an old key
+    if ([[self.legacy allKeys] containsObject:key] && (value = [[NSUserDefaults standardUserDefaults] objectForKey:[self.legacy objectForKey:key]]) != nil) {
+      [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self.legacy objectForKey:key]];
+      [self setObject:value forKey:key];
+    } else {
+      // Check the defaults
+      value = (NSString *) [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    }
+  }
+  return value;
 }
 
 - (NSInteger)integerValue:(NSString *)key {

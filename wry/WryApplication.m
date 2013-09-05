@@ -19,6 +19,7 @@
 #import "PrettySetting.h"
 #import "QuietSetting.h"
 #import "ReverseSetting.h"
+#import "UserSetting.h"
 
 #define kVersion @"1.6"
 #define kErrorDomain @"com.grailbox.wry"
@@ -46,28 +47,21 @@
     _interactiveIn = isatty(fileno(stdin)) != 0;
     _interactiveOut = isatty(fileno(stdout)) != 0;
     self.settings = [[WrySettings alloc] init];
-    self.annotations = [self.settings boolValue:[WryUtils nameForSettingForClass:[AnnotationsSetting class]]];
-    self.count = [self.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]];
-    self.debug = [self.settings boolValue:[WryUtils nameForSettingForClass:[DebugSetting class]]];
-    self.format = [self.settings stringValue:[WryUtils nameForSettingForClass:[FormatSetting class]]];
-    self.pretty = [self.settings boolValue:[WryUtils nameForSettingForClass:[PrettySetting class]]];
-    self.quiet = [self.settings boolValue:[WryUtils nameForSettingForClass:[QuietSetting class]]];
-    self.reverse = [self.settings boolValue:[WryUtils nameForSettingForClass:[ReverseSetting class]]];
-    self.user = [self.settings stringValue:SettingsDefaultUser];
   }
   return self;
 }
 
 - (int)run {
   int returnCode = WrySuccessCode;
-  if (abs(self.count) > kMaxCount) {
+  if (abs((int)[self.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]]) > kMaxCount) {
     [self println:[NSString stringWithFormat:@"count must be between -%d and %d", kMaxCount, kMaxCount]];
     returnCode = WryErrorCodeBadInput;
   } else {
-    self.formatter = [WryUtils formatterForName:self.format];
+    NSString *formatterName = [self.settings stringValue:[WryUtils nameForSettingForClass:[FormatSetting class]]];
+    self.formatter = [WryUtils formatterForName:formatterName];
     if (self.formatter == nil) {
       [self println:[NSString stringWithFormat:@"%@: '%@' is not a %@ format. See '%@ help'.", self.appName,
-                                               self.format, self.appName, self.appName]];
+                                               formatterName, self.appName, self.appName]];
       returnCode = WryErrorCodeBadInput;
     } else {
       id <WryCommand> wryCommand = [WryUtils commandForName:self.commandName];
@@ -92,7 +86,7 @@
 }
 
 - (void)print:(NSString *)output {
-  if (!self.quiet) {
+  if (![self.settings boolValue:[WryUtils nameForSettingForClass:[QuietSetting class]]]) {
     printf("%s", [output UTF8String]);
   }
 }
@@ -115,14 +109,15 @@
 }
 
 - (NSString *)accessToken {
-  return [SSKeychain passwordForService:self.appName account:self.user];
+  return [SSKeychain passwordForService:self.appName account:[self.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]]];
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
+  NSString *user = [self.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
   [SSKeychain setPassword:accessToken forService:self.appName
-                  account:self.user];
+                  account:user];
   if ([SSKeychain accountsForService:self.appName].count == 1) {
-    [self.settings setObject:self.user forKey:SettingsDefaultUser];
+    [self.settings setObject:user forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
   }
 }
 

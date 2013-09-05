@@ -11,6 +11,12 @@
 #import "WryUtils.h"
 #import "WryErrorCodes.h"
 #import "ADNService.h"
+#import "CountSetting.h"
+#import "WrySettings.h"
+#import "DebugSetting.h"
+#import "PrettySetting.h"
+#import "ReverseSetting.h"
+#import "AnnotationsSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
@@ -135,11 +141,11 @@ static NSArray *allClasses;
     success = NO;
   } else {
     ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ? app.accessToken : accessToken)];
-    service.count = app.count;
-    service.debug = app.debug;
-    service.pretty = app.pretty;
-    service.reverse = app.reverse;
-    service.annotations = app.annotations;
+    service.count = [app.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]];
+    service.debug = [app.settings boolValue:[WryUtils nameForSettingForClass:[DebugSetting class]]];
+    service.pretty = [app.settings boolValue:[WryUtils nameForSettingForClass:[PrettySetting class]]];
+    service.reverse = [app.settings boolValue:[WryUtils nameForSettingForClass:[ReverseSetting class]]];
+    service.annotations = [app.settings boolValue:[WryUtils nameForSettingForClass:[AnnotationsSetting class]]];
     ADNResponse *response = operation(service);
     if (response != nil) {
       if (response.meta != nil) {

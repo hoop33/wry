@@ -10,6 +10,8 @@
 #import "ADNAnnotation.h"
 #import "WryApplication.h"
 #import "WrySettings.h"
+#import "SeparatorSetting.h"
+#import "WryUtils.h"
 
 @implementation ADNFile
 
@@ -21,7 +23,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[SeparatorSetting class]]]];
   return str;
 }
 
@@ -42,7 +44,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation colorDescription]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[SeparatorSetting class]]]];
   return str;
 }
 

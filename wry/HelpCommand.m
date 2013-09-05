@@ -71,7 +71,7 @@
     if ([setting numberOfParameters] == 1) {
       name = [name stringByAppendingFormat:@" <%@>", name];
     }
-    [app println:[NSString stringWithFormat:@"   -%@, --%-17s %@",
+    [app println:[NSString stringWithFormat:@"   -%@, --%-21s %@",
                                             [setting shortFlag], [name UTF8String],
                                             [setting summary]]];
   }
@@ -125,6 +125,8 @@
       }
       if (allowed.length > 0) {
         [app println:[allowed substringFromIndex:2]];
+      } else {
+        [app println:[NSString stringWithFormat:@"<%@>", name]];
       }
     }
     [app println:@""];

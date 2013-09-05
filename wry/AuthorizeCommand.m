@@ -11,6 +11,8 @@
 #import "ADNResponse.h"
 #import "ADNUser.h"
 #import "WryUtils.h"
+#import "UserSetting.h"
+#import "WrySettings.h"
 
 @implementation AuthorizeCommand
 
@@ -43,9 +45,9 @@
                                          }];
 
     if (success && response != nil) {
-      app.user = ((ADNUser *) response.object).username;
-      app.accessToken = accessToken;
-      [app println:[NSString stringWithFormat:@"User %@ authorized!", app.user]];
+      NSString *username = ((ADNUser *) response.object).username;
+      [app.settings setObject:username forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
+      [app println:[NSString stringWithFormat:@"User %@ authorized!", username]];
     }
   }
   return success;

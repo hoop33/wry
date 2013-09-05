@@ -8,9 +8,6 @@
 
 #import "WrySetting.h"
 
-extern NSString * const SettingsDefaultUser;
-extern NSString * const SettingsEditor;
-extern NSString * const SettingsSeparator;
 extern NSString * const SettingsTextColor;
 extern NSString * const SettingsAlertColor;
 extern NSString * const SettingsUserColor;

@@ -12,6 +12,8 @@
 #import "WrySettings.h"
 #import "NSString+Atification.h"
 #import "WryApplication.h"
+#import "WryUtils.h"
+#import "SeparatorSetting.h"
 
 @implementation ADNUser
 
@@ -44,7 +46,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[SeparatorSetting class]]]];
   return str;
 }
 
@@ -57,7 +59,7 @@
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
-  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:SettingsSeparator]];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[SeparatorSetting class]]]];
   return str;
 }
 

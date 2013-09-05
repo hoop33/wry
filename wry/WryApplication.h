@@ -20,18 +20,9 @@
 @property(nonatomic, strong) NSArray *params;
 @property(nonatomic, copy) NSString *accessToken;
 @property(nonatomic, strong) id <WryFormatter> formatter;
-@property(nonatomic, copy) NSString *format;
-@property(nonatomic, copy) NSString *user;
-@property(nonatomic, assign) BOOL debug;
-@property(nonatomic, assign) BOOL quiet;
-@property(nonatomic, assign) BOOL pretty;
-@property(nonatomic, assign) BOOL reverse;
-@property(nonatomic, assign) BOOL annotations;
-@property(nonatomic, assign) int count;
 
 + (WryApplication *)application;
 + (int)maximumPostLength;
-
 - (int)run;
 - (void)print:(NSString *)output;
 - (void)println:(NSObject *)output;
