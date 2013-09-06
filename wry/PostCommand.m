@@ -22,16 +22,18 @@
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *text = [params componentsJoinedByString:@" "];
-                                  NSArray *posts = @[text];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
                                   }
+
+                                  NSArray *posts = @[text];
                                   if (text.length > kMaxTextLength) {
                                     id <WryEnhancer> textTooLongEnhancer = [[TextTooLongEnhancer alloc] init];
                                     id enhanced = [textTooLongEnhancer enhance:text];
                                     posts = [enhanced isKindOfClass:[NSArray class]] ? enhanced : @[(NSString *)enhanced];
                                   }
+
                                   ADNResponse *response = nil;
                                   for (NSString *post in posts) {
                                     response = [service createPost:post replyID:nil error:error];
