@@ -18,7 +18,7 @@
     if ([this numberOfParameters] == 1) {
       name = [name stringByAppendingFormat:@" <%@>", name];
     }
-    return [NSString stringWithFormat:@"-%@, --%-21s %@", [this shortFlag], [name UTF8String], [this summary]];
+    return [NSString stringWithFormat:@"   -%@, --%-21s %@", [this shortFlag], [name UTF8String], [this summary]];
   } else {
     return [self description];
   }

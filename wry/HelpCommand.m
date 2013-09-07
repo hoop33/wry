@@ -10,6 +10,9 @@
 #import "WryErrorCodes.h"
 #import "WryFormatter.h"
 #import "WryUtils.h"
+#import "CommandsCommand.h"
+#import "SettingsCommand.h"
+#import "FormattersCommand.h"
 
 @interface HelpCommand ()
 - (void)showAllHelp;
@@ -65,34 +68,20 @@
 
   // Show the settings
   [app println:[NSString stringWithFormat:@"The %@ settings are:", app.appName]];
-  for (Class cls in [WryUtils allSettings]) {
-    id <WrySetting> setting = [[cls alloc] init];
-    NSString *name = [WryUtils nameForSetting:setting];
-    if ([setting numberOfParameters] == 1) {
-      name = [name stringByAppendingFormat:@" <%@>", name];
-    }
-    [app println:[NSString stringWithFormat:@"   -%@, --%-21s %@",
-                                            [setting shortFlag], [name UTF8String],
-                                            [setting summary]]];
-  }
+  SettingsCommand *settingsCommand = [[SettingsCommand alloc] init];
+  [settingsCommand run:nil error:nil];
   [app println:@""];
 
   // Show the formatters
   [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
-  for (Class cls in [WryUtils allFormatters]) {
-    id <WryFormatter> formatter = [[cls alloc] init];
-    [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForFormatter:formatter] UTF8String],
-                                            [formatter summary]]];
-  }
+  FormattersCommand *formattersCommand = [[FormattersCommand alloc] init];
+  [formattersCommand run:nil error:nil];
   [app println:@""];
 
   // Show the commands
   [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
-  for (Class cls in [WryUtils allCommands]) {
-    id <WryCommand> command = [[cls alloc] init];
-    [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:command]
-      UTF8String], [command summary]]];
-  }
+  CommandsCommand *commandsCommand = [[CommandsCommand alloc] init];
+  [commandsCommand run:nil error:nil];
   [app println:@""];
   [app println:[NSString stringWithFormat:@"See '%@ help <command | setting>' for help on a specific command or setting.",
                                           app.appName]];
