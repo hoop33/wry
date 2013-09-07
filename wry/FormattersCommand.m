@@ -1,25 +1,24 @@
 //
-//  SettingsCommand.m
+//  FormattersCommand.m
 //  wry
 //
 //  Created by Rob Warner on 9/7/13.
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import "SettingsCommand.h"
-#import "ADNResponse.h"
+#import "FormattersCommand.h"
 #import "WryUtils.h"
 
-@implementation SettingsCommand
+@implementation FormattersCommand
 
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
   ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
-  NSArray *settingsClasses = [WryUtils allSettings];
-  NSMutableArray *settings = [[NSMutableArray alloc] initWithCapacity:settingsClasses.count];
-  for (Class cls in settingsClasses) {
-    [settings addObject:[[cls alloc] init]];
+  NSArray *formattersClasses = [WryUtils allFormatters];
+  NSMutableArray *formatters = [[NSMutableArray alloc] initWithCapacity:formattersClasses.count];
+  for (Class cls in formattersClasses) {
+    [formatters addObject:[[cls alloc] init]];
   }
-  response.object = settings;
+  response.object = formatters;
   WryApplication *app = [WryApplication application];
   [app println:[app.formatter format:response]];
   return YES;
@@ -30,11 +29,11 @@
 }
 
 - (NSString *)help {
-  return @"Lists all the available settings.";
+  return @"Lists all the available formatters.";
 }
 
 - (NSString *)summary {
-  return @"List available settings";
+  return @"List available formatters";
 }
 
 @end

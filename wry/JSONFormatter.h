@@ -7,7 +7,8 @@
 //
 
 #import "WryFormatter.h"
+#import "BaseFormatter.h"
 
-@interface JSONFormatter : NSObject <WryFormatter>
+@interface JSONFormatter : BaseFormatter <WryFormatter>
 
 @end

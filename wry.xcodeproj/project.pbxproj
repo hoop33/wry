@@ -99,6 +99,8 @@
 		C7D2963A177A380B00649A29 /* ADNObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D29639177A380B00649A29 /* ADNObject.m */; };
 		C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */; };
 		C7DB8E2717DBD7DF004050BB /* BaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2617DBD7DF004050BB /* BaseCommand.m */; };
+		C7DB8E2A17DBEDED004050BB /* BaseFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2917DBEDED004050BB /* BaseFormatter.m */; };
+		C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */; };
 		C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */; };
 /* End PBXBuildFile section */
 
@@ -299,6 +301,10 @@
 		C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancer.m; sourceTree = "<group>"; };
 		C7DB8E2517DBD7DF004050BB /* BaseCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCommand.h; sourceTree = "<group>"; };
 		C7DB8E2617DBD7DF004050BB /* BaseCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCommand.m; sourceTree = "<group>"; };
+		C7DB8E2817DBEDED004050BB /* BaseFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFormatter.h; sourceTree = "<group>"; };
+		C7DB8E2917DBEDED004050BB /* BaseFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFormatter.m; sourceTree = "<group>"; };
+		C7DB8E2B17DBEEF0004050BB /* FormattersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattersCommand.h; sourceTree = "<group>"; };
+		C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattersCommand.m; sourceTree = "<group>"; };
 		C7FDD65C17C7E57400EF9315 /* ConfigCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigCommand.h; sourceTree = "<group>"; };
 		C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -382,6 +388,8 @@
 				C72BF7B31710CA2700F0039D /* JSONFormatter.m */,
 				C72BF7B51711990B00F0039D /* ALFREDFormatter.h */,
 				C72BF7B61711990B00F0039D /* ALFREDFormatter.m */,
+				C7DB8E2817DBEDED004050BB /* BaseFormatter.h */,
+				C7DB8E2917DBEDED004050BB /* BaseFormatter.m */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -555,6 +563,8 @@
 				C7C60FB717DBCE8100006738 /* SettingsCommand.m */,
 				C7DB8E2517DBD7DF004050BB /* BaseCommand.h */,
 				C7DB8E2617DBD7DF004050BB /* BaseCommand.m */,
+				C7DB8E2B17DBEEF0004050BB /* FormattersCommand.h */,
+				C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -704,6 +714,7 @@
 				5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */,
 				5F237680B822AEBA7696A403 /* ADNFile.m in Sources */,
 				5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */,
+				C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */,
 				5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */,
 				5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */,
 				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
@@ -730,6 +741,7 @@
 				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
 				C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */,
 				C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */,
+				C7DB8E2A17DBEDED004050BB /* BaseFormatter.m in Sources */,
 				C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */,
 				C726631717AC485800B9B189 /* PrettySetting.m in Sources */,
 				C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */,
