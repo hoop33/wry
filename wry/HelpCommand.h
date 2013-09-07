@@ -7,7 +7,8 @@
 //
 
 #import "WryCommand.h"
+#import "BaseCommand.h"
 
-@interface HelpCommand : NSObject <WryCommand>
+@interface HelpCommand : BaseCommand <WryCommand>
 
 @end
