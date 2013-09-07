@@ -8,6 +8,7 @@
 
 #import "TEXTFormatter.h"
 #import "WryApplication.h"
+#import "BaseSetting.h"
 
 @implementation TEXTFormatter
 

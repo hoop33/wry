@@ -7,7 +7,8 @@
 //
 
 #import "WrySetting.h"
+#import "BaseSetting.h"
 
-@interface EditorSetting : NSObject <WrySetting>
+@interface EditorSetting : BaseSetting <WrySetting>
 
 @end
