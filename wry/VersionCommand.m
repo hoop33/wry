@@ -27,7 +27,7 @@
 }
 
 - (NSString *)help {
-  return @"Displays version information about this application";
+  return @"Displays version information about this application.";
 }
 
 - (NSString *)summary {
