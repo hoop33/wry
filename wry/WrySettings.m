@@ -89,7 +89,7 @@
   NSObject *object = nil;
   switch ([setting type]) {
     case WrySettingBooleanType:
-      object = [NSNumber numberWithBool:[value boolValue]];
+      object = @YES;
       break;
     case WrySettingIntegerType:
       object = [NSNumber numberWithInteger:[value integerValue]];
