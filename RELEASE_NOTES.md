@@ -1,5 +1,14 @@
 # Release Notes
 
+## Version 1.7 (coming)
+* Colorize output
+* Make separator between posts et al configurable
+* Options for posts that are too long: ask before truncating, truncate, split into multiple, or reject
+* Support defaults for all flags in wry.plist
+* Add config command for viewing and setting defaults
+* Add license file and license statement to version command (MIT licensed)
+* Fix: multi-line markdown links don't work
+
 ## Version 1.6 (6/19/2013)
 * Add -r/--reverse flag to reverse order of output
 * Add posting/replying/messaging from stdin (Thanks, @jws!)

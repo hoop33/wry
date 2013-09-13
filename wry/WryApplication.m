@@ -21,7 +21,7 @@
 #import "ReverseSetting.h"
 #import "UserSetting.h"
 
-#define kVersion @"1.6"
+#define kVersion @"1.7beta1"
 #define kErrorDomain @"com.grailbox.wry"
 #define kMaxCount 200
 #define kInputBufferSize 512
