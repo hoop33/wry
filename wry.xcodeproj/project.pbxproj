@@ -101,6 +101,7 @@
 		C7DB8E2717DBD7DF004050BB /* BaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2617DBD7DF004050BB /* BaseCommand.m */; };
 		C7DB8E2A17DBEDED004050BB /* BaseFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2917DBEDED004050BB /* BaseFormatter.m */; };
 		C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */; };
+		C7DB8E3317E2502A004050BB /* ColorsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E3217E2502A004050BB /* ColorsSetting.m */; };
 		C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */; };
 /* End PBXBuildFile section */
 
@@ -305,6 +306,8 @@
 		C7DB8E2917DBEDED004050BB /* BaseFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFormatter.m; sourceTree = "<group>"; };
 		C7DB8E2B17DBEEF0004050BB /* FormattersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattersCommand.h; sourceTree = "<group>"; };
 		C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattersCommand.m; sourceTree = "<group>"; };
+		C7DB8E3117E2502A004050BB /* ColorsSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsSetting.h; sourceTree = "<group>"; };
+		C7DB8E3217E2502A004050BB /* ColorsSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsSetting.m; sourceTree = "<group>"; };
 		C7FDD65C17C7E57400EF9315 /* ConfigCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigCommand.h; sourceTree = "<group>"; };
 		C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -352,6 +355,8 @@
 				C707E36917D35C30005DB231 /* SeparatorSetting.m */,
 				C7C60FB917DBCF6C00006738 /* BaseSetting.h */,
 				C7C60FBA17DBCF6C00006738 /* BaseSetting.m */,
+				C7DB8E3117E2502A004050BB /* ColorsSetting.h */,
+				C7DB8E3217E2502A004050BB /* ColorsSetting.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				C744E48E1701D6860002A9A5 /* UnmuteCommand.m in Sources */,
 				C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */,
 				C744E494170204F10002A9A5 /* RepliesCommand.m in Sources */,
+				C7DB8E3317E2502A004050BB /* ColorsSetting.m in Sources */,
 				C744E49717020EDB0002A9A5 /* PostsCommand.m in Sources */,
 				C744E49A170230920002A9A5 /* BlockCommand.m in Sources */,
 				C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */,

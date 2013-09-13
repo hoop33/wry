@@ -8,10 +8,9 @@
 
 #import "ADNObject.h"
 #import "WryApplication.h"
-#import "WrySettings.h"
 
-NSString * const TagColorStart = @"\x1b[";
-NSString * const TagColorEnd = @"\x1b[0m";
+NSString *const TagColorStart = @"\x1b[";
+NSString *const TagColorEnd = @"\x1b[0m";
 
 @implementation ADNObject
 
@@ -19,12 +18,12 @@ NSString * const TagColorEnd = @"\x1b[0m";
   return [self description];
 }
 
-- (NSString *)colorize:(NSString *)text colorSetting:(NSString *)settingName {
+- (NSString *)colorize:(NSString *)text colorSetting:(WryColor)wryColor {
   return [NSString stringWithFormat:@"%@%@%@%@",
-    TagColorStart,
-    [[WryApplication application].settings stringValue:settingName],
-    text,
-    TagColorEnd
+                                    TagColorStart,
+                                    [[WryApplication application].settings colorValue:wryColor],
+                                    text,
+                                    TagColorEnd
   ];
 }
 

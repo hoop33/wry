@@ -11,7 +11,6 @@
 #import "ADNAnnotation.h"
 #import "ADNLink.h"
 #import "ADNHashtag.h"
-#import "WrySettings.h"
 #import "WryApplication.h"
 #import "WryUtils.h"
 #import "SeparatorSetting.h"
@@ -38,11 +37,11 @@
 
 - (NSString *)colorDescription {
   NSMutableString *str = [[NSMutableString alloc] init];
-  [str appendString:(self.user == nil ? [self colorize:@"[RETIRED USER]" colorSetting:SettingsAlertColor] : [self.user colorShortDescription])];
-  [str appendFormat:@"\n%@", (self.text == nil ? [self colorize:@"[REDACTED]" colorSetting:SettingsAlertColor] : [self colorize:self.text colorSetting:SettingsTextColor])];
+  [str appendString:(self.user == nil ? [self colorize:@"[RETIRED USER]" colorSetting:WryColorAlert] : [self.user colorShortDescription])];
+  [str appendFormat:@"\n%@", (self.text == nil ? [self colorize:@"[REDACTED]" colorSetting:WryColorAlert] : [self colorize:self.text colorSetting:WryColorText])];
   [str appendFormat:@"\nID: %@ -- %@",
-    [self colorize:[NSString stringWithFormat:@"%ld", self.postID] colorSetting:SettingsIDColor],
-    [self colorize:[self.createdAt description] colorSetting:SettingsMutedColor]
+                    [self colorize:[NSString stringWithFormat:@"%ld", self.postID] colorSetting:WryColorID],
+                    [self colorize:[self.createdAt description] colorSetting:WryColorMuted]
   ];
   for (ADNLink *link in self.links) {
     [str appendFormat:@"\n%@", [link colorDescription]];

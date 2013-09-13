@@ -1,5 +1,5 @@
 //
-//  ADNUser.m
+//  ADNUserDescription.m
 //  wry
 //
 //  Created by Rob Warner on 3/12/13.
@@ -16,7 +16,7 @@
 }
 
 - (NSString *)colorDescription {
-  return [self colorize:self.text colorSetting:SettingsTextColor];
+  return [self colorize:self.text colorSetting:WryColorText];
 }
 
 @end

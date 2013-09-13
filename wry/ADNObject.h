@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WrySettings.h"
 
 extern NSString * const TagColorStart;
 extern NSString * const TagColorEnd;
@@ -14,6 +15,6 @@ extern NSString * const TagColorEnd;
 @interface ADNObject : NSObject
 
 - (NSString *)colorDescription;
-- (NSString *)colorize:(NSString *)text colorSetting:(NSString *)settingName;
+- (NSString *)colorize:(NSString *)text colorSetting:(WryColor)wryColor;
 
 @end

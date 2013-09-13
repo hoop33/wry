@@ -28,10 +28,10 @@
 
 - (NSString *)colorShortDescription {
   return [NSString stringWithFormat:@"%@ (%@) (%@) %@==%@ You",
-                                    [self colorize:self.name colorSetting:SettingsNameColor],
-                                    [self colorize:[self.username atify] colorSetting:SettingsUserColor],
+                                    [self colorize:self.name colorSetting:WryColorName],
+                                    [self colorize:[self.username atify] colorSetting:WryColorUser],
                                     [self colorize:[NSString stringWithFormat:@"%ld", (long) self.userID]
-                                      colorSetting:SettingsIDColor],
+                                      colorSetting:WryColorID],
                                     (self.youFollow ? @"<" : @""),
                                     (self.followsYou ? @">" : @"")
   ];

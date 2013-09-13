@@ -17,15 +17,7 @@
 #import "ReverseSetting.h"
 #import "LongSetting.h"
 #import "SeparatorSetting.h"
-
-NSString *const SettingsTextColor = @"TextColor";
-NSString *const SettingsAlertColor = @"AlertColor";
-NSString *const SettingsUserColor = @"UserColor";
-NSString *const SettingsNameColor = @"NameColor";
-NSString *const SettingsIDColor = @"IDColor";
-NSString *const SettingsMutedColor = @"MutedColor";
-NSString *const SettingsLinkColor = @"LinkColor";
-NSString *const SettingsHashtagColor = @"HashtagColor";
+#import "ColorsSetting.h"
 
 @interface WrySettings ()
 @property(nonatomic, strong) NSMutableDictionary *overrides;
@@ -54,14 +46,7 @@ NSString *const SettingsHashtagColor = @"HashtagColor";
       [WryUtils nameForSettingForClass:[QuietSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[ReverseSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[SeparatorSetting class]] : @"----------",
-      SettingsTextColor : @"32m",
-      SettingsAlertColor : @"31m",
-      SettingsUserColor : @"33m",
-      SettingsNameColor : @"34m",
-      SettingsIDColor : @"35m",
-      SettingsMutedColor : @"36m",
-      SettingsLinkColor : @"34m\x1b[4m",
-      SettingsHashtagColor : @"44m"
+      [WryUtils nameForSettingForClass:[ColorsSetting class]] : @"32m,31m,33m,34m,35m,36m,34m\x1b[4m,44m"
     }];
   }
   return self;
@@ -93,6 +78,11 @@ NSString *const SettingsHashtagColor = @"HashtagColor";
 - (BOOL)boolValue:(NSString *)key {
   return [[self.overrides allKeys] containsObject:key] ? [(NSNumber *) self.overrides[key] boolValue] :
     [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
+
+- (NSString *)colorValue:(WryColor)wryColor {
+  NSArray *colors = [[self stringValue:[WryUtils nameForSettingForClass:[ColorsSetting class]]] componentsSeparatedByString:@","];
+  return colors.count > wryColor ? colors[wryColor] : @"";
 }
 
 - (void)setTransientValue:(NSString *)value forSetting:(id <WrySetting>)setting {

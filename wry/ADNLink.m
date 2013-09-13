@@ -17,8 +17,8 @@
 
 - (NSString *)colorDescription {
   return [NSString stringWithFormat:@"[%@](%@)",
-    [self colorize:self.text colorSetting:SettingsTextColor],
-    [self colorize:self.url colorSetting:SettingsLinkColor]
+    [self colorize:self.text colorSetting:WryColorText],
+    [self colorize:self.url colorSetting:WryColorLink]
   ];
 }
 

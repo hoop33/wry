@@ -20,11 +20,7 @@
   if (params.count == 0) {
     for (Class cls in [WryUtils allSettings]) {
       NSString *name = [WryUtils nameForSettingForClass:cls];
-      NSString *value = [app.settings stringValue:name];
-      if (value == nil) {
-        value = @"*none*";
-      }
-      [app println:[NSString stringWithFormat:@"%15s : %@", [name UTF8String], value]];
+      [app println:[NSString stringWithFormat:@"%15s : %@", [name UTF8String], [self valueForSetting:name]]];
     }
   } else {
     id <WrySetting> setting = [WryUtils settingForName:params[0]];
@@ -37,13 +33,19 @@
     } else {
       if (params.count == 1) {
         // Print the current value
-        [app println:[NSString stringWithFormat:@"%@ : %@", params[0], [app.settings stringValue:params[0]]]];
+        [app println:[NSString stringWithFormat:@"%@ : %@", params[0], [self valueForSetting:params[0]]]];
       } else {
         [app.settings setObject:params[1] forKey:params[0]];
       }
     }
   }
   return success;
+}
+
+- (NSString *)valueForSetting:(NSString *)setting {
+  WryApplication *app = [WryApplication application];
+  NSString *value = [app.settings stringValue:setting];
+  return value == nil ? @"*none*" : value;
 }
 
 - (NSString *)usage {
