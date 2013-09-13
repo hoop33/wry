@@ -70,19 +70,17 @@
   [app println:[NSString stringWithFormat:@"The %@ settings are:", app.appName]];
   SettingsCommand *settingsCommand = [[SettingsCommand alloc] init];
   [settingsCommand run:nil error:nil];
-  [app println:@""];
 
   // Show the formatters
   [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
   FormattersCommand *formattersCommand = [[FormattersCommand alloc] init];
   [formattersCommand run:nil error:nil];
-  [app println:@""];
 
   // Show the commands
   [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
   CommandsCommand *commandsCommand = [[CommandsCommand alloc] init];
   [commandsCommand run:nil error:nil];
-  [app println:@""];
+
   [app println:[NSString stringWithFormat:@"See '%@ help <command | formatter | setting>' for help on a specific\n"
                                             @"command, formatter, or setting.",
                                           app.appName]];
