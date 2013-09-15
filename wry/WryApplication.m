@@ -11,14 +11,10 @@
 #import "WryErrorCodes.h"
 #import "SSKeychain.h"
 #import "WryUtils.h"
-#import "WrySettings.h"
 #import "AnnotationsSetting.h"
 #import "CountSetting.h"
-#import "DebugSetting.h"
 #import "FormatSetting.h"
-#import "PrettySetting.h"
 #import "QuietSetting.h"
-#import "ReverseSetting.h"
 #import "UserSetting.h"
 
 #define kVersion @"1.7beta1"
@@ -53,7 +49,7 @@
 
 - (int)run {
   int returnCode = WrySuccessCode;
-  if (abs((int)[self.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]]) > kMaxCount) {
+  if (abs((int) [self.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]]) > kMaxCount) {
     [self println:[NSString stringWithFormat:@"count must be between -%d and %d", kMaxCount, kMaxCount]];
     returnCode = WryErrorCodeBadInput;
   } else {
