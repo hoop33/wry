@@ -46,7 +46,7 @@
       [WryUtils nameForSettingForClass:[QuietSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[ReverseSetting class]] : @NO,
       [WryUtils nameForSettingForClass:[SeparatorSetting class]] : @"----------",
-      [WryUtils nameForSettingForClass:[ColorsSetting class]] : @"32m,31m,33m,34m,35m,36m,34m\x1b[4m,44m"
+      [WryUtils nameForSettingForClass:[ColorsSetting class]] : @"32m,31m,33m,34m,35m,36m,4m,44m"
     }];
   }
   return self;
