@@ -12,7 +12,7 @@
 
 - (NSString *)description {
   if([self.text isEqualToString:self.url]){
-    return [NSString stringWithFormat:@"[%@]", self.text];
+    return [NSString stringWithFormat:@"[%@]", self.url];
   } else {
     return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
   }
