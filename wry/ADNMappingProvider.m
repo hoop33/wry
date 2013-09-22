@@ -85,7 +85,9 @@
     [ADNMappingEntry mappingEntry:@"reply_to" to:@"replyToID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
     [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
-    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]],
+    [ADNMappingEntry mappingEntry:@"entities.links" to:@"links" mapping:[ADNMappingProvider linkMapping]],
+    [ADNMappingEntry mappingEntry:@"entities.hashtags" to:@"hashtags" mapping:[ADNMappingProvider hashtagMapping]]
   ];
   return mapping;
 }
