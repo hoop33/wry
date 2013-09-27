@@ -13,13 +13,11 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  NSString *relationship = (self.youFollow && self.followsYou
-                            ? @" <--> You"
-                            : (self.youFollow
-                               ? @" <-- You"
-                               : (self.followsYou
-                                  ? @" --> You"
-                                  : @""  /* no relationship */)));
+  NSString *relationship;
+  if (self.youFollow && self.followsYou) relationship = @" <--> You";
+  else if (self.youFollow) relationship = @" <-- You";
+  else if (self.followsYou) relationship = @" --> You";
+  else relationship = @"";  /* no relationship */
 
   NSString *shortDescription = [NSString stringWithFormat:@"%@ (@%@) (%ld)%@",
                                 self.name, self.username, (long) self.userID,
