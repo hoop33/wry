@@ -17,8 +17,6 @@
 #import "QuietSetting.h"
 #import "UserSetting.h"
 
-#define kVersion @"1.7beta1"
-#define kErrorDomain @"com.grailbox.wry"
 #define kMaxCount 200
 #define kInputBufferSize 512
 
@@ -118,11 +116,11 @@
 }
 
 - (NSString *)version {
-  return kVersion;
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
 
 - (NSString *)errorDomain {
-  return kErrorDomain;
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
 }
 
 @end
