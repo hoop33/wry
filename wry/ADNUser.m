@@ -18,7 +18,7 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (%@) (%ld) %@==%@ You",
+  return [NSString stringWithFormat:@"%@ (%@) (%ld) %@--%@ You",
                                     self.name,
                                     [self.username atify],
                                     (long) self.userID,
@@ -27,7 +27,7 @@
 }
 
 - (NSString *)colorShortDescription {
-  return [NSString stringWithFormat:@"%@ (%@) (%@) %@==%@ You",
+  return [NSString stringWithFormat:@"%@ (%@) (%@) %@--%@ You",
                                     [self colorize:self.name colorSetting:WryColorName],
                                     [self colorize:[self.username atify] colorSetting:WryColorUser],
                                     [self colorize:[NSString stringWithFormat:@"%ld", (long) self.userID]
