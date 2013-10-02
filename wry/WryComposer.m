@@ -26,7 +26,7 @@
     "quoting. You can also pipe input from other commands to create your text.\n"
     "\n"
     "The editor used will be one of these, in this order:\n"
-    "  1. The value for Editor in wry.plist\n"
+    "  1. The value for 'editor' in com.grailbox.wry.plist\n"
     "  2. $WRY_EDITOR\n"
     "  3. $VISUAL\n"
     "  4. $EDITOR\n"
