@@ -10,7 +10,7 @@
 #import "ADNUserDescription.h"
 #import "ADNAnnotation.h"
 #import "WrySettings.h"
-#import "NSString+Atification.h"
+#import "NSString+Prefix.h"
 #import "WryApplication.h"
 #import "WryUtils.h"
 #import "SeparatorSetting.h"

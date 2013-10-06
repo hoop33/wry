@@ -9,7 +9,7 @@
 #import "FollowersCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
-#import "NSString+Atification.h"
+#import "NSString+Prefix.h"
 
 @implementation FollowersCommand
 

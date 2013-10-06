@@ -31,7 +31,7 @@
 		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
 		C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
 		C71BF68B172FD27C004C228B /* WrySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68A172FD27C004C228B /* WrySettings.m */; };
-		C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Atification.m */; };
+		C71BF68F1731BF0D004C228B /* NSString+Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Prefix.m */; };
 		C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631317AC2E3E00B9B189 /* QuietSetting.m */; };
 		C726631717AC485800B9B189 /* PrettySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631617AC485800B9B189 /* PrettySetting.m */; };
 		C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631917AC4A2E00B9B189 /* ReverseSetting.m */; };
@@ -164,8 +164,8 @@
 		C71BF685172D42E6004C228B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		C71BF689172FD27C004C228B /* WrySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySettings.h; sourceTree = "<group>"; };
 		C71BF68A172FD27C004C228B /* WrySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettings.m; sourceTree = "<group>"; };
-		C71BF68D1731BF0D004C228B /* NSString+Atification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Atification.h"; sourceTree = "<group>"; };
-		C71BF68E1731BF0D004C228B /* NSString+Atification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Atification.m"; sourceTree = "<group>"; };
+		C71BF68D1731BF0D004C228B /* NSString+Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Prefix.h"; sourceTree = "<group>"; };
+		C71BF68E1731BF0D004C228B /* NSString+Prefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Prefix.m"; sourceTree = "<group>"; };
 		C726631217AC2E3E00B9B189 /* QuietSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuietSetting.h; sourceTree = "<group>"; };
 		C726631317AC2E3E00B9B189 /* QuietSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuietSetting.m; sourceTree = "<group>"; };
 		C726631517AC485800B9B189 /* PrettySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettySetting.h; sourceTree = "<group>"; };
@@ -377,8 +377,8 @@
 			children = (
 				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
 				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
-				C71BF68D1731BF0D004C228B /* NSString+Atification.h */,
-				C71BF68E1731BF0D004C228B /* NSString+Atification.m */,
+				C71BF68D1731BF0D004C228B /* NSString+Prefix.h */,
+				C71BF68E1731BF0D004C228B /* NSString+Prefix.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -726,7 +726,7 @@
 				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
 				C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */,
 				C71BF68B172FD27C004C228B /* WrySettings.m in Sources */,
-				C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */,
+				C71BF68F1731BF0D004C228B /* NSString+Prefix.m in Sources */,
 				C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */,
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,

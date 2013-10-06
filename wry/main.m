@@ -10,8 +10,6 @@
 #import "WryErrorCodes.h"
 #import "WrySetting.h"
 #import "WryUtils.h"
-#import "NSString+Atification.h"
-#import "WrySettings.h"
 
 id<WrySetting> settingForFlag(NSString *flag);
 

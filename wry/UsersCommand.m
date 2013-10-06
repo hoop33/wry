@@ -9,7 +9,7 @@
 #import "UsersCommand.h"
 #import "SSKeychain.h"
 #import "WrySettings.h"
-#import "NSString+Atification.h"
+#import "NSString+Prefix.h"
 #import "WryUtils.h"
 #import "UserSetting.h"
 
