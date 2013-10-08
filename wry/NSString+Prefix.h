@@ -14,5 +14,7 @@
 - (NSString *)deatify;
 - (NSString *)hashtagify;
 - (NSString *)dehashtagify;
+- (BOOL)isUserName;
+- (BOOL)isHashtag;
 
 @end

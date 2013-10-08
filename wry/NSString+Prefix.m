@@ -26,12 +26,25 @@
   return [self ensureNoPrefix:@"#"];
 }
 
+- (BOOL)isUserName {
+  return [self isSingleWordWithPrefix:@"@"];
+}
+
+- (BOOL)isHashtag {
+  return [self isSingleWordWithPrefix:@"#"];
+}
+
 - (NSString *)ensurePrefix:(NSString *)prefix {
   return [self hasPrefix:prefix] ? self : [NSString stringWithFormat:@"%@%@", prefix, self];
 }
 
 - (NSString *)ensureNoPrefix:(NSString *)prefix {
   return [self hasPrefix:prefix] ? [self substringFromIndex:prefix.length] : self;
+}
+
+- (BOOL)isSingleWordWithPrefix:(NSString *)prefix {
+  NSRange range = [self rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  return range.location == NSNotFound && [self hasPrefix:prefix];
 }
 
 @end
