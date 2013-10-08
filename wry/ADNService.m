@@ -14,6 +14,9 @@
 #import "WryEnhancer.h"
 #import "LinkEnhancer.h"
 
+#define kErrorDomain @"com.grailbox.adn"
+#define kErrorCodeBadInput 1
+
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
 - (NSMutableURLRequest *)getURLRequestWithPath:(NSString *)path;
@@ -166,7 +169,7 @@
     [post setObject:replyID forKey:@"reply_to"];
   }
   [post setObject:text forKey:@"text"];
-  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
   [linkEnhancer enhance:post];
   NSData *json = [NSJSONSerialization dataWithJSONObject:post
                                                  options:0
@@ -213,7 +216,27 @@
                   error:error];
 }
 
-- (ADNResponse *)searchPosts:(NSString *)hashtag error:(NSError **)error {
+- (ADNResponse *)searchPosts:(NSDictionary *)criteria error:(NSError **)error {
+  NSMutableString *searchString = [[NSMutableString alloc] init];
+  for (NSString *key in criteria.allKeys) {
+    [searchString appendFormat:
+      @"&%@=%@", key, [(NSString *) [criteria valueForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  }
+  if (searchString.length > 1) {
+    return [self getItems:[NSString stringWithFormat:@"posts/search?%@", [searchString substringFromIndex:1]]
+                  mapping:[ADNMappingProvider postMapping]
+                    error:error];
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:kErrorDomain
+                                   code:kErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply a search string"}];
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)searchPostsForHashtag:(NSString *)hashtag error:(NSError **)error {
   return [self getItems:[NSString stringWithFormat:@"posts/tag/%@", hashtag]
                 mapping:[ADNMappingProvider postMapping]
                   error:error];
@@ -248,14 +271,14 @@
 
   // Attach file
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
-                              dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\r\n",
                                                [filename lastPathComponent]]
-                                               dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:data];
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
-                              dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
 
   // Set metadata
   [body appendData:[@"Content-Disposition: form-data; name=\"type\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
@@ -351,7 +374,7 @@
   if (users.count != 0) {
     [message setObject:users forKey:@"destinations"];
   }
-  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
   [linkEnhancer enhance:message];
   NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
                                                    error:error];
