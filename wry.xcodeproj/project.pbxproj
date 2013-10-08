@@ -21,6 +21,7 @@
 		5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23732DDFB65635F0971665 /* MessagesCommand.m */; };
 		5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */; };
 		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
+		5F237F4836F20E8885C26E32 /* ADNSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237E5234EF1781EA452748 /* ADNSource.m */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
 		C707E36717D35658005DB231 /* EditorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36617D35658005DB231 /* EditorSetting.m */; };
@@ -130,6 +131,7 @@
 		5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMessage.h; sourceTree = "<group>"; };
 		5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersCommand.m; sourceTree = "<group>"; };
 		5F23732DDFB65635F0971665 /* MessagesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesCommand.m; sourceTree = "<group>"; };
+		5F23736E75515478EB1AE9E8 /* ADNSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNSource.h; sourceTree = "<group>"; };
 		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
 		5F2374BAC4D93E3A7583A83B /* UsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCommand.h; sourceTree = "<group>"; };
 		5F2375EF1A33A13AD2218C9A /* ADNMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMessage.m; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		5F237C83E7993BD23B26CA42 /* DownloadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCommand.h; sourceTree = "<group>"; };
 		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
 		5F237CF25F16BE1AB595D370 /* PmCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PmCommand.m; sourceTree = "<group>"; };
+		5F237E5234EF1781EA452748 /* ADNSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNSource.m; sourceTree = "<group>"; };
 		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
@@ -601,6 +604,8 @@
 				C7CEE0631761FBF70028361F /* ADNLink.m */,
 				C7D29638177A380B00649A29 /* ADNObject.h */,
 				C7D29639177A380B00649A29 /* ADNObject.m */,
+				5F23736E75515478EB1AE9E8 /* ADNSource.h */,
+				5F237E5234EF1781EA452748 /* ADNSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -760,6 +765,7 @@
 				C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */,
 				C707E36717D35658005DB231 /* EditorSetting.m in Sources */,
 				C707E36A17D35C30005DB231 /* SeparatorSetting.m in Sources */,
+				5F237F4836F20E8885C26E32 /* ADNSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
