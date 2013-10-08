@@ -409,10 +409,7 @@
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error {
   path = [self pathWithParameters:path includeCount:YES];
-  NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
-                                                    ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
-                                                    self.count];
-  [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
+  [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     NSArray *results = (NSArray *) response.data;
