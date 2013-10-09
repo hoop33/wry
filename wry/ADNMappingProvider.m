@@ -56,7 +56,8 @@
     [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
     [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]],
-    [ADNMappingEntry mappingEntry:@"source" to:nil mapping:[ADNMappingProvider sourceMapping]]
+    [ADNMappingEntry mappingEntry:@"source" to:nil mapping:[ADNMappingProvider sourceMapping]],
+    [ADNMappingEntry mappingEntry:@"repost_of.id" to:@"repostID" mapping:nil]
   ];
   return mapping;
 }

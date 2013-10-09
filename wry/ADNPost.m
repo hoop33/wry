@@ -40,7 +40,7 @@
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:(self.user == nil ? [self colorize:@"[RETIRED USER]" colorSetting:WryColorAlert] : [self.user colorShortDescription])];
   [str appendFormat:@"\n%@", (self.text == nil ? [self colorize:@"[REDACTED]" colorSetting:WryColorAlert] : [self colorize:self.text colorSetting:WryColorText])];
-  [str appendFormat:@"\nID:  %@ -- %@ (%@)",
+  [str appendFormat:@"\nID: %@ -- %@ (%@)",
                     [self colorize:[NSString stringWithFormat:@"%ld", self.postID] colorSetting:WryColorID],
                     [self colorize:[self.createdAt description] colorSetting:WryColorMuted],
                     [self colorize:self.source.name colorSetting:WryColorID]

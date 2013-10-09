@@ -13,6 +13,7 @@
 #import "ADNFile.h"
 #import "WryEnhancer.h"
 #import "LinkEnhancer.h"
+#import "ADNPost.h"
 
 #define kErrorDomain @"com.grailbox.adn"
 #define kErrorCodeBadInput 1
@@ -193,7 +194,16 @@
 }
 
 - (ADNResponse *)repost:(NSString *)postID error:(NSError **)error {
-  return [self getItem:[NSString stringWithFormat:@"posts/%@/repost", postID]
+  NSString *originalID = postID;
+  // Get the post
+  ADNResponse *response = [self showPost:postID error:error];
+  if (response != nil) {
+    ADNPost *post = (ADNPost *)response.object;
+    if (post.repostID != nil) {
+      originalID = post.repostID;
+    }
+  }
+  return [self getItem:[NSString stringWithFormat:@"posts/%@/repost", originalID]
                mapping:[ADNMappingProvider postMapping] method:@"POST"
                  error:error];
 }

@@ -18,5 +18,6 @@
 + (ADNJSONMapping *)channelMapping;
 + (ADNJSONMapping *)annotationMapping;
 + (ADNJSONMapping *)accessControlListMapping;
++ (ADNJSONMapping *)sourceMapping;
 
 @end

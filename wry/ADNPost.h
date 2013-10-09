@@ -14,6 +14,7 @@
 @interface ADNPost : ADNObject
 
 @property(nonatomic, assign) NSInteger postID;
+@property(nonatomic, copy) NSString *repostID;
 @property(nonatomic, strong) ADNUser *user;
 @property(nonatomic, strong) NSDate *createdAt;
 @property(nonatomic, strong) ADNSource *source;
