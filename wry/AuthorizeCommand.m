@@ -47,6 +47,7 @@
     if (success && response != nil) {
       NSString *username = ((ADNUser *) response.object).username;
       [app.settings setObject:username forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
+      app.accessToken = accessToken;
       [app println:[NSString stringWithFormat:@"User %@ authorized!", username]];
     }
   }
