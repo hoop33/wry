@@ -10,8 +10,9 @@
 #import "WryErrorCodes.h"
 #import "WrySetting.h"
 #import "WryUtils.h"
+#import "VersionSetting.h"
 
-id<WrySetting> settingForFlag(NSString *flag);
+id <WrySetting> settingForFlag(NSString *flag);
 
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
@@ -23,7 +24,7 @@ int main(int argc, const char *argv[]) {
     for (int i = 1; i < argc; i++) {
       NSString *param = [NSString stringWithUTF8String:argv[i]];
       if ([param hasPrefix:@"-"]) {
-        id<WrySetting> setting = settingForFlag([param stringByReplacingOccurrencesOfString:@"-" withString:@""]);
+        id <WrySetting> setting = settingForFlag([param stringByReplacingOccurrencesOfString:@"-" withString:@""]);
         if (setting == nil) {
           errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];
           break;
@@ -49,15 +50,16 @@ int main(int argc, const char *argv[]) {
     } else {
       application.params = [NSArray arrayWithArray:params];
       if (application.commandName == nil) {
-        application.commandName = @"help";
+        application.commandName = [application.settings boolValue:[WryUtils nameForSettingForClass:[VersionSetting class]]] ?
+          @"version" : @"help";
       }
       return [application run];
     }
   }
 }
 
-id<WrySetting> settingForFlag(NSString *flag) {
-  id<WrySetting> setting = nil;
+id <WrySetting> settingForFlag(NSString *flag) {
+  id <WrySetting> setting = nil;
   switch (flag.length) {
     case 0:
       break;
