@@ -1,6 +1,14 @@
 # Release Notes
 
 ## Version 1.7 (coming)
+* Change user following/followed arrows to <--> and omit if no relationship
+* For links that have no link text, don't display URL twice
+* Display version information for wry -v
+* Display help information for wry -h
+* Allow reposting a repost
+* Add name of client to post display
+* Add new search API
+--
 * Colorize output
 * Make separator between posts et al configurable
 * Options for posts that are too long: ask before truncating, truncate, split into multiple, or reject
