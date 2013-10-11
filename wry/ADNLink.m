@@ -12,7 +12,11 @@
 @implementation ADNLink
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
+  if([self.text isEqualToString:self.url]){
+    return [NSString stringWithFormat:@"[%@]", self.url];
+  } else {
+    return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
+  }
 }
 
 - (NSString *)colorDescription {
