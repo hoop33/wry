@@ -9,7 +9,6 @@
 #import "ADNUser.h"
 #import "ADNUserDescription.h"
 #import "ADNAnnotation.h"
-#import "WrySettings.h"
 #import "NSString+Prefix.h"
 #import "WryApplication.h"
 #import "WryUtils.h"
@@ -18,23 +17,32 @@
 @implementation ADNUser
 
 - (NSString *)shortDescription {
-  return [NSString stringWithFormat:@"%@ (%@) (%ld) %@--%@ You",
+  return [NSString stringWithFormat:@"%@ (%@) (%ld)%@",
                                     self.name,
                                     [self.username atify],
                                     (long) self.userID,
-                                    (self.youFollow ? @"<" : @""), (self.followsYou ? @">" : @"")
+                                    [self relationship]
   ];
 }
 
 - (NSString *)colorShortDescription {
-  return [NSString stringWithFormat:@"%@ (%@) (%@) %@--%@ You",
+  return [NSString stringWithFormat:@"%@ (%@) (%@)%@",
                                     [self colorize:self.name colorSetting:WryColorName],
                                     [self colorize:[self.username atify] colorSetting:WryColorUser],
                                     [self colorize:[NSString stringWithFormat:@"%ld", (long) self.userID]
                                       colorSetting:WryColorID],
-                                    (self.youFollow ? @"<" : @""),
-                                    (self.followsYou ? @">" : @"")
+                                    [self relationship]
   ];
+}
+
+- (NSString *)relationship {
+  NSString *relationship;
+  NSLog(@"%d %d", self.youFollow, self.followsYou);
+  if (self.youFollow && self.followsYou) relationship = @" <--> You";
+  else if (self.youFollow) relationship = @" <-- You";
+  else if (self.followsYou) relationship = @" --> You";
+  else relationship = @"";  /* no relationship */
+  return relationship;
 }
 
 - (NSString *)description {

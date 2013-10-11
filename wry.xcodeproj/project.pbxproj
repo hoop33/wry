@@ -431,7 +431,10 @@
 				C784325916EA02FA000DED40 /* Frameworks */,
 				C784325816EA02FA000DED40 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		C784325816EA02FA000DED40 /* Products */ = {
 			isa = PBXGroup;
