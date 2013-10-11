@@ -21,6 +21,7 @@
   [app println:@""];
   [app println:@"Acknowledgments:"];
   [app println:@"Jeremy W. Sherman (@jws): Many contributions."];
+  [app println:@"Parker (@parkr): Formatting for following/followed information."];
   [app println:@"SSKeychain (https://github.com/soffes/sskeychain): Keychain access."];
   return YES;
 }
