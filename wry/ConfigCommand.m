@@ -45,7 +45,7 @@
 - (NSString *)valueForSetting:(NSString *)setting {
   WryApplication *app = [WryApplication application];
   NSString *value = [app.settings stringValue:setting];
-  return value == nil ? @"*none*" : value;
+  return value == nil ? @"(none)" : value;
 }
 
 - (NSString *)usage {
