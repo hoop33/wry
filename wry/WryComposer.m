@@ -42,11 +42,30 @@
   if ([WryApplication application].interactiveIn && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
     NSString *tempFileName = [self tempFileName];
     if (tempFileName != nil) {
-      NSTask *task = [NSTask new];
-      task.launchPath = [self shell];
-      task.arguments = @[@"-i", @"-c", [NSString stringWithFormat:@"%@ %@", editor, tempFileName]];
-      [task launch];
-      [task waitUntilExit];
+      NSString *path = [self shell];
+      const char *cpath = [path UTF8String];
+
+      NSArray *args = @[@"-i", @"-c", [NSString stringWithFormat:@"%@ %@", editor, tempFileName]];
+      const char *cargs[args.count + 1];
+      size_t i = 0;
+      for (NSString *arg in args) {
+        cargs[i++] = [arg UTF8String];
+      }
+      cargs[i] = NULL;
+
+      pid_t childPID = fork();
+      if (!childPID) {
+        execvp(cpath, (char **)cargs);
+
+        assert(false && "failed to exec editor");
+      }
+
+      /* Wait till child process exits. */
+      pid_t result = 0;
+      while (result >= 0 && errno != EINTR) {
+        result = waitpid(childPID, NULL, 0);
+      }
+
       text = [[NSString alloc] initWithContentsOfFile:tempFileName
                                              encoding:NSUTF8StringEncoding
                                                 error:nil];
