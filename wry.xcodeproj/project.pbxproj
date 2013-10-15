@@ -151,7 +151,6 @@
 		5F237E5234EF1781EA452748 /* ADNSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNSource.m; sourceTree = "<group>"; };
 		5F237FAA0F33C3C1C75CABF4 /* HelpSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpSetting.h; sourceTree = "<group>"; };
 		5F237FF2400552AC8A343022 /* VersionSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionSetting.m; sourceTree = "<group>"; };
-		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
 		C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMapping.h"; sourceTree = "<group>"; };
@@ -450,7 +449,6 @@
 			children = (
 				C784327B16EF4955000DED40 /* Security.framework */,
 				C784325A16EA02FA000DED40 /* Foundation.framework */,
-				7E741D72DB884AC0A9AC4C6E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
