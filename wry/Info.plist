@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleVersion</key>
-	<string>1.7beta2</string>
+	<string>1.7</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.grailbox.wry</string>
 	<key>CFBundleName</key>
