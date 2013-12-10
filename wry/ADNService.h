@@ -52,7 +52,8 @@
 - (ADNResponse *)getPosts:(NSString *)username error:(NSError **)error;
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error;
 - (ADNResponse *)showPost:(NSString *)postID error:(NSError **)error;
-- (ADNResponse *)searchPosts:(NSString *)hashtag error:(NSError **)error;
+- (ADNResponse *)searchPosts:(NSDictionary *)criteria error:(NSError **)error;
+- (ADNResponse *)searchPostsForHashtag:(NSString *)hashtag error:(NSError **)error;
 - (ADNResponse *)getReplies:(NSString *)postID error:(NSError **)error;
 - (ADNResponse *)repost:(NSString *)postID error:(NSError **)error;
 - (ADNResponse *)star:(NSString *)postID error:(NSError **)error;

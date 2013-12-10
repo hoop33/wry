@@ -12,9 +12,8 @@
 
 @implementation MvCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:2
                              errorMessage:@"You must specify a file ID and a filename"
                                     error:error

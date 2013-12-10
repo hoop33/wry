@@ -7,7 +7,8 @@
 //
 
 #import "WryCommand.h"
+#import "BaseCommand.h"
 
-@interface StreamCommand : NSObject <WryCommand>
+@interface StreamCommand : BaseCommand <WryCommand>
 
 @end

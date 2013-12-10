@@ -14,4 +14,8 @@
   return [NSString stringWithFormat:@"#%@", self.text];
 }
 
+- (NSString *)colorDescription {
+  return [self colorize:[NSString stringWithFormat:@"#%@", self.text] colorSetting:WryColorHashtag];
+}
+
 @end

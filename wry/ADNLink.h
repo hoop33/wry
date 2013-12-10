@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@interface ADNLink : NSObject
+#import "ADNObject.h"
+
+@interface ADNLink : ADNObject
 
 @property(nonatomic, copy) NSString *text;
 @property(nonatomic, copy) NSString *url;

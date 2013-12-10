@@ -16,3 +16,6 @@ profile
 
 # AppCode project files
 .idea
+
+# ctags
+tags

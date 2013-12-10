@@ -10,12 +10,13 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryEnhancer.h"
+#import "TextTooLongEnhancer.h"
 
 @implementation PostCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:0
                              errorMessage:nil
                                     error:error
@@ -25,7 +26,20 @@
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
                                   }
-                                  return [service createPost:text replyID:nil error:error];
+
+                                  NSArray *posts = @[text];
+                                  if (text.length > kMaxTextLength) {
+                                    id <WryEnhancer> textTooLongEnhancer = [[TextTooLongEnhancer alloc] init];
+                                    id enhanced = [textTooLongEnhancer enhance:text];
+                                    posts = [enhanced isKindOfClass:[NSArray class]] ? enhanced : @[(NSString *)enhanced];
+                                  }
+
+                                  ADNResponse *response = nil;
+                                  for (NSString *post in posts) {
+                                    response = [service createPost:post replyID:nil error:error];
+                                    if (response == nil) break;
+                                  }
+                                  return response;
                                 }];
 }
 

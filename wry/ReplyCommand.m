@@ -13,16 +13,15 @@
 
 @implementation ReplyCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a post ID"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *replyID = [params objectAtIndex:0];
                                   NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
-                                                            componentsJoinedByString:@" "];
+                                    componentsJoinedByString:@" "];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
@@ -38,11 +37,11 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Replies to an existing post. You must specify the ID of the post to reply\n"
-            @"to. If supplying the text of your reply as command-line arguments, note\n"
-            "that the shell's parsing rules are respected, so escape\n"
-            @"your text appropriately. Quotes are optional.\n"
-            @"\n"];
+    @"Replies to an existing post. You must specify the ID of the post to reply\n"
+      @"to. If supplying the text of your reply as command-line arguments, note\n"
+      "that the shell's parsing rules are respected, so escape\n"
+      @"your text appropriately. Quotes are optional.\n"
+      @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }

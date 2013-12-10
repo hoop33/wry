@@ -6,13 +6,18 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@class ADNUser;
+#import "ADNObject.h"
 
-@interface ADNPost : NSObject
+@class ADNUser;
+@class ADNSource;
+
+@interface ADNPost : ADNObject
 
 @property(nonatomic, assign) NSInteger postID;
+@property(nonatomic, copy) NSString *repostID;
 @property(nonatomic, strong) ADNUser *user;
 @property(nonatomic, strong) NSDate *createdAt;
+@property(nonatomic, strong) ADNSource *source;
 @property(nonatomic, copy) NSString *text;
 @property(nonatomic, strong) NSArray *annotations;
 @property(nonatomic, strong) NSArray *hashtags;

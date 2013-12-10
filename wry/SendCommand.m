@@ -13,16 +13,15 @@
 
 @implementation SendCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a channel to send to"
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *channelID = [params objectAtIndex:0];
                                   NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
-                                                            componentsJoinedByString:@" "];
+                                    componentsJoinedByString:@" "];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];
@@ -40,11 +39,11 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Sends a message to the specified channel. You must specify the channel.\n"
-            @"If supplying the text of your message as command-line arguments, note\n"
-            "that the shell's parsing rules are respected, so escape\n"
-            @"your text appropriately. Quotes are optional.\n"
-            @"\n"];
+    @"Sends a message to the specified channel. You must specify the channel.\n"
+      @"If supplying the text of your message as command-line arguments, note\n"
+      "that the shell's parsing rules are respected, so escape\n"
+      @"your text appropriately. Quotes are optional.\n"
+      @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }

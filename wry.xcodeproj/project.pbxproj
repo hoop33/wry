@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2370C39D60AE168097C05C /* UploadCommand.m */; };
 		5F23723F7B39298A11B6CB21 /* LsCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237B6DF4680829830666F9 /* LsCommand.h */; };
+		5F237400E98F756E19CD2C25 /* VersionSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237FF2400552AC8A343022 /* VersionSetting.m */; };
 		5F2374027A051703D045EC17 /* ADNFile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F2374343F648724555A4F33 /* ADNFile.h */; };
 		5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23700E04DD8F1511814264 /* LsCommand.m */; };
 		5F23760D68C015450659EDC1 /* DownloadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237C83E7993BD23B26CA42 /* DownloadCommand.h */; };
@@ -19,14 +20,28 @@
 		5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
 		5F237A0B0A517DB7EBE6926B /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
 		5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23732DDFB65635F0971665 /* MessagesCommand.m */; };
+		5F237BE12C7A63D86E555E1A /* HelpSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237372AE86C042073F4D40 /* HelpSetting.m */; };
 		5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */; };
 		5F237F23756A64B37D38C06C /* UploadCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F237AFC9661EA6E24D76E41 /* UploadCommand.h */; };
+		5F237F4836F20E8885C26E32 /* ADNSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237E5234EF1781EA452748 /* ADNSource.m */; };
 		C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
 		C70028FB16F37A5700D5B222 /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
+		C707E36717D35658005DB231 /* EditorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36617D35658005DB231 /* EditorSetting.m */; };
+		C707E36A17D35C30005DB231 /* SeparatorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36917D35C30005DB231 /* SeparatorSetting.m */; };
+		C709DC0217B85AA100D5E56D /* WryRange.m in Sources */ = {isa = PBXBuildFile; fileRef = C709DC0117B85AA100D5E56D /* WryRange.m */; };
+		C716222E17B3DBD900AE9C6A /* LongSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C716222D17B3DBD900AE9C6A /* LongSetting.m */; };
+		C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C718D0C617A9A5E7000ABF4E /* DebugSetting.m */; };
 		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
 		C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
 		C71BF68B172FD27C004C228B /* WrySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68A172FD27C004C228B /* WrySettings.m */; };
-		C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Atification.m */; };
+		C71BF68F1731BF0D004C228B /* NSString+Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Prefix.m */; };
+		C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631317AC2E3E00B9B189 /* QuietSetting.m */; };
+		C726631717AC485800B9B189 /* PrettySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631617AC485800B9B189 /* PrettySetting.m */; };
+		C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631917AC4A2E00B9B189 /* ReverseSetting.m */; };
+		C726631D17AC4ACD00B9B189 /* AnnotationsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */; };
+		C726632017AC4B4400B9B189 /* CountSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631F17AC4B4300B9B189 /* CountSetting.m */; };
+		C726632317AC4BE100B9B189 /* FormatSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632217AC4BE100B9B189 /* FormatSetting.m */; };
+		C726632617AC4CD800B9B189 /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632517AC4CD800B9B189 /* UserSetting.m */; };
 		C72BF7B11710C96600F0039D /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
@@ -73,6 +88,8 @@
 		C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE01740EED600F5C806 /* ADNAnnotation.m */; };
 		C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */; };
 		C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE91742471100F5C806 /* SendCommand.m */; };
+		C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FB717DBCE8100006738 /* SettingsCommand.m */; };
+		C7C60FBB17DBCF6C00006738 /* BaseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FBA17DBCF6C00006738 /* BaseSetting.m */; };
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
@@ -82,6 +99,13 @@
 		C7CEE05E17617AFE0028361F /* MvCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE05D17617AFE0028361F /* MvCommand.m */; };
 		C7CEE0611761FBE70028361F /* ADNHashtag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0601761FBE70028361F /* ADNHashtag.m */; };
 		C7CEE0641761FBF70028361F /* ADNLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0631761FBF70028361F /* ADNLink.m */; };
+		C7D2963A177A380B00649A29 /* ADNObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D29639177A380B00649A29 /* ADNObject.m */; };
+		C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */; };
+		C7DB8E2717DBD7DF004050BB /* BaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2617DBD7DF004050BB /* BaseCommand.m */; };
+		C7DB8E2A17DBEDED004050BB /* BaseFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2917DBEDED004050BB /* BaseFormatter.m */; };
+		C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */; };
+		C7DB8E3317E2502A004050BB /* ColorsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E3217E2502A004050BB /* ColorsSetting.m */; };
+		C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -105,10 +129,13 @@
 /* Begin PBXFileReference section */
 		5F23700E04DD8F1511814264 /* LsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommand.m; sourceTree = "<group>"; };
 		5F237098E0588D727AABD325 /* ADNFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNFile.m; sourceTree = "<group>"; };
+		5F2370C2EEB70D01DFD2F9DA /* VersionSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionSetting.h; sourceTree = "<group>"; };
 		5F2370C39D60AE168097C05C /* UploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCommand.m; sourceTree = "<group>"; };
 		5F2370EA3BE5E0ADEEB84CDE /* ADNMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMessage.h; sourceTree = "<group>"; };
 		5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersCommand.m; sourceTree = "<group>"; };
 		5F23732DDFB65635F0971665 /* MessagesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesCommand.m; sourceTree = "<group>"; };
+		5F23736E75515478EB1AE9E8 /* ADNSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNSource.h; sourceTree = "<group>"; };
+		5F237372AE86C042073F4D40 /* HelpSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpSetting.m; sourceTree = "<group>"; };
 		5F2374343F648724555A4F33 /* ADNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNFile.h; sourceTree = "<group>"; };
 		5F2374BAC4D93E3A7583A83B /* UsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCommand.h; sourceTree = "<group>"; };
 		5F2375EF1A33A13AD2218C9A /* ADNMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMessage.m; sourceTree = "<group>"; };
@@ -121,19 +148,46 @@
 		5F237C83E7993BD23B26CA42 /* DownloadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCommand.h; sourceTree = "<group>"; };
 		5F237CC24925193B771DADFA /* ADNUserDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserDescription.h; sourceTree = "<group>"; };
 		5F237CF25F16BE1AB595D370 /* PmCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PmCommand.m; sourceTree = "<group>"; };
-		7E741D72DB884AC0A9AC4C6E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F237E5234EF1781EA452748 /* ADNSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNSource.m; sourceTree = "<group>"; };
+		5F237FAA0F33C3C1C75CABF4 /* HelpSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpSetting.h; sourceTree = "<group>"; };
+		5F237FF2400552AC8A343022 /* VersionSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionSetting.m; sourceTree = "<group>"; };
 		C70028F616F330DF00D5B222 /* ADNResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNResponse.h; sourceTree = "<group>"; };
 		C70028F716F330DF00D5B222 /* ADNResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNResponse.m; sourceTree = "<group>"; };
 		C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMapping.h"; sourceTree = "<group>"; };
 		C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMapping.m"; sourceTree = "<group>"; };
+		C707E36517D35658005DB231 /* EditorSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorSetting.h; sourceTree = "<group>"; };
+		C707E36617D35658005DB231 /* EditorSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorSetting.m; sourceTree = "<group>"; };
+		C707E36817D35C30005DB231 /* SeparatorSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeparatorSetting.h; sourceTree = "<group>"; };
+		C707E36917D35C30005DB231 /* SeparatorSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorSetting.m; sourceTree = "<group>"; };
+		C709DC0017B85AA100D5E56D /* WryRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryRange.h; sourceTree = "<group>"; };
+		C709DC0117B85AA100D5E56D /* WryRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryRange.m; sourceTree = "<group>"; };
+		C716222C17B3DBD900AE9C6A /* LongSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongSetting.h; sourceTree = "<group>"; };
+		C716222D17B3DBD900AE9C6A /* LongSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongSetting.m; sourceTree = "<group>"; };
+		C718D0C317A9A54D000ABF4E /* WrySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySetting.h; sourceTree = "<group>"; };
+		C718D0C517A9A5E7000ABF4E /* DebugSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSetting.h; sourceTree = "<group>"; };
+		C718D0C617A9A5E7000ABF4E /* DebugSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSetting.m; sourceTree = "<group>"; };
 		C71BF682172D42E6004C228B /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		C71BF683172D42E6004C228B /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		C71BF684172D42E6004C228B /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		C71BF685172D42E6004C228B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		C71BF689172FD27C004C228B /* WrySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySettings.h; sourceTree = "<group>"; };
 		C71BF68A172FD27C004C228B /* WrySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettings.m; sourceTree = "<group>"; };
-		C71BF68D1731BF0D004C228B /* NSString+Atification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Atification.h"; sourceTree = "<group>"; };
-		C71BF68E1731BF0D004C228B /* NSString+Atification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Atification.m"; sourceTree = "<group>"; };
+		C71BF68D1731BF0D004C228B /* NSString+Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Prefix.h"; sourceTree = "<group>"; };
+		C71BF68E1731BF0D004C228B /* NSString+Prefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Prefix.m"; sourceTree = "<group>"; };
+		C726631217AC2E3E00B9B189 /* QuietSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuietSetting.h; sourceTree = "<group>"; };
+		C726631317AC2E3E00B9B189 /* QuietSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuietSetting.m; sourceTree = "<group>"; };
+		C726631517AC485800B9B189 /* PrettySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettySetting.h; sourceTree = "<group>"; };
+		C726631617AC485800B9B189 /* PrettySetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettySetting.m; sourceTree = "<group>"; };
+		C726631817AC4A2E00B9B189 /* ReverseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseSetting.h; sourceTree = "<group>"; };
+		C726631917AC4A2E00B9B189 /* ReverseSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseSetting.m; sourceTree = "<group>"; };
+		C726631B17AC4ACD00B9B189 /* AnnotationsSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationsSetting.h; sourceTree = "<group>"; };
+		C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationsSetting.m; sourceTree = "<group>"; };
+		C726631E17AC4B4300B9B189 /* CountSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountSetting.h; sourceTree = "<group>"; };
+		C726631F17AC4B4300B9B189 /* CountSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountSetting.m; sourceTree = "<group>"; };
+		C726632117AC4BE100B9B189 /* FormatSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatSetting.h; sourceTree = "<group>"; };
+		C726632217AC4BE100B9B189 /* FormatSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatSetting.m; sourceTree = "<group>"; };
+		C726632417AC4CD800B9B189 /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
+		C726632517AC4CD800B9B189 /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 		C72BF7AD1710C91800F0039D /* WryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryFormatter.h; sourceTree = "<group>"; };
 		C72BF7AF1710C96600F0039D /* TEXTFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEXTFormatter.h; sourceTree = "<group>"; };
 		C72BF7B01710C96600F0039D /* TEXTFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXTFormatter.m; sourceTree = "<group>"; };
@@ -143,6 +197,7 @@
 		C72BF7B61711990B00F0039D /* ALFREDFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALFREDFormatter.m; sourceTree = "<group>"; };
 		C72BF7B81711F15700F0039D /* CommandsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandsCommand.h; sourceTree = "<group>"; };
 		C72BF7B91711F15700F0039D /* CommandsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsCommand.m; sourceTree = "<group>"; };
+		C731A99117F8811F00D1D5EB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73429CD1765F12D0022AEE2 /* ADNMappingEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingEntry.h; sourceTree = "<group>"; };
 		C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingEntry.m; sourceTree = "<group>"; };
 		C744E46816FA853F0002A9A5 /* VersionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCommand.h; sourceTree = "<group>"; };
@@ -227,6 +282,10 @@
 		C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNAccessControlList.m; sourceTree = "<group>"; };
 		C78C5BE81742471100F5C806 /* SendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommand.h; sourceTree = "<group>"; };
 		C78C5BE91742471100F5C806 /* SendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommand.m; sourceTree = "<group>"; };
+		C7C60FB617DBCE8100006738 /* SettingsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCommand.h; sourceTree = "<group>"; };
+		C7C60FB717DBCE8100006738 /* SettingsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCommand.m; sourceTree = "<group>"; };
+		C7C60FB917DBCF6C00006738 /* BaseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSetting.h; sourceTree = "<group>"; };
+		C7C60FBA17DBCF6C00006738 /* BaseSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSetting.m; sourceTree = "<group>"; };
 		C7CCEB6C16F5E3EE005DDBAB /* GlobalCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCommand.h; sourceTree = "<group>"; };
 		C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCommand.m; sourceTree = "<group>"; };
 		C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCommand.h; sourceTree = "<group>"; };
@@ -246,6 +305,20 @@
 		C7CEE0601761FBE70028361F /* ADNHashtag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNHashtag.m; sourceTree = "<group>"; };
 		C7CEE0621761FBF70028361F /* ADNLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNLink.h; sourceTree = "<group>"; };
 		C7CEE0631761FBF70028361F /* ADNLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNLink.m; sourceTree = "<group>"; };
+		C7D29638177A380B00649A29 /* ADNObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNObject.h; sourceTree = "<group>"; };
+		C7D29639177A380B00649A29 /* ADNObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNObject.m; sourceTree = "<group>"; };
+		C7D2967E177CA1F000649A29 /* TextTooLongEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTooLongEnhancer.h; sourceTree = "<group>"; };
+		C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancer.m; sourceTree = "<group>"; };
+		C7DB8E2517DBD7DF004050BB /* BaseCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCommand.h; sourceTree = "<group>"; };
+		C7DB8E2617DBD7DF004050BB /* BaseCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCommand.m; sourceTree = "<group>"; };
+		C7DB8E2817DBEDED004050BB /* BaseFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFormatter.h; sourceTree = "<group>"; };
+		C7DB8E2917DBEDED004050BB /* BaseFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFormatter.m; sourceTree = "<group>"; };
+		C7DB8E2B17DBEEF0004050BB /* FormattersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattersCommand.h; sourceTree = "<group>"; };
+		C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattersCommand.m; sourceTree = "<group>"; };
+		C7DB8E3117E2502A004050BB /* ColorsSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsSetting.h; sourceTree = "<group>"; };
+		C7DB8E3217E2502A004050BB /* ColorsSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsSetting.m; sourceTree = "<group>"; };
+		C7FDD65C17C7E57400EF9315 /* ConfigCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigCommand.h; sourceTree = "<group>"; };
+		C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +334,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C718D0C417A9A55D000ABF4E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C718D0C317A9A54D000ABF4E /* WrySetting.h */,
+				C718D0C517A9A5E7000ABF4E /* DebugSetting.h */,
+				C718D0C617A9A5E7000ABF4E /* DebugSetting.m */,
+				C726631217AC2E3E00B9B189 /* QuietSetting.h */,
+				C726631317AC2E3E00B9B189 /* QuietSetting.m */,
+				C726631517AC485800B9B189 /* PrettySetting.h */,
+				C726631617AC485800B9B189 /* PrettySetting.m */,
+				C726631817AC4A2E00B9B189 /* ReverseSetting.h */,
+				C726631917AC4A2E00B9B189 /* ReverseSetting.m */,
+				C726631B17AC4ACD00B9B189 /* AnnotationsSetting.h */,
+				C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */,
+				C726631E17AC4B4300B9B189 /* CountSetting.h */,
+				C726631F17AC4B4300B9B189 /* CountSetting.m */,
+				C726632117AC4BE100B9B189 /* FormatSetting.h */,
+				C726632217AC4BE100B9B189 /* FormatSetting.m */,
+				C726632417AC4CD800B9B189 /* UserSetting.h */,
+				C726632517AC4CD800B9B189 /* UserSetting.m */,
+				C716222C17B3DBD900AE9C6A /* LongSetting.h */,
+				C716222D17B3DBD900AE9C6A /* LongSetting.m */,
+				C709DC0017B85AA100D5E56D /* WryRange.h */,
+				C709DC0117B85AA100D5E56D /* WryRange.m */,
+				C707E36517D35658005DB231 /* EditorSetting.h */,
+				C707E36617D35658005DB231 /* EditorSetting.m */,
+				C707E36817D35C30005DB231 /* SeparatorSetting.h */,
+				C707E36917D35C30005DB231 /* SeparatorSetting.m */,
+				C7C60FB917DBCF6C00006738 /* BaseSetting.h */,
+				C7C60FBA17DBCF6C00006738 /* BaseSetting.m */,
+				C7DB8E3117E2502A004050BB /* ColorsSetting.h */,
+				C7DB8E3217E2502A004050BB /* ColorsSetting.m */,
+				5F237FAA0F33C3C1C75CABF4 /* HelpSetting.h */,
+				5F237372AE86C042073F4D40 /* HelpSetting.m */,
+				5F2370C2EEB70D01DFD2F9DA /* VersionSetting.h */,
+				5F237FF2400552AC8A343022 /* VersionSetting.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		C71BF688172D42EC004C228B /* SSKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,8 +390,8 @@
 			children = (
 				C70028F916F37A5700D5B222 /* NSDictionary+JSONMapping.h */,
 				C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */,
-				C71BF68D1731BF0D004C228B /* NSString+Atification.h */,
-				C71BF68E1731BF0D004C228B /* NSString+Atification.m */,
+				C71BF68D1731BF0D004C228B /* NSString+Prefix.h */,
+				C71BF68E1731BF0D004C228B /* NSString+Prefix.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -293,6 +406,8 @@
 				C72BF7B31710CA2700F0039D /* JSONFormatter.m */,
 				C72BF7B51711990B00F0039D /* ALFREDFormatter.h */,
 				C72BF7B61711990B00F0039D /* ALFREDFormatter.m */,
+				C7DB8E2817DBEDED004050BB /* BaseFormatter.h */,
+				C7DB8E2917DBEDED004050BB /* BaseFormatter.m */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -303,6 +418,8 @@
 				C7457505176E6AF3006B4893 /* WryEnhancer.h */,
 				C7457507176E6B5F006B4893 /* LinkEnhancer.h */,
 				C7457508176E6B5F006B4893 /* LinkEnhancer.m */,
+				C7D2967E177CA1F000649A29 /* TextTooLongEnhancer.h */,
+				C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */,
 			);
 			name = Enhancers;
 			sourceTree = "<group>";
@@ -332,7 +449,6 @@
 			children = (
 				C784327B16EF4955000DED40 /* Security.framework */,
 				C784325A16EA02FA000DED40 /* Foundation.framework */,
-				7E741D72DB884AC0A9AC4C6E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				C784326016EA02FA000DED40 /* wry-Prefix.pch */,
+				C731A99117F8811F00D1D5EB /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -364,6 +481,7 @@
 				C7457506176E6AFC006B4893 /* Enhancers */,
 				C72BF7AE1710C91E00F0039D /* Formatters */,
 				C784326F16ECB045000DED40 /* Commands */,
+				C718D0C417A9A55D000ABF4E /* Settings */,
 				C784328A16EF8AAF000DED40 /* ADN */,
 				C784326816EBBA0F000DED40 /* WryApplication.h */,
 				C784326916EBBA0F000DED40 /* WryApplication.m */,
@@ -460,6 +578,14 @@
 				C7CEE05A17616D7D0028361F /* ChmodCommand.m */,
 				C7CEE05C17617AFE0028361F /* MvCommand.h */,
 				C7CEE05D17617AFE0028361F /* MvCommand.m */,
+				C7FDD65C17C7E57400EF9315 /* ConfigCommand.h */,
+				C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */,
+				C7C60FB617DBCE8100006738 /* SettingsCommand.h */,
+				C7C60FB717DBCE8100006738 /* SettingsCommand.m */,
+				C7DB8E2517DBD7DF004050BB /* BaseCommand.h */,
+				C7DB8E2617DBD7DF004050BB /* BaseCommand.m */,
+				C7DB8E2B17DBEEF0004050BB /* FormattersCommand.h */,
+				C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -475,8 +601,8 @@
 				C784328216EF85A8000DED40 /* ADNUser.m */,
 				C70028F616F330DF00D5B222 /* ADNResponse.h */,
 				C70028F716F330DF00D5B222 /* ADNResponse.m */,
-				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
 				5F237CC24925193B771DADFA /* ADNUserDescription.h */,
+				5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */,
 				5F2374343F648724555A4F33 /* ADNFile.h */,
 				5F237098E0588D727AABD325 /* ADNFile.m */,
 				C78C5BD61740E4E700F5C806 /* ADNChannel.h */,
@@ -489,6 +615,10 @@
 				C7CEE0601761FBE70028361F /* ADNHashtag.m */,
 				C7CEE0621761FBF70028361F /* ADNLink.h */,
 				C7CEE0631761FBF70028361F /* ADNLink.m */,
+				C7D29638177A380B00649A29 /* ADNObject.h */,
+				C7D29639177A380B00649A29 /* ADNObject.m */,
+				5F23736E75515478EB1AE9E8 /* ADNSource.h */,
+				5F237E5234EF1781EA452748 /* ADNSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -535,7 +665,7 @@
 		C784324F16EA02FA000DED40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Rob Warner";
 			};
 			buildConfigurationList = C784325216EA02FA000DED40 /* Build configuration list for PBXProject "wry" */;
@@ -565,9 +695,11 @@
 				C784327416ED2DF2000DED40 /* HelpCommand.m in Sources */,
 				C784327716EF2611000DED40 /* AuthorizeCommand.m in Sources */,
 				C784327F16EF8565000DED40 /* ADNPost.m in Sources */,
+				C7C60FBB17DBCF6C00006738 /* BaseSetting.m in Sources */,
 				C784328316EF85A8000DED40 /* ADNUser.m in Sources */,
 				C784328916EF8AA8000DED40 /* ADNService.m in Sources */,
 				C784329216EFE7B7000DED40 /* UserCommand.m in Sources */,
+				C7DB8E2717DBD7DF004050BB /* BaseCommand.m in Sources */,
 				C784329516F0D8D4000DED40 /* ADNJSONMapping.m in Sources */,
 				C784329916F0DC21000DED40 /* ADNMappingProvider.m in Sources */,
 				C70028F816F330DF00D5B222 /* ADNResponse.m in Sources */,
@@ -592,6 +724,7 @@
 				C744E48E1701D6860002A9A5 /* UnmuteCommand.m in Sources */,
 				C744E4911701DA590002A9A5 /* MutedCommand.m in Sources */,
 				C744E494170204F10002A9A5 /* RepliesCommand.m in Sources */,
+				C7DB8E3317E2502A004050BB /* ColorsSetting.m in Sources */,
 				C744E49717020EDB0002A9A5 /* PostsCommand.m in Sources */,
 				C744E49A170230920002A9A5 /* BlockCommand.m in Sources */,
 				C744E49D170230A70002A9A5 /* UnblockCommand.m in Sources */,
@@ -605,12 +738,14 @@
 				5F23715462BFA09088A273A3 /* UploadCommand.m in Sources */,
 				5F237680B822AEBA7696A403 /* ADNFile.m in Sources */,
 				5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */,
+				C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */,
 				5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */,
 				5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */,
 				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
 				C71BF687172D42E6004C228B /* SSKeychainQuery.m in Sources */,
 				C71BF68B172FD27C004C228B /* WrySettings.m in Sources */,
-				C71BF68F1731BF0D004C228B /* NSString+Atification.m in Sources */,
+				C71BF68F1731BF0D004C228B /* NSString+Prefix.m in Sources */,
+				C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */,
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
 				5F23788005A250218BC639A3 /* PmCommand.m in Sources */,
@@ -627,6 +762,25 @@
 				C73429CF1765F12D0022AEE2 /* ADNMappingEntry.m in Sources */,
 				C7457504176B822D006B4893 /* WryComposer.m in Sources */,
 				C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */,
+				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
+				C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */,
+				C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */,
+				C7DB8E2A17DBEDED004050BB /* BaseFormatter.m in Sources */,
+				C726631417AC2E3E00B9B189 /* QuietSetting.m in Sources */,
+				C726631717AC485800B9B189 /* PrettySetting.m in Sources */,
+				C726631A17AC4A2E00B9B189 /* ReverseSetting.m in Sources */,
+				C726631D17AC4ACD00B9B189 /* AnnotationsSetting.m in Sources */,
+				C726632017AC4B4400B9B189 /* CountSetting.m in Sources */,
+				C726632317AC4BE100B9B189 /* FormatSetting.m in Sources */,
+				C726632617AC4CD800B9B189 /* UserSetting.m in Sources */,
+				C716222E17B3DBD900AE9C6A /* LongSetting.m in Sources */,
+				C709DC0217B85AA100D5E56D /* WryRange.m in Sources */,
+				C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */,
+				C707E36717D35658005DB231 /* EditorSetting.m in Sources */,
+				C707E36A17D35C30005DB231 /* SeparatorSetting.m in Sources */,
+				5F237F4836F20E8885C26E32 /* ADNSource.m in Sources */,
+				5F237BE12C7A63D86E555E1A /* HelpSetting.m in Sources */,
+				5F237400E98F756E19CD2C25 /* VersionSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,7 +791,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -662,6 +815,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					wry/Info.plist,
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -670,7 +829,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -688,6 +846,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					wry/Info.plist,
+				);
 				SDKROOT = macosx;
 			};
 			name = Release;

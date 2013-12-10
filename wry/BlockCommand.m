@@ -9,13 +9,12 @@
 #import "BlockCommand.h"
 #import "ADNService.h"
 #import "WryUtils.h"
-#import "NSString+Atification.h"
+#import "NSString+Prefix.h"
 
 @implementation BlockCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a user ID or @username to block"
                                     error:error

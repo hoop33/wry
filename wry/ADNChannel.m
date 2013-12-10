@@ -10,6 +10,10 @@
 #import "ADNUser.h"
 #import "ADNAnnotation.h"
 #import "ADNAccessControlList.h"
+#import "WrySettings.h"
+#import "WryApplication.h"
+#import "WryUtils.h"
+#import "SeparatorSetting.h"
 
 @implementation ADNChannel
 
@@ -41,7 +45,7 @@ static NSDictionary *NamesForTypes;
       [str appendFormat:@"\n%@", [annotation description]];
     }
   }
-  [str appendString:@"\n----------"];
+  [str appendFormat:@"\n%@", [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[SeparatorSetting class]]]];
   return str;
 }
 

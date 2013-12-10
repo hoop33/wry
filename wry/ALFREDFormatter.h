@@ -7,7 +7,8 @@
 //
 
 #import "WryFormatter.h"
+#import "BaseFormatter.h"
 
-@interface ALFREDFormatter : NSObject <WryFormatter>
+@interface ALFREDFormatter : BaseFormatter <WryFormatter>
 
 @end

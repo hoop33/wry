@@ -13,6 +13,10 @@
 #import "ADNFile.h"
 #import "WryEnhancer.h"
 #import "LinkEnhancer.h"
+#import "ADNPost.h"
+
+#define kErrorDomain @"com.grailbox.adn"
+#define kErrorCodeBadInput 1
 
 @interface ADNService ()
 - (void)performRequest:(NSURLRequest *)request;
@@ -166,7 +170,7 @@
     [post setObject:replyID forKey:@"reply_to"];
   }
   [post setObject:text forKey:@"text"];
-  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
   [linkEnhancer enhance:post];
   NSData *json = [NSJSONSerialization dataWithJSONObject:post
                                                  options:0
@@ -190,7 +194,16 @@
 }
 
 - (ADNResponse *)repost:(NSString *)postID error:(NSError **)error {
-  return [self getItem:[NSString stringWithFormat:@"posts/%@/repost", postID]
+  NSString *originalID = postID;
+  // Get the post
+  ADNResponse *response = [self showPost:postID error:error];
+  if (response != nil) {
+    ADNPost *post = (ADNPost *)response.object;
+    if (post.repostID != nil) {
+      originalID = post.repostID;
+    }
+  }
+  return [self getItem:[NSString stringWithFormat:@"posts/%@/repost", originalID]
                mapping:[ADNMappingProvider postMapping] method:@"POST"
                  error:error];
 }
@@ -213,7 +226,27 @@
                   error:error];
 }
 
-- (ADNResponse *)searchPosts:(NSString *)hashtag error:(NSError **)error {
+- (ADNResponse *)searchPosts:(NSDictionary *)criteria error:(NSError **)error {
+  NSMutableString *searchString = [[NSMutableString alloc] init];
+  for (NSString *key in criteria.allKeys) {
+    [searchString appendFormat:
+      @"&%@=%@", key, [(NSString *) [criteria valueForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  }
+  if (searchString.length > 1) {
+    return [self getItems:[NSString stringWithFormat:@"posts/search?%@", [searchString substringFromIndex:1]]
+                  mapping:[ADNMappingProvider postMapping]
+                    error:error];
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:kErrorDomain
+                                   code:kErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply a search string"}];
+    }
+    return nil;
+  }
+}
+
+- (ADNResponse *)searchPostsForHashtag:(NSString *)hashtag error:(NSError **)error {
   return [self getItems:[NSString stringWithFormat:@"posts/tag/%@", hashtag]
                 mapping:[ADNMappingProvider postMapping]
                   error:error];
@@ -248,14 +281,14 @@
 
   // Attach file
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
-                              dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"content\"; filename=\"%@\"\r\n",
                                                [filename lastPathComponent]]
-                                               dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:data];
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary]
-                              dataUsingEncoding:NSUTF8StringEncoding]];
+    dataUsingEncoding:NSUTF8StringEncoding]];
 
   // Set metadata
   [body appendData:[@"Content-Disposition: form-data; name=\"type\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
@@ -351,7 +384,7 @@
   if (users.count != 0) {
     [message setObject:users forKey:@"destinations"];
   }
-  id<WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
   [linkEnhancer enhance:message];
   NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
                                                    error:error];
@@ -386,10 +419,7 @@
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error {
   path = [self pathWithParameters:path includeCount:YES];
-  NSString *countParam = [NSString stringWithFormat:@"%@count=%ld",
-                                                    ([path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"),
-                                                    self.count];
-  [self performRequest:[self getURLRequestWithPath:[path stringByAppendingString:countParam]]];
+  [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
     NSArray *results = (NSArray *) response.data;

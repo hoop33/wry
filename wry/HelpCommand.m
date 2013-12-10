@@ -10,58 +10,34 @@
 #import "WryErrorCodes.h"
 #import "WryFormatter.h"
 #import "WryUtils.h"
+#import "CommandsCommand.h"
+#import "SettingsCommand.h"
+#import "FormattersCommand.h"
+
+@interface HelpCommand ()
+- (void)showAllHelp;
+
+- (BOOL)showHelpForParam:(NSString *)param;
+@end
 
 @implementation HelpCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
   if (params.count == 0) {
-    [app println:[NSString stringWithFormat:@"usage: %@ [flags] <command> [<args>]",
-                                            app.appName]];
-    [app println:@""];
-    [app println:[NSString stringWithFormat:@"The %@ flags are:", app.appName]];
-    [app println:@"   -a, --annotations      Include annotations"];
-    [app println:@"   -c, --count <n>        Limit count to n items"];
-    [app println:@"   -d, --debug            Show debugging information"];
-    [app println:@"   -f, --format <format>  Display output in format"];
-    [app println:@"   -p, --pretty           Pretty-print the JSON response (for -f json only)"];
-    [app println:@"   -q, --quiet            Mute all output"];
-    [app println:@"   -r, --reverse          Reverse the order of the output"];
-    [app println:@"   -u, --user <user>      Specify the user to use"];
-    [app println:@""];
-    [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
-    for (Class cls in [WryUtils allFormats]) {
-      id <WryFormatter> formatter = [[cls alloc] init];
-      [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForFormatter:formatter] UTF8String],
-                                              [formatter summary]]];
-    }
-    [app println:@""];
-    [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
-    for (Class cls in [WryUtils allCommands]) {
-      id <WryCommand> command = [[cls alloc] init];
-      [app println:[NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:command]
-                                                                        UTF8String], [command summary]]];
-    }
-    [app println:@""];
-    [app println:[NSString stringWithFormat:@"See '%@ help <command>' for more information on a specific command.",
-                                            app.appName]];
+    [self showAllHelp];
   }
   else {
-    id <WryCommand> command = [WryUtils commandForName:[params objectAtIndex:0]];
-    if (command == nil) {
+    if (![self showHelpForParam:params[0]]) {
       if (error != NULL) {
+        WryApplication *app = [WryApplication application];
         *error = [NSError errorWithDomain:app.errorDomain
                                      code:WryErrorCodeBadInput
-                                 userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"%@ is not a valid %@ command",
+                                 userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"%@ is not a valid %@ command, formatter, or setting.",
                                                                                                    [params objectAtIndex:0],
                                                                                                    app.appName]}];
       }
       success = NO;
-    } else {
-      [app println:[NSString stringWithFormat:@"usage: %@ %@ %@", app.appName, [WryUtils nameForCommand:command],
-                                              [command usage]]];
-      [app println:@""];
-      [app println:[command help]];
     }
   }
   return success;
@@ -80,6 +56,78 @@
 
 - (NSString *)summary {
   return @"Display help";
+}
+
+#pragma mark - Private methods
+
+- (void)showAllHelp {
+  WryApplication *app = [WryApplication application];
+  [app println:[NSString stringWithFormat:@"usage: %@ [settings] <command> [<args>]",
+                                          app.appName]];
+  [app println:@""];
+
+  // Show the settings
+  [app println:[NSString stringWithFormat:@"The %@ settings are:", app.appName]];
+  SettingsCommand *settingsCommand = [[SettingsCommand alloc] init];
+  [settingsCommand run:nil error:nil];
+
+  // Show the formatters
+  [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
+  FormattersCommand *formattersCommand = [[FormattersCommand alloc] init];
+  [formattersCommand run:nil error:nil];
+
+  // Show the commands
+  [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
+  CommandsCommand *commandsCommand = [[CommandsCommand alloc] init];
+  [commandsCommand run:nil error:nil];
+
+  [app println:[NSString stringWithFormat:@"See '%@ help <command | formatter | setting>' for help on a specific\n"
+                                            @"command, formatter, or setting.",
+                                          app.appName]];
+}
+
+- (BOOL)showHelpForParam:(NSString *)param {
+  return [self showHelpForInstance:[WryUtils commandForName:param]] |
+    [self showHelpForInstance:[WryUtils settingForName:param]] |
+    [self showHelpForInstance:[WryUtils formatterForName:param]];
+}
+
+- (BOOL)showHelpForInstance:(id)instance {
+  BOOL success = NO;
+  if (instance != nil) {
+    WryApplication *app = [WryApplication application];
+    if ([instance conformsToProtocol:@protocol(WryCommand)]) {
+      NSString *name = [WryUtils nameForCommand:instance];
+      [app println:[NSString stringWithFormat:@"\nHelp for command \"%@\"", name]];
+      [app println:[instance description]];
+      [app println:@""];
+      [app println:[instance help]];
+    } else if ([instance conformsToProtocol:@protocol(WrySetting)]) {
+      NSString *name = [WryUtils nameForSetting:instance];
+      [app println:[NSString stringWithFormat:@"\nHelp for setting \"%@\"", name]];
+      [app println:[instance description]];
+      [app println:@""];
+      [app print:[NSString stringWithFormat:@"options: "]];
+      NSMutableString *allowed = [NSMutableString string];
+      for (NSObject *object in [instance allowedValues]) {
+        [allowed appendFormat:@", %@", object];
+      }
+      if (allowed.length > 0) {
+        [app println:[allowed substringFromIndex:2]];
+      } else {
+        [app println:[NSString stringWithFormat:@"<%@>", name]];
+      }
+      [app println:@""];
+      [app println:[instance help]];
+    } else if ([instance conformsToProtocol:@protocol(WryFormatter)]) {
+      NSString *name = [WryUtils nameForFormatter:instance];
+      [app println:[NSString stringWithFormat:@"\nHelp for formatter \"%@\"", name]];
+      [app println:[instance description]];
+      [app println:@""];
+    }
+    success = YES;
+  }
+  return success;
 }
 
 @end

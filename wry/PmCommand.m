@@ -13,9 +13,8 @@
 
 @implementation PmCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a user to send to"
                                     error:error
@@ -29,7 +28,7 @@
                                       [users addObject:param];
                                     } else if (replyID == nil &&
                                       [numbers isSupersetOfSet:
-                                                 [NSCharacterSet characterSetWithCharactersInString:param]]) {
+                                        [NSCharacterSet characterSetWithCharactersInString:param]]) {
                                       replyID = param;
                                     } else {
                                       text = param;
@@ -52,13 +51,13 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Sends a private message to the specified user or users. You can specify\n"
-            @"multiple users by separating with spaces. You can also reply to a message\n"
-            @"by specifying the ID of the message to reply to. If supplying the text of\n"
-            @"your message as command-line arguments, note that the shell's parsing rules\n"
-            @"are respected, so escape your text appropriately.\n"
-            "Note that quotes are NOT optional.\n"
-            @"\n"];
+    @"Sends a private message to the specified user or users. You can specify\n"
+      @"multiple users by separating with spaces. You can also reply to a message\n"
+      @"by specifying the ID of the message to reply to. If supplying the text of\n"
+      @"your message as command-line arguments, note that the shell's parsing rules\n"
+      @"are respected, so escape your text appropriately.\n"
+      "Note that quotes are NOT optional.\n"
+      @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }

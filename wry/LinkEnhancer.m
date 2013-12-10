@@ -20,7 +20,7 @@
     NSMutableArray *links = [NSMutableArray array];
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(.+?)\\]\\((.+?)\\)"
-                                                                           options:0
+                                                                           options:NSRegularExpressionDotMatchesLineSeparators
                                                                              error:nil];
     NSTextCheckingResult *match = [regex firstMatchInString:text
                                                     options:0
@@ -31,7 +31,7 @@
       NSRange linkRange = [match rangeAtIndex:2];
 
       ADNLink *link = [[ADNLink alloc] init];
-      link.url = [text substringWithRange:linkRange];
+      link.url = [[text substringWithRange:linkRange] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
       link.position = textRange.location - 1; // The new pos of the text, once we drop the paren
       link.length = textRange.length;
       [links addObject:[link asDictionary]];

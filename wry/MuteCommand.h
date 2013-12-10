@@ -7,7 +7,8 @@
 //
 
 #import "WryCommand.h"
+#import "BaseCommand.h"
 
-@interface MuteCommand : NSObject <WryCommand>
+@interface MuteCommand : BaseCommand <WryCommand>
 
 @end

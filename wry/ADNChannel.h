@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
+#import "ADNObject.h"
+
 @class ADNUser;
 @class ADNAccessControlList;
 
-@interface ADNChannel : NSObject
+@interface ADNChannel : ADNObject
 
 @property(nonatomic, assign) NSInteger channelID;
 @property(nonatomic, copy) NSString *type;

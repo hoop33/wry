@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ADNObject.h"
 
 @class ADNJSONMapping;
 
-@interface ADNResponse : NSObject
+@interface ADNResponse : ADNObject
 
 @property(nonatomic, strong) NSDictionary *meta;
 @property(nonatomic, strong) id data;

@@ -1,5 +1,5 @@
 //
-//  NSString+Atification.h
+//  NSString+Prefix.h
 //  wry
 //
 //  Created by Rob Warner on 5/1/13.
@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Atification)
+@interface NSString (Prefix)
 
 - (NSString *)atify;
 - (NSString *)deatify;
+- (NSString *)hashtagify;
+- (NSString *)dehashtagify;
+- (BOOL)isUserName;
+- (BOOL)isHashtag;
 
 @end

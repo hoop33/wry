@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-@interface ADNAccessControlList : NSObject
+#import "ADNObject.h"
+
+@interface ADNAccessControlList : ADNObject
 
 @property(nonatomic, assign) BOOL anyUser;
 @property(nonatomic, assign) BOOL immutable;

@@ -12,9 +12,8 @@
 
 @implementation ChmodCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performObjectOperation:app
-                                   params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performObjectOperation:params
                             minimumParams:2
                              errorMessage:@"You must specify a file ID and either 'public' or 'private'"
                                     error:error
@@ -32,8 +31,8 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Changes the permissions on a file. You must specify a file ID\n"
-            @"and either 'public' or 'private'."];
+    @"Changes the permissions on a file. You must specify a file ID\n"
+      @"and either 'public' or 'private'."];
   return help;
 }
 

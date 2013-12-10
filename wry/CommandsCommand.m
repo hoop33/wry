@@ -11,9 +11,15 @@
 
 @implementation CommandsCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
-  response.object = [WryUtils allCommands];
+  NSArray *commandsClasses = [WryUtils allCommands];
+  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:commandsClasses.count];
+  for (Class cls in commandsClasses) {
+    [commands addObject:[[cls alloc] init]];
+  }
+  response.object = commands;
+  WryApplication *app = [WryApplication application];
   [app println:[app.formatter format:response]];
   return YES;
 }

@@ -11,11 +11,14 @@
 @implementation ADNLink
 
 - (NSString *)description {
-  if([self.text isEqualToString:self.url]){
-    return [NSString stringWithFormat:@"[%@]", self.url];
-  } else {
-    return [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
-  }
+  return [self.text isEqualToString:self.url] ? self.url : [NSString stringWithFormat:@"[%@](%@)", self.text, self.url];
+}
+
+- (NSString *)colorDescription {
+  return [self.text isEqualToString:self.url] ? [self colorize:self.url colorSetting:WryColorLink] :
+    [NSString stringWithFormat:@"[%@](%@)",
+        [self colorize:self.text colorSetting:WryColorText],
+        [self colorize:self.url colorSetting:WryColorLink]];
 }
 
 - (NSDictionary *)asDictionary {

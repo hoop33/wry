@@ -8,9 +8,11 @@
 
 #import "WryComposer.h"
 #import "WrySettings.h"
+#import "WryApplication.h"
+#import "WryUtils.h"
+#import "EditorSetting.h"
 
 @interface WryComposer ()
-- (BOOL)interactive;
 - (NSString *)shell;
 - (NSString *)editor;
 - (NSString *)tempFileName;
@@ -24,7 +26,7 @@
     "quoting. You can also pipe input from other commands to create your text.\n"
     "\n"
     "The editor used will be one of these, in this order:\n"
-    "  1. The value for Editor in wry.plist\n"
+    "  1. The value for 'editor' in com.grailbox.wry.plist\n"
     "  2. $WRY_EDITOR\n"
     "  3. $VISUAL\n"
     "  4. $EDITOR\n"
@@ -37,14 +39,33 @@
 - (NSString *)compose {
   NSString *text = nil;
   NSString *editor = [self editor];
-  if ([self interactive] && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
+  if ([WryApplication application].interactiveIn && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
     NSString *tempFileName = [self tempFileName];
     if (tempFileName != nil) {
-      NSTask *task = [NSTask new];
-      task.launchPath = [self shell];
-      task.arguments = @[@"-i", @"-c", [NSString stringWithFormat:@"%@ %@", editor, tempFileName]];
-      [task launch];
-      [task waitUntilExit];
+      NSString *path = [self shell];
+      const char *cpath = [path UTF8String];
+
+      NSArray *args = @[@"-i", @"-c", [NSString stringWithFormat:@"%@ %@", editor, tempFileName]];
+      const char *cargs[args.count + 1];
+      size_t i = 0;
+      for (NSString *arg in args) {
+        cargs[i++] = [arg UTF8String];
+      }
+      cargs[i] = NULL;
+
+      pid_t childPID = fork();
+      if (!childPID) {
+        execvp(cpath, (char **)cargs);
+
+        assert(false && "failed to exec editor");
+      }
+
+      /* Wait till child process exits. */
+      pid_t result = 0;
+      while (result >= 0 && errno != EINTR) {
+        result = waitpid(childPID, NULL, 0);
+      }
+
       text = [[NSString alloc] initWithContentsOfFile:tempFileName
                                              encoding:NSUTF8StringEncoding
                                                 error:nil];
@@ -62,17 +83,13 @@
   return [text hasSuffix:@"\n"] ? [text substringToIndex:text.length - 1] : text;
 }
 
-- (BOOL)interactive {
-  return isatty(0) != 0;
-}
-
 - (NSString *)shell {
   return [[[NSProcessInfo processInfo] environment] objectForKey:@"SHELL"];
 }
 
 - (NSString *)editor {
   NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-  NSString *editor = [WrySettings editor];
+  NSString *editor = [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[EditorSetting class]]];
   if (editor.length == 0) editor = [environment objectForKey:@"WRY_EDITOR"];
   if (editor.length == 0) editor = [environment objectForKey:@"VISUAL"];
   if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];
@@ -85,12 +102,12 @@
   NSString *tempFileName = nil;
   NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX"];
   const char *templateCString = [template fileSystemRepresentation];
-  char *tempFileNameCString = (char *)malloc(strlen(templateCString) + 1);
+  char *tempFileNameCString = (char *) malloc(strlen(templateCString) + 1);
   strcpy(tempFileNameCString, templateCString);
   int fileDescriptor = mkstemp(tempFileNameCString);
   if (fileDescriptor != -1) {
-    tempFileName =  [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString
-                                                                                length:strlen(tempFileNameCString)];
+    tempFileName = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString
+                                                                               length:strlen(tempFileNameCString)];
   }
   free(tempFileNameCString);
   return tempFileName;

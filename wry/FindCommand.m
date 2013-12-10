@@ -12,15 +12,14 @@
 
 @implementation FindCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
-  return [WryUtils performListOperation:app
-                                 params:params
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
+  return [WryUtils performListOperation:params
                           minimumParams:1
                            errorMessage:@"You must specify a search string"
                                   error:error
                               operation:^id(ADNService *service) {
                                 return [service searchUsers:[[params componentsJoinedByString:@" "]
-                                                                     stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                                       error:error];
                               }];
 }

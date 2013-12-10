@@ -19,6 +19,7 @@
 #import "ADNHashtag.h"
 #import "ADNLink.h"
 #import "ADNMappingEntry.h"
+#import "ADNSource.h"
 
 @implementation ADNMappingProvider
 
@@ -54,7 +55,9 @@
     [ADNMappingEntry mappingEntry:@"entities.hashtags" to:@"hashtags" mapping:[ADNMappingProvider hashtagMapping]],
     [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
-    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]],
+    [ADNMappingEntry mappingEntry:@"source" to:nil mapping:[ADNMappingProvider sourceMapping]],
+    [ADNMappingEntry mappingEntry:@"repost_of.id" to:@"repostID" mapping:nil]
   ];
   return mapping;
 }
@@ -85,7 +88,9 @@
     [ADNMappingEntry mappingEntry:@"reply_to" to:@"replyToID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
     [ADNMappingEntry mappingEntry:@"user" to:nil mapping:[ADNMappingProvider userMapping]],
-    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]]
+    [ADNMappingEntry mappingEntry:@"annotations" to:nil mapping:[ADNMappingProvider annotationMapping]],
+    [ADNMappingEntry mappingEntry:@"entities.links" to:@"links" mapping:[ADNMappingProvider linkMapping]],
+    [ADNMappingEntry mappingEntry:@"entities.hashtags" to:@"hashtags" mapping:[ADNMappingProvider hashtagMapping]]
   ];
   return mapping;
 }
@@ -142,6 +147,15 @@
     [ADNMappingEntry mappingEntry:@"you" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"any_user" to:@"anyUser" mapping:nil],
     [ADNMappingEntry mappingEntry:@"user_ids" to:@"userIDs" mapping:nil]
+  ];
+  return mapping;
+}
+
++ (ADNJSONMapping *)sourceMapping {
+  ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNSource class]];
+  mapping.entries = @[
+    [ADNMappingEntry mappingEntry:@"name" to:nil mapping:nil],
+    [ADNMappingEntry mappingEntry:@"link" to:nil mapping:nil]
   ];
   return mapping;
 }

@@ -11,11 +11,14 @@
 #import "ADNResponse.h"
 #import "ADNUser.h"
 #import "WryUtils.h"
+#import "UserSetting.h"
+#import "WrySettings.h"
 
 @implementation AuthorizeCommand
 
-- (BOOL)run:(WryApplication *)app params:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params error:(NSError **)error {
   BOOL success = YES;
+  WryApplication *app = [WryApplication application];
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
                                           app.appName]];
   [app println:[NSString stringWithFormat:@"After signing in to App.net and authorizing %@ to use your App.net account,",
@@ -31,8 +34,7 @@
   NSString *accessToken = [app getInput];
   if (accessToken.length > 0) {
     ADNResponse *response;
-    success = [WryUtils getADNResponseForOperation:app
-                                       accessToken:accessToken
+    success = [WryUtils getADNResponseForOperation:accessToken
                                             params:nil
                                      minimumParams:0
                                       errorMessage:nil
@@ -43,9 +45,10 @@
                                          }];
 
     if (success && response != nil) {
-      app.user = ((ADNUser *) response.object).username;
+      NSString *username = ((ADNUser *) response.object).username;
+      [app.settings setObject:username forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
       app.accessToken = accessToken;
-      [app println:[NSString stringWithFormat:@"User %@ authorized!", app.user]];
+      [app println:[NSString stringWithFormat:@"User %@ authorized!", username]];
     }
   }
   return success;
