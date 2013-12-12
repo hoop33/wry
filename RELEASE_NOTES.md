@@ -1,5 +1,8 @@
 # Release Notes
 
+## Version 1.7.1 (12/12/2013)
+* Fix build issue for Lion
+
 ## Version 1.7 (12/10/2013)
 * Change user following/followed arrows to <--> and omit if no relationship
 * For links that have no link text, don't display URL twice
