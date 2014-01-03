@@ -1,5 +1,8 @@
 # Release Notes
 
+## Version 1.7.2 (1/3/2014)
+* Remove debug message from follow/following status
+
 ## Version 1.7.1 (12/31/2013)
 * Fix build issue for Lion
 
