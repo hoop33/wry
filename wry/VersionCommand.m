@@ -13,7 +13,7 @@
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   [app println:[NSString stringWithFormat:@"%@ version %@", app.appName, app.version]];
-  [app println:@"Copyright (C) 2013, Rob Warner (@hoop33)"];
+  [app println:@"Copyright (C) 2013, 2014 Rob Warner (@hoop33)"];
   [app println:@"http://grailbox.com/wry"];
   [app println:@""];
   [app println:@"Released under the MIT license."];
