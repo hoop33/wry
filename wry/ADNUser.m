@@ -37,7 +37,6 @@
 
 - (NSString *)relationship {
   NSString *relationship;
-  NSLog(@"%d %d", self.youFollow, self.followsYou);
   if (self.youFollow && self.followsYou) relationship = @" <--> You";
   else if (self.youFollow) relationship = @" <-- You";
   else if (self.followsYou) relationship = @" --> You";
