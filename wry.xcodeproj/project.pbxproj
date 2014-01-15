@@ -46,6 +46,98 @@
 		C72BF7B41710CA2800F0039D /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
 		C72BF7B71711990B00F0039D /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
 		C72BF7BA1711F15700F0039D /* CommandsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B91711F15700F0039D /* CommandsCommand.m */; };
+		C73329D218871B0D00B0E7BF /* WrySettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C73329D118871B0D00B0E7BF /* WrySettingsTests.m */; };
+		C73329D318871E1300B0E7BF /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632517AC4CD800B9B189 /* UserSetting.m */; };
+		C73329D418871E1800B0E7BF /* WrySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68A172FD27C004C228B /* WrySettings.m */; };
+		C73329D518871E2B00B0E7BF /* DebugSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C718D0C617A9A5E7000ABF4E /* DebugSetting.m */; };
+		C73329D618871E2F00B0E7BF /* QuietSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631317AC2E3E00B9B189 /* QuietSetting.m */; };
+		C73329D718871E3300B0E7BF /* PrettySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631617AC485800B9B189 /* PrettySetting.m */; };
+		C73329D818871E3700B0E7BF /* ReverseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631917AC4A2E00B9B189 /* ReverseSetting.m */; };
+		C73329D918871E3C00B0E7BF /* AnnotationsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631C17AC4ACD00B9B189 /* AnnotationsSetting.m */; };
+		C73329DA18871E3F00B0E7BF /* CountSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726631F17AC4B4300B9B189 /* CountSetting.m */; };
+		C73329DB18871E4400B0E7BF /* FormatSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C726632217AC4BE100B9B189 /* FormatSetting.m */; };
+		C73329DC18871E4B00B0E7BF /* LongSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C716222D17B3DBD900AE9C6A /* LongSetting.m */; };
+		C73329DD18871E4F00B0E7BF /* WryRange.m in Sources */ = {isa = PBXBuildFile; fileRef = C709DC0117B85AA100D5E56D /* WryRange.m */; };
+		C73329DE18871E5300B0E7BF /* EditorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36617D35658005DB231 /* EditorSetting.m */; };
+		C73329DF18871E5600B0E7BF /* SeparatorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36917D35C30005DB231 /* SeparatorSetting.m */; };
+		C73329E018871E5B00B0E7BF /* BaseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FBA17DBCF6C00006738 /* BaseSetting.m */; };
+		C73329E118871E5E00B0E7BF /* ColorsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E3217E2502A004050BB /* ColorsSetting.m */; };
+		C73329E218871E6200B0E7BF /* HelpSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237372AE86C042073F4D40 /* HelpSetting.m */; };
+		C73329E318871E6600B0E7BF /* VersionSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237FF2400552AC8A343022 /* VersionSetting.m */; };
+		C73329E418871E8400B0E7BF /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
+		C73329E518871E8700B0E7BF /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF685172D42E6004C228B /* SSKeychainQuery.m */; };
+		C73329E618871E9800B0E7BF /* WryApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C784326916EBBA0F000DED40 /* WryApplication.m */; };
+		C73329E718871E9D00B0E7BF /* WryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A51702779B0002A9A5 /* WryUtils.m */; };
+		C73329E818871EA400B0E7BF /* WryComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457503176B822D006B4893 /* WryComposer.m */; };
+		C73329E918871EC300B0E7BF /* ADNService.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328816EF8AA8000DED40 /* ADNService.m */; };
+		C73329EA18871EC700B0E7BF /* ADNJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329416F0D8D4000DED40 /* ADNJSONMapping.m */; };
+		C73329EB18871ECB00B0E7BF /* ADNMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329816F0DC21000DED40 /* ADNMappingProvider.m */; };
+		C73329EC18871ECF00B0E7BF /* ADNMappingEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */; };
+		C73329ED18871EDC00B0E7BF /* ChannelCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0571760924C0028361F /* ChannelCommand.m */; };
+		C73329EE18871EE000B0E7BF /* PmCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237CF25F16BE1AB595D370 /* PmCommand.m */; };
+		C73329EF18871EE300B0E7BF /* MessagesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23732DDFB65635F0971665 /* MessagesCommand.m */; };
+		C73329F018871EE700B0E7BF /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327316ED2DF2000DED40 /* HelpCommand.m */; };
+		C73329F118871EEB00B0E7BF /* AuthorizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327616EF2611000DED40 /* AuthorizeCommand.m */; };
+		C73329F218871EEF00B0E7BF /* UserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C784329116EFE7B7000DED40 /* UserCommand.m */; };
+		C73329F318871EF400B0E7BF /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
+		C73329F418871EF900B0E7BF /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
+		C73329F518871EFD00B0E7BF /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
+		C73329F618871F0100B0E7BF /* PostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7916F60B83005DDBAB /* PostCommand.m */; };
+		C73329F718871F0500B0E7BF /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
+		C73329F818871F0A00B0E7BF /* FollowersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */; };
+		C73329F918871F1000B0E7BF /* FollowingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46F16FA9D010002A9A5 /* FollowingCommand.m */; };
+		C73329FA18871F1800B0E7BF /* FollowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47216FA9F670002A9A5 /* FollowCommand.m */; };
+		C73329FB18871F1C00B0E7BF /* ReplyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47516FB09B00002A9A5 /* ReplyCommand.m */; };
+		C73329FC18871F2000B0E7BF /* RepostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47816FC76EA0002A9A5 /* RepostCommand.m */; };
+		C73329FD18871F2500B0E7BF /* StarCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47B16FC8E900002A9A5 /* StarCommand.m */; };
+		C73329FE18871F2900B0E7BF /* DeleteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E47E16FC932C0002A9A5 /* DeleteCommand.m */; };
+		C73329FF18871F2C00B0E7BF /* ReadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E48117012B380002A9A5 /* ReadCommand.m */; };
+		C7332A0018871F2F00B0E7BF /* MentionsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E484170131970002A9A5 /* MentionsCommand.m */; };
+		C7332A0118871F3400B0E7BF /* UnfollowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4871701B93A0002A9A5 /* UnfollowCommand.m */; };
+		C7332A0218871F3700B0E7BF /* MuteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E48A1701D5D00002A9A5 /* MuteCommand.m */; };
+		C7332A0318871F3C00B0E7BF /* UnmuteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E48D1701D6850002A9A5 /* UnmuteCommand.m */; };
+		C7332A0418871F4000B0E7BF /* MutedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4901701DA560002A9A5 /* MutedCommand.m */; };
+		C7332A0518871F4400B0E7BF /* RepliesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E493170204EE0002A9A5 /* RepliesCommand.m */; };
+		C7332A0618871F4A00B0E7BF /* PostsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49617020ED90002A9A5 /* PostsCommand.m */; };
+		C7332A0718871F4D00B0E7BF /* BlockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4991702308E0002A9A5 /* BlockCommand.m */; };
+		C7332A0818871F5100B0E7BF /* UnblockCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E49C170230A40002A9A5 /* UnblockCommand.m */; };
+		C7332A0918871F5400B0E7BF /* SearchCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A217025E200002A9A5 /* SearchCommand.m */; };
+		C7332A0A18871F5800B0E7BF /* FindCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A8170502E50002A9A5 /* FindCommand.m */; };
+		C7332A0B18871F5F00B0E7BF /* CommandsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B91711F15700F0039D /* CommandsCommand.m */; };
+		C7332A0C18871F6300B0E7BF /* UploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2370C39D60AE168097C05C /* UploadCommand.m */; };
+		C7332A0D18871F6C00B0E7BF /* LsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F23700E04DD8F1511814264 /* LsCommand.m */; };
+		C7332A0E18871F6F00B0E7BF /* DownloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237A3B099660DF7F93200E /* DownloadCommand.m */; };
+		C7332A0F18871F7200B0E7BF /* UsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2371A2572D6E22B13CB3C8 /* UsersCommand.m */; };
+		C7332A1018871F7600B0E7BF /* ChannelsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BDD1740EA0C00F5C806 /* ChannelsCommand.m */; };
+		C7332A1118871F7A00B0E7BF /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE91742471100F5C806 /* SendCommand.m */; };
+		C7332A1218871F7E00B0E7BF /* ChmodCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE05A17616D7D0028361F /* ChmodCommand.m */; };
+		C7332A1318871F8200B0E7BF /* MvCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE05D17617AFE0028361F /* MvCommand.m */; };
+		C7332A1418871F8600B0E7BF /* ConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */; };
+		C7332A1518871F8900B0E7BF /* SettingsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FB717DBCE8100006738 /* SettingsCommand.m */; };
+		C7332A1618871F8D00B0E7BF /* BaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2617DBD7DF004050BB /* BaseCommand.m */; };
+		C7332A1718871F9500B0E7BF /* FormattersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2C17DBEEF0004050BB /* FormattersCommand.m */; };
+		C7332A1818871FAC00B0E7BF /* ADNMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2375EF1A33A13AD2218C9A /* ADNMessage.m */; };
+		C7332A1918871FAF00B0E7BF /* ADNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = C784327E16EF8565000DED40 /* ADNPost.m */; };
+		C7332A1A18871FB300B0E7BF /* ADNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C784328216EF85A8000DED40 /* ADNUser.m */; };
+		C7332A1B18871FB700B0E7BF /* ADNResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028F716F330DF00D5B222 /* ADNResponse.m */; };
+		C7332A1C18871FBA00B0E7BF /* ADNUserDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2379722EA1CB3B2969A792 /* ADNUserDescription.m */; };
+		C7332A1D18871FBE00B0E7BF /* ADNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237098E0588D727AABD325 /* ADNFile.m */; };
+		C7332A1E18871FC200B0E7BF /* ADNChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BD71740E4E700F5C806 /* ADNChannel.m */; };
+		C7332A1F18871FC500B0E7BF /* ADNAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE01740EED600F5C806 /* ADNAnnotation.m */; };
+		C7332A2018871FC900B0E7BF /* ADNAccessControlList.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE317423B3200F5C806 /* ADNAccessControlList.m */; };
+		C7332A2118871FCE00B0E7BF /* ADNHashtag.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0601761FBE70028361F /* ADNHashtag.m */; };
+		C7332A2218871FD200B0E7BF /* ADNLink.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CEE0631761FBF70028361F /* ADNLink.m */; };
+		C7332A2318871FD500B0E7BF /* ADNObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D29639177A380B00649A29 /* ADNObject.m */; };
+		C7332A2418871FD900B0E7BF /* ADNSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237E5234EF1781EA452748 /* ADNSource.m */; };
+		C7332A2518871FF500B0E7BF /* TEXTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B01710C96600F0039D /* TEXTFormatter.m */; };
+		C7332A2618871FF800B0E7BF /* JSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B31710CA2700F0039D /* JSONFormatter.m */; };
+		C7332A2718871FFC00B0E7BF /* ALFREDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C72BF7B61711990B00F0039D /* ALFREDFormatter.m */; };
+		C7332A2818871FFF00B0E7BF /* BaseFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E2917DBEDED004050BB /* BaseFormatter.m */; };
+		C7332A291887200400B0E7BF /* LinkEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457508176E6B5F006B4893 /* LinkEnhancer.m */; };
+		C7332A2A1887200800B0E7BF /* TextTooLongEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */; };
+		C7332A2B1887200F00B0E7BF /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
+		C7332A2C1887201300B0E7BF /* NSString+Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Prefix.m */; };
+		C7332A2D1887203F00B0E7BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784327B16EF4955000DED40 /* Security.framework */; };
 		C73429CF1765F12D0022AEE2 /* ADNMappingEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */; };
 		C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
 		C744E46D16FA8E2D0002A9A5 /* FollowersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */; };
@@ -90,6 +182,8 @@
 		C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C78C5BE91742471100F5C806 /* SendCommand.m */; };
 		C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FB717DBCE8100006738 /* SettingsCommand.m */; };
 		C7C60FBB17DBCF6C00006738 /* BaseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FBA17DBCF6C00006738 /* BaseSetting.m */; };
+		C7C98597187CAA0F008094FB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C98596187CAA0F008094FB /* XCTest.framework */; };
+		C7C9859D187CAA0F008094FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7C9859B187CAA0F008094FB /* InfoPlist.strings */; };
 		C7CCEB6E16F5E3EE005DDBAB /* GlobalCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */; };
 		C7CCEB7116F5E7C9005DDBAB /* StreamCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7016F5E7C9005DDBAB /* StreamCommand.m */; };
 		C7CCEB7716F5EBCF005DDBAB /* UnifiedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CCEB7616F5EBCF005DDBAB /* UnifiedCommand.m */; };
@@ -107,6 +201,16 @@
 		C7DB8E3317E2502A004050BB /* ColorsSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DB8E3217E2502A004050BB /* ColorsSetting.m */; };
 		C7FDD65E17C7E57400EF9315 /* ConfigCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDD65D17C7E57400EF9315 /* ConfigCommand.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7C985A1187CAA0F008094FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C784324F16EA02FA000DED40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C784325616EA02FA000DED40;
+			remoteInfo = wry;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C784325516EA02FA000DED40 /* CopyFiles */ = {
@@ -198,6 +302,7 @@
 		C72BF7B81711F15700F0039D /* CommandsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandsCommand.h; sourceTree = "<group>"; };
 		C72BF7B91711F15700F0039D /* CommandsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsCommand.m; sourceTree = "<group>"; };
 		C731A99117F8811F00D1D5EB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C73329D118871B0D00B0E7BF /* WrySettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettingsTests.m; sourceTree = "<group>"; };
 		C73429CD1765F12D0022AEE2 /* ADNMappingEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingEntry.h; sourceTree = "<group>"; };
 		C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingEntry.m; sourceTree = "<group>"; };
 		C744E46816FA853F0002A9A5 /* VersionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCommand.h; sourceTree = "<group>"; };
@@ -286,6 +391,11 @@
 		C7C60FB717DBCE8100006738 /* SettingsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCommand.m; sourceTree = "<group>"; };
 		C7C60FB917DBCF6C00006738 /* BaseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSetting.h; sourceTree = "<group>"; };
 		C7C60FBA17DBCF6C00006738 /* BaseSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSetting.m; sourceTree = "<group>"; };
+		C7C98595187CAA0F008094FB /* wry Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "wry Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C98596187CAA0F008094FB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C7C9859A187CAA0F008094FB /* wry Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wry Tests-Info.plist"; sourceTree = "<group>"; };
+		C7C9859C187CAA0F008094FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C7C985A0187CAA0F008094FB /* wry Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wry Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C7CCEB6C16F5E3EE005DDBAB /* GlobalCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCommand.h; sourceTree = "<group>"; };
 		C7CCEB6D16F5E3EE005DDBAB /* GlobalCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCommand.m; sourceTree = "<group>"; };
 		C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCommand.h; sourceTree = "<group>"; };
@@ -328,6 +438,15 @@
 			files = (
 				C784327C16EF4955000DED40 /* Security.framework in Frameworks */,
 				C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7C98592187CAA0F008094FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7332A2D1887203F00B0E7BF /* Security.framework in Frameworks */,
+				C7C98597187CAA0F008094FB /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				C784325C16EA02FA000DED40 /* wry */,
+				C7C98598187CAA0F008094FB /* wry Tests */,
 				C784325916EA02FA000DED40 /* Frameworks */,
 				C784325816EA02FA000DED40 /* Products */,
 			);
@@ -440,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				C784325716EA02FA000DED40 /* wry */,
+				C7C98595187CAA0F008094FB /* wry Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,6 +570,7 @@
 			children = (
 				C784327B16EF4955000DED40 /* Security.framework */,
 				C784325A16EA02FA000DED40 /* Foundation.framework */,
+				C7C98596187CAA0F008094FB /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -639,6 +761,25 @@
 			name = ADN;
 			sourceTree = "<group>";
 		};
+		C7C98598187CAA0F008094FB /* wry Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C7C98599187CAA0F008094FB /* Supporting Files */,
+				C73329D118871B0D00B0E7BF /* WrySettingsTests.m */,
+			);
+			path = "wry Tests";
+			sourceTree = "<group>";
+		};
+		C7C98599187CAA0F008094FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C7C9859A187CAA0F008094FB /* wry Tests-Info.plist */,
+				C7C9859B187CAA0F008094FB /* InfoPlist.strings */,
+				C7C985A0187CAA0F008094FB /* wry Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -659,6 +800,24 @@
 			productReference = C784325716EA02FA000DED40 /* wry */;
 			productType = "com.apple.product-type.tool";
 		};
+		C7C98594187CAA0F008094FB /* wry Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7C985A5187CAA0F008094FB /* Build configuration list for PBXNativeTarget "wry Tests" */;
+			buildPhases = (
+				C7C98591187CAA0F008094FB /* Sources */,
+				C7C98592187CAA0F008094FB /* Frameworks */,
+				C7C98593187CAA0F008094FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7C985A2187CAA0F008094FB /* PBXTargetDependency */,
+			);
+			name = "wry Tests";
+			productName = "wry Tests";
+			productReference = C7C98595187CAA0F008094FB /* wry Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -667,6 +826,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Rob Warner";
+				TargetAttributes = {
+					C7C98594187CAA0F008094FB = {
+						TestTargetID = C784325616EA02FA000DED40;
+					};
+				};
 			};
 			buildConfigurationList = C784325216EA02FA000DED40 /* Build configuration list for PBXProject "wry" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -681,9 +845,21 @@
 			projectRoot = "";
 			targets = (
 				C784325616EA02FA000DED40 /* wry */,
+				C7C98594187CAA0F008094FB /* wry Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C7C98593187CAA0F008094FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C9859D187CAA0F008094FB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C784325316EA02FA000DED40 /* Sources */ = {
@@ -784,7 +960,124 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7C98591187CAA0F008094FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C73329EA18871EC700B0E7BF /* ADNJSONMapping.m in Sources */,
+				C73329D918871E3C00B0E7BF /* AnnotationsSetting.m in Sources */,
+				C73329E218871E6200B0E7BF /* HelpSetting.m in Sources */,
+				C73329F618871F0100B0E7BF /* PostCommand.m in Sources */,
+				C7332A1B18871FB700B0E7BF /* ADNResponse.m in Sources */,
+				C73329E018871E5B00B0E7BF /* BaseSetting.m in Sources */,
+				C7332A1518871F8900B0E7BF /* SettingsCommand.m in Sources */,
+				C7332A0718871F4D00B0E7BF /* BlockCommand.m in Sources */,
+				C73329F418871EF900B0E7BF /* StreamCommand.m in Sources */,
+				C7332A2318871FD500B0E7BF /* ADNObject.m in Sources */,
+				C7332A0918871F5400B0E7BF /* SearchCommand.m in Sources */,
+				C73329D618871E2F00B0E7BF /* QuietSetting.m in Sources */,
+				C73329E318871E6600B0E7BF /* VersionSetting.m in Sources */,
+				C7332A1418871F8600B0E7BF /* ConfigCommand.m in Sources */,
+				C73329F318871EF400B0E7BF /* GlobalCommand.m in Sources */,
+				C7332A1618871F8D00B0E7BF /* BaseCommand.m in Sources */,
+				C7332A0218871F3700B0E7BF /* MuteCommand.m in Sources */,
+				C73329F918871F1000B0E7BF /* FollowingCommand.m in Sources */,
+				C73329DD18871E4F00B0E7BF /* WryRange.m in Sources */,
+				C7332A1A18871FB300B0E7BF /* ADNUser.m in Sources */,
+				C73329E118871E5E00B0E7BF /* ColorsSetting.m in Sources */,
+				C7332A1C18871FBA00B0E7BF /* ADNUserDescription.m in Sources */,
+				C7332A0A18871F5800B0E7BF /* FindCommand.m in Sources */,
+				C73329D318871E1300B0E7BF /* UserSetting.m in Sources */,
+				C7332A0318871F3C00B0E7BF /* UnmuteCommand.m in Sources */,
+				C7332A1E18871FC200B0E7BF /* ADNChannel.m in Sources */,
+				C73329F118871EEB00B0E7BF /* AuthorizeCommand.m in Sources */,
+				C73329E918871EC300B0E7BF /* ADNService.m in Sources */,
+				C73329FF18871F2C00B0E7BF /* ReadCommand.m in Sources */,
+				C73329E418871E8400B0E7BF /* SSKeychain.m in Sources */,
+				C7332A2A1887200800B0E7BF /* TextTooLongEnhancer.m in Sources */,
+				C7332A1018871F7600B0E7BF /* ChannelsCommand.m in Sources */,
+				C73329E818871EA400B0E7BF /* WryComposer.m in Sources */,
+				C7332A2818871FFF00B0E7BF /* BaseFormatter.m in Sources */,
+				C7332A0618871F4A00B0E7BF /* PostsCommand.m in Sources */,
+				C73329FC18871F2000B0E7BF /* RepostCommand.m in Sources */,
+				C7332A0518871F4400B0E7BF /* RepliesCommand.m in Sources */,
+				C7332A2018871FC900B0E7BF /* ADNAccessControlList.m in Sources */,
+				C73329EF18871EE300B0E7BF /* MessagesCommand.m in Sources */,
+				C73329EC18871ECF00B0E7BF /* ADNMappingEntry.m in Sources */,
+				C7332A2C1887201300B0E7BF /* NSString+Prefix.m in Sources */,
+				C7332A2118871FCE00B0E7BF /* ADNHashtag.m in Sources */,
+				C73329F218871EEF00B0E7BF /* UserCommand.m in Sources */,
+				C7332A291887200400B0E7BF /* LinkEnhancer.m in Sources */,
+				C73329F718871F0500B0E7BF /* VersionCommand.m in Sources */,
+				C7332A0118871F3400B0E7BF /* UnfollowCommand.m in Sources */,
+				C7332A1318871F8200B0E7BF /* MvCommand.m in Sources */,
+				C7332A0F18871F7200B0E7BF /* UsersCommand.m in Sources */,
+				C7332A2718871FFC00B0E7BF /* ALFREDFormatter.m in Sources */,
+				C7332A0018871F2F00B0E7BF /* MentionsCommand.m in Sources */,
+				C7332A0E18871F6F00B0E7BF /* DownloadCommand.m in Sources */,
+				C73329E518871E8700B0E7BF /* SSKeychainQuery.m in Sources */,
+				C7332A2618871FF800B0E7BF /* JSONFormatter.m in Sources */,
+				C73329F518871EFD00B0E7BF /* UnifiedCommand.m in Sources */,
+				C73329F018871EE700B0E7BF /* HelpCommand.m in Sources */,
+				C7332A0B18871F5F00B0E7BF /* CommandsCommand.m in Sources */,
+				C7332A1118871F7A00B0E7BF /* SendCommand.m in Sources */,
+				C73329ED18871EDC00B0E7BF /* ChannelCommand.m in Sources */,
+				C73329F818871F0A00B0E7BF /* FollowersCommand.m in Sources */,
+				C7332A2218871FD200B0E7BF /* ADNLink.m in Sources */,
+				C7332A0D18871F6C00B0E7BF /* LsCommand.m in Sources */,
+				C73329DB18871E4400B0E7BF /* FormatSetting.m in Sources */,
+				C7332A1F18871FC500B0E7BF /* ADNAnnotation.m in Sources */,
+				C73329FD18871F2500B0E7BF /* StarCommand.m in Sources */,
+				C73329D218871B0D00B0E7BF /* WrySettingsTests.m in Sources */,
+				C7332A0C18871F6300B0E7BF /* UploadCommand.m in Sources */,
+				C7332A1718871F9500B0E7BF /* FormattersCommand.m in Sources */,
+				C73329EB18871ECB00B0E7BF /* ADNMappingProvider.m in Sources */,
+				C7332A0818871F5100B0E7BF /* UnblockCommand.m in Sources */,
+				C7332A1818871FAC00B0E7BF /* ADNMessage.m in Sources */,
+				C73329DE18871E5300B0E7BF /* EditorSetting.m in Sources */,
+				C7332A2418871FD900B0E7BF /* ADNSource.m in Sources */,
+				C7332A1218871F7E00B0E7BF /* ChmodCommand.m in Sources */,
+				C73329DC18871E4B00B0E7BF /* LongSetting.m in Sources */,
+				C73329D418871E1800B0E7BF /* WrySettings.m in Sources */,
+				C73329DA18871E3F00B0E7BF /* CountSetting.m in Sources */,
+				C73329FE18871F2900B0E7BF /* DeleteCommand.m in Sources */,
+				C7332A2518871FF500B0E7BF /* TEXTFormatter.m in Sources */,
+				C73329D818871E3700B0E7BF /* ReverseSetting.m in Sources */,
+				C73329D718871E3300B0E7BF /* PrettySetting.m in Sources */,
+				C7332A2B1887200F00B0E7BF /* NSDictionary+JSONMapping.m in Sources */,
+				C73329E618871E9800B0E7BF /* WryApplication.m in Sources */,
+				C7332A1918871FAF00B0E7BF /* ADNPost.m in Sources */,
+				C73329D518871E2B00B0E7BF /* DebugSetting.m in Sources */,
+				C73329FA18871F1800B0E7BF /* FollowCommand.m in Sources */,
+				C73329FB18871F1C00B0E7BF /* ReplyCommand.m in Sources */,
+				C73329DF18871E5600B0E7BF /* SeparatorSetting.m in Sources */,
+				C73329EE18871EE000B0E7BF /* PmCommand.m in Sources */,
+				C73329E718871E9D00B0E7BF /* WryUtils.m in Sources */,
+				C7332A0418871F4000B0E7BF /* MutedCommand.m in Sources */,
+				C7332A1D18871FBE00B0E7BF /* ADNFile.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C7C985A2187CAA0F008094FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C784325616EA02FA000DED40 /* wry */;
+			targetProxy = C7C985A1187CAA0F008094FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C7C9859B187CAA0F008094FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7C9859C187CAA0F008094FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C784326316EA02FA000DED40 /* Debug */ = {
@@ -878,6 +1171,55 @@
 			};
 			name = Release;
 		};
+		C7C985A3187CAA0F008094FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wry Tests/wry Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "wry Tests/wry Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C7C985A4187CAA0F008094FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wry Tests/wry Tests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "wry Tests/wry Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -895,6 +1237,15 @@
 			buildConfigurations = (
 				C784326616EA02FA000DED40 /* Debug */,
 				C784326716EA02FA000DED40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7C985A5187CAA0F008094FB /* Build configuration list for PBXNativeTarget "wry Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7C985A3187CAA0F008094FB /* Debug */,
+				C7C985A4187CAA0F008094FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
