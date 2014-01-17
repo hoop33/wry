@@ -138,6 +138,7 @@
 		C7332A2B1887200F00B0E7BF /* NSDictionary+JSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = C70028FA16F37A5700D5B222 /* NSDictionary+JSONMapping.m */; };
 		C7332A2C1887201300B0E7BF /* NSString+Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF68E1731BF0D004C228B /* NSString+Prefix.m */; };
 		C7332A2D1887203F00B0E7BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784327B16EF4955000DED40 /* Security.framework */; };
+		C7332A2F18887C8E00B0E7BF /* WryComposerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7332A2E18887C8E00B0E7BF /* WryComposerTests.m */; };
 		C73429CF1765F12D0022AEE2 /* ADNMappingEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */; };
 		C744E46A16FA85400002A9A5 /* VersionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46916FA85400002A9A5 /* VersionCommand.m */; };
 		C744E46D16FA8E2D0002A9A5 /* FollowersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E46C16FA8E2D0002A9A5 /* FollowersCommand.m */; };
@@ -303,6 +304,7 @@
 		C72BF7B91711F15700F0039D /* CommandsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsCommand.m; sourceTree = "<group>"; };
 		C731A99117F8811F00D1D5EB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73329D118871B0D00B0E7BF /* WrySettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrySettingsTests.m; sourceTree = "<group>"; };
+		C7332A2E18887C8E00B0E7BF /* WryComposerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryComposerTests.m; sourceTree = "<group>"; };
 		C73429CD1765F12D0022AEE2 /* ADNMappingEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNMappingEntry.h; sourceTree = "<group>"; };
 		C73429CE1765F12D0022AEE2 /* ADNMappingEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNMappingEntry.m; sourceTree = "<group>"; };
 		C744E46816FA853F0002A9A5 /* VersionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCommand.h; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 			children = (
 				C7C98599187CAA0F008094FB /* Supporting Files */,
 				C73329D118871B0D00B0E7BF /* WrySettingsTests.m */,
+				C7332A2E18887C8E00B0E7BF /* WryComposerTests.m */,
 			);
 			path = "wry Tests";
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				C7332A2418871FD900B0E7BF /* ADNSource.m in Sources */,
 				C7332A1218871F7E00B0E7BF /* ChmodCommand.m in Sources */,
 				C73329DC18871E4B00B0E7BF /* LongSetting.m in Sources */,
+				C7332A2F18887C8E00B0E7BF /* WryComposerTests.m in Sources */,
 				C73329D418871E1800B0E7BF /* WrySettings.m in Sources */,
 				C73329DA18871E3F00B0E7BF /* CountSetting.m in Sources */,
 				C73329FE18871F2900B0E7BF /* DeleteCommand.m in Sources */,
