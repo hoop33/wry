@@ -35,7 +35,9 @@ static NSDictionary *NamesForTypes;
   NSString *namedType = [ADNChannel nameForType:self.type];
   SEL selector = NSSelectorFromString([namedType lowercaseString]);
   if ([self respondsToSelector:selector]) {
-    NSString *content = [self performSelector:selector];
+    IMP imp = [self methodForSelector:selector];
+    NSString *(*func)(id, SEL) = (void *)imp;
+    NSString *content = func(self, selector);
     [str appendString:content];
   } else {
     [str appendFormat:@"Type: %@", namedType];
