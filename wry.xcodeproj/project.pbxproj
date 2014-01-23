@@ -1164,6 +1164,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};
@@ -1174,6 +1175,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wry/wry-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};
