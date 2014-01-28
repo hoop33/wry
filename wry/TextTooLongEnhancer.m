@@ -13,8 +13,6 @@
 #import "LongSetting.h"
 
 @interface TextTooLongEnhancer ()
-- (id)ask:(NSString *)text;
-- (id)split:(NSString *)text;
 @end
 
 @implementation TextTooLongEnhancer
@@ -23,15 +21,24 @@
   if ([object isKindOfClass:[NSString class]]) {
     NSString *text = (NSString *)object;
     if (text.length > kMaxTextLength) {
-      LongSetting *longSetting = [[LongSetting alloc] init];
-      NSString *option = [[WryApplication application].settings stringValue:[WryUtils nameForSetting:longSetting]];
-      if (![[longSetting allowedValues] containsObject:option]) {
-        option = @"ask";
+      SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:", [self textTooLongOption]]);
+      if ([self respondsToSelector:selector]) {
+        IMP imp = [self methodForSelector:selector];
+        id (*func)(id, SEL, NSString *) = (void *)imp;
+        object = func(self, selector, text);
       }
-      object = [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:", option]) withObject:text];
     }
   }
   return object;
+}
+
+- (NSString *)textTooLongOption {
+  LongSetting *longSetting = [[LongSetting alloc] init];
+  NSString *option = [[WryApplication application].settings stringValue:[WryUtils nameForSetting:longSetting]];
+  if (![[longSetting allowedValues] containsObject:option]) {
+    option = @"ask";
+  }
+  return option;
 }
 
 - (id)ask:(NSString *)text {
@@ -39,7 +46,7 @@
   NSInteger overage = text.length - kMaxTextLength;
   assert(overage > 0);
   [app println:[NSString stringWithFormat:@"Warning: Text exceeds %d-character limit by %ld character%@.",
-                         kMaxTextLength, overage, (overage == 1 ? @"" : @"s")]];
+                kMaxTextLength, overage, (overage == 1 ? @"" : @"s")]];
   [app println:@""];
   [app println:@"Text would include:"];
   [app println:@""];
@@ -54,36 +61,38 @@
 }
 
 - (id)reject:(NSString *)text {
-  return nil;
+  return [text length] > kMaxTextLength ? nil : text;
 }
 
 - (id)truncate:(NSString *)text {
-  return [text substringToIndex:kMaxTextLength];
+  return [text length] > kMaxTextLength ? [text substringToIndex:kMaxTextLength] : text;
 }
 
 - (id)split:(NSString *)text {
+  if (text == nil) return nil;
+  
   // Return an array of texts, split into kMaxTextLength-ish chunks on word boundaries
   NSMutableArray *texts = [NSMutableArray array];
   NSUInteger index = 0, end = text.length;
   while (index < end) {
     NSUInteger maxLength = MIN(kMaxTextLength, end - index);
-
+    
     // Grab a maxLength chunk
     NSString *substring = [text substringWithRange:NSMakeRange(index, maxLength)];
-
+    
     // Walk backwards to find some whitespace
     NSUInteger lastIndex = substring.length - 1;
     while (lastIndex > 1 &&
-            ![[NSCharacterSet whitespaceAndNewlineCharacterSet]
-              characterIsMember:[substring characterAtIndex:lastIndex]]) {
-      --lastIndex;
-    }
+           ![[NSCharacterSet whitespaceAndNewlineCharacterSet]
+             characterIsMember:[substring characterAtIndex:lastIndex]]) {
+             --lastIndex;
+           }
     // If we didn't find whitespace, use a maxLength chunk
     substring = [substring substringToIndex:lastIndex == 1 ? maxLength : lastIndex];
-
+    
     // Add the chunk to the list of texts
     [texts addObject:substring];
-
+    
     // Move the index
     index += substring.length + 1;
   }

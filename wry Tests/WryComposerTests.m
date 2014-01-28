@@ -19,14 +19,14 @@
 
 - (void)setUp
 {
-    [super setUp];
+  [super setUp];
   composer = [[WryComposer alloc] init];
 }
 
 - (void)tearDown
 {
   composer = nil;
-    [super tearDown];
+  [super tearDown];
 }
 
 - (void)testHelpShouldNotBeNil {
