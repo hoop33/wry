@@ -13,6 +13,8 @@
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
 @property(nonatomic, copy) NSString *accessToken;
+@property(nonatomic, copy) NSString *beforeId;
+@property(nonatomic, copy) NSString *sinceId;
 @property(nonatomic, strong) NSMutableData *data;
 @property(nonatomic, strong) NSError *error;
 @property(nonatomic, assign) NSInteger count;
