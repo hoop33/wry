@@ -186,6 +186,9 @@
 		C7AFA70F1897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA7101897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA71218981077003E2DF4 /* BeforeSettingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA71118981077003E2DF4 /* BeforeSettingTests.m */; };
+		C7AFA716189956A6003E2DF4 /* AfterSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA715189956A6003E2DF4 /* AfterSetting.m */; };
+		C7AFA717189956A6003E2DF4 /* AfterSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA715189956A6003E2DF4 /* AfterSetting.m */; };
+		C7AFA7191899579A003E2DF4 /* AfterSettingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA7181899579A003E2DF4 /* AfterSettingTests.m */; };
 		C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FB717DBCE8100006738 /* SettingsCommand.m */; };
 		C7C60FBB17DBCF6C00006738 /* BaseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FBA17DBCF6C00006738 /* BaseSetting.m */; };
 		C7C98597187CAA0F008094FB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C98596187CAA0F008094FB /* XCTest.framework */; };
@@ -399,6 +402,9 @@
 		C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeSetting.h; sourceTree = "<group>"; };
 		C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSetting.m; sourceTree = "<group>"; };
 		C7AFA71118981077003E2DF4 /* BeforeSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSettingTests.m; sourceTree = "<group>"; };
+		C7AFA714189956A6003E2DF4 /* AfterSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterSetting.h; sourceTree = "<group>"; };
+		C7AFA715189956A6003E2DF4 /* AfterSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterSetting.m; sourceTree = "<group>"; };
+		C7AFA7181899579A003E2DF4 /* AfterSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterSettingTests.m; sourceTree = "<group>"; };
 		C7C60FB617DBCE8100006738 /* SettingsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCommand.h; sourceTree = "<group>"; };
 		C7C60FB717DBCE8100006738 /* SettingsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCommand.m; sourceTree = "<group>"; };
 		C7C60FB917DBCF6C00006738 /* BaseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSetting.h; sourceTree = "<group>"; };
@@ -503,6 +509,8 @@
 				5F237FF2400552AC8A343022 /* VersionSetting.m */,
 				C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */,
 				C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */,
+				C7AFA714189956A6003E2DF4 /* AfterSetting.h */,
+				C7AFA715189956A6003E2DF4 /* AfterSetting.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -779,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				C7AFA71118981077003E2DF4 /* BeforeSettingTests.m */,
+				C7AFA7181899579A003E2DF4 /* AfterSettingTests.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -941,6 +950,7 @@
 				5F237680B822AEBA7696A403 /* ADNFile.m in Sources */,
 				5F2375FF402AD8E87B23048B /* LsCommand.m in Sources */,
 				C7DB8E2D17DBEEF0004050BB /* FormattersCommand.m in Sources */,
+				C7AFA716189956A6003E2DF4 /* AfterSetting.m in Sources */,
 				5F2379E22EC302A454C800F8 /* DownloadCommand.m in Sources */,
 				5F237C5E9AE7B797B3EB6E1C /* UsersCommand.m in Sources */,
 				C71BF686172D42E6004C228B /* SSKeychain.m in Sources */,
@@ -1003,6 +1013,7 @@
 				C7332A2318871FD500B0E7BF /* ADNObject.m in Sources */,
 				C7332A0918871F5400B0E7BF /* SearchCommand.m in Sources */,
 				C73329D618871E2F00B0E7BF /* QuietSetting.m in Sources */,
+				C7AFA717189956A6003E2DF4 /* AfterSetting.m in Sources */,
 				C73329E318871E6600B0E7BF /* VersionSetting.m in Sources */,
 				C7332A1418871F8600B0E7BF /* ConfigCommand.m in Sources */,
 				C73329F318871EF400B0E7BF /* GlobalCommand.m in Sources */,
@@ -1049,6 +1060,7 @@
 				C73329F518871EFD00B0E7BF /* UnifiedCommand.m in Sources */,
 				C73329F018871EE700B0E7BF /* HelpCommand.m in Sources */,
 				C7332A0B18871F5F00B0E7BF /* CommandsCommand.m in Sources */,
+				C7AFA7191899579A003E2DF4 /* AfterSettingTests.m in Sources */,
 				C7332A1118871F7A00B0E7BF /* SendCommand.m in Sources */,
 				C73329ED18871EDC00B0E7BF /* ChannelCommand.m in Sources */,
 				C73329F818871F0A00B0E7BF /* FollowersCommand.m in Sources */,
