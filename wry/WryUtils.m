@@ -17,6 +17,8 @@
 #import "PrettySetting.h"
 #import "ReverseSetting.h"
 #import "AnnotationsSetting.h"
+#import "BeforeSetting.h"
+#import "AfterSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
@@ -146,6 +148,9 @@ static NSArray *allClasses;
     service.pretty = [app.settings boolValue:[WryUtils nameForSettingForClass:[PrettySetting class]]];
     service.reverse = [app.settings boolValue:[WryUtils nameForSettingForClass:[ReverseSetting class]]];
     service.annotations = [app.settings boolValue:[WryUtils nameForSettingForClass:[AnnotationsSetting class]]];
+    service.beforeId = [app.settings stringValue:[WryUtils nameForSettingForClass:[BeforeSetting class]]];
+    service.sinceId = [app.settings stringValue:[WryUtils nameForSettingForClass:[AfterSetting class]]];
+    
     ADNResponse *response = operation(service);
     if (response != nil) {
       if (response.meta != nil) {
