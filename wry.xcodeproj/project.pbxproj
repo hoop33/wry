@@ -189,6 +189,7 @@
 		C7AFA716189956A6003E2DF4 /* AfterSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA715189956A6003E2DF4 /* AfterSetting.m */; };
 		C7AFA717189956A6003E2DF4 /* AfterSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA715189956A6003E2DF4 /* AfterSetting.m */; };
 		C7AFA7191899579A003E2DF4 /* AfterSettingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA7181899579A003E2DF4 /* AfterSettingTests.m */; };
+		C7AFA71B189998D2003E2DF4 /* ADNServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA71A189998D2003E2DF4 /* ADNServiceTests.m */; };
 		C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FB717DBCE8100006738 /* SettingsCommand.m */; };
 		C7C60FBB17DBCF6C00006738 /* BaseSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C60FBA17DBCF6C00006738 /* BaseSetting.m */; };
 		C7C98597187CAA0F008094FB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C98596187CAA0F008094FB /* XCTest.framework */; };
@@ -405,6 +406,7 @@
 		C7AFA714189956A6003E2DF4 /* AfterSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterSetting.h; sourceTree = "<group>"; };
 		C7AFA715189956A6003E2DF4 /* AfterSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterSetting.m; sourceTree = "<group>"; };
 		C7AFA7181899579A003E2DF4 /* AfterSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterSettingTests.m; sourceTree = "<group>"; };
+		C7AFA71A189998D2003E2DF4 /* ADNServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNServiceTests.m; sourceTree = "<group>"; };
 		C7C60FB617DBCE8100006738 /* SettingsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCommand.h; sourceTree = "<group>"; };
 		C7C60FB717DBCE8100006738 /* SettingsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCommand.m; sourceTree = "<group>"; };
 		C7C60FB917DBCF6C00006738 /* BaseSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSetting.h; sourceTree = "<group>"; };
@@ -792,6 +794,14 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		C7AFA71C189998D8003E2DF4 /* ADN */ = {
+			isa = PBXGroup;
+			children = (
+				C7AFA71A189998D2003E2DF4 /* ADNServiceTests.m */,
+			);
+			name = ADN;
+			sourceTree = "<group>";
+		};
 		C7C98598187CAA0F008094FB /* wry Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +811,7 @@
 				C7332A30188960B600B0E7BF /* WryApplicationTests.m */,
 				C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */,
 				C7AFA7131898107D003E2DF4 /* Settings */,
+				C7AFA71C189998D8003E2DF4 /* ADN */,
 			);
 			path = "wry Tests";
 			sourceTree = "<group>";
@@ -1035,6 +1046,7 @@
 				C7332A2A1887200800B0E7BF /* TextTooLongEnhancer.m in Sources */,
 				C7332A1018871F7600B0E7BF /* ChannelsCommand.m in Sources */,
 				C73329E818871EA400B0E7BF /* WryComposer.m in Sources */,
+				C7AFA71B189998D2003E2DF4 /* ADNServiceTests.m in Sources */,
 				C7332A2818871FFF00B0E7BF /* BaseFormatter.m in Sources */,
 				C7332A0618871F4A00B0E7BF /* PostsCommand.m in Sources */,
 				C73329FC18871F2000B0E7BF /* RepostCommand.m in Sources */,

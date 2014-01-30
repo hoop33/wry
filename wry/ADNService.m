@@ -480,16 +480,29 @@
 }
 
 - (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount {
-  NSMutableString *string = [NSMutableString stringWithString:path];
   if (includeCount) {
-    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
-    [string appendFormat:@"count=%ld", self.count];
+    path = [self appendParameter:[NSString stringWithFormat:@"count=%ld", self.count] toPath:path];
   }
   if (self.annotations) {
-    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
-    [string appendString:@"include_annotations=1"];
+    path = [self appendParameter:@"include_annotations=1" toPath:path];
   }
-  return [NSString stringWithString:string];
+  if (self.beforeId) {
+    path = [self appendParameter:[NSString stringWithFormat:@"before_id=%@", self.beforeId] toPath:path];
+  }
+  if (self.sinceId) {
+    path = [self appendParameter:[NSString stringWithFormat:@"since_id=%@", self.sinceId] toPath:path];
+  }
+  return path;
+}
+
+- (NSString *)appendParameter:(NSString *)parameter toPath:(NSString *)path {
+  if (parameter == nil || path == nil || parameter.length == 0 || path.length == 0) {
+    return path;
+  }
+  NSMutableString *string = [NSMutableString stringWithString:path];
+  [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+  [string appendString:parameter];
+  return string;
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
