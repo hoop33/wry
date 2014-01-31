@@ -17,7 +17,7 @@
 
 - (NSString *)description {
   NSMutableString *str = [NSMutableString string];
-  [str appendFormat:@"ID:%ld   %@   %@ (%ldB)", self.fileID, self.createdAt, self.name, self.totalSize];
+  [str appendFormat:@"ID:%ld   %@   %@ (%ldB)", self.objectID, self.createdAt, self.name, self.totalSize];
   [str appendFormat:@"\n(%@)   SHA1: %@", self.isPublic ? @"Public" : @"Private", self.sha1];
   [str appendFormat:@"\n%@", self.shortUrl.length > 0 ? self.shortUrl : self.url];
   for (ADNAnnotation *annotation in self.annotations) {
@@ -30,7 +30,7 @@
 - (NSString *)colorDescription {
   NSMutableString *str = [NSMutableString string];
   [str appendFormat:@"ID:%@   %@   %@ (%@)",
-                    [self colorize:[NSString stringWithFormat:@"%ld", self.fileID] colorSetting:WryColorID],
+                    [self colorize:[NSString stringWithFormat:@"%ld", self.objectID] colorSetting:WryColorID],
                     [self colorize:[self.createdAt description] colorSetting:WryColorMuted],
                     [self colorize:self.name colorSetting:WryColorName],
                     [self colorize:[NSString stringWithFormat:@"%ldB", self.totalSize] colorSetting:WryColorID]

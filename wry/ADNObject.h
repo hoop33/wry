@@ -14,6 +14,8 @@ extern NSString * const TagColorEnd;
 
 @interface ADNObject : NSObject
 
+@property(nonatomic, assign) NSInteger objectID;
+
 - (NSString *)colorDescription;
 - (NSString *)colorize:(NSString *)text colorSetting:(WryColor)wryColor;
 

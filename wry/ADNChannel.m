@@ -42,7 +42,7 @@ static NSDictionary *NamesForTypes;
   } else {
     [str appendFormat:@"Type: %@", namedType];
     [str appendFormat:@"\nOwner: %@", (self.owner == nil ? @"[RETIRED OWNER]" : [self.owner shortDescription])];
-    [str appendFormat:@"\nID: %ld", self.channelID];
+    [str appendFormat:@"\nID: %ld", self.objectID];
     for (ADNAnnotation *annotation in self.annotations) {
       [str appendFormat:@"\n%@", [annotation description]];
     }
@@ -63,7 +63,7 @@ static NSDictionary *NamesForTypes;
       break;
     }
   }
-  [str appendFormat:@"%@ Patter Room (%ld)", name == nil ? @"Unknown" : name, self.channelID];
+  [str appendFormat:@"%@ Patter Room (%ld)", name == nil ? @"Unknown" : name, self.objectID];
   if (blurb != nil) {
     [str appendFormat:@"\n%@", blurb];
   }
@@ -72,8 +72,8 @@ static NSDictionary *NamesForTypes;
 
 - (NSString *)private {
   NSMutableString *str = [[NSMutableString alloc] init];
-  [str appendFormat:@"Private Channel (%ld)", self.channelID];
-  [str appendFormat:@"\nUsers: %ld", self.owner.userID];
+  [str appendFormat:@"Private Channel (%ld)", self.objectID];
+  [str appendFormat:@"\nUsers: %ld", self.owner.objectID];
   for (NSNumber *userID in self.writers.userIDs) {
     [str appendFormat:@", %@", userID];
   }

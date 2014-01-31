@@ -12,7 +12,6 @@
 
 @interface ADNMessage : ADNObject
 
-@property(nonatomic, assign) NSInteger messageID;
 @property(nonatomic, assign) NSInteger channelID;
 @property(nonatomic, assign) NSInteger rootMessageID;
 @property(nonatomic, assign) NSInteger replyToID;

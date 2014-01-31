@@ -10,7 +10,6 @@
 
 @interface ADNFile : ADNObject
 
-@property(nonatomic, assign) NSInteger fileID;
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, assign) NSInteger totalSize;
 @property(nonatomic, copy) NSString *sha1;

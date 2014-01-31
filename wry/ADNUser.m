@@ -20,7 +20,7 @@
   return [NSString stringWithFormat:@"%@ (%@) (%ld)%@",
                                     self.name,
                                     [self.username atify],
-                                    (long) self.userID,
+                                    (long) self.objectID,
                                     [self relationship]
   ];
 }
@@ -29,7 +29,7 @@
   return [NSString stringWithFormat:@"%@ (%@) (%@)%@",
                                     [self colorize:self.name colorSetting:WryColorName],
                                     [self colorize:[self.username atify] colorSetting:WryColorUser],
-                                    [self colorize:[NSString stringWithFormat:@"%ld", (long) self.userID]
+                                    [self colorize:[NSString stringWithFormat:@"%ld", (long) self.objectID]
                                       colorSetting:WryColorID],
                                     [self relationship]
   ];

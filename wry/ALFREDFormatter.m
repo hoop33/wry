@@ -42,15 +42,15 @@
   NSMutableString *string = [NSMutableString string];
   if ([item isKindOfClass:[ADNPost class]]) {
     ADNPost *post = (ADNPost *) item;
-    [string appendFormat:@"<item uid='%ld' arg='%ld' valid='YES'>\n", post.postID, post.postID];
+    [string appendFormat:@"<item uid='%ld' arg='%ld' valid='YES'>\n", post.objectID, post.objectID];
     [string appendFormat:@"<title>%@</title>\n", [[NSXMLNode textWithStringValue:post.text] XMLString]];
     [string appendFormat:@"<subtitle>%@ (@%@) (%ld)</subtitle>\n", post.user.name, post.user.username,
-                         post.user.userID];
+                         post.user.objectID];
     [string appendFormat:@"</item>\n"];
   } else if ([item isKindOfClass:[ADNUser class]]) {
     ADNUser *user = (ADNUser *) item;
-    [string appendFormat:@"<item uid='%ld' arg='%ld' valid='YES'>\n", user.userID, user.userID];
-    [string appendFormat:@"<title>%@ (@%@) (%ld)</title>\n", user.name, user.username, user.userID];
+    [string appendFormat:@"<item uid='%ld' arg='%ld' valid='YES'>\n", user.objectID, user.objectID];
+    [string appendFormat:@"<title>%@ (@%@) (%ld)</title>\n", user.name, user.username, user.objectID];
     [string appendFormat:@"<subtitle>%@</subtitle>\n",
                          [[NSXMLNode textWithStringValue:user.userDescription.text] XMLString]];
     [string appendFormat:@"</item>\n"];

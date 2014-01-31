@@ -22,7 +22,7 @@
   [str appendString:(self.user == nil ? @"[RETIRED USER]" : [self.user shortDescription])];
   [str appendFormat:@"\nChannel ID: %ld", self.channelID];
   [str appendFormat:@"\n%@", (self.text == nil ? @"[REDACTED]" : self.text)];
-  [str appendFormat:@"\nID: %ld -- %@", self.messageID, self.createdAt];
+  [str appendFormat:@"\nID: %ld -- %@", self.objectID, self.createdAt];
   for (ADNAnnotation *annotation in self.annotations) {
     [str appendFormat:@"\n%@", [annotation description]];
   }
@@ -36,7 +36,7 @@
   [str appendFormat:@"\nChannel ID: %@", [self colorize:[NSString stringWithFormat:@"%ld", self.channelID] colorSetting:WryColorID]];
   [str appendFormat:@"\n%@", (self.text == nil ? [self colorize:@"[REDACTED]" colorSetting:WryColorAlert] : [self colorize:self.text colorSetting:WryColorText])];
   [str appendFormat:@"\nID: %@ -- %@",
-                    [self colorize:[NSString stringWithFormat:@"%ld", self.messageID] colorSetting:WryColorID],
+                    [self colorize:[NSString stringWithFormat:@"%ld", self.objectID] colorSetting:WryColorID],
                     [self colorize:[self.createdAt description] colorSetting:WryColorMuted]];
   for (ADNLink *link in self.links) {
     [str appendFormat:@"\n%@", [link colorDescription]];

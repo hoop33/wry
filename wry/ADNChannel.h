@@ -13,7 +13,6 @@
 
 @interface ADNChannel : ADNObject
 
-@property(nonatomic, assign) NSInteger channelID;
 @property(nonatomic, copy) NSString *type;
 @property(nonatomic, strong) ADNUser *owner;
 @property(nonatomic, strong) ADNAccessControlList *readers;

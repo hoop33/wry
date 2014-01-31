@@ -12,7 +12,6 @@
 
 @interface ADNUser : ADNObject
 
-@property(nonatomic, assign) NSInteger userID;
 @property(nonatomic, copy) NSString *username;
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, strong) ADNUserDescription *userDescription;
