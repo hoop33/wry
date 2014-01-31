@@ -15,6 +15,7 @@ extern NSString * const TagColorEnd;
 @interface ADNObject : NSObject
 
 @property(nonatomic, assign) NSInteger objectID;
+@property(nonatomic, assign) NSInteger paginationID;
 
 - (NSString *)colorDescription;
 - (NSString *)colorize:(NSString *)text colorSetting:(WryColor)wryColor;

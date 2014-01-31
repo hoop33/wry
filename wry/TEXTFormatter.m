@@ -17,7 +17,8 @@
   NSMutableString *string = [NSMutableString string];
   if ([response.object isKindOfClass:[NSArray class]]) {
     NSArray *items = (NSArray *) response.object;
-    [string appendFormat:@"%lu items (%ld - %ld)\n", (unsigned long) items.count, (long) ((ADNObject *)items[items.count - 1]).objectID, (long) ((ADNObject *)items[0]).objectID];
+    NSUInteger count = items.count;
+    [string appendFormat:@"%lu item%@ (%ld - %ld)\n", (unsigned long) count, (count == 1 ? @"" : @"s"), (long) ((ADNObject *)items[count - 1]).paginationID, (long) ((ADNObject *)items[0]).paginationID];
     for (id item in (NSArray *) response.object) {
       [string appendFormat:@"%@\n", inColor && [item respondsToSelector:@selector(colorDescription)] ? [item colorDescription] : [item description]];
     }
