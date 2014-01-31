@@ -16,6 +16,8 @@
   BOOL inColor = [WryApplication application].interactiveOut;
   NSMutableString *string = [NSMutableString string];
   if ([response.object isKindOfClass:[NSArray class]]) {
+    NSArray *items = (NSArray *) response.object;
+    [string appendFormat:@"%lu items (%ld - %ld)\n", (unsigned long) items.count, (long) ((ADNObject *)items[items.count - 1]).objectID, (long) ((ADNObject *)items[0]).objectID];
     for (id item in (NSArray *) response.object) {
       [string appendFormat:@"%@\n", inColor && [item respondsToSelector:@selector(colorDescription)] ? [item colorDescription] : [item description]];
     }
