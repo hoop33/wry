@@ -31,7 +31,11 @@
                                   if (text.length > kMaxTextLength) {
                                     id <WryEnhancer> textTooLongEnhancer = [[TextTooLongEnhancer alloc] init];
                                     id enhanced = [textTooLongEnhancer enhance:text];
-                                    posts = [enhanced isKindOfClass:[NSArray class]] ? enhanced : @[(NSString *)enhanced];
+                                    if (enhanced) {
+                                      posts = [enhanced isKindOfClass:[NSArray class]] ? enhanced : @[(NSString *) enhanced];
+                                    } else {
+                                      posts = nil;
+                                    }
                                   }
 
                                   ADNResponse *response = nil;
@@ -50,10 +54,10 @@
 - (NSString *)help {
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
-          @"Creates a new post with the text you specify. If supplying text as command-\n"
-            @"line arguments, note that the shell's parsing rules are respected, so escape\n"
-            @"your text appropriately. Quotes are optional.\n"
-            @"\n"];
+    @"Creates a new post with the text you specify. If supplying text as command-\n"
+      @"line arguments, note that the shell's parsing rules are respected, so escape\n"
+      @"your text appropriately. Quotes are optional.\n"
+      @"\n"];
   [help appendString:[WryComposer help]];
   return help;
 }
