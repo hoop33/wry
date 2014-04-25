@@ -1,5 +1,8 @@
 # Release Notes
 
+## Version 1.7.3 (4/24/2014)
+* Fix crash when rejecting post text that is too long
+
 ## Version 1.7.2 (1/3/2014)
 * Remove debug message from follow/following status
 
