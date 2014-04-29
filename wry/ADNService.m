@@ -298,8 +298,7 @@
 
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider fileMapping]];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:[ADNMappingProvider fileMapping] reverse:NO error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -421,14 +420,7 @@
   path = [self pathWithParameters:path includeCount:YES];
   [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSArray *results = (NSArray *) response.data;
-    NSEnumerator *enumerator = self.reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
-    for (NSDictionary *dictionary in enumerator) {
-      [items addObject:[dictionary mapToObjectWithMapping:mapping]];
-    }
-    response.object = [NSArray arrayWithArray:items];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:self.reverse error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -445,8 +437,7 @@
   request.HTTPMethod = method;
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:mapping];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:NO error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -468,7 +459,7 @@
   }
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:NO error:error];
     response.object = [response.data mapToObjectWithMapping:mapping];
     return response;
   } else {

@@ -17,15 +17,26 @@
   NSMutableString *string = [NSMutableString string];
   if ([response.object isKindOfClass:[NSArray class]]) {
     NSArray *items = (NSArray *) response.object;
-    NSUInteger count = items.count;
-    [string appendFormat:@"%lu item%@ (%ld - %ld)\n", (unsigned long) count, (count == 1 ? @"" : @"s"), (long) ((ADNObject *)items[count - 1]).paginationID, (long) ((ADNObject *)items[0]).paginationID];
+    [string appendFormat:@"%@\n", [self rangeString:items]];
     for (id item in (NSArray *) response.object) {
       [string appendFormat:@"%@\n", inColor && [item respondsToSelector:@selector(colorDescription)] ? [item colorDescription] : [item description]];
     }
-  } else {
+  } else if (response.object != nil) {
     [string appendString: inColor && [response.object respondsToSelector:@selector(colorDescription)] ? [response.object colorDescription] : [response.object description]];
   }
   return string;
+}
+
+- (NSString *)rangeString:(NSArray *)items {
+  NSUInteger count = items.count;
+  switch (count) {
+    case 0:
+      return @"";
+    case 1:
+      return [NSString stringWithFormat:@"1 item (%ld)", (long) ((ADNObject *)items[0]).paginationID];
+    default:
+      return [NSString stringWithFormat:@"%lu items (%ld - %ld)", (unsigned long) count, (long) ((ADNObject *)items[count - 1]).paginationID, (long) ((ADNObject *)items[0]).paginationID];
+  }
 }
 
 - (NSString *)summary {

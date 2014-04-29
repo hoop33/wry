@@ -12,7 +12,7 @@
 @implementation CommandsCommand
 
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
-  ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
+  ADNResponse *response = [[ADNResponse alloc] initWithData:nil mapping:nil reverse:NO error:error];
   NSArray *commandsClasses = [WryUtils allCommands];
   NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:commandsClasses.count];
   for (Class cls in commandsClasses) {

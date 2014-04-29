@@ -12,7 +12,7 @@
 @implementation FormattersCommand
 
 - (BOOL)run:(NSArray *)params error:(NSError **)error {
-  ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
+  ADNResponse *response = [[ADNResponse alloc] initWithData:nil mapping:nil reverse:NO error:error];
   NSArray *formattersClasses = [WryUtils allFormatters];
   NSMutableArray *formatters = [[NSMutableArray alloc] initWithCapacity:formattersClasses.count];
   for (Class cls in formattersClasses) {
