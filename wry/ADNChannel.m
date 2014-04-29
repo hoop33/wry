@@ -10,7 +10,6 @@
 #import "ADNUser.h"
 #import "ADNAnnotation.h"
 #import "ADNAccessControlList.h"
-#import "WrySettings.h"
 #import "WryApplication.h"
 #import "WryUtils.h"
 #import "SeparatorSetting.h"

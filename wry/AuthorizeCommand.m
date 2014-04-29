@@ -12,7 +12,6 @@
 #import "ADNUser.h"
 #import "WryUtils.h"
 #import "UserSetting.h"
-#import "WrySettings.h"
 
 @implementation AuthorizeCommand
 

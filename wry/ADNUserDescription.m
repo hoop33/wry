@@ -7,7 +7,6 @@
 //
 
 #import "ADNUserDescription.h"
-#import "WrySettings.h"
 
 @implementation ADNUserDescription
 

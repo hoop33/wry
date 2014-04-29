@@ -12,7 +12,6 @@
 #import "WryErrorCodes.h"
 #import "ADNService.h"
 #import "CountSetting.h"
-#import "WrySettings.h"
 #import "DebugSetting.h"
 #import "PrettySetting.h"
 #import "ReverseSetting.h"

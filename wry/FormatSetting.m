@@ -8,7 +8,6 @@
 
 #import "FormatSetting.h"
 #import "WryUtils.h"
-#import "WryApplication.h"
 
 @implementation FormatSetting
 

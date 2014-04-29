@@ -9,7 +9,6 @@
 #import "ADNFile.h"
 #import "ADNAnnotation.h"
 #import "WryApplication.h"
-#import "WrySettings.h"
 #import "SeparatorSetting.h"
 #import "WryUtils.h"
 

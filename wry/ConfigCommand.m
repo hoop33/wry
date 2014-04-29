@@ -10,7 +10,6 @@
 #import "WrySetting.h"
 #import "WryUtils.h"
 #import "WryErrorCodes.h"
-#import "WrySettings.h"
 
 @implementation ConfigCommand
 
