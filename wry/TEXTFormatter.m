@@ -27,15 +27,12 @@
 }
 
 - (NSString *)rangeString:(NSArray *)items {
-  NSUInteger count = items.count;
-  switch (count) {
-    case 0:
-      return @"";
-    case 1:
-      return [NSString stringWithFormat:@"1 item (%ld)", (long) ((ADNObject *)items[0]).paginationID];
-    default:
-      return [NSString stringWithFormat:@"%lu items (%ld - %ld)", (unsigned long) count, (long) ((ADNObject *)items[count - 1]).paginationID, (long) ((ADNObject *)items[0]).paginationID];
+  if (items.count > 0 && [items[0] isKindOfClass:[ADNObject class]]) {
+    NSUInteger count = items.count;
+    return items.count == 1 ? [NSString stringWithFormat:@"1 item (%ld)", (long) ((ADNObject *)items[0]).paginationID] :
+      [NSString stringWithFormat:@"%lu items (%ld - %ld)", (unsigned long) count, (long) ((ADNObject *)items[count - 1]).paginationID, (long) ((ADNObject *)items[0]).paginationID];
   }
+  return @"";
 }
 
 - (NSString *)summary {
