@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "ADNService.h"
+#import "ADNResponse.h"
 
 @interface ADNServiceTests : XCTestCase
 
@@ -98,6 +99,54 @@
   service.beforeId = @"12345";
   service.sinceId = @"54321";
   XCTAssertEqualObjects(pathWithParametersImplementation(service, pathWithParametersSelector, @"http://example.com", YES), @"http://example.com?count=50&include_annotations=1&before_id=12345&since_id=54321", @"Should have appended parameters");
+}
+
+#pragma mark - Posts
+
+- (void)testCreatePostWithNilTextShouldReturnNil {
+  XCTAssertNil([service createPost:nil replyID:nil error:nil]);
+}
+
+- (void)testCreatePostWithEmptyTextShouldReturnNil {
+  XCTAssertNil([service createPost:@"" replyID:nil error:nil]);
+}
+
+- (void)testCreatePostWithNilTextAndErrorShouldFillOutError {
+  NSError *error;
+  XCTAssertNil([service createPost:nil replyID:nil error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply text");
+}
+
+- (void)testCreatePostWithEmptyTextAndErrorShouldFillOutError {
+  NSError *error;
+  XCTAssertNil([service createPost:@"" replyID:nil error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply text");
+}
+
+#pragma mark - Messages
+
+- (void)testSendMessageWithNilTextShouldReturnNil {
+  XCTAssertNil([service sendMessage:nil replyID:nil channelID:nil text:nil error:nil]);
+}
+
+- (void)testSendMessageWithEmptyTextShouldReturnNil {
+  XCTAssertNil([service sendMessage:nil replyID:nil channelID:nil text:@"" error:nil]);
+}
+
+- (void)testSendMessageWithNilTextAndErrorShouldFillOutError {
+  NSError *error;
+  XCTAssertNil([service sendMessage:nil replyID:nil channelID:nil text:nil error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply text");
+}
+
+- (void)testSendMessageWithEmptyTextAndErrorShouldFillOutError {
+  NSError *error;
+  XCTAssertNil([service sendMessage:nil replyID:nil channelID:nil text:@"" error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply text");
 }
 
 @end

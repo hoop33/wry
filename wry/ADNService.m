@@ -165,24 +165,30 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  NSMutableDictionary *post = [NSMutableDictionary dictionary];
-  if (replyID.length != 0) {
-    [post setObject:replyID forKey:@"reply_to"];
-  }
-  [post setObject:text forKey:@"text"];
-  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
-  [linkEnhancer enhance:post];
-  NSData *json = [NSJSONSerialization dataWithJSONObject:post
-                                                 options:0
-                                                   error:error];
-  if (json != nil) {
-    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createOrUpdateItem:@"posts"
-                               body:jsonString
-                             create:YES
-                      contentHeader:@"application/json"
-                            mapping:[ADNMappingProvider postMapping]
-                              error:error];
+  if (text != nil && text.length > 0) {
+    NSMutableDictionary *post = [NSMutableDictionary dictionary];
+    if (replyID.length != 0) {
+      [post setObject:replyID forKey:@"reply_to"];
+    }
+    [post setObject:text forKey:@"text"];
+    id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+    [linkEnhancer enhance:post];
+    NSData *json = [NSJSONSerialization dataWithJSONObject:post
+                                                   options:0
+                                                     error:error];
+    if (json != nil) {
+      NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+      return [self createOrUpdateItem:@"posts"
+                                 body:jsonString
+                               create:YES
+                        contentHeader:@"application/json"
+                              mapping:[ADNMappingProvider postMapping]
+                                error:error];
+    }
+  } else if (error != NULL) {
+    *error = [NSError errorWithDomain:kErrorDomain
+                                 code:kErrorCodeBadInput
+                             userInfo:@{NSLocalizedDescriptionKey : @"You must supply text"}];
   }
   return nil;
 }
@@ -372,29 +378,35 @@
 - (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
                         text:(NSString *)text
                        error:(NSError **)error {
-  if (channelID == nil || channelID.length == 0) {
-    channelID = @"pm";
-  }
-  NSMutableDictionary *message = [NSMutableDictionary dictionary];
-  [message setObject:text forKey:@"text"];
-  if (replyID.length != 0) {
-    [message setObject:replyID forKey:@"reply_to"];
-  }
-  if (users.count != 0) {
-    [message setObject:users forKey:@"destinations"];
-  }
-  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
-  [linkEnhancer enhance:message];
-  NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
-                                                   error:error];
-  if (json != nil) {
-    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
-                               body:jsonString
-                             create:YES
-                      contentHeader:@"application/json"
-                            mapping:[ADNMappingProvider messageMapping]
-                              error:error];
+  if (text != nil && text.length > 0) {
+    if (channelID == nil || channelID.length == 0) {
+      channelID = @"pm";
+    }
+    NSMutableDictionary *message = [NSMutableDictionary dictionary];
+    [message setObject:text forKey:@"text"];
+    if (replyID.length != 0) {
+      [message setObject:replyID forKey:@"reply_to"];
+    }
+    if (users.count != 0) {
+      [message setObject:users forKey:@"destinations"];
+    }
+    id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+    [linkEnhancer enhance:message];
+    NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
+                                                     error:error];
+    if (json != nil) {
+      NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+      return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                                 body:jsonString
+                               create:YES
+                        contentHeader:@"application/json"
+                              mapping:[ADNMappingProvider messageMapping]
+                                error:error];
+    }
+  } else if (error != NULL) {
+    *error = [NSError errorWithDomain:kErrorDomain
+                                 code:kErrorCodeBadInput
+                             userInfo:@{NSLocalizedDescriptionKey : @"You must supply text"}];
   }
   return nil;
 }
