@@ -53,4 +53,32 @@
   [[NSFileManager defaultManager] removeItemAtPath:tempFileName error:nil];
 }
 
+- (void)testFilterCommentsShouldReturnNilForNilText {
+  XCTAssertNil([composer performSelector:@selector(filterComments:) withObject:nil], @"filterComments should return nil for nil text");
+}
+
+- (void)testFilterCommentsShouldReturnEmptyStringForEmptyText {
+  XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:@""], @"", @"filterComments should return empty string for empty text");
+}
+
+- (void)testFilterCommentsShouldReturnOriginalTextForTextWithNoComments {
+  NSString *text = @"This is test text with no comments\nI don't want to see any comments\nOK?";
+  XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:text], text, @"filterComments should not change uncommented text");
+}
+
+- (void)testFilterCommentsShouldReturnEmptyStringForAllComments {
+  NSString *text = @"#This is test text with comments\n#I don't want to see any comments\n#OK?";
+  XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:text], @"", @"filterComments should remove comments from text");
+}
+
+- (void)testFilterCommentsShouldReturnNonCommentLinesOnly {
+  NSString *text = @"#This is test text with comments\nI don't want to see any comments\n#OK?";
+  XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:text], @"I don't want to see any comments\n", @"filterComments should remove comments from text");
+}
+
+- (void)testFilterCommentsShouldReturnNonCommentLinesOnlyWithMoreLines {
+  NSString *text = @"#This is test text with comments\nI don't want to see any comments\n#OK?\nThat's right";
+  XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:text], @"I don't want to see any comments\nThat's right", @"filterComments should remove comments from text");
+}
+
 @end

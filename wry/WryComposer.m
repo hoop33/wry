@@ -55,7 +55,7 @@
 
       pid_t childPID = fork();
       if (!childPID) {
-        execvp(cpath, (char **)cargs);
+        execvp(cpath, (char **) cargs);
 
         assert(false && "failed to exec editor");
       }
@@ -66,9 +66,9 @@
         result = waitpid(childPID, NULL, 0);
       }
 
-      text = [[NSString alloc] initWithContentsOfFile:tempFileName
-                                             encoding:NSUTF8StringEncoding
-                                                error:nil];
+      text = [self filterComments:[[NSString alloc] initWithContentsOfFile:tempFileName
+                                                                  encoding:NSUTF8StringEncoding
+                                                                     error:nil]];
       [[NSFileManager defaultManager] removeItemAtPath:tempFileName error:nil];
     }
   }
@@ -95,6 +95,19 @@
   if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];
   if (editor.length == 0) editor = @"vi";
   return editor;
+}
+
+- (NSString *)filterComments:(NSString *)text {
+  if (text == nil || text.length == 0) {
+    return text;
+  }
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^#.*$\r?\n?"
+                                                                         options:NSRegularExpressionAnchorsMatchLines
+                                                                           error:nil];
+  return [regex stringByReplacingMatchesInString:text
+                                         options:0
+                                           range:NSMakeRange(0, text.length)
+                                    withTemplate:@""];
 }
 
 // With help from http://www.cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
