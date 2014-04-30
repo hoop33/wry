@@ -113,7 +113,7 @@
 // With help from http://www.cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
 - (NSString *)tempFileName {
   NSString *tempFileName = nil;
-  NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX"];
+  NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX.sh"];
   const char *templateCString = [template fileSystemRepresentation];
   char *tempFileNameCString = (char *) malloc(strlen(templateCString) + 1);
   strcpy(tempFileNameCString, templateCString);
