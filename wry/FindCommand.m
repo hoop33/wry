@@ -36,7 +36,7 @@
 }
 
 - (NSString *)summary {
-  return @"Finds users";
+  return @"Find users";
 }
 
 @end
