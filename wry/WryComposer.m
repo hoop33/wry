@@ -42,6 +42,7 @@
   if ([WryApplication application].interactiveIn && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
     NSString *tempFileName = [self tempFileName];
     if (tempFileName != nil) {
+      [self setUpTempFile:tempFileName];
       NSString *path = [self shell];
       const char *cpath = [path UTF8String];
 
@@ -95,6 +96,17 @@
   if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];
   if (editor.length == 0) editor = @"vi";
   return editor;
+}
+
+- (void)setUpTempFile:(NSString *)tempFileName {
+  NSString *contents = [NSString stringWithFormat:@"\n%@", [self comment]];
+  [contents writeToFile:tempFileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSString *)comment {
+  return @"# Please enter the text for your post or message. Lines starting\n"
+    @"# with '#' will be ignored, and empty text aborts the post or message.\n"
+    @"#";
 }
 
 - (NSString *)filterComments:(NSString *)text {

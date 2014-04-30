@@ -81,4 +81,12 @@
   XCTAssertEqualObjects([composer performSelector:@selector(filterComments:) withObject:text], @"I don't want to see any comments\nThat's right", @"filterComments should remove comments from text");
 }
 
+- (void)testCommentShouldNotBeNil {
+  XCTAssertNotNil([composer performSelector:@selector(comment)], @"comment should not be nil");
+}
+
+- (void)testCommentShouldStartWithPound {
+  XCTAssertTrue([[composer performSelector:@selector(comment)] hasPrefix:@"#"], @"comment should start with a #");
+}
+
 @end
