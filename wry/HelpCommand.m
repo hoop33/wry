@@ -100,6 +100,7 @@
       NSString *name = [WryUtils nameForCommand:instance];
       [app println:[NSString stringWithFormat:@"\nHelp for command \"%@\"", name]];
       [app println:[instance description]];
+      [app println:[NSString stringWithFormat:@"   usage:      %@ %@ %@", app.appName, name, [instance usage]]];
       [app println:@""];
       [app println:[instance help]];
     } else if ([instance conformsToProtocol:@protocol(WrySetting)]) {
