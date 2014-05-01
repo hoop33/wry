@@ -40,10 +40,10 @@
 }
 
 - (void)testPostOutputRangeShouldShowSingleItem {
-  NSData *data = [NSData dataWithContentsOfFile:[self resourcePath:@"post.json"]];
+  NSData *data = [NSData dataWithContentsOfFile:[self resourcePath:@"post_stream.json"]];
   ADNResponse *response = [[ADNResponse alloc] initWithData:data mapping:[ADNMappingProvider postMapping] reverse:NO error:nil];
   NSString *output = [formatter format:response];
-  XCTAssertNotEqual([output rangeOfString:@"1 item (29415319)"].location, NSNotFound, @"The single post should be in the output");
+  XCTAssertNotEqual([output rangeOfString:@"1 item (29569860)"].location, NSNotFound, @"The single post should be in the output");
 }
 
 - (void)testPostOutputWithEmptyStringShouldBeEmpty {
