@@ -12,6 +12,7 @@
 #import "WryComposer.h"
 #import "WryEnhancer.h"
 #import "TextTooLongEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation PostCommand
 
@@ -21,7 +22,8 @@
                              errorMessage:nil
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  NSString *text = [params componentsJoinedByString:@" "];
+                                  id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                  NSString *text = [unescapeBangEnhancer enhance:[params componentsJoinedByString:@" "]];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];

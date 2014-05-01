@@ -10,6 +10,8 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation PmCommand
 
@@ -31,7 +33,8 @@
                                         [NSCharacterSet characterSetWithCharactersInString:param]]) {
                                       replyID = param;
                                     } else {
-                                      text = param;
+                                      id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                      text = [unescapeBangEnhancer enhance:param];
                                     }
                                   }
                                   if (!text.length) {
