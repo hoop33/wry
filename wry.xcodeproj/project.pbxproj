@@ -185,6 +185,7 @@
 		C7A1D875190ED89B00883AAA /* TEXTFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D874190ED89B00883AAA /* TEXTFormatterTests.m */; };
 		C7A1D878190EE08700883AAA /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D877190EE08700883AAA /* posts.json */; };
 		C7A1D87A190FE1BB00883AAA /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D879190FE1BB00883AAA /* post.json */; };
+		C7A1D87C1912922500883AAA /* post_stream.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D87B1912922500883AAA /* post_stream.json */; };
 		C7AFA708189463E4003E2DF4 /* TextTooLongEnhancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */; };
 		C7AFA70F1897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA7101897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
@@ -405,6 +406,7 @@
 		C7A1D874190ED89B00883AAA /* TEXTFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEXTFormatterTests.m; sourceTree = "<group>"; };
 		C7A1D877190EE08700883AAA /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
 		C7A1D879190FE1BB00883AAA /* post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post.json; sourceTree = "<group>"; };
+		C7A1D87B1912922500883AAA /* post_stream.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post_stream.json; sourceTree = "<group>"; };
 		C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancerTests.m; sourceTree = "<group>"; };
 		C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeSetting.h; sourceTree = "<group>"; };
 		C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSetting.m; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 		C7C98599187CAA0F008094FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C7A1D87B1912922500883AAA /* post_stream.json */,
 				C7A1D879190FE1BB00883AAA /* post.json */,
 				C7A1D877190EE08700883AAA /* posts.json */,
 				C7C9859A187CAA0F008094FB /* wry Tests-Info.plist */,
@@ -919,6 +922,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7C9859D187CAA0F008094FB /* InfoPlist.strings in Resources */,
+				C7A1D87C1912922500883AAA /* post_stream.json in Resources */,
 				C7A1D878190EE08700883AAA /* posts.json in Resources */,
 				C7A1D87A190FE1BB00883AAA /* post.json in Resources */,
 			);

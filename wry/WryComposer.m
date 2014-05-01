@@ -11,10 +11,15 @@
 #import "WryApplication.h"
 #import "WryUtils.h"
 #import "EditorSetting.h"
+#import "ADNPost.h"
+#import "ADNUser.h"
+#import "NSString+Prefix.h"
 
 @interface WryComposer ()
 - (NSString *)shell;
+
 - (NSString *)editor;
+
 - (NSString *)tempFileName;
 @end
 
@@ -42,6 +47,7 @@
   if ([WryApplication application].interactiveIn && ![[editor lowercaseString] isEqualToString:@"stdin"]) {
     NSString *tempFileName = [self tempFileName];
     if (tempFileName != nil) {
+      [self setUpTempFile:tempFileName];
       NSString *path = [self shell];
       const char *cpath = [path UTF8String];
 
@@ -55,7 +61,7 @@
 
       pid_t childPID = fork();
       if (!childPID) {
-        execvp(cpath, (char **)cargs);
+        execvp(cpath, (char **) cargs);
 
         assert(false && "failed to exec editor");
       }
@@ -66,9 +72,9 @@
         result = waitpid(childPID, NULL, 0);
       }
 
-      text = [[NSString alloc] initWithContentsOfFile:tempFileName
-                                             encoding:NSUTF8StringEncoding
-                                                error:nil];
+      text = [self filterComments:[[NSString alloc] initWithContentsOfFile:tempFileName
+                                                                  encoding:NSUTF8StringEncoding
+                                                                     error:nil]];
       [[NSFileManager defaultManager] removeItemAtPath:tempFileName error:nil];
     }
   }
@@ -97,14 +103,46 @@
   return editor;
 }
 
+- (void)setUpTempFile:(NSString *)tempFileName {
+  NSString *contents = [NSString stringWithFormat:@"%@\n%@\n%@", [self replyToUsername], [self comment], [self replyToText]];
+  [contents writeToFile:tempFileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSString *)replyToUsername {
+  return self.post == nil ? @"" : [self.post.user.username atify];
+}
+
+- (NSString *)comment {
+  return @"# Please enter the text for your post or message. Lines starting\n"
+    @"# with '#' will be ignored, and empty text aborts the post or message.\n"
+    @"#";
+}
+
+- (NSString *)replyToText {
+  return self.post == nil ? @"" : [NSString stringWithFormat:@"# -------------------------\n# Replying to post:\n# %@", self.post.text];
+}
+
+- (NSString *)filterComments:(NSString *)text {
+  if (text == nil || text.length == 0) {
+    return text;
+  }
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^#.*$\r?\n?"
+                                                                         options:NSRegularExpressionAnchorsMatchLines
+                                                                           error:nil];
+  return [regex stringByReplacingMatchesInString:text
+                                         options:0
+                                           range:NSMakeRange(0, text.length)
+                                    withTemplate:@""];
+}
+
 // With help from http://www.cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
 - (NSString *)tempFileName {
   NSString *tempFileName = nil;
-  NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX"];
+  NSString *template = [NSTemporaryDirectory() stringByAppendingPathComponent:@"wry.XXXXXX.sh"];
   const char *templateCString = [template fileSystemRepresentation];
   char *tempFileNameCString = (char *) malloc(strlen(templateCString) + 1);
   strcpy(tempFileNameCString, templateCString);
-  int fileDescriptor = mkstemp(tempFileNameCString);
+  int fileDescriptor = mkstemps(tempFileNameCString, 3);
   if (fileDescriptor != -1) {
     tempFileName = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString
                                                                                length:strlen(tempFileNameCString)];
