@@ -189,6 +189,9 @@
 		C7A1D87F1912990600883AAA /* MessageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D87E1912990600883AAA /* MessageCommand.m */; };
 		C7A1D8811912AB0900883AAA /* MessageCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D8801912AB0900883AAA /* MessageCommandTests.m */; };
 		C7A1D8831912ADF800883AAA /* MessageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D87E1912990600883AAA /* MessageCommand.m */; };
+		C7A1D8861912C47400883AAA /* UnescapeBangEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D8851912C47400883AAA /* UnescapeBangEnhancer.m */; };
+		C7A1D8891912C5B300883AAA /* UnescapeBangEnhancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D8881912C5B300883AAA /* UnescapeBangEnhancerTests.m */; };
+		C7A1D88A1912C77B00883AAA /* UnescapeBangEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D8851912C47400883AAA /* UnescapeBangEnhancer.m */; };
 		C7AFA708189463E4003E2DF4 /* TextTooLongEnhancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */; };
 		C7AFA70F1897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA7101897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
@@ -413,6 +416,9 @@
 		C7A1D87D1912990600883AAA /* MessageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCommand.h; sourceTree = "<group>"; };
 		C7A1D87E1912990600883AAA /* MessageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCommand.m; sourceTree = "<group>"; };
 		C7A1D8801912AB0900883AAA /* MessageCommandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCommandTests.m; sourceTree = "<group>"; };
+		C7A1D8841912C47400883AAA /* UnescapeBangEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnescapeBangEnhancer.h; sourceTree = "<group>"; };
+		C7A1D8851912C47400883AAA /* UnescapeBangEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnescapeBangEnhancer.m; sourceTree = "<group>"; };
+		C7A1D8881912C5B300883AAA /* UnescapeBangEnhancerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnescapeBangEnhancerTests.m; sourceTree = "<group>"; };
 		C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancerTests.m; sourceTree = "<group>"; };
 		C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeSetting.h; sourceTree = "<group>"; };
 		C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSetting.m; sourceTree = "<group>"; };
@@ -577,6 +583,8 @@
 				C7D2967E177CA1F000649A29 /* TextTooLongEnhancer.h */,
 				C7D2967F177CA1F000649A29 /* TextTooLongEnhancer.m */,
 				C7457505176E6AF3006B4893 /* WryEnhancer.h */,
+				C7A1D8841912C47400883AAA /* UnescapeBangEnhancer.h */,
+				C7A1D8851912C47400883AAA /* UnescapeBangEnhancer.m */,
 			);
 			name = Enhancers;
 			sourceTree = "<group>";
@@ -817,6 +825,15 @@
 			name = Commands;
 			sourceTree = "<group>";
 		};
+		C7A1D8871912C58E00883AAA /* Enhancers */ = {
+			isa = PBXGroup;
+			children = (
+				C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */,
+				C7A1D8881912C5B300883AAA /* UnescapeBangEnhancerTests.m */,
+			);
+			name = Enhancers;
+			sourceTree = "<group>";
+		};
 		C7AFA7131898107D003E2DF4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,10 +856,10 @@
 			children = (
 				C7AFA71C189998D8003E2DF4 /* ADN */,
 				C7A1D8821912AB1900883AAA /* Commands */,
+				C7A1D8871912C58E00883AAA /* Enhancers */,
 				C7A1D876190ED8AC00883AAA /* Formatters */,
 				C7AFA7131898107D003E2DF4 /* Settings */,
 				C7C98599187CAA0F008094FB /* Supporting Files */,
-				C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */,
 				C7332A30188960B600B0E7BF /* WryApplicationTests.m */,
 				C7332A2E18887C8E00B0E7BF /* WryComposerTests.m */,
 				C73329D118871B0D00B0E7BF /* WrySettingsTests.m */,
@@ -1015,6 +1032,7 @@
 				5F23788005A250218BC639A3 /* PmCommand.m in Sources */,
 				C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */,
 				C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */,
+				C7A1D8861912C47400883AAA /* UnescapeBangEnhancer.m in Sources */,
 				C78C5BE11740EED600F5C806 /* ADNAnnotation.m in Sources */,
 				C78C5BE417423B3200F5C806 /* ADNAccessControlList.m in Sources */,
 				C78C5BEA1742471100F5C806 /* SendCommand.m in Sources */,
@@ -1082,6 +1100,7 @@
 				C7332A1E18871FC200B0E7BF /* ADNChannel.m in Sources */,
 				C73329F118871EEB00B0E7BF /* AuthorizeCommand.m in Sources */,
 				C73329E918871EC300B0E7BF /* ADNService.m in Sources */,
+				C7A1D8891912C5B300883AAA /* UnescapeBangEnhancerTests.m in Sources */,
 				C73329FF18871F2C00B0E7BF /* ReadCommand.m in Sources */,
 				C73329E418871E8400B0E7BF /* SSKeychain.m in Sources */,
 				C7332A2A1887200800B0E7BF /* TextTooLongEnhancer.m in Sources */,
@@ -1125,6 +1144,7 @@
 				C73329FD18871F2500B0E7BF /* StarCommand.m in Sources */,
 				C73329D218871B0D00B0E7BF /* WrySettingsTests.m in Sources */,
 				C7332A0C18871F6300B0E7BF /* UploadCommand.m in Sources */,
+				C7A1D88A1912C77B00883AAA /* UnescapeBangEnhancer.m in Sources */,
 				C7A1D875190ED89B00883AAA /* TEXTFormatterTests.m in Sources */,
 				C7332A1718871F9500B0E7BF /* FormattersCommand.m in Sources */,
 				C73329EB18871ECB00B0E7BF /* ADNMappingProvider.m in Sources */,
