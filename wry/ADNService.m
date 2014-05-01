@@ -411,6 +411,12 @@
   return nil;
 }
 
+- (ADNResponse *)getMessage:(NSString *)messageID channelID:(NSString *)channelID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"channels/%@/messages/%@", channelID, messageID]
+               mapping:[ADNMappingProvider messageMapping] method:@"GET"
+                 error:error];
+}
+
 #pragma mark - Channel interactions
 
 - (ADNResponse *)getChannels:(NSError **)error {
