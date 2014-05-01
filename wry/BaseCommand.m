@@ -16,7 +16,7 @@
     id<WryCommand> this = (id<WryCommand>)self;
     return [NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForCommand:this] UTF8String], [this summary]];
   } else {
-    return [self description];
+    return [super description];
   }
 }
 

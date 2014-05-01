@@ -20,7 +20,7 @@
     }
     return [NSString stringWithFormat:@"   -%@, --%-21s %@", [this shortFlag], [name UTF8String], [this summary]];
   } else {
-    return [self description];
+    return [super description];
   }
 }
 
