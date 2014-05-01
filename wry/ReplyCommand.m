@@ -10,6 +10,8 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryErrorCodes.h"
+#import "ADNPost.h"
 
 @implementation ReplyCommand
 
@@ -20,13 +22,26 @@
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *replyID = [params objectAtIndex:0];
-                                  NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
-                                    componentsJoinedByString:@" "];
-                                  if (!text.length) {
-                                    WryComposer *composer = [[WryComposer alloc] init];
-                                    text = [composer compose];
+
+                                  // Get post we're replying to
+                                  ADNResponse *response = [service showPost:replyID error:error];
+                                  if (response == nil || ![(NSNumber *) response.meta[@"code"] isEqualToNumber:@200]) {
+                                    if (error != NULL) {
+                                      *error = [NSError errorWithDomain:[WryApplication application].errorDomain
+                                                                   code:WryErrorCodeBadInput
+                                                               userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Post %@ does not exist", replyID]}];
+                                    }
+                                    return (ADNResponse *) nil;
+                                  } else {
+                                    NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
+                                      componentsJoinedByString:@" "];
+                                    if (!text.length) {
+                                      WryComposer *composer = [[WryComposer alloc] init];
+                                      composer.post = response.object;
+                                      text = [composer compose];
+                                    }
+                                    return [service createPost:text replyID:replyID error:error];
                                   }
-                                  return [service createPost:text replyID:replyID error:error];
                                 }];
 }
 
