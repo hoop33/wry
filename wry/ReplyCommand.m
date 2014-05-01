@@ -12,6 +12,8 @@
 #import "WryComposer.h"
 #import "WryErrorCodes.h"
 #import "ADNPost.h"
+#import "WryEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation ReplyCommand
 
@@ -33,8 +35,8 @@
                                     }
                                     return (ADNResponse *) nil;
                                   } else {
-                                    NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
-                                      componentsJoinedByString:@" "];
+                                    id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                    NSString *text = [unescapeBangEnhancer enhance:[[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "]];
                                     if (!text.length) {
                                       WryComposer *composer = [[WryComposer alloc] init];
                                       composer.post = response.object;
