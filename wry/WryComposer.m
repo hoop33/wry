@@ -11,10 +11,15 @@
 #import "WryApplication.h"
 #import "WryUtils.h"
 #import "EditorSetting.h"
+#import "ADNPost.h"
+#import "ADNUser.h"
+#import "NSString+Prefix.h"
 
 @interface WryComposer ()
 - (NSString *)shell;
+
 - (NSString *)editor;
+
 - (NSString *)tempFileName;
 @end
 
@@ -99,14 +104,22 @@
 }
 
 - (void)setUpTempFile:(NSString *)tempFileName {
-  NSString *contents = [NSString stringWithFormat:@"\n%@", [self comment]];
+  NSString *contents = [NSString stringWithFormat:@"%@\n%@\n%@", [self replyToUsername], [self comment], [self replyToText]];
   [contents writeToFile:tempFileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSString *)replyToUsername {
+  return self.post == nil ? @"" : [self.post.user.username atify];
 }
 
 - (NSString *)comment {
   return @"# Please enter the text for your post or message. Lines starting\n"
     @"# with '#' will be ignored, and empty text aborts the post or message.\n"
     @"#";
+}
+
+- (NSString *)replyToText {
+  return self.post == nil ? @"" : [NSString stringWithFormat:@"# -------------------------\n# Replying to post:\n# %@", self.post.text];
 }
 
 - (NSString *)filterComments:(NSString *)text {

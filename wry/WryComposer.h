@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class WryApplication;
+@class ADNPost;
 
 @interface WryComposer : NSObject
+
+@property (nonatomic, strong) ADNPost *post;
 
 + (NSString *)help;
 - (NSString *)compose;
