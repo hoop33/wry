@@ -22,7 +22,7 @@
 }
 
 - (NSString *)usage {
-  return @"<file ID>";
+  return @"<fileid>";
 }
 
 - (NSString *)help {

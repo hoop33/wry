@@ -25,7 +25,7 @@
 }
 
 - (NSString *)usage {
-  return @"[channel ID]";
+  return @"[channelid]";
 }
 
 - (NSString *)help {

@@ -23,7 +23,7 @@
 }
 
 - (NSString *)usage {
-  return @"[message ID] [channel ID]";
+  return @"<messageid> <channelid>";
 }
 
 - (NSString *)help {
