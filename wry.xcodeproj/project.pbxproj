@@ -186,6 +186,9 @@
 		C7A1D878190EE08700883AAA /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D877190EE08700883AAA /* posts.json */; };
 		C7A1D87A190FE1BB00883AAA /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D879190FE1BB00883AAA /* post.json */; };
 		C7A1D87C1912922500883AAA /* post_stream.json in Resources */ = {isa = PBXBuildFile; fileRef = C7A1D87B1912922500883AAA /* post_stream.json */; };
+		C7A1D87F1912990600883AAA /* MessageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D87E1912990600883AAA /* MessageCommand.m */; };
+		C7A1D8811912AB0900883AAA /* MessageCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D8801912AB0900883AAA /* MessageCommandTests.m */; };
+		C7A1D8831912ADF800883AAA /* MessageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D87E1912990600883AAA /* MessageCommand.m */; };
 		C7AFA708189463E4003E2DF4 /* TextTooLongEnhancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */; };
 		C7AFA70F1897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA7101897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
@@ -407,6 +410,9 @@
 		C7A1D877190EE08700883AAA /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
 		C7A1D879190FE1BB00883AAA /* post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post.json; sourceTree = "<group>"; };
 		C7A1D87B1912922500883AAA /* post_stream.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = post_stream.json; sourceTree = "<group>"; };
+		C7A1D87D1912990600883AAA /* MessageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCommand.h; sourceTree = "<group>"; };
+		C7A1D87E1912990600883AAA /* MessageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCommand.m; sourceTree = "<group>"; };
+		C7A1D8801912AB0900883AAA /* MessageCommandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCommandTests.m; sourceTree = "<group>"; };
 		C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancerTests.m; sourceTree = "<group>"; };
 		C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeSetting.h; sourceTree = "<group>"; };
 		C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSetting.m; sourceTree = "<group>"; };
@@ -691,6 +697,8 @@
 				5F23700E04DD8F1511814264 /* LsCommand.m */,
 				C744E483170131950002A9A5 /* MentionsCommand.h */,
 				C744E484170131970002A9A5 /* MentionsCommand.m */,
+				C7A1D87D1912990600883AAA /* MessageCommand.h */,
+				C7A1D87E1912990600883AAA /* MessageCommand.m */,
 				5F2376F60DE9FCFA48020C67 /* MessagesCommand.h */,
 				5F23732DDFB65635F0971665 /* MessagesCommand.m */,
 				C744E4891701D5CE0002A9A5 /* MuteCommand.h */,
@@ -801,6 +809,14 @@
 			name = Formatters;
 			sourceTree = "<group>";
 		};
+		C7A1D8821912AB1900883AAA /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				C7A1D8801912AB0900883AAA /* MessageCommandTests.m */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
 		C7AFA7131898107D003E2DF4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -822,6 +838,7 @@
 			isa = PBXGroup;
 			children = (
 				C7AFA71C189998D8003E2DF4 /* ADN */,
+				C7A1D8821912AB1900883AAA /* Commands */,
 				C7A1D876190ED8AC00883AAA /* Formatters */,
 				C7AFA7131898107D003E2DF4 /* Settings */,
 				C7C98599187CAA0F008094FB /* Supporting Files */,
@@ -994,6 +1011,7 @@
 				C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */,
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
+				C7A1D87F1912990600883AAA /* MessageCommand.m in Sources */,
 				5F23788005A250218BC639A3 /* PmCommand.m in Sources */,
 				C78C5BD81740E4E700F5C806 /* ADNChannel.m in Sources */,
 				C78C5BDE1740EA0C00F5C806 /* ChannelsCommand.m in Sources */,
@@ -1088,6 +1106,7 @@
 				C7332A0F18871F7200B0E7BF /* UsersCommand.m in Sources */,
 				C7332A2718871FFC00B0E7BF /* ALFREDFormatter.m in Sources */,
 				C7332A0018871F2F00B0E7BF /* MentionsCommand.m in Sources */,
+				C7A1D8811912AB0900883AAA /* MessageCommandTests.m in Sources */,
 				C7AFA71218981077003E2DF4 /* BeforeSettingTests.m in Sources */,
 				C7332A0E18871F6F00B0E7BF /* DownloadCommand.m in Sources */,
 				C73329E518871E8700B0E7BF /* SSKeychainQuery.m in Sources */,
@@ -1109,6 +1128,7 @@
 				C7A1D875190ED89B00883AAA /* TEXTFormatterTests.m in Sources */,
 				C7332A1718871F9500B0E7BF /* FormattersCommand.m in Sources */,
 				C73329EB18871ECB00B0E7BF /* ADNMappingProvider.m in Sources */,
+				C7A1D8831912ADF800883AAA /* MessageCommand.m in Sources */,
 				C7332A0818871F5100B0E7BF /* UnblockCommand.m in Sources */,
 				C7332A1818871FAC00B0E7BF /* ADNMessage.m in Sources */,
 				C73329DE18871E5300B0E7BF /* EditorSetting.m in Sources */,
