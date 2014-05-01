@@ -1,0 +1,99 @@
+{
+    "data": [
+        {
+            "canonical_url": "https://alpha.app.net/lukasepple/post/29569860",
+            "created_at": "2014-05-01T14:29:37Z",
+            "entities": {
+                "hashtags": [],
+                "links": [],
+                "mentions": []
+            },
+            "html": "<span itemscope=\"https://app.net/schemas/Post\">das wird mein neuer screensaver.</span>",
+            "id": "29569860",
+            "machine_only": false,
+            "num_replies": 0,
+            "num_reposts": 0,
+            "num_stars": 0,
+            "pagination_id": "29569860",
+            "source": {
+                "client_id": "GzJVygE6vpLbabgBtEKzEKH8ASzS6mF3",
+                "link": "http://ifttt.com",
+                "name": "IFTTT"
+            },
+            "text": "das wird mein neuer screensaver.",
+            "thread_id": "29569860",
+            "user": {
+                "avatar_image": {
+                    "height": 300,
+                    "is_default": false,
+                    "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/8N6hQwUAF7moUSR_O4ffegq4Wzh7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvNjgvMjcvODAvNjgyNzgwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0",
+                    "width": 300
+                },
+                "canonical_url": "https://alpha.app.net/lukasepple",
+                "counts": {
+                    "followers": 90,
+                    "following": 40,
+                    "posts": 4177,
+                    "stars": 981
+                },
+                "cover_image": {
+                    "height": 1155,
+                    "is_default": false,
+                    "url": "https://d2rfichhc2fb9n.cloudfront.net/image/5/7J4GjYbb4kYq2Zty5eVn27tREBV7InMiOiJzMyIsImIiOiJhZG4tdXNlci1hc3NldHMiLCJrIjoiYXNzZXRzL3VzZXIvYzcvMDMvMzAvYzcwMzMwMDAwMDAwMDAwMC5qcGciLCJvIjoiIn0",
+                    "width": 3696
+                },
+                "created_at": "2013-04-16T13:20:57Z",
+                "description": {
+                    "entities": {
+                        "hashtags": [],
+                        "links": [
+                            {
+                                "len": 21,
+                                "pos": 118,
+                                "text": "http://lukasepple.de/",
+                                "url": "http://lukasepple.de/"
+                            }
+                        ],
+                        "mentions": []
+                    },
+                    "html": "<span itemscope=\"https://app.net/schemas/Post\">Wuschelkopf. Schreibt Programme in Python und C. Photographiert. Mag Mischpulte. Verbraucht Platz im Internet. Jung.&#13;<br><a href=\"http://lukasepple.de/\">http://lukasepple.de/</a></span>",
+                    "text": "Wuschelkopf. Schreibt Programme in Python und C. Photographiert. Mag Mischpulte. Verbraucht Platz im Internet. Jung.\r\nhttp://lukasepple.de/"
+                },
+                "follows_you": false,
+                "id": "74834",
+                "is_follower": true,
+                "is_following": false,
+                "is_muted": false,
+                "locale": "de_DE",
+                "name": "sternenseemann",
+                "timezone": "Europe/Berlin",
+                "type": "human",
+                "username": "lukasepple",
+                "verified_domain": "lukasepple.de",
+                "verified_link": "http://lukasepple.de",
+                "you_blocked": false,
+                "you_can_follow": true,
+                "you_can_subscribe": true,
+                "you_follow": true,
+                "you_muted": false
+            },
+            "you_reposted": false,
+            "you_starred": false
+        }
+    ],
+    "meta": {
+        "code": 200,
+        "marker": {
+            "id": "29562459",
+            "last_read_id": "29563984",
+            "name": "my_stream",
+            "percentage": 0,
+            "updated_at": "2014-05-01T12:56:59Z",
+            "version": "63nWY7U6fs6Ow4tLM3EW8P9kXSU"
+        },
+        "max_id": "29569860",
+        "min_id": "29569860",
+        "more": true
+    }
+}
+
