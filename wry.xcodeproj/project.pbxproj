@@ -195,6 +195,9 @@
 		C7A1D88D1913DCF000883AAA /* RmCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D88C1913DCF000883AAA /* RmCommand.m */; };
 		C7A1D88F1913DD1B00883AAA /* RmCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D88E1913DD1B00883AAA /* RmCommandTests.m */; };
 		C7A1D8901913DDC600883AAA /* RmCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D88C1913DCF000883AAA /* RmCommand.m */; };
+		C7A1D893191413BC00883AAA /* ShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D892191413BC00883AAA /* ShellCommand.m */; };
+		C7A1D894191413BC00883AAA /* ShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D892191413BC00883AAA /* ShellCommand.m */; };
+		C7A1D896191413E100883AAA /* ShellCommandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A1D895191413E100883AAA /* ShellCommandTests.m */; };
 		C7AFA708189463E4003E2DF4 /* TextTooLongEnhancerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */; };
 		C7AFA70F1897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
 		C7AFA7101897F004003E2DF4 /* BeforeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */; };
@@ -425,6 +428,9 @@
 		C7A1D88B1913DCF000883AAA /* RmCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RmCommand.h; sourceTree = "<group>"; };
 		C7A1D88C1913DCF000883AAA /* RmCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RmCommand.m; sourceTree = "<group>"; };
 		C7A1D88E1913DD1B00883AAA /* RmCommandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RmCommandTests.m; sourceTree = "<group>"; };
+		C7A1D891191413BC00883AAA /* ShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellCommand.h; sourceTree = "<group>"; };
+		C7A1D892191413BC00883AAA /* ShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellCommand.m; sourceTree = "<group>"; };
+		C7A1D895191413E100883AAA /* ShellCommandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellCommandTests.m; sourceTree = "<group>"; };
 		C7AFA707189463E4003E2DF4 /* TextTooLongEnhancerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTooLongEnhancerTests.m; sourceTree = "<group>"; };
 		C7AFA70D1897F004003E2DF4 /* BeforeSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeforeSetting.h; sourceTree = "<group>"; };
 		C7AFA70E1897F004003E2DF4 /* BeforeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeforeSetting.m; sourceTree = "<group>"; };
@@ -743,6 +749,8 @@
 				C78C5BE91742471100F5C806 /* SendCommand.m */,
 				C7C60FB617DBCE8100006738 /* SettingsCommand.h */,
 				C7C60FB717DBCE8100006738 /* SettingsCommand.m */,
+				C7A1D891191413BC00883AAA /* ShellCommand.h */,
+				C7A1D892191413BC00883AAA /* ShellCommand.m */,
 				C744E47A16FC8E900002A9A5 /* StarCommand.h */,
 				C744E47B16FC8E900002A9A5 /* StarCommand.m */,
 				C7CCEB6F16F5E7C9005DDBAB /* StreamCommand.h */,
@@ -830,6 +838,7 @@
 			children = (
 				C7A1D8801912AB0900883AAA /* MessageCommandTests.m */,
 				C7A1D88E1913DD1B00883AAA /* RmCommandTests.m */,
+				C7A1D895191413E100883AAA /* ShellCommandTests.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1036,6 +1045,7 @@
 				C71BF68F1731BF0D004C228B /* NSString+Prefix.m in Sources */,
 				C7C60FB817DBCE8100006738 /* SettingsCommand.m in Sources */,
 				5F237AC322044FFB6F4BFEA1 /* MessagesCommand.m in Sources */,
+				C7A1D893191413BC00883AAA /* ShellCommand.m in Sources */,
 				5F23783D63A244A8236FF827 /* ADNMessage.m in Sources */,
 				C7A1D87F1912990600883AAA /* MessageCommand.m in Sources */,
 				5F23788005A250218BC639A3 /* PmCommand.m in Sources */,
@@ -1097,6 +1107,7 @@
 				C73329E318871E6600B0E7BF /* VersionSetting.m in Sources */,
 				C7332A1418871F8600B0E7BF /* ConfigCommand.m in Sources */,
 				C73329F318871EF400B0E7BF /* GlobalCommand.m in Sources */,
+				C7A1D896191413E100883AAA /* ShellCommandTests.m in Sources */,
 				C7332A1618871F8D00B0E7BF /* BaseCommand.m in Sources */,
 				C7332A0218871F3700B0E7BF /* MuteCommand.m in Sources */,
 				C73329F918871F1000B0E7BF /* FollowingCommand.m in Sources */,
@@ -1115,6 +1126,7 @@
 				C73329E418871E8400B0E7BF /* SSKeychain.m in Sources */,
 				C7332A2A1887200800B0E7BF /* TextTooLongEnhancer.m in Sources */,
 				C7332A1018871F7600B0E7BF /* ChannelsCommand.m in Sources */,
+				C7A1D894191413BC00883AAA /* ShellCommand.m in Sources */,
 				C73329E818871EA400B0E7BF /* WryComposer.m in Sources */,
 				C7AFA71B189998D2003E2DF4 /* ADNServiceTests.m in Sources */,
 				C7332A2818871FFF00B0E7BF /* BaseFormatter.m in Sources */,
