@@ -67,6 +67,7 @@
 - (ADNResponse *)getFiles:(NSError **)error;
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error;
 - (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic error:(NSError **)error;
+- (ADNResponse *)deleteFile:(NSString *)fileID error:(NSError **)error;
 
 // Messages
 - (ADNResponse *)getMessages:(NSError **)error;

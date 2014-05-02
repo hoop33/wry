@@ -149,4 +149,20 @@
   XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply text");
 }
 
+#pragma mark - Files
+
+- (void)testDeleteFileWithNilFileIDShouldReturnNil {
+  NSError *error;
+  XCTAssertNil([service deleteFile:nil error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply a file ID");
+}
+
+- (void)testDeleteFileWithEmptyFileIDShouldReturnNil {
+  NSError *error;
+  XCTAssertNil([service deleteFile:@"" error:&error]);
+  XCTAssertNotNil(error);
+  XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], @"You must supply a file ID");
+}
+
 @end

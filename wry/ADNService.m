@@ -361,6 +361,21 @@
   return nil;
 }
 
+- (ADNResponse *)deleteFile:(NSString *)fileID error:(NSError **)error {
+  if (fileID.length > 0) {
+    return [self getItem:[NSString stringWithFormat:@"files/%@", fileID]
+                 mapping:[ADNMappingProvider fileMapping] method:@"DELETE"
+                   error:error];
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:kErrorDomain
+                                   code:kErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply a file ID"}];
+    }
+    return nil;
+  }
+}
+
 #pragma mark - Message interactions
 
 - (ADNResponse *)getMessages:(NSError **)error {
