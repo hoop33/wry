@@ -23,6 +23,8 @@
 
 + (WryApplication *)application;
 + (int)maximumPostLength;
+
+- (BOOL)parseCommandLine:(NSArray *)parameters;
 - (int)run;
 - (void)print:(NSString *)output;
 - (void)println:(NSObject *)output;

@@ -16,6 +16,7 @@
 #import "FormatSetting.h"
 #import "QuietSetting.h"
 #import "UserSetting.h"
+#import "VersionSetting.h"
 
 #define kMaxCount 200
 #define kInputBufferSize 512
@@ -43,6 +44,45 @@
     self.settings = [[WrySettings alloc] init];
   }
   return self;
+}
+
+- (BOOL)parseCommandLine:(NSArray *)commandLineParameters {
+  NSString *errorMessage = nil;
+  NSMutableArray *params = [NSMutableArray array];
+  for (NSUInteger i = 0, n = commandLineParameters.count; i < n; i++) {
+    NSString *param = commandLineParameters[i];
+    if ([param hasPrefix:@"-"]) {
+      id <WrySetting> setting = [self settingForFlag:[param stringByReplacingOccurrencesOfString:@"-" withString:@""]];
+      if (setting == nil) {
+        errorMessage = [NSString stringWithFormat:@"Unknown flag: %@", param];
+        break;
+      } else {
+        NSUInteger num = [setting numberOfParameters];
+        i += num;
+        if (i >= n) {
+          errorMessage = [NSString stringWithFormat:@"Missing parameter for %@", param];
+          break;
+        } else {
+          [self.settings setTransientValue:commandLineParameters[i] forSetting:setting];
+        }
+      }
+    } else if (self.commandName == nil) {
+      self.commandName = param;
+    } else {
+      [params addObject:param];
+    }
+  }
+  if (errorMessage != nil) {
+    [self println:errorMessage];
+    return NO;
+  } else {
+    self.params = [NSArray arrayWithArray:params];
+    if (self.commandName == nil) {
+      self.commandName = [self.settings boolValue:[WryUtils nameForSettingForClass:[VersionSetting class]]] ?
+        @"version" : @"help";
+    }
+  }
+  return YES;
 }
 
 - (int)run {
@@ -121,6 +161,21 @@
 
 - (NSString *)errorDomain {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+}
+
+- (id <WrySetting>)settingForFlag:(NSString *)flag {
+  id <WrySetting> setting = nil;
+  switch (flag.length) {
+    case 0:
+      break;
+    case 1:
+      setting = [WryUtils settingForShortFlag:flag];
+      break;
+    default:
+      setting = [WryUtils settingForName:flag];
+      break;
+  }
+  return setting;
 }
 
 @end
