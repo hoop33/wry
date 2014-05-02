@@ -5,6 +5,7 @@
 * When replying by external editor, insert username you're replying to
 * When replying by external editor, show post you're replying to
 * Add message command to get a message by channel and ID
+* Add rm command to delete a file
 * Fix: Don't try to post blank text
 * Fix: Unescape \! in text from command line
 * Fix: Show command usage information in help
