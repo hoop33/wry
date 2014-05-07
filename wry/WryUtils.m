@@ -132,7 +132,8 @@ static NSArray *allClasses;
   if (params.count < minimumParams) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
     }
     success = NO;
   } else {
