@@ -76,22 +76,6 @@
   return colors.count > wryColor ? colors[wryColor] : @"";
 }
 
-//- (void)setTransientValue:(NSString *)value forSetting:(id <WrySetting>)setting {
-//  NSObject *object = nil;
-//  switch ([setting type]) {
-//    case WrySettingBooleanType:
-//      object = @YES;
-//      break;
-//    case WrySettingIntegerType:
-//      object = [NSNumber numberWithInteger:[value integerValue]];
-//      break;
-//    case WrySettingStringType:
-//      object = value;
-//      break;
-//  }
-//  [self.overrides setObject:object forKey:[WryUtils nameForSetting:setting]];
-//}
-
 - (void)setObject:(NSObject *)value forKey:(NSString *)key {
   [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
   [[NSUserDefaults standardUserDefaults] synchronize];
