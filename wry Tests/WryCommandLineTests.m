@@ -49,4 +49,32 @@
   XCTAssertEqualObjects(cl.commandName, @"help");
 }
 
+- (void)testParseCommandLineWithQuotationsShouldTreatQuoteBlockAsOneParameter {
+  [cl parseString:@"config editor \"mvim -f\"" error:nil];
+  XCTAssertEqualObjects(cl.commandName, @"config");
+  XCTAssertEqual(cl.params.count, 2);
+  XCTAssertEqualObjects(cl.params[1], @"mvim -f");
+}
+
+- (void)testHyphensShouldBeRetainedWithParameters {
+  [cl parseString:@"stream -r --count 3 -f text --pretty" error:nil];
+  XCTAssertEqualObjects(cl.commandName, @"stream");
+  XCTAssertEqual(cl.params.count, 0);
+  XCTAssertTrue(cl.overrides[@"reverse"]);
+  XCTAssertEqualObjects(cl.overrides[@"count"], @3);
+  XCTAssertEqualObjects(cl.overrides[@"format"], @"text");
+  XCTAssertTrue(cl.overrides[@"pretty"]);
+}
+
+- (void)testAtSignsShouldBeRetained {
+  [cl parseString:@"user @hoop33" error:nil];
+  XCTAssertEqualObjects(cl.commandName, @"user");
+  XCTAssertEqualObjects(cl.params[0], @"@hoop33");
+}
+
+- (void)testRunAsUserShouldSetUser {
+  [cl parseString:@"-u hoop33_test following" error:nil];
+  XCTAssertEqualObjects(cl.commandName, @"following");
+  XCTAssertEqualObjects(cl.overrides[@"user"], @"hoop33_test");
+}
 @end

@@ -28,7 +28,23 @@
 }
 
 - (BOOL)parseString:(NSString *)commandLine error:(NSError **)error {
-  NSArray *parameters = commandLine.length > 0 ? [commandLine componentsSeparatedByString:@" "] : nil;
+  NSArray *parameters = nil;
+  if (commandLine.length > 0) {
+    NSMutableArray *params = [NSMutableArray array];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[\\w\\-@]+|\".*\""
+                                                                           options:0
+                                                                             error:error];
+    if (regex != nil) {
+      [regex enumerateMatchesInString:commandLine
+                              options:0
+                                range:NSMakeRange(0, commandLine.length)
+                           usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                             [params addObject:[[commandLine substringWithRange:result.range]
+                               stringByReplacingOccurrencesOfString:@"\"" withString:@""]];
+                           }];
+    }
+    parameters = [params copy];
+  }
   return [self parseParameters:parameters error:error];
 }
 
