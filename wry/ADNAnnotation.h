@@ -10,7 +10,7 @@
 
 @interface ADNAnnotation : ADNObject
 
-@property(nonatomic, copy) NSString *type;
-@property(nonatomic, strong) NSDictionary *value;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, strong) NSDictionary *value;
 
 @end

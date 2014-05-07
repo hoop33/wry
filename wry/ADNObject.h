@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "WrySettings.h"
 
-extern NSString * const TagColorStart;
-extern NSString * const TagColorEnd;
+extern NSString *const TagColorStart;
+extern NSString *const TagColorEnd;
 
 @interface ADNObject : NSObject
 
-@property(nonatomic, assign) NSInteger objectID;
-@property(nonatomic, assign) NSInteger paginationID;
+@property (nonatomic, assign) NSInteger objectID;
+@property (nonatomic, assign) NSInteger paginationID;
 
 - (NSString *)colorDescription;
 - (NSString *)colorize:(NSString *)text colorSetting:(WryColor)wryColor;

@@ -12,7 +12,7 @@
 
 - (id)enhance:(id)object {
   return [object isKindOfClass:[NSString class]] ?
-    [(NSString *)object stringByReplacingOccurrencesOfString:@"\\!" withString:@"!"] : object;
+    [(NSString *) object stringByReplacingOccurrencesOfString:@"\\!" withString:@"!"] : object;
 }
 
 @end

@@ -19,12 +19,12 @@
 
 - (id)enhance:(id)object {
   if ([object isKindOfClass:[NSString class]]) {
-    NSString *text = (NSString *)object;
+    NSString *text = (NSString *) object;
     if (text.length > kMaxTextLength) {
       SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:", [self textTooLongOption]]);
       if ([self respondsToSelector:selector]) {
         IMP imp = [self methodForSelector:selector];
-        id (*func)(id, SEL, NSString *) = (void *)imp;
+        id (*func)(id, SEL, NSString *) = (void *) imp;
         object = func(self, selector, text);
       }
     }
@@ -46,7 +46,7 @@
   NSInteger overage = text.length - kMaxTextLength;
   assert(overage > 0);
   [app println:[NSString stringWithFormat:@"Warning: Text exceeds %d-character limit by %ld character%@.",
-                kMaxTextLength, overage, (overage == 1 ? @"" : @"s")]];
+                                          kMaxTextLength, overage, (overage == 1 ? @"" : @"s")]];
   [app println:@""];
   [app println:@"Text would include:"];
   [app println:@""];
@@ -70,29 +70,29 @@
 
 - (id)split:(NSString *)text {
   if (text == nil) return nil;
-  
+
   // Return an array of texts, split into kMaxTextLength-ish chunks on word boundaries
   NSMutableArray *texts = [NSMutableArray array];
   NSUInteger index = 0, end = text.length;
   while (index < end) {
     NSUInteger maxLength = MIN(kMaxTextLength, end - index);
-    
+
     // Grab a maxLength chunk
     NSString *substring = [text substringWithRange:NSMakeRange(index, maxLength)];
-    
+
     // Walk backwards to find some whitespace
     NSUInteger lastIndex = substring.length - 1;
     while (lastIndex > 1 &&
-           ![[NSCharacterSet whitespaceAndNewlineCharacterSet]
-             characterIsMember:[substring characterAtIndex:lastIndex]]) {
-             --lastIndex;
-           }
+      ![[NSCharacterSet whitespaceAndNewlineCharacterSet]
+        characterIsMember:[substring characterAtIndex:lastIndex]]) {
+      --lastIndex;
+    }
     // If we didn't find whitespace, use a maxLength chunk
     substring = [substring substringToIndex:lastIndex == 1 ? maxLength : lastIndex];
-    
+
     // Add the chunk to the list of texts
     [texts addObject:substring];
-    
+
     // Move the index
     index += substring.length + 1;
   }

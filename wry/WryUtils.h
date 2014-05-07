@@ -29,11 +29,15 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (BOOL)performObjectOperation:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams
                   errorMessage:(NSString *)errorMessage
+                     formatter:(id <WryFormatter>)formatter
+                       options:(NSDictionary *)options
                          error:(NSError **)error
                      operation:(ADNOperationBlock)operation;
 + (BOOL)performListOperation:(NSArray *)params
                minimumParams:(NSInteger)minimumParams
                 errorMessage:(NSString *)errorMessage
+                   formatter:(id <WryFormatter>)formatter
+                     options:(NSDictionary *)options
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation;
 + (id <WryCommand>)commandForName:(NSString *)name;

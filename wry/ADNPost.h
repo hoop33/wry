@@ -13,13 +13,13 @@
 
 @interface ADNPost : ADNObject
 
-@property(nonatomic, copy) NSString *repostID;
-@property(nonatomic, strong) ADNUser *user;
-@property(nonatomic, strong) NSDate *createdAt;
-@property(nonatomic, strong) ADNSource *source;
-@property(nonatomic, copy) NSString *text;
-@property(nonatomic, strong) NSArray *annotations;
-@property(nonatomic, strong) NSArray *hashtags;
-@property(nonatomic, strong) NSArray *links;
+@property (nonatomic, copy) NSString *repostID;
+@property (nonatomic, strong) ADNUser *user;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) ADNSource *source;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) NSArray *annotations;
+@property (nonatomic, strong) NSArray *hashtags;
+@property (nonatomic, strong) NSArray *links;
 
 @end

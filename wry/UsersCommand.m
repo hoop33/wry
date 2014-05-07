@@ -15,10 +15,10 @@
 
 @implementation UsersCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   if (params == nil || params.count == 0) {
-    NSString *defaultUser = [app.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
+    NSString *defaultUser = [app defaultUser];
     for (NSDictionary *account in [SSKeychain accountsForService:app.appName]) {
       NSString *user = [account valueForKey:@"acct"];
       [app print:[defaultUser isEqualToString:user] ? @"*" : @" "];

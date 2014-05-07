@@ -15,7 +15,7 @@
 
 @implementation SearchCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   // Rules:
   // 1. If it's a single word that starts with #, search by hashtag
   // 2. If it parses as name=value&name=value..., pass it through as search string
@@ -34,6 +34,8 @@
     return [WryUtils performListOperation:params
                             minimumParams:0
                              errorMessage:nil
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:^id(ADNService *service) {
                                   return [service searchPostsForHashtag:[searchString substringFromIndex:1]
@@ -63,6 +65,8 @@
     return [WryUtils performListOperation:params
                             minimumParams:0
                              errorMessage:nil
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:^id(ADNService *service) {
                                   return [service searchPosts:criteria

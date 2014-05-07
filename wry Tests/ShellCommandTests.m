@@ -39,4 +39,8 @@
   XCTAssertNotNil([command summary], @"summary should not be nil");
 }
 
+- (void)testPromptShouldNotBeNil {
+  XCTAssertNotNil([command performSelector:@selector(prompt)], @"prompt should not be nil");
+}
+
 @end

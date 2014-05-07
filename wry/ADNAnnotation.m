@@ -8,7 +8,7 @@
 
 #import "ADNAnnotation.h"
 
-@interface ADNAnnotation()
+@interface ADNAnnotation ()
 - (void)appendDictionary:(NSDictionary *)dictionary toString:(NSMutableString *)string indentationLevel:(NSUInteger)level;
 @end
 

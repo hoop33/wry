@@ -12,10 +12,12 @@
 
 @implementation RepostCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a post ID"
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   return [service repost:[params objectAtIndex:0] error:error];

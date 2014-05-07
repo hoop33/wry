@@ -7,10 +7,34 @@
 //
 
 #import "ShellCommand.h"
+#import "WryCommandLine.h"
+
+#define kMaxLength 1024
 
 @implementation ShellCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
+  char cli[kMaxLength];
+  BOOL quit = false;
+  while (!quit) {
+    [[WryApplication application] print:[self prompt]];
+
+    fgets(cli, sizeof(cli), stdin);
+    NSString *enteredText = [[NSString stringWithUTF8String:cli] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if ([@[@"quit", @"exit"] containsObject:[enteredText lowercaseString]]) {
+      quit = YES;
+    } else {
+      WryCommandLine *commandLine = [[WryCommandLine alloc] init];
+      if ([commandLine parseString:enteredText error:error]) {
+        [commandLine run];
+      } else {
+        if (error != NULL) {
+          [[WryApplication application] println:[*error localizedDescription]];
+        }
+      }
+    }
+  }
   return NO;
 }
 
@@ -24,6 +48,10 @@
 
 - (NSString *)summary {
   return [NSString stringWithFormat:@"Run a %@ shell", [WryApplication application].appName];
+}
+
+- (NSString *)prompt {
+  return [NSString stringWithFormat:@"%@@%@ => ", [[WryApplication application] defaultUser], [WryApplication application].appName];
 }
 
 @end

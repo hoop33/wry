@@ -20,8 +20,7 @@
 #import "ColorsSetting.h"
 
 @interface WrySettings ()
-@property(nonatomic, strong) NSMutableDictionary *overrides;
-@property(nonatomic, strong) NSDictionary *legacy;
+@property (nonatomic, strong) NSDictionary *legacy;
 @end
 
 @implementation WrySettings {
@@ -30,7 +29,6 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    self.overrides = [[NSMutableDictionary alloc] init];
     self.legacy = @{
       @"user" : @"DefaultUser",
       @"editor" : @"Editor",
@@ -54,30 +52,23 @@
 
 - (NSString *)stringValue:(NSString *)key {
   NSString *value = nil;
-  // Check for a command-line override
-  if ([[self.overrides allKeys] containsObject:key]) {
-    value = (NSString *) self.overrides[key];
+  // Check if they've configured an old key
+  if ([[self.legacy allKeys] containsObject:key] && (value = [[NSUserDefaults standardUserDefaults] objectForKey:[self.legacy objectForKey:key]]) != nil) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self.legacy objectForKey:key]];
+    [self setObject:value forKey:key];
   } else {
-    // Check if they've configured an old key
-    if ([[self.legacy allKeys] containsObject:key] && (value = [[NSUserDefaults standardUserDefaults] objectForKey:[self.legacy objectForKey:key]]) != nil) {
-      [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self.legacy objectForKey:key]];
-      [self setObject:value forKey:key];
-    } else {
-      // Check the defaults
-      value = (NSString *) [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    }
+    // Check the defaults
+    value = (NSString *) [[NSUserDefaults standardUserDefaults] objectForKey:key];
   }
   return value;
 }
 
 - (NSInteger)integerValue:(NSString *)key {
-  return [[self.overrides allKeys] containsObject:key] ? [(NSNumber *) self.overrides[key] integerValue] :
-    [[NSUserDefaults standardUserDefaults] integerForKey:key];
+  return [[NSUserDefaults standardUserDefaults] integerForKey:key];
 }
 
 - (BOOL)boolValue:(NSString *)key {
-  return [[self.overrides allKeys] containsObject:key] ? [(NSNumber *) self.overrides[key] boolValue] :
-    [[NSUserDefaults standardUserDefaults] boolForKey:key];
+  return [[NSUserDefaults standardUserDefaults] boolForKey:key];
 }
 
 - (NSString *)colorValue:(WryColor)wryColor {
@@ -85,25 +76,59 @@
   return colors.count > wryColor ? colors[wryColor] : @"";
 }
 
-- (void)setTransientValue:(NSString *)value forSetting:(id <WrySetting>)setting {
-  NSObject *object = nil;
-  switch ([setting type]) {
-    case WrySettingBooleanType:
-      object = @YES;
-      break;
-    case WrySettingIntegerType:
-      object = [NSNumber numberWithInteger:[value integerValue]];
-      break;
-    case WrySettingStringType:
-      object = value;
-      break;
-  }
-  [self.overrides setObject:object forKey:[WryUtils nameForSetting:setting]];
-}
+//- (void)setTransientValue:(NSString *)value forSetting:(id <WrySetting>)setting {
+//  NSObject *object = nil;
+//  switch ([setting type]) {
+//    case WrySettingBooleanType:
+//      object = @YES;
+//      break;
+//    case WrySettingIntegerType:
+//      object = [NSNumber numberWithInteger:[value integerValue]];
+//      break;
+//    case WrySettingStringType:
+//      object = value;
+//      break;
+//  }
+//  [self.overrides setObject:object forKey:[WryUtils nameForSetting:setting]];
+//}
 
 - (void)setObject:(NSObject *)value forKey:(NSString *)key {
   [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
   [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDictionary *)mergeWithOptions:(NSDictionary *)options {
+  // In this method, create a dictionary of the settings and then override it with the command line options.
+  NSArray *settings = [WryUtils allSettings];
+  NSMutableDictionary *merged = [NSMutableDictionary dictionaryWithCapacity:settings.count];
+
+  for (Class settingClass in settings) {
+    id <WrySetting> setting = [[settingClass alloc] init];
+    NSString *key = [WryUtils nameForSetting:setting];
+    NSObject *object = nil;
+    switch ([setting type]) {
+      case WrySettingUnknownType:
+        break;
+      case WrySettingBooleanType:
+        object = [NSNumber numberWithBool:[self boolValue:key]];
+        break;
+      case WrySettingIntegerType:
+        object = [NSNumber numberWithLong:[self integerValue:key]];
+        break;
+      case WrySettingStringType:
+        object = [self stringValue:key];
+        break;
+    }
+    if (object != nil) {
+      [merged setObject:object forKey:key];
+    }
+  }
+
+  // Now do the options
+  for (NSString *key in [options allKeys]) {
+    [merged setObject:[options valueForKey:key] forKey:key];
+  }
+  return [NSDictionary dictionaryWithDictionary:merged];
 }
 
 @end

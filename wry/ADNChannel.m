@@ -35,7 +35,7 @@ static NSDictionary *NamesForTypes;
   SEL selector = NSSelectorFromString([namedType lowercaseString]);
   if ([self respondsToSelector:selector]) {
     IMP imp = [self methodForSelector:selector];
-    NSString *(*func)(id, SEL) = (void *)imp;
+    NSString *(*func)(id, SEL) = (void *) imp;
     NSString *content = func(self, selector);
     [str appendString:content];
   } else {

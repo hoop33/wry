@@ -40,7 +40,7 @@
 }
 
 - (void)testNoParametersShouldFail {
-  XCTAssertFalse([command run:@[] error:nil], @"message with no params should fail");
+  XCTAssertFalse([command run:@[] formatter:nil options:nil error:nil], @"message with no params should fail");
 }
 
 @end

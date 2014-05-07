@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Rob Warner. All rights reserved.
 //
 
-#import "BaseCommand.h"
+#import "BaseCommandAbstract.h"
 #import "WryCommand.h"
 
-@interface ShellCommand : BaseCommand <WryCommand>
+@interface ShellCommand : BaseCommandAbstract
 
 @end

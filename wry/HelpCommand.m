@@ -22,7 +22,7 @@
 
 @implementation HelpCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   BOOL success = YES;
   if (params.count == 0) {
     [self showAllHelp];
@@ -66,20 +66,22 @@
                                           app.appName]];
   [app println:@""];
 
+  id <WryFormatter> formatter = [WryUtils formatterForName:@"text"];
+
   // Show the settings
   [app println:[NSString stringWithFormat:@"The %@ settings are:", app.appName]];
   SettingsCommand *settingsCommand = [[SettingsCommand alloc] init];
-  [settingsCommand run:nil error:nil];
+  [settingsCommand run:nil formatter:formatter options:nil error:nil];
 
   // Show the formatters
   [app println:[NSString stringWithFormat:@"The %@ formats are:", app.appName]];
   FormattersCommand *formattersCommand = [[FormattersCommand alloc] init];
-  [formattersCommand run:nil error:nil];
+  [formattersCommand run:nil formatter:formatter options:nil error:nil];
 
   // Show the commands
   [app println:[NSString stringWithFormat:@"The %@ commands are:", app.appName]];
   CommandsCommand *commandsCommand = [[CommandsCommand alloc] init];
-  [commandsCommand run:nil error:nil];
+  [commandsCommand run:nil formatter:formatter options:nil error:nil];
 
   [app println:[NSString stringWithFormat:@"See '%@ help <command | formatter | setting>' for help on a specific\n"
                                             @"command, formatter, or setting.",

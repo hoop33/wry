@@ -10,7 +10,7 @@
 
 @protocol WryCommand <NSObject>
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error;
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error;
 - (NSString *)usage;
 - (NSString *)help;
 - (NSString *)summary;

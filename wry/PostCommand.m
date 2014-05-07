@@ -16,10 +16,12 @@
 
 @implementation PostCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:0
                              errorMessage:nil
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
