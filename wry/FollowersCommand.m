@@ -13,10 +13,13 @@
 
 @implementation FollowersCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performListOperation:params
                           minimumParams:0
-                           errorMessage:nil error:error
+                           errorMessage:nil
+                              formatter:formatter
+                                options:options
+                                  error:error
                               operation:^id(ADNService *service) {
                                 return params.count > 0 ? [service getFollowers:[[params objectAtIndex:0] atify]
                                                                           error:error] :

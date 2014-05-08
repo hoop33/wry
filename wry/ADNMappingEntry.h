@@ -12,9 +12,9 @@
 
 @interface ADNMappingEntry : NSObject
 
-@property(nonatomic, copy) NSString *from;
-@property(nonatomic, copy) NSString *to;
-@property(nonatomic, strong) ADNJSONMapping *mapping;
+@property (nonatomic, copy) NSString *from;
+@property (nonatomic, copy) NSString *to;
+@property (nonatomic, strong) ADNJSONMapping *mapping;
 
 + (ADNMappingEntry *)mappingEntry:(NSString *)from to:(NSString *)to mapping:(ADNJSONMapping *)mapping;
 

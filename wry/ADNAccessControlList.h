@@ -10,10 +10,10 @@
 
 @interface ADNAccessControlList : ADNObject
 
-@property(nonatomic, assign) BOOL anyUser;
-@property(nonatomic, assign) BOOL immutable;
-@property(nonatomic, assign) BOOL public;
-@property(nonatomic, assign) BOOL you;
-@property(nonatomic, strong) NSArray *userIDs;
+@property (nonatomic, assign) BOOL anyUser;
+@property (nonatomic, assign) BOOL immutable;
+@property (nonatomic, assign) BOOL public;
+@property (nonatomic, assign) BOOL you;
+@property (nonatomic, strong) NSArray *userIDs;
 
 @end

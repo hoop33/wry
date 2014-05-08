@@ -9,21 +9,18 @@
 @protocol WryCommand;
 @protocol WryFormatter;
 @class WrySettings;
+@class WryCommandLine;
 
 @interface WryApplication : NSObject
 
-@property(nonatomic, assign, readonly) BOOL interactiveIn;
-@property(nonatomic, assign, readonly) BOOL interactiveOut;
-@property(nonatomic, strong) WrySettings *settings;
-@property(nonatomic, copy) NSString *appName;
-@property(nonatomic, copy) NSString *commandName;
-@property(nonatomic, strong) NSArray *params;
-@property(nonatomic, copy) NSString *accessToken;
-@property(nonatomic, strong) id <WryFormatter> formatter;
+@property (nonatomic, assign, readonly) BOOL interactiveIn;
+@property (nonatomic, assign, readonly) BOOL interactiveOut;
+@property (nonatomic, strong) WrySettings *settings;
+@property (nonatomic, copy) NSString *appName;
 
 + (WryApplication *)application;
 + (int)maximumPostLength;
-- (int)run;
+
 - (void)print:(NSString *)output;
 - (void)println:(NSObject *)output;
 - (void)openURL:(NSString *)urlString;

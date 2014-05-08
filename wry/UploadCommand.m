@@ -13,7 +13,7 @@
 
 @implementation UploadCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   WryApplication *app = [WryApplication application];
   if (params.count == 0) {
     if (error != NULL) {
@@ -35,7 +35,10 @@
   }
   return [WryUtils performObjectOperation:params
                             minimumParams:0
-                             errorMessage:nil error:error
+                             errorMessage:nil
+                                formatter:formatter
+                                  options:options
+                                    error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   return [service upload:filename content:data error:error];
                                 }];

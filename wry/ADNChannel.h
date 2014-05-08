@@ -13,14 +13,14 @@
 
 @interface ADNChannel : ADNObject
 
-@property(nonatomic, copy) NSString *type;
-@property(nonatomic, strong) ADNUser *owner;
-@property(nonatomic, strong) ADNAccessControlList *readers;
-@property(nonatomic, strong) ADNAccessControlList *writers;
-@property(nonatomic, strong) NSArray *annotations;
-@property(nonatomic, assign) BOOL muted;
-@property(nonatomic, assign) BOOL subscribed;
-@property(nonatomic, assign) BOOL edit;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, strong) ADNUser *owner;
+@property (nonatomic, strong) ADNAccessControlList *readers;
+@property (nonatomic, strong) ADNAccessControlList *writers;
+@property (nonatomic, strong) NSArray *annotations;
+@property (nonatomic, assign) BOOL muted;
+@property (nonatomic, assign) BOOL subscribed;
+@property (nonatomic, assign) BOOL edit;
 
 + (NSString *)nameForType:(NSString *)type;
 

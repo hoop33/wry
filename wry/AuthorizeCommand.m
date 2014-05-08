@@ -15,7 +15,7 @@
 
 @implementation AuthorizeCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   BOOL success = YES;
   WryApplication *app = [WryApplication application];
   [app println:[NSString stringWithFormat:@"You authorize %@ through a Web browser on the App.net website.",
@@ -46,7 +46,7 @@
     if (success && response != nil) {
       NSString *username = ((ADNUser *) response.object).username;
       [app.settings setObject:username forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
-      app.accessToken = accessToken;
+      [app.settings setAccessTokenForUser:username accessToken:accessToken];
       [app println:[NSString stringWithFormat:@"User %@ authorized!", username]];
     }
   }

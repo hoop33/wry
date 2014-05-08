@@ -28,7 +28,7 @@
 
 - (void)parseData:(ADNJSONMapping *)mapping reverse:(BOOL)reverse {
   if ([self.data isKindOfClass:[NSArray class]]) {
-    NSArray *results = (NSArray *)self.data;
+    NSArray *results = (NSArray *) self.data;
     NSEnumerator *enumerator = reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
     for (NSDictionary *dictionary in enumerator) {

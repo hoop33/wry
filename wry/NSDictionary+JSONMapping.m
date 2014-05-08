@@ -20,7 +20,7 @@
       if ([value isKindOfClass:[NSArray class]]) {
         NSMutableArray *values = [NSMutableArray array];
         for (id item in value) {
-          [values addObject:(entry.mapping == nil ? item : [(NSDictionary *)item mapToObjectWithMapping:entry.mapping])];
+          [values addObject:(entry.mapping == nil ? item : [(NSDictionary *) item mapToObjectWithMapping:entry.mapping])];
         }
         [object setValue:values forKey:entry.to];
       } else if (entry.mapping != nil) {

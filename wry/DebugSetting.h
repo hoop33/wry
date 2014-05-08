@@ -7,8 +7,8 @@
 //
 
 #import "WrySetting.h"
-#import "BaseSetting.h"
+#import "BaseSettingAbstract.h"
 
-@interface DebugSetting : BaseSetting <WrySetting>
+@interface DebugSetting : BaseSettingAbstract
 
 @end

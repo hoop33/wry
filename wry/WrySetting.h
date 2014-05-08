@@ -7,6 +7,7 @@
 //
 
 typedef enum {
+  WrySettingUnknownType,
   WrySettingBooleanType,
   WrySettingIntegerType,
   WrySettingStringType

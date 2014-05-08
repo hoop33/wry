@@ -40,11 +40,11 @@
 }
 
 - (void)testNoParametersShouldFail {
-  XCTAssertFalse([command run:@[] error:nil], @"message with no params should fail");
+  XCTAssertFalse([command run:@[] formatter:nil options:nil error:nil], @"message with no params should fail");
 }
 
 - (void)testOneParameterShouldFail {
-  XCTAssertFalse([command run:@[@"12345"] error:nil], @"message with one param should fail");
+  XCTAssertFalse([command run:@[@"12345"] formatter:nil options:nil error:nil], @"message with one param should fail");
 }
 
 @end

@@ -204,7 +204,7 @@
   // Get the post
   ADNResponse *response = [self showPost:postID error:error];
   if (response != nil) {
-    ADNPost *post = (ADNPost *)response.object;
+    ADNPost *post = (ADNPost *) response.object;
     if (post.repostID != nil) {
       originalID = post.repostID;
     }

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-#import "BaseSetting.h"
+#import "BaseSettingAbstract.h"
 #import "WrySetting.h"
 
-@interface ColorsSetting : BaseSetting <WrySetting>
+@interface ColorsSetting : BaseSettingAbstract
 
 @end

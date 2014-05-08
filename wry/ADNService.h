@@ -12,16 +12,16 @@
 
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
-@property(nonatomic, copy) NSString *accessToken;
-@property(nonatomic, copy) NSString *beforeId;
-@property(nonatomic, copy) NSString *sinceId;
-@property(nonatomic, strong) NSMutableData *data;
-@property(nonatomic, strong) NSError *error;
-@property(nonatomic, assign) NSInteger count;
-@property(nonatomic, assign) BOOL debug;
-@property(nonatomic, assign) BOOL pretty;
-@property(nonatomic, assign) BOOL reverse;
-@property(nonatomic, assign) BOOL annotations;
+@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSString *beforeId;
+@property (nonatomic, copy) NSString *sinceId;
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSError *error;
+@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) BOOL debug;
+@property (nonatomic, assign) BOOL pretty;
+@property (nonatomic, assign) BOOL reverse;
+@property (nonatomic, assign) BOOL annotations;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 

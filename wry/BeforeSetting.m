@@ -22,7 +22,7 @@
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
     @"For commands that return multiple items (e.g., stream), return the items\n"
-    @"before the item with the ID <before>."];
+      @"before the item with the ID <before>."];
   return help;
 }
 

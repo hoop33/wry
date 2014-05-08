@@ -8,6 +8,6 @@
 
 #import "WryEnhancer.h"
 
-@interface UnescapeBangEnhancer : NSObject<WryEnhancer>
+@interface UnescapeBangEnhancer : NSObject <WryEnhancer>
 
 @end
