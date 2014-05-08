@@ -18,6 +18,8 @@
 #import "LongSetting.h"
 #import "SeparatorSetting.h"
 #import "ColorsSetting.h"
+#import "UserSetting.h"
+#import "SSKeychain.h"
 
 @interface WrySettings ()
 @property (nonatomic, strong) NSDictionary *legacy;
@@ -113,6 +115,25 @@
     [merged setObject:[options valueForKey:key] forKey:key];
   }
   return [NSDictionary dictionaryWithDictionary:merged];
+}
+
+- (NSString *)defaultUser {
+  return [self stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
+}
+
+- (NSString *)accessTokenForUser:(NSString *)user {
+  return [SSKeychain passwordForService:[WryApplication application].appName
+                                account:user];
+}
+
+- (void)setAccessTokenForUser:(NSString *)user accessToken:(NSString *)accessToken {
+  NSString *appName = [WryApplication application].appName;
+  [SSKeychain setPassword:accessToken
+               forService:appName
+                  account:user];
+  if ([SSKeychain accountsForService:appName].count == 1) {
+    [self setObject:user forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
+  }
 }
 
 @end

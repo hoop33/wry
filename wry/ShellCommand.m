@@ -8,6 +8,7 @@
 
 #import "ShellCommand.h"
 #import "WryCommandLine.h"
+#import "WrySettings.h"
 
 #define kMaxLength 1024
 
@@ -51,7 +52,7 @@
 }
 
 - (NSString *)prompt {
-  return [NSString stringWithFormat:@"%@@%@ => ", [[WryApplication application] defaultUser], [WryApplication application].appName];
+  return [NSString stringWithFormat:@"%@@%@ => ", [[WryApplication application].settings defaultUser], [WryApplication application].appName];
 }
 
 @end

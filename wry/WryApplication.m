@@ -64,29 +64,12 @@
   [task launch];
 }
 
-- (NSString *)accessToken {
-  return [SSKeychain passwordForService:self.appName account:[self.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]]];
-}
-
-- (void)setAccessToken:(NSString *)accessToken {
-  NSString *user = [self.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
-  [SSKeychain setPassword:accessToken forService:self.appName
-                  account:user];
-  if ([SSKeychain accountsForService:self.appName].count == 1) {
-    [self.settings setObject:user forKey:[WryUtils nameForSettingForClass:[UserSetting class]]];
-  }
-}
-
 - (NSString *)version {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
 
 - (NSString *)errorDomain {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
-}
-
-- (NSString *)defaultUser {
-  return [self.settings stringValue:[WryUtils nameForSettingForClass:[UserSetting class]]];
 }
 
 @end

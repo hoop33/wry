@@ -27,5 +27,8 @@ typedef enum {
 - (NSString *)colorValue:(WryColor)wryColor;
 - (void)setObject:(NSObject *)value forKey:(NSString *)key;
 - (NSDictionary *)mergeWithOptions:(NSDictionary *)options;
+- (NSString *)defaultUser;
+- (NSString *)accessTokenForUser:(NSString *)user;
+- (void)setAccessTokenForUser:(NSString *)user accessToken:(NSString *)accessToken;
 
 @end

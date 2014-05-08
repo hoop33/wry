@@ -17,7 +17,6 @@
 @property (nonatomic, assign, readonly) BOOL interactiveOut;
 @property (nonatomic, strong) WrySettings *settings;
 @property (nonatomic, copy) NSString *appName;
-@property (nonatomic, copy) NSString *accessToken;
 
 + (WryApplication *)application;
 + (int)maximumPostLength;
@@ -28,6 +27,5 @@
 - (NSString *)getInput;
 - (NSString *)version;
 - (NSString *)errorDomain;
-- (NSString *)defaultUser;
 
 @end

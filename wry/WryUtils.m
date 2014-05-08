@@ -18,6 +18,8 @@
 #import "AnnotationsSetting.h"
 #import "BeforeSetting.h"
 #import "AfterSetting.h"
+#import "SSKeychain.h"
+#import "UserSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
@@ -137,7 +139,8 @@ static NSArray *allClasses;
     }
     success = NO;
   } else {
-    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ? app.accessToken : accessToken)];
+    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ?
+      [app.settings accessTokenForUser:options[[WryUtils nameForSettingForClass:[UserSetting class]]]] : accessToken)];
     service.count = [options[[WryUtils nameForSettingForClass:[CountSetting class]]] integerValue];
     service.debug = [options[[WryUtils nameForSettingForClass:[DebugSetting class]]] boolValue];
     service.pretty = [options[[WryUtils nameForSettingForClass:[PrettySetting class]]] boolValue];
@@ -252,5 +255,6 @@ static NSArray *allClasses;
   }
   return array;
 }
+
 
 @end
