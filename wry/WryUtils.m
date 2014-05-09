@@ -18,12 +18,18 @@
 #import "AnnotationsSetting.h"
 #import "BeforeSetting.h"
 #import "AfterSetting.h"
-#import "SSKeychain.h"
 #import "UserSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
 #define kSettingSuffix @"Setting"
+
+@interface WryUtils ()
++ (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol;
++ (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix;
++ (NSString *)nameForClass:(Class)cls suffix:(NSString *)suffix;
++ (NSArray *)allClassesWithSuffix:(NSString *)suffix protocol:(id)protocol;
+@end
 
 @implementation WryUtils
 
@@ -176,6 +182,19 @@ static NSArray *allClasses;
   return success;
 }
 
++ (BOOL)writeInfo:(NSString *)info toFilename:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? NO : [info writeToFile:path
+                                   atomically:NO
+                                     encoding:NSUTF8StringEncoding
+                                        error:error];
+}
+
++ (NSString *)readInfo:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? nil : [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:error];
+}
+
 + (id <WryCommand>)commandForName:(NSString *)name {
   return [WryUtils instanceForName:[name capitalizedString] suffix:kCommandSuffix protocol:@protocol(WryCommand)];
 }
@@ -256,5 +275,29 @@ static NSArray *allClasses;
   return array;
 }
 
++ (NSString *)infoPath:(NSString *)filename error:(NSError **)error {
+  if (filename.length > 0) {
+    NSString *directory = [WryUtils configDirectory:error];
+    if (directory != nil) {
+      return [directory stringByAppendingPathComponent:filename];
+    }
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:[WryApplication application].errorDomain
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"No path for filename %@", filename]}];
+    }
+  }
+  return nil;
+}
+
++ (NSString *)configDirectory:(NSError **)error {
+  BOOL isDirectory;
+  NSString *directory = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@".%@", [WryApplication application].appName]];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory]) if (![fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:error])
+    directory = nil;
+  return directory;
+}
 
 @end

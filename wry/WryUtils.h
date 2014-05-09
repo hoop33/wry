@@ -51,5 +51,8 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (NSString *)nameForSettingForClass:(Class)cls;
 + (NSString *)nameForSetting:(id <WrySetting>)setting;
 + (NSArray *)allSettings;
++ (BOOL)writeInfo:(NSString *)info toFilename:(NSString *)filename error:(NSError **)error;
++ (NSString *)readInfo:(NSString *)filename error:(NSError **)error;
++ (NSString *)infoPath:(NSString *)filename error:(NSError **)error;
 
 @end

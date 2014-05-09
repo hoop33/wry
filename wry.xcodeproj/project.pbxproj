@@ -29,6 +29,7 @@
 		C707E36717D35658005DB231 /* EditorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36617D35658005DB231 /* EditorSetting.m */; };
 		C707E36A17D35C30005DB231 /* SeparatorSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C707E36917D35C30005DB231 /* SeparatorSetting.m */; };
 		C709DC0217B85AA100D5E56D /* WryRange.m in Sources */ = {isa = PBXBuildFile; fileRef = C709DC0117B85AA100D5E56D /* WryRange.m */; };
+		C71055EF191BE4F200E48CD2 /* WryUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C71055EE191BE4F200E48CD2 /* WryUtilsTests.m */; };
 		C716222E17B3DBD900AE9C6A /* LongSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C716222D17B3DBD900AE9C6A /* LongSetting.m */; };
 		C718D0C717A9A5E7000ABF4E /* DebugSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C718D0C617A9A5E7000ABF4E /* DebugSetting.m */; };
 		C71BF686172D42E6004C228B /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C71BF683172D42E6004C228B /* SSKeychain.m */; };
@@ -294,6 +295,7 @@
 		C707E36917D35C30005DB231 /* SeparatorSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeparatorSetting.m; sourceTree = "<group>"; };
 		C709DC0017B85AA100D5E56D /* WryRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryRange.h; sourceTree = "<group>"; };
 		C709DC0117B85AA100D5E56D /* WryRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryRange.m; sourceTree = "<group>"; };
+		C71055EE191BE4F200E48CD2 /* WryUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WryUtilsTests.m; sourceTree = "<group>"; };
 		C716222C17B3DBD900AE9C6A /* LongSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongSetting.h; sourceTree = "<group>"; };
 		C716222D17B3DBD900AE9C6A /* LongSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongSetting.m; sourceTree = "<group>"; };
 		C718D0C317A9A54D000ABF4E /* WrySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrySetting.h; sourceTree = "<group>"; };
@@ -890,6 +892,7 @@
 				C7332A2E18887C8E00B0E7BF /* WryComposerTests.m */,
 				C73329D118871B0D00B0E7BF /* WrySettingsTests.m */,
 				C7A1D89B19142F9500883AAA /* WryCommandLineTests.m */,
+				C71055EE191BE4F200E48CD2 /* WryUtilsTests.m */,
 			);
 			path = "wry Tests";
 			sourceTree = "<group>";
@@ -1167,6 +1170,7 @@
 				C73329F518871EFD00B0E7BF /* UnifiedCommand.m in Sources */,
 				C73329F018871EE700B0E7BF /* HelpCommand.m in Sources */,
 				C7332A0B18871F5F00B0E7BF /* CommandsCommand.m in Sources */,
+				C71055EF191BE4F200E48CD2 /* WryUtilsTests.m in Sources */,
 				C7AFA7191899579A003E2DF4 /* AfterSettingTests.m in Sources */,
 				C7332A1118871F7A00B0E7BF /* SendCommand.m in Sources */,
 				C73329ED18871EDC00B0E7BF /* ChannelCommand.m in Sources */,
