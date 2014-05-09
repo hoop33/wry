@@ -121,8 +121,16 @@ static NSArray *allClasses;
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                       NSArray *list = (NSArray *) response.object;
                       if (list.count > 0) {
+                        // Print out the response
                         WryApplication *app = [WryApplication application];
                         [app println:[formatter format:response]];
+
+                        // Write the last item ID to the data directory
+                        ADNObject *first = [list firstObject];
+                        ADNObject *last = [list lastObject];
+                        [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MAX(first.objectID, last.objectID)]
+                                 toFilename:[first className]
+                                      error:error];
                       }
                     }];
 }
