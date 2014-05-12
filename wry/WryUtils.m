@@ -18,12 +18,20 @@
 #import "AnnotationsSetting.h"
 #import "BeforeSetting.h"
 #import "AfterSetting.h"
-#import "SSKeychain.h"
 #import "UserSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
 #define kSettingSuffix @"Setting"
+#define kEarliest @"earliest"
+#define kLatest @"latest"
+
+@interface WryUtils ()
++ (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol;
++ (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix;
++ (NSString *)nameForClass:(Class)cls suffix:(NSString *)suffix;
++ (NSArray *)allClassesWithSuffix:(NSString *)suffix protocol:(id)protocol;
+@end
 
 @implementation WryUtils
 
@@ -115,8 +123,19 @@ static NSArray *allClasses;
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                       NSArray *list = (NSArray *) response.object;
                       if (list.count > 0) {
+                        // Print out the response
                         WryApplication *app = [WryApplication application];
                         [app println:[formatter format:response]];
+
+                        // Write the last item ID to the data directory
+                        ADNObject *first = [list firstObject];
+                        ADNObject *last = [list lastObject];
+                        [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MIN(first.objectID, last.objectID)]
+                                 toFilename:kEarliest
+                                      error:error];
+                        [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MAX(first.objectID, last.objectID)]
+                                 toFilename:kLatest
+                                      error:error];
                       }
                     }];
 }
@@ -125,7 +144,7 @@ static NSArray *allClasses;
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
-                 options:options
+                 options:(NSDictionary *)options
                    error:(NSError **)error
                operation:(ADNOperationBlock)operation
          outputOperation:(ADNOutputOperationBlock)outputOperation {
@@ -146,8 +165,16 @@ static NSArray *allClasses;
     service.pretty = [options[[WryUtils nameForSettingForClass:[PrettySetting class]]] boolValue];
     service.reverse = [options[[WryUtils nameForSettingForClass:[ReverseSetting class]]] boolValue];
     service.annotations = [options[[WryUtils nameForSettingForClass:[AnnotationsSetting class]]] boolValue];
-    service.beforeId = [options[[WryUtils nameForSettingForClass:[BeforeSetting class]]] stringValue];
-    service.sinceId = [options[[WryUtils nameForSettingForClass:[AfterSetting class]]] stringValue];
+    service.beforeId = options[[WryUtils nameForSettingForClass:[BeforeSetting class]]];
+    service.sinceId = options[[WryUtils nameForSettingForClass:[AfterSetting class]]];
+
+    // Check for earliest/latest
+    if ([service.beforeId isEqualToString:kEarliest]) {
+      service.beforeId = [WryUtils readInfo:kEarliest error:error];
+    }
+    if ([service.sinceId isEqualToString:kLatest]) {
+      service.sinceId = [WryUtils readInfo:kLatest error:error];
+    }
 
     ADNResponse *response = operation(service);
     if (response != nil) {
@@ -174,6 +201,27 @@ static NSArray *allClasses;
     }
   }
   return success;
+}
+
++ (BOOL)deleteRuntimeInfo:(NSError **)error {
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSString *earliest = [WryUtils infoPath:kEarliest error:error];
+  NSString *latest = [WryUtils infoPath:kLatest error:error];
+  return ((![fileManager fileExistsAtPath:earliest] || [fileManager removeItemAtPath:earliest error:error]) &&
+    (![fileManager fileExistsAtPath:latest] || [fileManager removeItemAtPath:latest error:error]));
+}
+
++ (BOOL)writeInfo:(NSString *)info toFilename:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? NO : [info writeToFile:path
+                                   atomically:NO
+                                     encoding:NSUTF8StringEncoding
+                                        error:error];
+}
+
++ (NSString *)readInfo:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? nil : [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:error];
 }
 
 + (id <WryCommand>)commandForName:(NSString *)name {
@@ -256,5 +304,29 @@ static NSArray *allClasses;
   return array;
 }
 
++ (NSString *)infoPath:(NSString *)filename error:(NSError **)error {
+  if (filename.length > 0) {
+    NSString *directory = [WryUtils configDirectory:error];
+    if (directory != nil) {
+      return [directory stringByAppendingPathComponent:filename];
+    }
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:[WryApplication application].errorDomain
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"No path for filename %@", filename]}];
+    }
+  }
+  return nil;
+}
+
++ (NSString *)configDirectory:(NSError **)error {
+  BOOL isDirectory;
+  NSString *directory = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@".%@", [WryApplication application].appName]];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory]) if (![fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:error])
+    directory = nil;
+  return directory;
+}
 
 @end
