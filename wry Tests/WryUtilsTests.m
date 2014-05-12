@@ -50,4 +50,14 @@
   XCTAssertEqualObjects([WryUtils readInfo:@"test" error:nil], info);
 }
 
+- (void)testDeleteRuntimeInfoShouldZeroFiles {
+  [WryUtils writeInfo:@"test earliest" toFilename:@"earliest" error:nil];
+  [WryUtils writeInfo:@"test latest" toFilename:@"latest" error:nil];
+  XCTAssertEqualObjects([WryUtils readInfo:@"earliest" error:nil], @"test earliest");
+  XCTAssertEqualObjects([WryUtils readInfo:@"latest" error:nil], @"test latest");
+  [WryUtils deleteRuntimeInfo:nil];
+  XCTAssertNil([WryUtils readInfo:@"earliest" error:nil]);
+  XCTAssertNil([WryUtils readInfo:@"latest" error:nil]);
+}
+
 @end

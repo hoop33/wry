@@ -14,6 +14,7 @@
 #import "WryErrorCodes.h"
 #import "CountSetting.h"
 #import "FormatSetting.h"
+#import "RepeatSetting.h"
 
 #define kMaxCount 200
 
@@ -113,16 +114,43 @@
         returnCode = WryErrorCodeBadInput;
       } else {
         NSError *error;
-        if (![wryCommand run:self.params formatter:formatter options:[application.settings mergeWithOptions:self.overrides] error:&error]) {
-          if (error != nil) {
-            [application println:error.localizedDescription];
-            returnCode = (int) error.code;
-          } else {
-            returnCode = WryErrorCodeUnknown;
-          }
+        // Delete any runtime data we've stored on previous runs
+        if (![WryUtils deleteRuntimeInfo:&error]) {
+          returnCode = [self processError:error];
+        } else {
+          int seconds = 0;
+          do {
+            // Figure out how many seconds to sleep, if appropriate
+            NSDictionary *options = [application.settings mergeWithOptions:self.overrides];
+            seconds = [options[[WryUtils nameForSettingForClass:[RepeatSetting class]]] integerValue];
+
+            // Run the command
+            if ([wryCommand run:self.params
+                      formatter:formatter
+                        options:options
+                          error:&error]) {
+              // Sleep <repeat> seconds
+              if (seconds > 0) {
+                [NSThread sleepForTimeInterval:seconds];
+              }
+            } else {
+              [self processError:error];
+            }
+          } while (returnCode == WrySuccessCode && seconds > 0);
         }
       }
     }
+  }
+  return returnCode;
+}
+
+- (int)processError:(NSError *)error {
+  int returnCode = WrySuccessCode;
+  if (error != NULL) {
+    [[WryApplication application] println:error.localizedDescription];
+    returnCode = (int) error.code;
+  } else {
+    returnCode = WryErrorCodeUnknown;
   }
   return returnCode;
 }
