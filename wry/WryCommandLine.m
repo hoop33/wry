@@ -118,7 +118,7 @@
         if (![WryUtils deleteRuntimeInfo:&error]) {
           returnCode = [self processError:error];
         } else {
-          int seconds = 0;
+          NSInteger seconds = 0;
           do {
             // Figure out how many seconds to sleep, if appropriate
             NSDictionary *options = [application.settings mergeWithOptions:self.overrides];
