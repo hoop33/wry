@@ -23,6 +23,8 @@
   [app println:@"Jeremy W. Sherman (@jws): Many contributions."];
   [app println:@"Parker (@parkr): Formatting for following/followed information."];
   [app println:@"SSKeychain (https://github.com/soffes/sskeychain): Keychain access."];
+  [app println:@"linenoise (https://github.com/antirez/linenoise): Command line editing."];
+  [app println:@""];
   return YES;
 }
 

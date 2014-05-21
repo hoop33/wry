@@ -168,6 +168,8 @@
 		C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A8170502E50002A9A5 /* FindCommand.m */; };
 		C7457504176B822D006B4893 /* WryComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457503176B822D006B4893 /* WryComposer.m */; };
 		C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457508176E6B5F006B4893 /* LinkEnhancer.m */; };
+		C7583A8C192D202500E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; };
+		C7583A8E192D549B00E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };
@@ -391,6 +393,8 @@
 		C7457505176E6AF3006B4893 /* WryEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WryEnhancer.h; sourceTree = "<group>"; };
 		C7457507176E6B5F006B4893 /* LinkEnhancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkEnhancer.h; sourceTree = "<group>"; };
 		C7457508176E6B5F006B4893 /* LinkEnhancer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkEnhancer.m; sourceTree = "<group>"; };
+		C7583A8A192D202500E53966 /* linenoise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linenoise.c; sourceTree = "<group>"; };
+		C7583A8B192D202500E53966 /* linenoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linenoise.h; sourceTree = "<group>"; };
 		C784325716EA02FA000DED40 /* wry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wry; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784325A16EA02FA000DED40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C784325D16EA02FA000DED40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -615,6 +619,15 @@
 			name = Enhancers;
 			sourceTree = "<group>";
 		};
+		C7583A8D192D202B00E53966 /* linenoise */ = {
+			isa = PBXGroup;
+			children = (
+				C7583A8A192D202500E53966 /* linenoise.c */,
+				C7583A8B192D202500E53966 /* linenoise.h */,
+			);
+			name = linenoise;
+			sourceTree = "<group>";
+		};
 		C784324E16EA02FA000DED40 = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +664,7 @@
 			isa = PBXGroup;
 			children = (
 				C784326B16EBBA16000DED40 /* Classes */,
+				C7583A8D192D202B00E53966 /* linenoise */,
 				C784325D16EA02FA000DED40 /* main.m */,
 				C71BF688172D42EC004C228B /* SSKeychain */,
 				C784325F16EA02FA000DED40 /* Supporting Files */,
@@ -1086,6 +1100,7 @@
 				C73429CF1765F12D0022AEE2 /* ADNMappingEntry.m in Sources */,
 				C7457504176B822D006B4893 /* WryComposer.m in Sources */,
 				C7A1D89919142F6F00883AAA /* WryCommandLine.m in Sources */,
+				C7583A8C192D202500E53966 /* linenoise.c in Sources */,
 				C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */,
 				C7D2963A177A380B00649A29 /* ADNObject.m in Sources */,
 				C7D29680177CA1F000649A29 /* TextTooLongEnhancer.m in Sources */,
@@ -1126,6 +1141,7 @@
 				C7332A2318871FD500B0E7BF /* ADNObject.m in Sources */,
 				C7332A0918871F5400B0E7BF /* SearchCommand.m in Sources */,
 				C73329D618871E2F00B0E7BF /* QuietSetting.m in Sources */,
+				C7583A8E192D549B00E53966 /* linenoise.c in Sources */,
 				C7AFA717189956A6003E2DF4 /* AfterSetting.m in Sources */,
 				C73329E318871E6600B0E7BF /* VersionSetting.m in Sources */,
 				C7332A1418871F8600B0E7BF /* ConfigCommand.m in Sources */,
