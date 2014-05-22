@@ -123,6 +123,7 @@ void completion(const char *buf, linenoiseCompletions *lc) {
         }
       }
     }
+    free(line);
   }
   return NO;
 }
