@@ -99,6 +99,7 @@ void completion(const char *buf, linenoiseCompletions *lc) {
 
   const char *historyFile = [[WryUtils infoPath:@"history.txt" error:error] UTF8String];
   linenoiseHistorySetMaxLen(1000); // TODO make a setting
+  linenoiseHistoryLoad(historyFile);
   linenoiseSetCompletionCallback(completion);
 
   char *line;
