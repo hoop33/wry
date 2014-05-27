@@ -108,19 +108,21 @@ void completion(const char *buf, linenoiseCompletions *lc) {
     if ([@[@"quit", @"exit"] containsObject:[input lowercaseString]]) {
       break;
     } else {
-      WryCommandLine *commandLine = [[WryCommandLine alloc] init];
-      if ([commandLine parseString:input error:error]) {
-        // No shells in shell
-        if ([commandLine.commandName isEqualToString:[WryUtils nameForCommand:self]]) {
-          [[WryApplication application] println:@"That would make turtles all the way down."];
+      @autoreleasepool {
+        WryCommandLine *commandLine = [[WryCommandLine alloc] init];
+        if ([commandLine parseString:input error:error]) {
+          // No shells in shell
+          if ([commandLine.commandName isEqualToString:[WryUtils nameForCommand:self]]) {
+            [[WryApplication application] println:@"That would make turtles all the way down."];
+          } else {
+            linenoiseHistoryAdd(line);
+            linenoiseHistorySave(historyFile);
+            [commandLine run];
+          }
         } else {
-          linenoiseHistoryAdd(line);
-          linenoiseHistorySave(historyFile);
-          [commandLine run];
-        }
-      } else {
-        if (error != NULL) {
-          [[WryApplication application] println:[*error localizedDescription]];
+          if (error != NULL) {
+            [[WryApplication application] println:[*error localizedDescription]];
+          }
         }
       }
     }
