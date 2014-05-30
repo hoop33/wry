@@ -36,6 +36,9 @@
 @implementation WryUtils
 
 static NSArray *allClasses;
+static NSArray *allCommands;
+static NSArray *allSettings;
+static NSArray *allFormatters;
 
 + (void)initialize {
   NSMutableArray *array = [NSMutableArray array];
@@ -265,15 +268,24 @@ static NSArray *allClasses;
 }
 
 + (NSArray *)allCommands {
-  return [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
+  if (allCommands == nil) {
+    allCommands = [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
+  }
+  return allCommands;
 }
 
 + (NSArray *)allFormatters {
-  return [WryUtils allClassesWithSuffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+  if (allFormatters == nil) {
+    allFormatters = [WryUtils allClassesWithSuffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+  }
+  return allFormatters;
 }
 
 + (NSArray *)allSettings {
-  return [WryUtils allClassesWithSuffix:kSettingSuffix protocol:@protocol(WrySetting)];
+  if (allSettings == nil) {
+    allSettings = [WryUtils allClassesWithSuffix:kSettingSuffix protocol:@protocol(WrySetting)];
+  }
+  return allSettings;
 }
 
 #pragma mark - Private methods

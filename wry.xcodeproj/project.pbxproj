@@ -168,8 +168,8 @@
 		C744E4A9170502EA0002A9A5 /* FindCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C744E4A8170502E50002A9A5 /* FindCommand.m */; };
 		C7457504176B822D006B4893 /* WryComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457503176B822D006B4893 /* WryComposer.m */; };
 		C7457509176E6B5F006B4893 /* LinkEnhancer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7457508176E6B5F006B4893 /* LinkEnhancer.m */; };
-		C7583A8C192D202500E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; };
-		C7583A8E192D549B00E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; };
+		C7583A8C192D202500E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		C7583A8E192D549B00E53966 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = C7583A8A192D202500E53966 /* linenoise.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		C784325B16EA02FA000DED40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C784325A16EA02FA000DED40 /* Foundation.framework */; };
 		C784325E16EA02FA000DED40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C784325D16EA02FA000DED40 /* main.m */; };
 		C784326216EA02FA000DED40 /* wry.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C784326116EA02FA000DED40 /* wry.1 */; };

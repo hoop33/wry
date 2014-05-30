@@ -1,6 +1,6 @@
 # Release Notes
 
-## Version 1.8 (5/??/2014)
+## Version 1.8 (5/30/2014)
 * Add wry shell
 * Add --before <id> and --after <id> flags for pagination
 * When replying by external editor, insert username you're replying to

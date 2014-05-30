@@ -118,12 +118,10 @@
         if (![WryUtils deleteRuntimeInfo:&error]) {
           returnCode = [self processError:error];
         } else {
-          NSInteger seconds = 0;
+          // Figure out how many seconds to sleep, if appropriate
+          NSDictionary *options = [application.settings mergeWithOptions:self.overrides];
+          NSInteger seconds = [options[[WryUtils nameForSettingForClass:[RepeatSetting class]]] integerValue];
           do {
-            // Figure out how many seconds to sleep, if appropriate
-            NSDictionary *options = [application.settings mergeWithOptions:self.overrides];
-            seconds = [options[[WryUtils nameForSettingForClass:[RepeatSetting class]]] integerValue];
-
             // Run the command
             if ([wryCommand run:self.params
                       formatter:formatter
@@ -136,7 +134,7 @@
             } else {
               [self processError:error];
             }
-          } while (returnCode == WrySuccessCode && seconds > 0);
+          } while (seconds > 0);
         }
       }
     }
@@ -145,14 +143,12 @@
 }
 
 - (int)processError:(NSError *)error {
-  int returnCode = WrySuccessCode;
   if (error != NULL) {
     [[WryApplication application] println:error.localizedDescription];
-    returnCode = (int) error.code;
+    return (int) error.code;
   } else {
-    returnCode = WryErrorCodeUnknown;
+    return WryErrorCodeUnknown;
   }
-  return returnCode;
 }
 
 - (void)setOverrideValue:(NSString *)value forSetting:(id <WrySetting>)setting {
