@@ -7,8 +7,8 @@
 //
 
 #import "WryCommand.h"
-#import "BaseCommand.h"
+#import "BaseCommandAbstract.h"
 
-@interface MvCommand : BaseCommand <WryCommand>
+@interface MvCommand : BaseCommandAbstract
 
 @end

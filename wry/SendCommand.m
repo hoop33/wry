@@ -10,18 +10,22 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation SendCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a channel to send to"
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSString *channelID = [params objectAtIndex:0];
-                                  NSString *text = [[params subarrayWithRange:NSMakeRange(1, params.count - 1)]
-                                    componentsJoinedByString:@" "];
+                                  id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                  NSString *text = [unescapeBangEnhancer enhance:[[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "]];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];

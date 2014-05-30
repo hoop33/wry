@@ -8,8 +8,8 @@
 
 @interface ADNJSONMapping : NSObject
 
-@property(nonatomic, strong) Class cls;
-@property(nonatomic, strong) NSArray *entries;
+@property (nonatomic, strong) Class cls;
+@property (nonatomic, strong) NSArray *entries;
 
 - (id)initWithClass:(Class)cls;
 

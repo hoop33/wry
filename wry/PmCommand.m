@@ -10,13 +10,17 @@
 #import "ADNService.h"
 #import "WryUtils.h"
 #import "WryComposer.h"
+#import "WryEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation PmCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:1
                              errorMessage:@"You must specify a user to send to"
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSCharacterSet *numbers = [NSCharacterSet decimalDigitCharacterSet];
@@ -31,7 +35,8 @@
                                         [NSCharacterSet characterSetWithCharactersInString:param]]) {
                                       replyID = param;
                                     } else {
-                                      text = param;
+                                      id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                      text = [unescapeBangEnhancer enhance:param];
                                     }
                                   }
                                   if (!text.length) {

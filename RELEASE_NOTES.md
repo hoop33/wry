@@ -1,5 +1,16 @@
 # Release Notes
 
+## Version 1.8 (5/30/2014)
+* Add wry shell
+* Add --before <id> and --after <id> flags for pagination
+* When replying by external editor, insert username you're replying to
+* When replying by external editor, show post you're replying to
+* Add message command to get a message by channel and ID
+* Add rm command to delete a file
+* Fix: Don't try to post blank text
+* Fix: Unescape \! in text from command line
+* Fix: Show command usage information in help
+
 ## Version 1.7.3 (4/24/2014)
 * Fix crash when rejecting post text that is too long
 

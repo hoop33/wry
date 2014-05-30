@@ -12,8 +12,8 @@
 
 @implementation SettingsCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
-  ADNResponse *response = [[ADNResponse alloc] initWithData:nil];
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
+  ADNResponse *response = [[ADNResponse alloc] initWithData:nil mapping:nil reverse:NO error:error];
   NSArray *settingsClasses = [WryUtils allSettings];
   NSMutableArray *settings = [[NSMutableArray alloc] initWithCapacity:settingsClasses.count];
   for (Class cls in settingsClasses) {
@@ -21,7 +21,7 @@
   }
   response.object = settings;
   WryApplication *app = [WryApplication application];
-  [app println:[app.formatter format:response]];
+  [app println:[formatter format:response]];
   return YES;
 }
 

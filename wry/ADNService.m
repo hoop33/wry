@@ -165,24 +165,30 @@
 }
 
 - (ADNResponse *)createPost:(NSString *)text replyID:(NSString *)replyID error:(NSError **)error {
-  NSMutableDictionary *post = [NSMutableDictionary dictionary];
-  if (replyID.length != 0) {
-    [post setObject:replyID forKey:@"reply_to"];
-  }
-  [post setObject:text forKey:@"text"];
-  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
-  [linkEnhancer enhance:post];
-  NSData *json = [NSJSONSerialization dataWithJSONObject:post
-                                                 options:0
-                                                   error:error];
-  if (json != nil) {
-    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createOrUpdateItem:@"posts"
-                               body:jsonString
-                             create:YES
-                      contentHeader:@"application/json"
-                            mapping:[ADNMappingProvider postMapping]
-                              error:error];
+  if (text != nil && text.length > 0) {
+    NSMutableDictionary *post = [NSMutableDictionary dictionary];
+    if (replyID.length != 0) {
+      [post setObject:replyID forKey:@"reply_to"];
+    }
+    [post setObject:text forKey:@"text"];
+    id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+    [linkEnhancer enhance:post];
+    NSData *json = [NSJSONSerialization dataWithJSONObject:post
+                                                   options:0
+                                                     error:error];
+    if (json != nil) {
+      NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+      return [self createOrUpdateItem:@"posts"
+                                 body:jsonString
+                               create:YES
+                        contentHeader:@"application/json"
+                              mapping:[ADNMappingProvider postMapping]
+                                error:error];
+    }
+  } else if (error != NULL) {
+    *error = [NSError errorWithDomain:kErrorDomain
+                                 code:kErrorCodeBadInput
+                             userInfo:@{NSLocalizedDescriptionKey : @"You must supply text"}];
   }
   return nil;
 }
@@ -198,7 +204,7 @@
   // Get the post
   ADNResponse *response = [self showPost:postID error:error];
   if (response != nil) {
-    ADNPost *post = (ADNPost *)response.object;
+    ADNPost *post = (ADNPost *) response.object;
     if (post.repostID != nil) {
       originalID = post.repostID;
     }
@@ -298,8 +304,7 @@
 
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:[ADNMappingProvider fileMapping]];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:[ADNMappingProvider fileMapping] reverse:NO error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -356,6 +361,21 @@
   return nil;
 }
 
+- (ADNResponse *)deleteFile:(NSString *)fileID error:(NSError **)error {
+  if (fileID.length > 0) {
+    return [self getItem:[NSString stringWithFormat:@"files/%@", fileID]
+                 mapping:[ADNMappingProvider fileMapping] method:@"DELETE"
+                   error:error];
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:kErrorDomain
+                                   code:kErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : @"You must supply a file ID"}];
+    }
+    return nil;
+  }
+}
+
 #pragma mark - Message interactions
 
 - (ADNResponse *)getMessages:(NSError **)error {
@@ -373,31 +393,43 @@
 - (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
                         text:(NSString *)text
                        error:(NSError **)error {
-  if (channelID == nil || channelID.length == 0) {
-    channelID = @"pm";
-  }
-  NSMutableDictionary *message = [NSMutableDictionary dictionary];
-  [message setObject:text forKey:@"text"];
-  if (replyID.length != 0) {
-    [message setObject:replyID forKey:@"reply_to"];
-  }
-  if (users.count != 0) {
-    [message setObject:users forKey:@"destinations"];
-  }
-  id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
-  [linkEnhancer enhance:message];
-  NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
-                                                   error:error];
-  if (json != nil) {
-    NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
-                               body:jsonString
-                             create:YES
-                      contentHeader:@"application/json"
-                            mapping:[ADNMappingProvider messageMapping]
-                              error:error];
+  if (text != nil && text.length > 0) {
+    if (channelID == nil || channelID.length == 0) {
+      channelID = @"pm";
+    }
+    NSMutableDictionary *message = [NSMutableDictionary dictionary];
+    [message setObject:text forKey:@"text"];
+    if (replyID.length != 0) {
+      [message setObject:replyID forKey:@"reply_to"];
+    }
+    if (users.count != 0) {
+      [message setObject:users forKey:@"destinations"];
+    }
+    id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
+    [linkEnhancer enhance:message];
+    NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
+                                                     error:error];
+    if (json != nil) {
+      NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+      return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+                                 body:jsonString
+                               create:YES
+                        contentHeader:@"application/json"
+                              mapping:[ADNMappingProvider messageMapping]
+                                error:error];
+    }
+  } else if (error != NULL) {
+    *error = [NSError errorWithDomain:kErrorDomain
+                                 code:kErrorCodeBadInput
+                             userInfo:@{NSLocalizedDescriptionKey : @"You must supply text"}];
   }
   return nil;
+}
+
+- (ADNResponse *)getMessage:(NSString *)messageID channelID:(NSString *)channelID error:(NSError **)error {
+  return [self getItem:[NSString stringWithFormat:@"channels/%@/messages/%@", channelID, messageID]
+               mapping:[ADNMappingProvider messageMapping] method:@"GET"
+                 error:error];
 }
 
 #pragma mark - Channel interactions
@@ -421,14 +453,7 @@
   path = [self pathWithParameters:path includeCount:YES];
   [self performRequest:[self getURLRequestWithPath:path]];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    NSArray *results = (NSArray *) response.data;
-    NSEnumerator *enumerator = self.reverse ? [results reverseObjectEnumerator] : [results objectEnumerator];
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:results.count];
-    for (NSDictionary *dictionary in enumerator) {
-      [items addObject:[dictionary mapToObjectWithMapping:mapping]];
-    }
-    response.object = [NSArray arrayWithArray:items];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:self.reverse error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -445,8 +470,7 @@
   request.HTTPMethod = method;
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
-    response.object = [response.data mapToObjectWithMapping:mapping];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:NO error:error];
     return response;
   } else {
     if (error != NULL) {
@@ -468,7 +492,7 @@
   }
   [self performRequest:request];
   if (self.data.length > 0) {
-    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data];
+    ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:NO error:error];
     response.object = [response.data mapToObjectWithMapping:mapping];
     return response;
   } else {
@@ -480,16 +504,29 @@
 }
 
 - (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount {
-  NSMutableString *string = [NSMutableString stringWithString:path];
   if (includeCount) {
-    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
-    [string appendFormat:@"count=%ld", self.count];
+    path = [self appendParameter:[NSString stringWithFormat:@"count=%ld", self.count] toPath:path];
   }
   if (self.annotations) {
-    [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
-    [string appendString:@"include_annotations=1"];
+    path = [self appendParameter:@"include_annotations=1" toPath:path];
   }
-  return [NSString stringWithString:string];
+  if (self.beforeId) {
+    path = [self appendParameter:[NSString stringWithFormat:@"before_id=%@", self.beforeId] toPath:path];
+  }
+  if (self.sinceId) {
+    path = [self appendParameter:[NSString stringWithFormat:@"since_id=%@", self.sinceId] toPath:path];
+  }
+  return path;
+}
+
+- (NSString *)appendParameter:(NSString *)parameter toPath:(NSString *)path {
+  if (parameter == nil || path == nil || parameter.length == 0 || path.length == 0) {
+    return path;
+  }
+  NSMutableString *string = [NSMutableString stringWithString:path];
+  [string appendString:[path rangeOfString:@"?"].location == NSNotFound ? @"?" : @"&"];
+  [string appendString:parameter];
+  return string;
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods

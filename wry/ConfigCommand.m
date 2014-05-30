@@ -10,11 +10,10 @@
 #import "WrySetting.h"
 #import "WryUtils.h"
 #import "WryErrorCodes.h"
-#import "WrySettings.h"
 
 @implementation ConfigCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   BOOL success = YES;
   WryApplication *app = [WryApplication application];
   if (params.count == 0) {
@@ -57,10 +56,10 @@
   [help appendFormat:@"Sets a configuration value in the %@ preferences file.\n", [[WryApplication application] appName]];
   [help appendString:@"You must pass a setting name and an optional value. If you leave the value blank,\n"
     @"the configured setting will be displayed from the preferences file. The settings and allowed values are:\n\n"];
-    for (Class cls in [WryUtils allSettings]) {
-      id <WrySetting> setting = [[cls alloc] init];
-      [help appendFormat:@"   %-17s: %@\n", [[WryUtils nameForSetting:setting] UTF8String], [[setting allowedValues] componentsJoinedByString:@", "]];
-    }
+  for (Class cls in [WryUtils allSettings]) {
+    id <WrySetting> setting = [[cls alloc] init];
+    [help appendFormat:@"   %-17s: %@\n", [[WryUtils nameForSetting:setting] UTF8String], [[setting allowedValues] componentsJoinedByString:@", "]];
+  }
   return help;
 }
 

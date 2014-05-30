@@ -42,7 +42,7 @@ NSString *const kSSKeychainWhereKey = @"svce";
 }
 
 
-+ (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account  error:(NSError **)error {
++ (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error {
   SSKeychainQuery *query = [[SSKeychainQuery alloc] init];
   query.service = serviceName;
   query.account = account;

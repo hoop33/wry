@@ -17,8 +17,8 @@
 - (NSString *)colorDescription {
   return [self.text isEqualToString:self.url] ? [self colorize:self.url colorSetting:WryColorLink] :
     [NSString stringWithFormat:@"[%@](%@)",
-        [self colorize:self.text colorSetting:WryColorText],
-        [self colorize:self.url colorSetting:WryColorLink]];
+                               [self colorize:self.text colorSetting:WryColorText],
+                               [self colorize:self.url colorSetting:WryColorLink]];
 }
 
 - (NSDictionary *)asDictionary {

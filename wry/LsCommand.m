@@ -12,24 +12,30 @@
 
 @implementation LsCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return params.count > 0 ?
     [WryUtils performObjectOperation:params
                        minimumParams:0
-                        errorMessage:nil error:error
+                        errorMessage:nil
+                           formatter:formatter
+                             options:options
+                               error:error
                            operation:^id(ADNService *service) {
                              return [service getFile:[params objectAtIndex:0] error:error];
                            }] :
     [WryUtils performListOperation:params
                      minimumParams:0
-                      errorMessage:nil error:error
+                      errorMessage:nil
+                         formatter:formatter
+                           options:options
+                             error:error
                          operation:^id(ADNService *service) {
                            return [service getFiles:error];
                          }];
 }
 
 - (NSString *)usage {
-  return @"[file ID]";
+  return @"[fileid]";
 }
 
 - (NSString *)help {

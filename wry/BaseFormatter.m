@@ -17,7 +17,7 @@
     id <WryFormatter> this = (id <WryFormatter>) self;
     return [NSString stringWithFormat:@"   %-12s%@", [[WryUtils nameForFormatter:this] UTF8String], [this summary]];
   } else {
-    return [self description];
+    return [super description];
   }
 }
 

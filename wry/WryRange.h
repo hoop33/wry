@@ -10,10 +10,10 @@
 
 @interface WryRange : NSObject
 
-@property (nonatomic) int from;
-@property (nonatomic) int to;
+@property (nonatomic) NSUInteger from;
+@property (nonatomic) NSUInteger to;
 
 - (id)initWithRange:(NSRange)range;
-- (id)initWithFrom:(int)from to:(int)to;
+- (id)initWithFrom:(NSUInteger)from to:(NSUInteger)to;
 
 @end

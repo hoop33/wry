@@ -29,11 +29,15 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (BOOL)performObjectOperation:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams
                   errorMessage:(NSString *)errorMessage
+                     formatter:(id <WryFormatter>)formatter
+                       options:(NSDictionary *)options
                          error:(NSError **)error
                      operation:(ADNOperationBlock)operation;
 + (BOOL)performListOperation:(NSArray *)params
                minimumParams:(NSInteger)minimumParams
                 errorMessage:(NSString *)errorMessage
+                   formatter:(id <WryFormatter>)formatter
+                     options:(NSDictionary *)options
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation;
 + (id <WryCommand>)commandForName:(NSString *)name;
@@ -47,5 +51,9 @@ typedef void (^ADNOutputOperationBlock)(NSObject *response);
 + (NSString *)nameForSettingForClass:(Class)cls;
 + (NSString *)nameForSetting:(id <WrySetting>)setting;
 + (NSArray *)allSettings;
++ (BOOL)writeInfo:(NSString *)info toFilename:(NSString *)filename error:(NSError **)error;
++ (BOOL)deleteRuntimeInfo:(NSError **)error;
++ (NSString *)readInfo:(NSString *)filename error:(NSError **)error;
++ (NSString *)infoPath:(NSString *)filename error:(NSError **)error;
 
 @end

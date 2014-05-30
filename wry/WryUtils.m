@@ -12,32 +12,33 @@
 #import "WryErrorCodes.h"
 #import "ADNService.h"
 #import "CountSetting.h"
-#import "WrySettings.h"
 #import "DebugSetting.h"
 #import "PrettySetting.h"
 #import "ReverseSetting.h"
 #import "AnnotationsSetting.h"
+#import "BeforeSetting.h"
+#import "AfterSetting.h"
+#import "UserSetting.h"
 
 #define kCommandSuffix @"Command"
 #define kFormatterSuffix @"Formatter"
 #define kSettingSuffix @"Setting"
+#define kEarliest @"earliest"
+#define kLatest @"latest"
 
 @interface WryUtils ()
-+ (BOOL)performOperation:(NSString *)accessToken
-                  params:(NSArray *)params
-           minimumParams:(NSInteger)minimumParams
-            errorMessage:(NSString *)errorMessage
-                   error:(NSError **)error
-               operation:(ADNOperationBlock)operation
-         outputOperation:(ADNOutputOperationBlock)outputOperation;
 + (id)instanceForName:(NSString *)name suffix:(NSString *)suffix protocol:(id)protocol;
 + (NSString *)nameForInstance:(NSObject *)instance suffix:(NSString *)suffix;
 + (NSString *)nameForClass:(Class)cls suffix:(NSString *)suffix;
++ (NSArray *)allClassesWithSuffix:(NSString *)suffix protocol:(id)protocol;
 @end
 
 @implementation WryUtils
 
 static NSArray *allClasses;
+static NSArray *allCommands;
+static NSArray *allSettings;
+static NSArray *allFormatters;
 
 + (void)initialize {
   NSMutableArray *array = [NSMutableArray array];
@@ -50,11 +51,11 @@ static NSArray *allClasses;
       Class cls = classes[i];
       NSString *className = [NSString stringWithUTF8String:class_getName(cls)];
       if (([className hasSuffix:kCommandSuffix] ||
-           [className hasSuffix:kFormatterSuffix] ||
-           [className hasSuffix:kSettingSuffix]) &&
-          ([cls conformsToProtocol:@protocol(WryCommand)] ||
-           [cls conformsToProtocol:@protocol(WryFormatter)] ||
-           [cls conformsToProtocol:@protocol(WrySetting)])) {
+        [className hasSuffix:kFormatterSuffix] ||
+        [className hasSuffix:kSettingSuffix]) &&
+        ([cls conformsToProtocol:@protocol(WryCommand)] ||
+          [cls conformsToProtocol:@protocol(WryFormatter)] ||
+          [cls conformsToProtocol:@protocol(WrySetting)])) {
         [array addObject:cls];
       }
     }
@@ -78,6 +79,7 @@ static NSArray *allClasses;
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
+                            options:nil
                               error:error
                           operation:operation
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
@@ -90,36 +92,53 @@ static NSArray *allClasses;
 + (BOOL)performObjectOperation:(NSArray *)params
                  minimumParams:(NSInteger)minimumParams
                   errorMessage:(NSString *)errorMessage
+                     formatter:(id <WryFormatter>)formatter
+                       options:(NSDictionary *)options
                          error:(NSError **)error
                      operation:(ADNOperationBlock)operation {
   return [WryUtils performOperation:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
+                            options:options
                               error:error
                           operation:operation
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                       WryApplication *app = [WryApplication application];
-                      [app println:[app.formatter format:response]];
+                      [app println:[formatter format:response]];
                     }];
 }
 
 + (BOOL)performListOperation:(NSArray *)params
                minimumParams:(NSInteger)minimumParams
                 errorMessage:(NSString *)errorMessage
+                   formatter:(id <WryFormatter>)formatter
+                     options:(NSDictionary *)options
                        error:(NSError **)error
                    operation:(ADNOperationBlock)operation {
   return [WryUtils performOperation:nil
                              params:params
                       minimumParams:minimumParams
                        errorMessage:errorMessage
+                            options:options
                               error:error
                           operation:operation
                     outputOperation:(ADNOutputOperationBlock) ^(ADNResponse *response) {
                       NSArray *list = (NSArray *) response.object;
                       if (list.count > 0) {
+                        // Print out the response
                         WryApplication *app = [WryApplication application];
-                        [app println:[app.formatter format:response]];
+                        [app println:[formatter format:response]];
+
+                        // Write the last item ID to the data directory
+                        ADNObject *first = [list firstObject];
+                        ADNObject *last = [list lastObject];
+                        [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MIN(first.objectID, last.objectID)]
+                                 toFilename:kEarliest
+                                      error:error];
+                        [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MAX(first.objectID, last.objectID)]
+                                 toFilename:kLatest
+                                      error:error];
                       }
                     }];
 }
@@ -128,6 +147,7 @@ static NSArray *allClasses;
                   params:(NSArray *)params
            minimumParams:(NSInteger)minimumParams
             errorMessage:(NSString *)errorMessage
+                 options:(NSDictionary *)options
                    error:(NSError **)error
                operation:(ADNOperationBlock)operation
          outputOperation:(ADNOutputOperationBlock)outputOperation {
@@ -136,16 +156,29 @@ static NSArray *allClasses;
   if (params.count < minimumParams) {
     if (error != NULL) {
       *error = [NSError errorWithDomain:app.errorDomain
-                                   code:WryErrorCodeBadInput userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
     }
     success = NO;
   } else {
-    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ? app.accessToken : accessToken)];
-    service.count = [app.settings integerValue:[WryUtils nameForSettingForClass:[CountSetting class]]];
-    service.debug = [app.settings boolValue:[WryUtils nameForSettingForClass:[DebugSetting class]]];
-    service.pretty = [app.settings boolValue:[WryUtils nameForSettingForClass:[PrettySetting class]]];
-    service.reverse = [app.settings boolValue:[WryUtils nameForSettingForClass:[ReverseSetting class]]];
-    service.annotations = [app.settings boolValue:[WryUtils nameForSettingForClass:[AnnotationsSetting class]]];
+    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ?
+      [app.settings accessTokenForUser:options[[WryUtils nameForSettingForClass:[UserSetting class]]]] : accessToken)];
+    service.count = [options[[WryUtils nameForSettingForClass:[CountSetting class]]] integerValue];
+    service.debug = [options[[WryUtils nameForSettingForClass:[DebugSetting class]]] boolValue];
+    service.pretty = [options[[WryUtils nameForSettingForClass:[PrettySetting class]]] boolValue];
+    service.reverse = [options[[WryUtils nameForSettingForClass:[ReverseSetting class]]] boolValue];
+    service.annotations = [options[[WryUtils nameForSettingForClass:[AnnotationsSetting class]]] boolValue];
+    service.beforeId = options[[WryUtils nameForSettingForClass:[BeforeSetting class]]];
+    service.sinceId = options[[WryUtils nameForSettingForClass:[AfterSetting class]]];
+
+    // Check for earliest/latest
+    if ([service.beforeId isEqualToString:kEarliest]) {
+      service.beforeId = [WryUtils readInfo:kEarliest error:error];
+    }
+    if ([service.sinceId isEqualToString:kLatest]) {
+      service.sinceId = [WryUtils readInfo:kLatest error:error];
+    }
+
     ADNResponse *response = operation(service);
     if (response != nil) {
       if (response.meta != nil) {
@@ -173,6 +206,27 @@ static NSArray *allClasses;
   return success;
 }
 
++ (BOOL)deleteRuntimeInfo:(NSError **)error {
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSString *earliest = [WryUtils infoPath:kEarliest error:error];
+  NSString *latest = [WryUtils infoPath:kLatest error:error];
+  return ((![fileManager fileExistsAtPath:earliest] || [fileManager removeItemAtPath:earliest error:error]) &&
+    (![fileManager fileExistsAtPath:latest] || [fileManager removeItemAtPath:latest error:error]));
+}
+
++ (BOOL)writeInfo:(NSString *)info toFilename:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? NO : [info writeToFile:path
+                                   atomically:NO
+                                     encoding:NSUTF8StringEncoding
+                                        error:error];
+}
+
++ (NSString *)readInfo:(NSString *)filename error:(NSError **)error {
+  NSString *path = [WryUtils infoPath:filename error:error];
+  return path == nil ? nil : [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:error];
+}
+
 + (id <WryCommand>)commandForName:(NSString *)name {
   return [WryUtils instanceForName:[name capitalizedString] suffix:kCommandSuffix protocol:@protocol(WryCommand)];
 }
@@ -198,15 +252,15 @@ static NSArray *allClasses;
 }
 
 + (NSString *)nameForCommand:(id <WryCommand>)command {
-  return [WryUtils nameForInstance:(NSObject *)command suffix:kCommandSuffix];
+  return [WryUtils nameForInstance:(NSObject *) command suffix:kCommandSuffix];
 }
 
 + (NSString *)nameForFormatter:(id <WryFormatter>)formatter {
-  return [WryUtils nameForInstance:(NSObject *)formatter suffix:kFormatterSuffix];
+  return [WryUtils nameForInstance:(NSObject *) formatter suffix:kFormatterSuffix];
 }
 
-+ (NSString *)nameForSetting:(id<WrySetting>)setting {
-  return [WryUtils nameForInstance:(NSObject *)setting suffix:kSettingSuffix];
++ (NSString *)nameForSetting:(id <WrySetting>)setting {
+  return [WryUtils nameForInstance:(NSObject *) setting suffix:kSettingSuffix];
 }
 
 + (NSString *)nameForSettingForClass:(Class)cls {
@@ -214,15 +268,24 @@ static NSArray *allClasses;
 }
 
 + (NSArray *)allCommands {
-  return [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
+  if (allCommands == nil) {
+    allCommands = [WryUtils allClassesWithSuffix:kCommandSuffix protocol:@protocol(WryCommand)];
+  }
+  return allCommands;
 }
 
 + (NSArray *)allFormatters {
-  return [WryUtils allClassesWithSuffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+  if (allFormatters == nil) {
+    allFormatters = [WryUtils allClassesWithSuffix:kFormatterSuffix protocol:@protocol(WryFormatter)];
+  }
+  return allFormatters;
 }
 
 + (NSArray *)allSettings {
-  return [WryUtils allClassesWithSuffix:kSettingSuffix protocol:@protocol(WrySetting)];
+  if (allSettings == nil) {
+    allSettings = [WryUtils allClassesWithSuffix:kSettingSuffix protocol:@protocol(WrySetting)];
+  }
+  return allSettings;
 }
 
 #pragma mark - Private methods
@@ -251,6 +314,31 @@ static NSArray *allClasses;
     }
   }
   return array;
+}
+
++ (NSString *)infoPath:(NSString *)filename error:(NSError **)error {
+  if (filename.length > 0) {
+    NSString *directory = [WryUtils configDirectory:error];
+    if (directory != nil) {
+      return [directory stringByAppendingPathComponent:filename];
+    }
+  } else {
+    if (error != NULL) {
+      *error = [NSError errorWithDomain:[WryApplication application].errorDomain
+                                   code:WryErrorCodeBadInput
+                               userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"No path for filename %@", filename]}];
+    }
+  }
+  return nil;
+}
+
++ (NSString *)configDirectory:(NSError **)error {
+  BOOL isDirectory;
+  NSString *directory = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@".%@", [WryApplication application].appName]];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  if (![fileManager fileExistsAtPath:directory isDirectory:&isDirectory]) if (![fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:error])
+    directory = nil;
+  return directory;
 }
 
 @end

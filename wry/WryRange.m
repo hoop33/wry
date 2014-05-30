@@ -19,7 +19,7 @@
   return self;
 }
 
-- (id)initWithFrom:(int)from to:(int)to {
+- (id)initWithFrom:(NSUInteger)from to:(NSUInteger)to {
   self = [super init];
   if (self != nil) {
     self.from = from;
@@ -29,7 +29,7 @@
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"%d - %d", self.from, self.to];
+  return [NSString stringWithFormat:@"%lu - %lu", self.from, self.to];
 }
 
 @end

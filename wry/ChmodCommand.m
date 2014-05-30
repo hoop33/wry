@@ -12,10 +12,12 @@
 
 @implementation ChmodCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:2
                              errorMessage:@"You must specify a file ID and either 'public' or 'private'"
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
                                   NSNumber *makePublic = [[params objectAtIndex:1] isEqualTo:@"public"] ? @YES : @NO;

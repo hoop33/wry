@@ -26,7 +26,8 @@
 + (ADNJSONMapping *)userMapping {
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNUser class]];
   mapping.entries = @[
-    [ADNMappingEntry mappingEntry:@"id" to:@"userID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"objectID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pagination_id" to:@"paginationID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"description" to:@"userDescription"
                           mapping:[ADNMappingProvider userDescriptionMapping]],
     [ADNMappingEntry mappingEntry:@"follows_you" to:@"followsYou" mapping:nil],
@@ -49,7 +50,8 @@
 + (ADNJSONMapping *)postMapping {
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNPost class]];
   mapping.entries = @[
-    [ADNMappingEntry mappingEntry:@"id" to:@"postID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"objectID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pagination_id" to:@"paginationID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
     [ADNMappingEntry mappingEntry:@"entities.links" to:@"links" mapping:[ADNMappingProvider linkMapping]],
     [ADNMappingEntry mappingEntry:@"entities.hashtags" to:@"hashtags" mapping:[ADNMappingProvider hashtagMapping]],
@@ -68,7 +70,8 @@
     [ADNMappingEntry mappingEntry:@"name" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"sha1" to:nil mapping:nil],
     [ADNMappingEntry mappingEntry:@"url" to:nil mapping:nil],
-    [ADNMappingEntry mappingEntry:@"id" to:@"fileID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"objectID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pagination_id" to:@"paginationID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"total_size" to:@"totalSize" mapping:nil],
     [ADNMappingEntry mappingEntry:@"created_at" to:@"createdAt" mapping:nil],
     [ADNMappingEntry mappingEntry:@"url_short" to:@"shortUrl" mapping:nil],
@@ -82,7 +85,8 @@
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNMessage class]];
   mapping.entries = @[
     [ADNMappingEntry mappingEntry:@"text" to:nil mapping:nil],
-    [ADNMappingEntry mappingEntry:@"id" to:@"messageID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"objectID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pagination_id" to:@"paginationID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"channel_id" to:@"channelID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"thread_id" to:@"rootMessageID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"reply_to" to:@"replyToID" mapping:nil],
@@ -99,7 +103,8 @@
   ADNJSONMapping *mapping = [[ADNJSONMapping alloc] initWithClass:[ADNChannel class]];
   mapping.entries = @[
     [ADNMappingEntry mappingEntry:@"type" to:nil mapping:nil],
-    [ADNMappingEntry mappingEntry:@"id" to:@"channelID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"id" to:@"objectID" mapping:nil],
+    [ADNMappingEntry mappingEntry:@"pagination_id" to:@"paginationID" mapping:nil],
     [ADNMappingEntry mappingEntry:@"you_muted" to:@"muted" mapping:nil],
     [ADNMappingEntry mappingEntry:@"you_subscribed" to:@"subscribed" mapping:nil],
     [ADNMappingEntry mappingEntry:@"you_can_edit" to:@"edit" mapping:nil],

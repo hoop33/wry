@@ -12,14 +12,16 @@
 
 @interface ADNService : NSObject <NSURLConnectionDataDelegate>
 
-@property(nonatomic, copy) NSString *accessToken;
-@property(nonatomic, strong) NSMutableData *data;
-@property(nonatomic, strong) NSError *error;
-@property(nonatomic, assign) NSInteger count;
-@property(nonatomic, assign) BOOL debug;
-@property(nonatomic, assign) BOOL pretty;
-@property(nonatomic, assign) BOOL reverse;
-@property(nonatomic, assign) BOOL annotations;
+@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSString *beforeId;
+@property (nonatomic, copy) NSString *sinceId;
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSError *error;
+@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) BOOL debug;
+@property (nonatomic, assign) BOOL pretty;
+@property (nonatomic, assign) BOOL reverse;
+@property (nonatomic, assign) BOOL annotations;
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 
@@ -65,12 +67,14 @@
 - (ADNResponse *)getFiles:(NSError **)error;
 - (ADNResponse *)getFile:(NSString *)fileID error:(NSError **)error;
 - (ADNResponse *)updateFile:(NSString *)fileID name:(NSString *)name makePublic:(NSNumber *)makePublic error:(NSError **)error;
+- (ADNResponse *)deleteFile:(NSString *)fileID error:(NSError **)error;
 
 // Messages
 - (ADNResponse *)getMessages:(NSError **)error;
 - (ADNResponse *)getMessages:(NSString *)channelID error:(NSError **)error;
 - (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
                         text:(NSString *)text error:(NSError **)error;
+- (ADNResponse *)getMessage:(NSString *)messageID channelID:(NSString *)channelID error:(NSError **)error;
 
 // Channels
 - (ADNResponse *)getChannels:(NSError **)error;

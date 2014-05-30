@@ -12,16 +12,20 @@
 #import "WryComposer.h"
 #import "WryEnhancer.h"
 #import "TextTooLongEnhancer.h"
+#import "UnescapeBangEnhancer.h"
 
 @implementation PostCommand
 
-- (BOOL)run:(NSArray *)params error:(NSError **)error {
+- (BOOL)run:(NSArray *)params formatter:(id <WryFormatter>)formatter options:(NSDictionary *)options error:(NSError **)error {
   return [WryUtils performObjectOperation:params
                             minimumParams:0
                              errorMessage:nil
+                                formatter:formatter
+                                  options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  NSString *text = [params componentsJoinedByString:@" "];
+                                  id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
+                                  NSString *text = [unescapeBangEnhancer enhance:[params componentsJoinedByString:@" "]];
                                   if (!text.length) {
                                     WryComposer *composer = [[WryComposer alloc] init];
                                     text = [composer compose];

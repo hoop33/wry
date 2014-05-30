@@ -23,7 +23,7 @@
   NSMutableString *help = [[NSMutableString alloc] init];
   [help appendString:
     @"For commands that return multiple items (e.g., stream), you can limit the number\n"
-    @"of items returned to <count> items, where count is a number between 1 and 200."];
+      @"of items returned to <count> items, where count is a number between 1 and 200."];
   return help;
 }
 
