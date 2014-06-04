@@ -131,8 +131,8 @@ static NSArray *allFormatters;
                         [app println:[formatter format:response]];
 
                         // Write the last item ID to the data directory
-                        ADNObject *first = [list firstObject];
-                        ADNObject *last = [list lastObject];
+                        ADNObject *first = [list count] > 0 ? list[0] : nil;
+                        ADNObject *last = [list count] > 0 ? list[[list count] - 1] : nil;
                         [WryUtils writeInfo:[NSString stringWithFormat:@"%ld", MIN(first.objectID, last.objectID)]
                                  toFilename:kEarliest
                                       error:error];
