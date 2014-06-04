@@ -1,5 +1,11 @@
 # Release Notes
 
+## Version 1.8.2 (6/4/2014)
+* Fix Lion build issue
+
+## Version 1.8.1 (6/2/2014)
+* Fix Lion build issue
+
 ## Version 1.8 (5/30/2014)
 * Add wry shell
 * Add --before <id> and --after <id> flags for pagination
