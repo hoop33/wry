@@ -161,8 +161,8 @@ static NSArray *allFormatters;
     }
     success = NO;
   } else {
-    ADNService *service = [[ADNService alloc] initWithAccessToken:(accessToken == nil ?
-      [app.settings accessTokenForUser:options[[WryUtils nameForSettingForClass:[UserSetting class]]]] : accessToken)];
+    ADNService *service = [[ADNService alloc] initWithAccessToken:accessToken ?:
+      [app.settings accessTokenForUser:options[[WryUtils nameForSettingForClass:[UserSetting class]]]]];
     service.count = [options[[WryUtils nameForSettingForClass:[CountSetting class]]] integerValue];
     service.debug = [options[[WryUtils nameForSettingForClass:[DebugSetting class]]] boolValue];
     service.pretty = [options[[WryUtils nameForSettingForClass:[PrettySetting class]]] boolValue];

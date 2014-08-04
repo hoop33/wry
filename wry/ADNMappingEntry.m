@@ -14,7 +14,7 @@
 + (ADNMappingEntry *)mappingEntry:(NSString *)from to:(NSString *)to mapping:(ADNJSONMapping *)mapping {
   ADNMappingEntry *mappingEntry = [[ADNMappingEntry alloc] init];
   mappingEntry.from = from;
-  mappingEntry.to = to == nil ? from : to;
+  mappingEntry.to = to ?: from;
   mappingEntry.mapping = mapping;
   return mappingEntry;
 }

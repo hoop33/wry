@@ -62,7 +62,7 @@ static NSDictionary *NamesForTypes;
       break;
     }
   }
-  [str appendFormat:@"%@ Patter Room (%ld)", name == nil ? @"Unknown" : name, self.objectID];
+  [str appendFormat:@"%@ Patter Room (%ld)", name ?: @"Unknown", self.objectID];
   if (blurb != nil) {
     [str appendFormat:@"\n%@", blurb];
   }

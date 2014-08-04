@@ -21,7 +21,7 @@
 - (NSString *)description {
   NSMutableString *str = [[NSMutableString alloc] init];
   [str appendString:(self.user == nil ? @"[RETIRED USER]" : [self.user shortDescription])];
-  [str appendFormat:@"\n%@", (self.text == nil ? @"[REDACTED]" : self.text)];
+  [str appendFormat:@"\n%@", self.text ?: @"[REDACTED]"];
   [str appendFormat:@"\nID: %ld -- %@ (%@)", self.objectID, self.createdAt, self.source.name];
   for (ADNLink *link in self.links) {
     [str appendFormat:@"\n%@", [link description]];
