@@ -390,13 +390,12 @@
                   error:error];
 }
 
-- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID channelID:(NSString *)channelID
+- (ADNResponse *)sendMessage:(NSArray *)users replyID:(NSString *)replyID
+                   channelID:(NSString *)channelID
                         text:(NSString *)text
                        error:(NSError **)error {
   if (text != nil && text.length > 0) {
-    if (channelID == nil || channelID.length == 0) {
-      channelID = @"pm";
-    }
+    NSString *cID = channelID.length == 0 ? @"pm" : channelID;
     NSMutableDictionary *message = [NSMutableDictionary dictionary];
     [message setObject:text forKey:@"text"];
     if (replyID.length != 0) {
@@ -407,11 +406,12 @@
     }
     id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
     [linkEnhancer enhance:message];
-    NSData *json = [NSJSONSerialization dataWithJSONObject:message options:0
+    NSData *json = [NSJSONSerialization dataWithJSONObject:message
+                                                   options:0
                                                      error:error];
     if (json != nil) {
       NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-      return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", channelID]
+      return [self createOrUpdateItem:[NSString stringWithFormat:@"channels/%@/messages", cID]
                                  body:jsonString
                                create:YES
                         contentHeader:@"application/json"
@@ -450,8 +450,8 @@
 #pragma mark - Helper methods
 
 - (ADNResponse *)getItems:(NSString *)path mapping:(ADNJSONMapping *)mapping error:(NSError **)error {
-  path = [self pathWithParameters:path includeCount:YES];
-  [self performRequest:[self getURLRequestWithPath:path]];
+  NSString *fullPath = [self pathWithParameters:path includeCount:YES];
+  [self performRequest:[self getURLRequestWithPath:fullPath]];
   if (self.data.length > 0) {
     ADNResponse *response = [[ADNResponse alloc] initWithData:self.data mapping:mapping reverse:self.reverse error:error];
     return response;
@@ -465,8 +465,8 @@
 
 - (ADNResponse *)getItem:(NSString *)path mapping:(ADNJSONMapping *)mapping method:(NSString *)method
                    error:(NSError **)error {
-  path = [self pathWithParameters:path includeCount:NO];
-  NSMutableURLRequest *request = [self getURLRequestWithPath:path];
+  NSString *fullPath = [self pathWithParameters:path includeCount:NO];
+  NSMutableURLRequest *request = [self getURLRequestWithPath:fullPath];
   request.HTTPMethod = method;
   [self performRequest:request];
   if (self.data.length > 0) {
@@ -504,19 +504,20 @@
 }
 
 - (NSString *)pathWithParameters:(NSString *)path includeCount:(BOOL)includeCount {
+  NSString *fullPath = path;
   if (includeCount) {
-    path = [self appendParameter:[NSString stringWithFormat:@"count=%ld", self.count] toPath:path];
+    fullPath = [self appendParameter:[NSString stringWithFormat:@"count=%ld", self.count] toPath:fullPath];
   }
   if (self.annotations) {
-    path = [self appendParameter:@"include_annotations=1" toPath:path];
+    fullPath = [self appendParameter:@"include_annotations=1" toPath:fullPath];
   }
   if (self.beforeId) {
-    path = [self appendParameter:[NSString stringWithFormat:@"before_id=%@", self.beforeId] toPath:path];
+    fullPath = [self appendParameter:[NSString stringWithFormat:@"before_id=%@", self.beforeId] toPath:fullPath];
   }
   if (self.sinceId) {
-    path = [self appendParameter:[NSString stringWithFormat:@"since_id=%@", self.sinceId] toPath:path];
+    fullPath = [self appendParameter:[NSString stringWithFormat:@"since_id=%@", self.sinceId] toPath:fullPath];
   }
-  return path;
+  return fullPath;
 }
 
 - (NSString *)appendParameter:(NSString *)parameter toPath:(NSString *)path {

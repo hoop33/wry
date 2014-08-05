@@ -18,6 +18,7 @@
 @implementation TextTooLongEnhancer
 
 - (id)enhance:(id)object {
+  id result = object;
   if ([object isKindOfClass:[NSString class]]) {
     NSString *text = (NSString *) object;
     if (text.length > kMaxTextLength) {
@@ -25,11 +26,11 @@
       if ([self respondsToSelector:selector]) {
         IMP imp = [self methodForSelector:selector];
         id (*func)(id, SEL, NSString *) = (void *) imp;
-        object = func(self, selector, text);
+        result = func(self, selector, text);
       }
     }
   }
-  return object;
+  return result;
 }
 
 - (NSString *)textTooLongOption {
