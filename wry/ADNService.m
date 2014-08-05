@@ -36,9 +36,9 @@
 - (id)initWithAccessToken:(NSString *)accessToken {
   self = [super init];
   if (self != nil) {
-    self.accessToken = accessToken;
-    self.data = [NSMutableData data];
-    self.debug = NO;
+    _accessToken = accessToken;
+    _data = [NSMutableData data];
+    _debug = NO;
   }
   return self;
 }

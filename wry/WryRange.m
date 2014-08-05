@@ -13,8 +13,8 @@
 - (id)initWithRange:(NSRange)range {
   self = [super init];
   if (self != nil) {
-    self.from = range.location;
-    self.to = range.length;
+    _from = range.location;
+    _to = range.length;
   }
   return self;
 }
@@ -22,8 +22,8 @@
 - (id)initWithFrom:(NSUInteger)from to:(NSUInteger)to {
   self = [super init];
   if (self != nil) {
-    self.from = from;
-    self.to = to;
+    _from = from;
+    _to = to;
   }
   return self;
 }

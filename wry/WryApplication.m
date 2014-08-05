@@ -36,7 +36,7 @@
   if (self != nil) {
     _interactiveIn = isatty(fileno(stdin)) != 0;
     _interactiveOut = isatty(fileno(stdout)) != 0;
-    self.settings = [[WrySettings alloc] init];
+    _settings = [[WrySettings alloc] init];
   }
   return self;
 }

@@ -17,9 +17,9 @@
   if (self != nil) {
     if (data != nil) {
       NSDictionary *wrapper = [NSJSONSerialization JSONObjectWithData:data options:0 error:error];
-      self.meta = [wrapper objectForKey:@"meta"];
-      self.data = [wrapper objectForKey:@"data"];
-      self.json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+      _meta = [wrapper objectForKey:@"meta"];
+      _data = [wrapper objectForKey:@"data"];
+      _json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
       [self parseData:mapping reverse:reverse];
     }
   }

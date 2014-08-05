@@ -31,7 +31,7 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    self.legacy = @{
+    _legacy = @{
       @"user" : @"DefaultUser",
       @"editor" : @"Editor",
       @"separator" : @"Separator"

@@ -23,7 +23,7 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    self.overrides = [[NSMutableDictionary alloc] init];
+    _overrides = [[NSMutableDictionary alloc] init];
   }
   return self;
 }

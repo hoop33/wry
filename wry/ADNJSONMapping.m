@@ -13,7 +13,7 @@
 - (id)initWithClass:(Class)cls {
   self = [super init];
   if (self != nil) {
-    self.cls = cls;
+    _cls = cls;
   }
   return self;
 }
