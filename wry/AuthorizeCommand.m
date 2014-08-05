@@ -24,13 +24,13 @@
                                           app.appName]];
   [app println:@"return to this terminal window and enter the code from your Web browser."];
   [app print:@"Press ENTER to open a Web browser and begin the authorization process -->"];
-  [app getInput];
+  [app input];
 
   [app openURL:[NSString stringWithFormat:self.oauthURLFormat, self.clientID, self.redirectURI, self.scope]];
 
   [app println:@""];
   [app print:@"Enter code from your Web browser: "];
-  NSString *accessToken = [app getInput];
+  NSString *accessToken = [app input];
   if (accessToken.length > 0) {
     ADNResponse *response;
     success = [WryUtils getADNResponseForOperation:accessToken

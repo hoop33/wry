@@ -57,7 +57,7 @@
   [app println:[NSString stringWithFormat:@"%@", [text substringFromIndex:kMaxTextLength]]];
   [app println:@""];
   [app print:@"Use this text? (y/N) --> "];
-  NSString *useText = [app getInput];
+  NSString *useText = [app input];
   return [[useText lowercaseString] hasPrefix:@"y"] ? [text substringToIndex:kMaxTextLength] : nil;
 }
 

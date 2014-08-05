@@ -24,7 +24,7 @@
 - (void)print:(NSString *)output;
 - (void)println:(NSObject *)output;
 - (void)openURL:(NSString *)urlString;
-- (NSString *)getInput;
+- (NSString *)input;
 - (NSString *)version;
 - (NSString *)errorDomain;
 

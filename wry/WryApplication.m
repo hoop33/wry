@@ -51,7 +51,7 @@
   [self print:[NSString stringWithFormat:@"%@\n", [output description]]];
 }
 
-- (NSString *)getInput {
+- (NSString *)input {
   char buffer[kInputBufferSize];
   fgets(buffer, kInputBufferSize, stdin);
   return [[NSString stringWithUTF8String:buffer] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
