@@ -49,7 +49,7 @@ static NSArray *allFormatters;
     int n = objc_getClassList(classes, numClasses);
     for (int i = 0; i < n; i++) {
       Class cls = classes[i];
-      NSString *className = [NSString stringWithUTF8String:class_getName(cls)];
+      NSString *className = @(class_getName(cls));
       if (([className hasSuffix:kCommandSuffix] ||
         [className hasSuffix:kFormatterSuffix] ||
         [className hasSuffix:kSettingSuffix]) &&
@@ -308,7 +308,7 @@ static NSArray *allFormatters;
   // TODO can we use an NSPredicate here? Not sure how that would work with class_getName....
   NSMutableArray *array = [NSMutableArray array];
   for (Class cls in allClasses) {
-    NSString *className = [NSString stringWithUTF8String:class_getName(cls)];
+    NSString *className = @(class_getName(cls));
     if ([className hasSuffix:suffix] && [cls conformsToProtocol:protocol]) {
       [array addObject:cls];
     }

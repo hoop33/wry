@@ -21,7 +21,7 @@
                                 options:options
                                   error:error
                               operation:^id(ADNService *service) {
-                                return params.count > 0 ? [service getFollowers:[[params objectAtIndex:0] atify]
+                                return params.count > 0 ? [service getFollowers:[params[0] atify]
                                                                           error:error] :
                                   [service getFollowers:error];
                               }];

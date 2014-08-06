@@ -17,6 +17,6 @@
 @property (nonatomic, copy) NSString *json;
 @property (nonatomic, strong) id object;
 
-- (id)initWithData:(NSData *)data mapping:(ADNJSONMapping *)mapping reverse:(BOOL)reverse error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data mapping:(ADNJSONMapping *)mapping reverse:(BOOL)reverse error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
 @end

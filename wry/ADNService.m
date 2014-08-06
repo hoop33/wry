@@ -33,7 +33,7 @@
 
 @implementation ADNService
 
-- (id)initWithAccessToken:(NSString *)accessToken {
+- (instancetype)initWithAccessToken:(NSString *)accessToken {
   self = [super init];
   if (self != nil) {
     _accessToken = accessToken;
@@ -168,9 +168,9 @@
   if (text != nil && text.length > 0) {
     NSMutableDictionary *post = [NSMutableDictionary dictionary];
     if (replyID.length != 0) {
-      [post setObject:replyID forKey:@"reply_to"];
+      post[@"reply_to"] = replyID;
     }
-    [post setObject:text forKey:@"text"];
+    post[@"text"] = text;
     id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
     [linkEnhancer enhance:post];
     NSData *json = [NSJSONSerialization dataWithJSONObject:post
@@ -397,12 +397,12 @@
   if (text != nil && text.length > 0) {
     NSString *cID = channelID.length == 0 ? @"pm" : channelID;
     NSMutableDictionary *message = [NSMutableDictionary dictionary];
-    [message setObject:text forKey:@"text"];
+    message[@"text"] = text;
     if (replyID.length != 0) {
-      [message setObject:replyID forKey:@"reply_to"];
+      message[@"reply_to"] = replyID;
     }
     if (users.count != 0) {
-      [message setObject:users forKey:@"destinations"];
+      message[@"destinations"] = users;
     }
     id <WryEnhancer> linkEnhancer = [[LinkEnhancer alloc] init];
     [linkEnhancer enhance:message];

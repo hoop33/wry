@@ -20,8 +20,8 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  NSNumber *makePublic = [[params objectAtIndex:1] isEqualTo:@"public"] ? @YES : @NO;
-                                  return [service updateFile:[params objectAtIndex:0] name:nil
+                                  NSNumber *makePublic = [params[1] isEqualTo:@"public"] ? @YES : @NO;
+                                  return [service updateFile:params[0] name:nil
                                                   makePublic:makePublic error:error];
                                 }];
 }

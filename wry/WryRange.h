@@ -13,7 +13,7 @@
 @property (nonatomic) NSUInteger from;
 @property (nonatomic) NSUInteger to;
 
-- (id)initWithRange:(NSRange)range;
-- (id)initWithFrom:(NSUInteger)from to:(NSUInteger)to;
+- (instancetype)initWithRange:(NSRange)range NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrom:(NSUInteger)from to:(NSUInteger)to NS_DESIGNATED_INITIALIZER;
 
 @end

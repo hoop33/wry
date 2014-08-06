@@ -12,13 +12,13 @@
 
 @implementation ADNResponse
 
-- (id)initWithData:(NSData *)data mapping:(ADNJSONMapping *)mapping reverse:(BOOL)reverse error:(NSError **)error {
+- (instancetype)initWithData:(NSData *)data mapping:(ADNJSONMapping *)mapping reverse:(BOOL)reverse error:(NSError **)error {
   self = [super init];
   if (self != nil) {
     if (data != nil) {
       NSDictionary *wrapper = [NSJSONSerialization JSONObjectWithData:data options:0 error:error];
-      _meta = [wrapper objectForKey:@"meta"];
-      _data = [wrapper objectForKey:@"data"];
+      _meta = wrapper[@"meta"];
+      _data = wrapper[@"data"];
       _json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
       [self parseData:mapping reverse:reverse];
     }

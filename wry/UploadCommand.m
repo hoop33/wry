@@ -22,7 +22,7 @@
     }
     return NO;
   }
-  NSString *filename = [params objectAtIndex:0];
+  NSString *filename = params[0];
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSData *data = [fileManager contentsAtPath:filename];
   if (data == nil) {

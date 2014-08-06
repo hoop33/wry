@@ -23,7 +23,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  NSString *channelID = [params objectAtIndex:0];
+                                  NSString *channelID = params[0];
                                   id <WryEnhancer> unescapeBangEnhancer = [[UnescapeBangEnhancer alloc] init];
                                   NSString *text = [unescapeBangEnhancer enhance:[[params subarrayWithRange:NSMakeRange(1, params.count - 1)] componentsJoinedByString:@" "]];
                                   if (!text.length) {

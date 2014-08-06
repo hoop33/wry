@@ -11,6 +11,6 @@
 @property (nonatomic, strong) Class cls;
 @property (nonatomic, strong) NSArray *entries;
 
-- (id)initWithClass:(Class)cls;
+- (instancetype)initWithClass:(Class)cls NS_DESIGNATED_INITIALIZER;
 
 @end

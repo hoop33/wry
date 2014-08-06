@@ -21,7 +21,7 @@
                              options:options
                                error:error
                            operation:^id(ADNService *service) {
-                             return [service getFile:[params objectAtIndex:0] error:error];
+                             return [service getFile:params[0] error:error];
                            }] :
     [WryUtils performListOperation:params
                      minimumParams:0

@@ -8,7 +8,7 @@
 
 #import "WrySetting.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, WryColor) {
   WryColorText = 0,
   WryColorAlert,
   WryColorUser,
@@ -17,7 +17,7 @@ typedef enum {
   WryColorMuted,
   WryColorLink,
   WryColorHashtag
-} WryColor;
+} ;
 
 @interface WrySettings : NSObject
 

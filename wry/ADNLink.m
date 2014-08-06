@@ -25,8 +25,8 @@
   // Note that we omit text, as per ADN guidelines
   return @{
     @"url" : self.url,
-    @"pos" : [NSNumber numberWithLong:self.position],
-    @"len" : [NSNumber numberWithLong:self.length]
+    @"pos" : @((long) self.position),
+    @"len" : @((long) self.length)
   };
 }
 

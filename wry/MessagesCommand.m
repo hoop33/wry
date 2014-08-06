@@ -22,7 +22,7 @@
                               operation:^id(ADNService *service) {
                                 return (params.count == 0) ?
                                   [service getMessages:error] :
-                                  [service getMessages:[params objectAtIndex:0] error:error];
+                                  [service getMessages:params[0] error:error];
                               }];
 }
 

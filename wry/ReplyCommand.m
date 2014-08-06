@@ -25,7 +25,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  NSString *replyID = [params objectAtIndex:0];
+                                  NSString *replyID = params[0];
 
                                   // Get post we're replying to
                                   ADNResponse *response = [service showPost:replyID error:error];

@@ -25,12 +25,12 @@
       [app println:user];
     }
   } else {
-    NSString *command = [params objectAtIndex:0];
+    NSString *command = params[0];
     if ([@[@"delete", @"default"] containsObject:command]) {
       if (params.count < 2) {
-        [app println:[NSString stringWithFormat:@"You must specify the user to %@", [params objectAtIndex:0]]];
+        [app println:[NSString stringWithFormat:@"You must specify the user to %@", params[0]]];
       } else {
-        NSString *user = [[params objectAtIndex:1] deatify];
+        NSString *user = [params[1] deatify];
         if ([SSKeychain passwordForService:app.appName account:user] == nil) {
           [app println:[NSString stringWithFormat:@"User '%@' does not exist.", user]];
         } else {

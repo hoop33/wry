@@ -23,7 +23,7 @@
 @property (nonatomic, assign) BOOL reverse;
 @property (nonatomic, assign) BOOL annotations;
 
-- (id)initWithAccessToken:(NSString *)accessToken;
+- (instancetype)initWithAccessToken:(NSString *)accessToken NS_DESIGNATED_INITIALIZER;
 
 // Users
 - (ADNResponse *)getUser:(NSError **)error;

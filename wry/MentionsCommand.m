@@ -21,7 +21,7 @@
                                 options:options
                                   error:error
                               operation:^id(ADNService *service) {
-                                return params.count > 0 ? [service getMentions:[[params objectAtIndex:0] atify]
+                                return params.count > 0 ? [service getMentions:[params[0] atify]
                                                                          error:error] :
                                   [service getMentions:error];
                               }];

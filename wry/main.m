@@ -13,11 +13,11 @@
 int main(int argc, const char *argv[]) {
   @autoreleasepool {
     WryApplication *application = [WryApplication application];
-    application.appName = [[NSString stringWithUTF8String:argv[0]] lastPathComponent];
+    application.appName = [@(argv[0]) lastPathComponent];
 
     NSMutableArray *commandLineParameters = [NSMutableArray arrayWithCapacity:(NSUInteger) argc];
     for (int i = 1; i < argc; i++) {
-      [commandLineParameters addObject:[NSString stringWithUTF8String:argv[i]]];
+      [commandLineParameters addObject:@(argv[i])];
     }
 
     NSError *error;

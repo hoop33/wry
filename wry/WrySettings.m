@@ -28,7 +28,7 @@
 @implementation WrySettings {
 }
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if (self != nil) {
     _legacy = @{
@@ -55,8 +55,8 @@
 - (NSString *)stringValue:(NSString *)key {
   NSString *value = nil;
   // Check if they've configured an old key
-  if ([[self.legacy allKeys] containsObject:key] && (value = [[NSUserDefaults standardUserDefaults] objectForKey:[self.legacy objectForKey:key]]) != nil) {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self.legacy objectForKey:key]];
+  if ([[self.legacy allKeys] containsObject:key] && (value = [[NSUserDefaults standardUserDefaults] objectForKey:(self.legacy)[key]]) != nil) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:(self.legacy)[key]];
     [self setObject:value forKey:key];
   } else {
     // Check the defaults
@@ -96,23 +96,23 @@
       case WrySettingUnknownType:
         break;
       case WrySettingBooleanType:
-        object = [NSNumber numberWithBool:[self boolValue:key]];
+        object = @([self boolValue:key]);
         break;
       case WrySettingIntegerType:
-        object = [NSNumber numberWithLong:[self integerValue:key]];
+        object = @([self integerValue:key]);
         break;
       case WrySettingStringType:
         object = [self stringValue:key];
         break;
     }
     if (object != nil) {
-      [merged setObject:object forKey:key];
+      merged[key] = object;
     }
   }
 
   // Now do the options
   for (NSString *key in [options allKeys]) {
-    [merged setObject:[options valueForKey:key] forKey:key];
+    merged[key] = [options valueForKey:key];
   }
   return [NSDictionary dictionaryWithDictionary:merged];
 }

@@ -10,7 +10,7 @@
 
 @implementation ADNJSONMapping
 
-- (id)initWithClass:(Class)cls {
+- (instancetype)initWithClass:(Class)cls {
   self = [super init];
   if (self != nil) {
     _cls = cls;

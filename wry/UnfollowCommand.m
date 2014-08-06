@@ -21,7 +21,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service unfollow:[[params objectAtIndex:0] atify] error:error];
+                                  return [service unfollow:[params[0] atify] error:error];
                                 }];
 }
 

@@ -20,7 +20,7 @@
 
 @implementation WryCommandLine
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if (self != nil) {
     _overrides = [[NSMutableDictionary alloc] init];
@@ -160,14 +160,14 @@
       object = @YES;
       break;
     case WrySettingIntegerType:
-      object = [NSNumber numberWithInteger:[value integerValue]];
+      object = @([value integerValue]);
       break;
     case WrySettingStringType:
       object = value;
       break;
   }
   if (object != nil) {
-    [self.overrides setObject:object forKey:[WryUtils nameForSetting:setting]];
+    (self.overrides)[[WryUtils nameForSetting:setting]] = object;
   }
 }
 

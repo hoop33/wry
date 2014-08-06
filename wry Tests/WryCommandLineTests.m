@@ -41,7 +41,7 @@
 }
 
 - (void)testParseEmptyArrayShouldReturnTrue {
-  XCTAssertTrue([cl parseParameters:[NSArray array] error:nil]);
+  XCTAssertTrue([cl parseParameters:@[] error:nil]);
 }
 
 - (void)testParseNilStringShouldSetCommandToHelp {

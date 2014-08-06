@@ -82,7 +82,7 @@
 }
 
 - (void)testSplitWithShortTextShouldReturnArrayWithShortText {
-  XCTAssertEqualObjects([(NSArray *)[enhancer performSelector:@selector(split:) withObject:shortText] objectAtIndex:0], shortText, @"split should return an array with the same string");
+  XCTAssertEqualObjects(((NSArray *)[enhancer performSelector:@selector(split:) withObject:shortText])[0], shortText, @"split should return an array with the same string");
 }
 
 - (void)testEnhanceRejectWithNilShouldReturnNil {

@@ -26,7 +26,7 @@ static NSDictionary *NamesForTypes;
 }
 
 + (NSString *)nameForType:(NSString *)type {
-  return [[NamesForTypes allKeys] containsObject:type] ? [NamesForTypes objectForKey:type] : type;
+  return [[NamesForTypes allKeys] containsObject:type] ? NamesForTypes[type] : type;
 }
 
 - (NSString *)description {
@@ -57,8 +57,8 @@ static NSDictionary *NamesForTypes;
   for (ADNAnnotation *annotation in self.annotations) {
     NSDictionary *dictionary = annotation.value;
     if ([dictionary.allKeys containsObject:@"blurb"]) {
-      name = [dictionary objectForKey:@"name"];
-      blurb = [dictionary objectForKey:@"blurb"];
+      name = dictionary[@"name"];
+      blurb = dictionary[@"blurb"];
       break;
     }
   }

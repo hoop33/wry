@@ -10,7 +10,7 @@
 
 @implementation WryRange
 
-- (id)initWithRange:(NSRange)range {
+- (instancetype)initWithRange:(NSRange)range {
   self = [super init];
   if (self != nil) {
     _from = range.location;
@@ -19,7 +19,7 @@
   return self;
 }
 
-- (id)initWithFrom:(NSUInteger)from to:(NSUInteger)to {
+- (instancetype)initWithFrom:(NSUInteger)from to:(NSUInteger)to {
   self = [super init];
   if (self != nil) {
     _from = from;

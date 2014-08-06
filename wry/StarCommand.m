@@ -20,7 +20,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service star:[params objectAtIndex:0] error:error];
+                                  return [service star:params[0] error:error];
                                 }];
 }
 

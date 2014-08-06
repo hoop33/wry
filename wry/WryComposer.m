@@ -90,15 +90,15 @@
 }
 
 - (NSString *)shell {
-  return [[[NSProcessInfo processInfo] environment] objectForKey:@"SHELL"];
+  return [[NSProcessInfo processInfo] environment][@"SHELL"];
 }
 
 - (NSString *)editor {
   NSDictionary *environment = [[NSProcessInfo processInfo] environment];
   NSString *editor = [[WryApplication application].settings stringValue:[WryUtils nameForSettingForClass:[EditorSetting class]]];
-  if (editor.length == 0) editor = [environment objectForKey:@"WRY_EDITOR"];
-  if (editor.length == 0) editor = [environment objectForKey:@"VISUAL"];
-  if (editor.length == 0) editor = [environment objectForKey:@"EDITOR"];
+  if (editor.length == 0) editor = environment[@"WRY_EDITOR"];
+  if (editor.length == 0) editor = environment[@"VISUAL"];
+  if (editor.length == 0) editor = environment[@"EDITOR"];
   if (editor.length == 0) editor = @"vi";
   return editor;
 }

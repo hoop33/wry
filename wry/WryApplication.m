@@ -31,7 +31,7 @@
   return 256;
 }
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if (self != nil) {
     _interactiveIn = isatty(fileno(stdin)) != 0;
@@ -54,7 +54,7 @@
 - (NSString *)input {
   char buffer[kInputBufferSize];
   fgets(buffer, kInputBufferSize, stdin);
-  return [[NSString stringWithUTF8String:buffer] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+  return [@(buffer) stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 }
 
 - (void)openURL:(NSString *)urlString {
@@ -65,11 +65,11 @@
 }
 
 - (NSString *)version {
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+  return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 }
 
 - (NSString *)errorDomain {
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+  return [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"];
 }
 
 @end

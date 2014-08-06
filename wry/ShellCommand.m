@@ -19,7 +19,7 @@ NSArray *settingsNames;
 NSArray *formatterNames;
 void completion(const char *buf, linenoiseCompletions *lc) {
   // Get the whole command line so far
-  NSString *cli = [NSString stringWithUTF8String:buf];
+  NSString *cli = @(buf);
 
   // Figure out the current token (the one they're typing on)
   NSArray *tokens = [cli componentsSeparatedByString:@" "];
@@ -55,7 +55,7 @@ void completion(const char *buf, linenoiseCompletions *lc) {
 
 @implementation ShellCommand
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if (self != nil) {
     [self setUpCommandNames];
@@ -104,7 +104,7 @@ void completion(const char *buf, linenoiseCompletions *lc) {
 
   char *line;
   while ((line = linenoise([[self prompt] UTF8String])) != NULL) {
-    NSString *input = [NSString stringWithUTF8String:line];
+    NSString *input = @(line);
     if ([@[@"quit", @"exit"] containsObject:[input lowercaseString]]) {
       break;
     } else {

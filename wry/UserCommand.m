@@ -20,7 +20,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return params.count > 0 ? [service getUser:[params objectAtIndex:0]
+                                  return params.count > 0 ? [service getUser:params[0]
                                                                        error:error] :
                                     [service getUser:error];
                                 }];

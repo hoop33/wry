@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Rob Warner. All rights reserved.
 //
 
-typedef enum {
+typedef NS_ENUM(NSInteger, WrySettingType) {
   WrySettingUnknownType,
   WrySettingBooleanType,
   WrySettingIntegerType,
   WrySettingStringType
-} WrySettingType;
+} ;
 
 @protocol WrySetting <NSObject>
 

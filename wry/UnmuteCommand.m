@@ -21,7 +21,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service unmute:[[params objectAtIndex:0] atify] error:error];
+                                  return [service unmute:[params[0] atify] error:error];
                                 }];
 }
 

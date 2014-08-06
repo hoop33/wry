@@ -34,7 +34,7 @@
         *error = [NSError errorWithDomain:app.errorDomain
                                      code:WryErrorCodeBadInput
                                  userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"%@ is not a valid %@ command, formatter, or setting.",
-                                                                                                   [params objectAtIndex:0],
+                                                                                                   params[0],
                                                                                                    app.appName]}];
       }
       success = NO;

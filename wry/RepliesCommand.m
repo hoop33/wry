@@ -20,7 +20,7 @@
                                 options:options
                                   error:error
                               operation:(ADNOperationBlock) ^(ADNService *service) {
-                                return [service getReplies:[params objectAtIndex:0] error:error];
+                                return [service getReplies:params[0] error:error];
                               }];
 }
 

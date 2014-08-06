@@ -20,7 +20,7 @@
                                   options:options
                                     error:error
                                 operation:(ADNOperationBlock) ^(ADNService *service) {
-                                  return [service updateFile:[params objectAtIndex:0] name:[params objectAtIndex:1]
+                                  return [service updateFile:params[0] name:params[1]
                                                   makePublic:nil error:error];
                                 }];
 }
