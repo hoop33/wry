@@ -1,5 +1,9 @@
 # Wry &mdash; A command line client for App.net for Mac OS X 10.7+
 
+[![Build Status](https://travis-ci.org/hoop33/wry.svg?branch=master)](https://travis-ci.org/hoop33/wry)
+[![Issues](https://img.shields.io/github/issues/hoop33/wry.svg)](https://github.com/hoop33/wry/issues)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+
 ## Description
 Wry is a command-line client for App.net for Mac OS X 10.7+ (Lion), written in Objective-C.
 
