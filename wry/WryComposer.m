@@ -119,7 +119,17 @@
 }
 
 - (NSString *)replyToText {
-  return self.post == nil ? @"" : [NSString stringWithFormat:@"# -------------------------\n# Replying to post:\n# %@", self.post.text];
+  if (!self.post) {
+    return @"";
+  }
+
+  NSArray *lines = [self.post.text componentsSeparatedByCharactersInSet:
+                    [NSCharacterSet newlineCharacterSet]];
+  NSString *commentedLines = [@"# " stringByAppendingString:
+                              [lines componentsJoinedByString:@"\n# "]];
+  NSString *replyToText = [@"# -------------------------\n# Replying to post:\n"
+                           stringByAppendingString:commentedLines];
+  return replyToText;
 }
 
 - (NSString *)filterComments:(NSString *)text {
