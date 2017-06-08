@@ -10,6 +10,7 @@
 #import "WryComposer.h"
 #import "ADNResponse.h"
 #import "ADNMappingProvider.h"
+#import "ADNPost.h"
 
 @interface WryComposerTests : XCTestCase
 
@@ -125,6 +126,22 @@
       @"# -------------------------\n"
         "# Replying to post:\n"
         "# Wait—what? A professional sports league that harbors racism? How could we have seen that coming? #redskins #indians", @"replyToText should be text from post");
+}
+
+- (NSString *)replyToText {
+  return [composer performSelector:@selector(replyToText)];
+}
+
+- (void)testReplyToTextShouldCommentOutEachLineOfTextFromPost {
+  ADNPost *threeLinePost = [ADNPost new];
+  threeLinePost.text = @"1\n2\n3";
+  composer.post = threeLinePost;
+  XCTAssertEqualObjects(self.replyToText,
+    @"# -------------------------\n"
+      "# Replying to post:\n"
+      "# 1\n"
+      "# 2\n"
+      "# 3", @"each line of replied-to post should be commented out");
 }
 
 - (NSString *)resourcePath:(NSString *)filename {
